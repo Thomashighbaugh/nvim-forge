@@ -6,7 +6,7 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
 
--- TODO fix this
+
 -- Terminal window navigation
 vim.cmd([[
   tnoremap <C-h> <C-\><C-N><C-w>h
@@ -20,7 +20,7 @@ vim.cmd([[
   tnoremap <Esc> <C-\><C-n>
 ]])
 
--- TODO fix this
+
 -- resize with arrows
 vim.cmd([[
   nnoremap <silent> <C-Up>    :resize -2<CR>
@@ -52,11 +52,11 @@ vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 -- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
 
--- vim.api.nvim_set_keymap('i', '<C-TAB>', 'compe#complete()', {noremap = true, silent = true, expr = true})
+vim.api.nvim_set_keymap('i', '<C-TAB>', 'compe#complete()', {noremap = true, silent = true, expr = true})
 
--- vim.cmd([[
--- map p <Plug>(miniyank-autoput)
--- map P <Plug>(miniyank-autoPut)
--- map <leader>n <Plug>(miniyank-cycle)
--- map <leader>N <Plug>(miniyank-cycleback)
--- ]])
+vim.cmd([[
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>n <Plug>(miniyank-cycle)
+map <leader>N <Plug>(miniyank-cycleback)
+]])

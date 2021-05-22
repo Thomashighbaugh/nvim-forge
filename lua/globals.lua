@@ -1,7 +1,7 @@
 O = {
     auto_close_tree = 0,
     auto_complete = true,
-    colorscheme = "lunar",
+    colorscheme = "xresources",
     hidden_files = true,
     wrap_lines = true,
     number = true,
@@ -86,7 +86,7 @@ O = {
             "==================================================================",
             "=================================================================="
         },
-        footer = {"chrisatmachine.com"}
+        footer = {"thomasleonhighbaugh.me"}
     }
 }
 

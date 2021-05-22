@@ -72,6 +72,7 @@ return require("packer").startup(
         }
         -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
         use {"neovim/nvim-lspconfig", opt = true}
+        use {"norcalli/nvim-colorizer.lua", opt = true}
         use {"glepnir/lspsaga.nvim", opt = true}
         use {"kabouzeid/nvim-lspinstall", opt = true}
         use {"nekonako/xresources-nvim"}
@@ -100,12 +101,13 @@ return require("packer").startup(
 
         -- use {'lukas-reineke/indent-blankline.nvim', opt=true, branch = 'lua'}
         use {"lewis6991/gitsigns.nvim", opt = true}
-        -- use {"liuchengxu/vim-which-key", opt = true}
         use {"folke/which-key.nvim", opt = true}
         use {"ChristianChiarulli/dashboard-nvim", opt = true}
         use {"windwp/nvim-autopairs", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
+
+        use {"onsails/lspkind-nvim", opt = true}
 
         -- Color
         use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
@@ -117,6 +119,14 @@ return require("packer").startup(
         use {"glepnir/galaxyline.nvim", opt = true}
         use {"romgrk/barbar.nvim", opt = true}
 
+        use {"tweekmonster/startuptime.vim", opt = true}
+        use {"907th/vim-auto-save", opt = true}
+        use {"karb94/neoscroll.nvim", opt = true}
+        require_plugin("startuptime.vim")
+        require_plugin("vim-auto-save")
+        require_plugin("neoscroll")
+        require_plugin("lspkind-nvim")
+        require_plugin("colorizer.lua")
         require_plugin("vimwiki")
         require_plugin("xresources-nvim")
         require_plugin("nvim-lspconfig")

@@ -18,7 +18,8 @@ require("treesitter")
 require("autopairs")
 require("rnvimr")
 require("lv-which-key")
-
+require("whichkey")
+require("compe-completion")
 -- TODO is there a way to do this without vimscript
 vim.cmd("source ~/.config/nvim/vimscript/functions.vim")
 
