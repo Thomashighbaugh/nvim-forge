@@ -35,3 +35,4 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = O.timeoutlen -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.guifont = "Hurmit Nerd Font Mono medium:h17"
+vim.o.foldlevel = 20

@@ -65,7 +65,7 @@ return require("packer").startup(
                 vim.g.vimwiki_autowriteall = 1
                 vim.g.vimwiki_global_ext = 0
                 vim.g.vimwiki_use_mouse = 1
-                vim.g.vimwiki_folding = "expr"
+                vim.g.vimwiki_folding = "custom"
                 vim.g.vimwiki_auto_chdir = 1
                 vim.g.vimwiki_table_mappings = 0
             end
