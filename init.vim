@@ -1,1 +1,0 @@
-/home/tlh/.vim/vimrc
