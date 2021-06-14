@@ -21,8 +21,9 @@ g.auto_save = 1
 -- colorscheme related stuff
 cmd 'syntax on'
 
-local base16 = require 'base16'
-base16(base16.themes['onedark'], true)
+vim.cmd('let g:nvcode_termcolors=256')
+
+vim.cmd('colorscheme xresources')
 
 require 'highlights'
 

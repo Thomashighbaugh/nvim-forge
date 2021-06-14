@@ -39,8 +39,5 @@ map('n', '<Leader>e', ':NvimTreeToggle<CR>', opt)
 map('n', '<leader>/', ':CommentToggle<CR>', opt)
 map('v', '<leader>/', ':CommentToggle<CR>', opt)
 
--- open projects
-map('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>", opt)
-
 -- dashboard
 map('n', '<Leader>;', ':Dashboard<CR>', opt)

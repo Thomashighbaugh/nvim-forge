@@ -1,6 +1,7 @@
 local g = vim.g
 
-vim.o.termguicolors = false
+-- To make the configuration blend into a transparent terminal or other such environment set the below to false.
+vim.o.termguicolors = true
 
 g.nvim_tree_side = 'left'
 g.nvim_tree_width = 25
