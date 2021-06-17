@@ -4,7 +4,7 @@ require 'misc-utils'
 require 'nerd-commenter'
 require 'top-bufferline'
 require 'statusline'
-
+require 'lspsaga'.init_lsp_saga()
 require('colorizer').setup()
 require('neoscroll').setup() -- smooth scroll
 

@@ -128,6 +128,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
   },
+  nerdcommenter = {
+    loaded = true,
+    path = "/home/tlh/.local/share/nvim/site/pack/packer/start/nerdcommenter"
+  },
   ["numb.nvim"] = {
     loaded = true,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/numb.nvim"

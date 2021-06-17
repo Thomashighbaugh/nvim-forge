@@ -80,10 +80,8 @@ return packer.startup(
 
         -- Git
         use 'lewis6991/gitsigns.nvim'
-        use 'f-person/git-blame.nvim'
         use 'tpope/vim-fugitive'
         use 'tpope/vim-rhubarb'
-        use 'mattn/vim-gist'
         use 'mattn/webapi-vim'
         -- snippet support
         use 'hrsh7th/vim-vsnip'
@@ -103,7 +101,6 @@ return packer.startup(
         use 'glepnir/dashboard-nvim'
         use 'preservim/nerdcommenter'
         use 'tweekmonster/startuptime.vim'
-        use '907th/vim-auto-save'
         use 'karb94/neoscroll.nvim'
         use 'monaqa/dial.nvim'
         use 'nacro90/numb.nvim'
@@ -113,7 +110,6 @@ return packer.startup(
         use 'windwp/nvim-spectre'
         use 'simrat39/symbols-outline.nvim'
         use 'folke/which-key.nvim'
-        use 'numToStr/FTerm.nvim'
         use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
     end,
     {

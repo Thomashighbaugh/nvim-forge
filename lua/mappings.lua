@@ -29,8 +29,8 @@ map('n', '<C-z>', [[<Cmd> vsplit<CR> ]], opt) -- term newtab
 -- COPY EVERYTHING --
 map('n', '<C-a>', [[ <Cmd> %y+<CR>]], opt)
 
--- Treesitter Popup About Current Word Under Cursor --
-map('n', '<C-h>', ':TSHighlightCapturesUnderCursor <CR>', opt)
+-- LSP Saga
+map ('n', 'gh', [[ <Cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]], opt)
 
 
 
@@ -38,10 +38,6 @@ map('n', '<C-s>', [[ <Cmd> w <CR>]], opt)
 
 -- explorer
 map('n', '<Leader>e', ':NvimTreeToggle<CR>', opt)
-
--- Comments
-map('n', '<leader>/', ':CommentToggle<CR>', opt)
-map('v', '<leader>/', ':CommentToggle<CR>', opt)
 
 -- dashboard
 map('n', '<Leader>;', ':Dashboard<CR>', opt)
