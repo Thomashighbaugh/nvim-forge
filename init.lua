@@ -1,7 +1,7 @@
 -- load all plugins
 require 'pluginList'
 require 'misc-utils'
-
+require 'nerd-commenter'
 require 'top-bufferline'
 require 'statusline'
 
@@ -16,7 +16,7 @@ local cmd = vim.cmd
 local g = vim.g
 
 g.mapleader = ' '
-g.auto_save = 1
+g.auto_save = 0
 
 -- colorscheme related stuff
 cmd 'syntax on'

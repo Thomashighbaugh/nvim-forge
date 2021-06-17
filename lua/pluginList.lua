@@ -30,9 +30,19 @@ return packer.startup(
                 wiki2.auto_toc = 1
                 wiki2.auto_generate_links = 1
 
+                local wiki3 = {}
+                wiki3.path = '~/PersonalWiki'
+                wiki3.path_html = '~/PersonalWiki/html'
+                wiki3.syntax = 'markdown'
+                wiki3.ext = '.md'
+                wiki3.list_margin = 0
+                wiki3.auto_toc = 1
+                wiki3.auto_generate_links = 1
+
                 vim.g.vimwiki_list = {
                     wiki,
-                    wiki2
+                    wiki2,
+                    wiki3
                 }
                 vim.g.vimwiki_autowriteall = 1
                 vim.g.vimwiki_global_ext = 0
@@ -44,7 +54,6 @@ return packer.startup(
         }
 
         -- appearance
-        use 'siduck76/nvim-base16.lua'
         use 'nekonako/xresources-nvim'
         use 'norcalli/nvim-colorizer.lua'
         use 'akinsho/nvim-bufferline.lua'
@@ -65,6 +74,7 @@ return packer.startup(
         use 'kabouzeid/nvim-lspinstall'
         use 'folke/trouble.nvim'
         use 'glepnir/lspsaga.nvim'
+
         --completion
         use 'hrsh7th/nvim-compe'
 
@@ -91,6 +101,7 @@ return packer.startup(
 
         -- UI Functionality
         use 'glepnir/dashboard-nvim'
+        use 'preservim/nerdcommenter'
         use 'tweekmonster/startuptime.vim'
         use '907th/vim-auto-save'
         use 'karb94/neoscroll.nvim'

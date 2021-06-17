@@ -136,10 +136,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
   },
-  ["nvim-base16.lua"] = {
-    loaded = true,
-    path = "/home/tlh/.local/share/nvim/site/pack/packer/start/nvim-base16.lua"
-  },
   ["nvim-bufferline.lua"] = {
     loaded = true,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
@@ -257,7 +253,7 @@ _G.packer_plugins = {
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   vimwiki = {
-    config = { "\27LJ\2\nƒ\4\0\0\4\0\22\0;4\0\0\0'\1\1\0=\1\0\0'\1\3\0=\1\2\0'\1\5\0=\1\4\0)\1\0\0=\1\6\0)\1\1\0=\1\a\0)\1\1\0=\1\b\0004\1\0\0'\2\t\0=\2\0\1'\2\v\0=\2\n\1'\2\3\0=\2\2\1'\2\5\0=\2\4\1)\2\0\0=\2\6\1)\2\1\0=\2\a\1)\2\1\0=\2\b\0016\2\f\0009\2\r\0024\3\3\0>\0\1\3>\1\2\3=\3\14\0026\2\f\0009\2\r\2)\3\1\0=\3\15\0026\2\f\0009\2\r\2)\3\0\0=\3\16\0026\2\f\0009\2\r\2)\3\1\0=\3\17\0026\2\f\0009\2\r\2'\3\19\0=\3\18\0026\2\f\0009\2\r\2)\3\1\0=\3\20\0026\2\f\0009\2\r\2)\3\0\0=\3\21\2K\0\1\0\27vimwiki_table_mappings\23vimwiki_auto_chdir\vcustom\20vimwiki_folding\22vimwiki_use_mouse\23vimwiki_global_ext\25vimwiki_autowriteall\17vimwiki_list\6g\bvim\24~/HinduismWiki/html\14path_html\19~/HinduismWiki\24auto_generate_links\rauto_toc\16list_margin\b.md\bext\rmarkdown\vsyntax\19$HOME/.vimwiki\tpath\0" },
+    config = { "\27LJ\2\næ\4\0\0\5\0\24\0K4\0\0\0'\1\1\0=\1\0\0'\1\3\0=\1\2\0'\1\5\0=\1\4\0)\1\0\0=\1\6\0)\1\1\0=\1\a\0)\1\1\0=\1\b\0004\1\0\0'\2\t\0=\2\0\1'\2\v\0=\2\n\1'\2\3\0=\2\2\1'\2\5\0=\2\4\1)\2\0\0=\2\6\1)\2\1\0=\2\a\1)\2\1\0=\2\b\0014\2\0\0'\3\f\0=\3\0\2'\3\r\0=\3\n\2'\3\3\0=\3\2\2'\3\5\0=\3\4\2)\3\0\0=\3\6\2)\3\1\0=\3\a\2)\3\1\0=\3\b\0026\3\14\0009\3\15\0034\4\4\0>\0\1\4>\1\2\4>\2\3\4=\4\16\0036\3\14\0009\3\15\3)\4\1\0=\4\17\0036\3\14\0009\3\15\3)\4\0\0=\4\18\0036\3\14\0009\3\15\3)\4\1\0=\4\19\0036\3\14\0009\3\15\3'\4\21\0=\4\20\0036\3\14\0009\3\15\3)\4\1\0=\4\22\0036\3\14\0009\3\15\3)\4\0\0=\4\23\3K\0\1\0\27vimwiki_table_mappings\23vimwiki_auto_chdir\vcustom\20vimwiki_folding\22vimwiki_use_mouse\23vimwiki_global_ext\25vimwiki_autowriteall\17vimwiki_list\6g\bvim\24~/PersonalWiki/html\19~/PersonalWiki\24~/HinduismWiki/html\14path_html\19~/HinduismWiki\24auto_generate_links\rauto_toc\16list_margin\b.md\bext\rmarkdown\vsyntax\19$HOME/.vimwiki\tpath\0" },
     loaded = true,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/vimwiki"
   },
@@ -278,7 +274,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: vimwiki
 time([[Config for vimwiki]], true)
-try_loadstring("\27LJ\2\nƒ\4\0\0\4\0\22\0;4\0\0\0'\1\1\0=\1\0\0'\1\3\0=\1\2\0'\1\5\0=\1\4\0)\1\0\0=\1\6\0)\1\1\0=\1\a\0)\1\1\0=\1\b\0004\1\0\0'\2\t\0=\2\0\1'\2\v\0=\2\n\1'\2\3\0=\2\2\1'\2\5\0=\2\4\1)\2\0\0=\2\6\1)\2\1\0=\2\a\1)\2\1\0=\2\b\0016\2\f\0009\2\r\0024\3\3\0>\0\1\3>\1\2\3=\3\14\0026\2\f\0009\2\r\2)\3\1\0=\3\15\0026\2\f\0009\2\r\2)\3\0\0=\3\16\0026\2\f\0009\2\r\2)\3\1\0=\3\17\0026\2\f\0009\2\r\2'\3\19\0=\3\18\0026\2\f\0009\2\r\2)\3\1\0=\3\20\0026\2\f\0009\2\r\2)\3\0\0=\3\21\2K\0\1\0\27vimwiki_table_mappings\23vimwiki_auto_chdir\vcustom\20vimwiki_folding\22vimwiki_use_mouse\23vimwiki_global_ext\25vimwiki_autowriteall\17vimwiki_list\6g\bvim\24~/HinduismWiki/html\14path_html\19~/HinduismWiki\24auto_generate_links\rauto_toc\16list_margin\b.md\bext\rmarkdown\vsyntax\19$HOME/.vimwiki\tpath\0", "config", "vimwiki")
+try_loadstring("\27LJ\2\næ\4\0\0\5\0\24\0K4\0\0\0'\1\1\0=\1\0\0'\1\3\0=\1\2\0'\1\5\0=\1\4\0)\1\0\0=\1\6\0)\1\1\0=\1\a\0)\1\1\0=\1\b\0004\1\0\0'\2\t\0=\2\0\1'\2\v\0=\2\n\1'\2\3\0=\2\2\1'\2\5\0=\2\4\1)\2\0\0=\2\6\1)\2\1\0=\2\a\1)\2\1\0=\2\b\0014\2\0\0'\3\f\0=\3\0\2'\3\r\0=\3\n\2'\3\3\0=\3\2\2'\3\5\0=\3\4\2)\3\0\0=\3\6\2)\3\1\0=\3\a\2)\3\1\0=\3\b\0026\3\14\0009\3\15\0034\4\4\0>\0\1\4>\1\2\4>\2\3\4=\4\16\0036\3\14\0009\3\15\3)\4\1\0=\4\17\0036\3\14\0009\3\15\3)\4\0\0=\4\18\0036\3\14\0009\3\15\3)\4\1\0=\4\19\0036\3\14\0009\3\15\3'\4\21\0=\4\20\0036\3\14\0009\3\15\3)\4\1\0=\4\22\0036\3\14\0009\3\15\3)\4\0\0=\4\23\3K\0\1\0\27vimwiki_table_mappings\23vimwiki_auto_chdir\vcustom\20vimwiki_folding\22vimwiki_use_mouse\23vimwiki_global_ext\25vimwiki_autowriteall\17vimwiki_list\6g\bvim\24~/PersonalWiki/html\19~/PersonalWiki\24~/HinduismWiki/html\14path_html\19~/HinduismWiki\24auto_generate_links\rauto_toc\16list_margin\b.md\bext\rmarkdown\vsyntax\19$HOME/.vimwiki\tpath\0", "config", "vimwiki")
 time([[Config for vimwiki]], false)
 if should_profile then save_profiles() end
 
