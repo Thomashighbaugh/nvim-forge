@@ -91,11 +91,19 @@ return packer.startup(
         use 'kyazdani42/nvim-tree.lua'
         use 'kyazdani42/nvim-web-devicons'
         use 'ryanoasis/vim-devicons'
-        use 'nvim-telescope/telescope.nvim'
-        use 'nvim-telescope/telescope-media-files.nvim'
-        use 'nvim-telescope/telescope-fzy-native.nvim'
-        use 'nvim-telescope/telescope-project.nvim'
-        use 'nvim-lua/popup.nvim'
+        use {
+            "nvim-telescope/telescope.nvim",
+            requires = {
+                {"nvim-lua/popup.nvim"},
+                {"nvim-lua/plenary.nvim"},
+                {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
+                {"nvim-telescope/telescope-media-files.nvim"}
+            },
+            cmd = "Telescope",
+            config = function()
+                require("telescope-nvim").config()
+            end
+        }
 
         -- UI Functionality
         use 'glepnir/dashboard-nvim'
