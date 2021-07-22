@@ -1,14 +1,14 @@
 local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
+    local options = {noremap = true, silent = true}
     if opts then
-        options = vim.tbl_extend('force', options, opts)
+        options = vim.tbl_extend("force", options, opts)
     end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local opt = {}
 
--- dont copy any deleted text , this is disabled by default so uncomment the below mappings if you want them!
+-- dont copy any deleted text , this is disabled by default so uncomment the below mappings if you want them
 --[[ remove this line
 
 map("n", "dd", [=[ "_dd ]=], opt)
@@ -16,36 +16,42 @@ map("v", "dd", [=[ "_dd ]=], opt)
 map("v", "x", [=[ "_x ]=], opt)
 
  this line too ]]
+--
+
+-- escape with 'jk' mapping
+vim.api.nvim_set_keymap("i", "jk", "<esc>", {})
+vim.api.nvim_set_keymap("v", "jk", "<esc>", {})
+vim.api.nvim_set_keymap("t", "jk", "<esc>", {})
+
+-- Don't copy the replaced text after pasting in visual mode
+map("v", "p", '"_dP', opt)
+
 -- OPEN TERMINALS --
-map('n', '<C-l>', [[<Cmd>vnew term://zsh <CR>]], opt) -- term over right
-map('n', '<C-l>x', [[<Cmd> split term://zsh | resize 10 <CR>]], opt) --  term bottom
-map('n', '<C-t>t', [[<Cmd> tabnew | term <CR>]], opt) -- term newtab
--- New Tab --
-map('n', '<C-t>n', [[<Cmd> tabnew<CR> ]], opt) -- term newtab
--- Split Window --
-map('n', '<C-x>', [[<Cmd> split<CR> ]], opt) -- term newtab
--- Vertical Split -- 
-map('n', '<C-z>', [[<Cmd> vsplit<CR> ]], opt) -- term newtab
--- COPY EVERYTHING --
-map('n', '<C-a>', [[ <Cmd> %y+<CR>]], opt)
+map("n", "<C-l>", [[<Cmd> vnew +terminal | setlocal nobuflisted <CR>]], opt) -- term over right
+map("n", "<C-x>", [[<Cmd> 10new +terminal | setlocal nobuflisted <CR>]], opt) --  term bottom
+map("n", "<C-t>t", [[<Cmd> terminal <CR>]], opt) -- term buffer
 
--- LSP Saga
-map ('n', 'gh', [[ <Cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]], opt)
+-- copy whole file content
+map("n", "<C-a>", [[ <Cmd> %y+<CR>]], opt)
 
+-- toggle numbers
+map("n", "<leader>n", [[ <Cmd> set nu!<CR>]], opt)
 
-
-map('n', '<C-s>', [[ <Cmd> w <CR>]], opt)
+map("n", "<C-s>", [[ <Cmd> w <CR>]], opt)
 
 -- explorer
-map('n', '<Leader>e', ':NvimTreeToggle<CR>', opt)
+map("n", "<Leader>e", ":NvimTreeToggle<CR>", opt)
 
 -- dashboard
-map('n', '<Leader>;', ':Dashboard<CR>', opt)
+map("n", "<Leader>;", ":Dashboard<CR>", opt)
 
+map("n", "<C-s>", ":w <CR>", opt)
 
+-- Commenter Keybinding
+map("n", "<leader>/", ":CommentToggle<CR>", opt)
+map("v", "<leader>/", ":CommentToggle<CR>", opt)
 
 -- compe stuff
-
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -80,7 +86,17 @@ _G.s_tab_complete = function()
 end
 
 function _G.completions()
-    local npairs = require("nvim-autopairs")
+    local npairs
+    if
+        not pcall(
+            function()
+                npairs = require "nvim-autopairs"
+            end
+        )
+     then
+        return
+    end
+
     if vim.fn.pumvisible() == 1 then
         if vim.fn.complete_info()["selected"] ~= -1 then
             return vim.fn["compe#confirm"]("<CR>")
@@ -120,9 +136,16 @@ map("n", "<Leader>fh", [[<Cmd>Telescope help_tags<CR>]], opt)
 map("n", "<Leader>fo", [[<Cmd>Telescope oldfiles<CR>]], opt)
 
 -- bufferline tab stuff
-map("n", "<S-t>", ":tabnew<CR>", opt) -- new tab
+map("n", "<S-t>", ":enew<CR>", opt) -- new buffer
+map("n", "<C-t>b", ":tabnew<CR>", opt) -- new tab
 map("n", "<S-x>", ":bd!<CR>", opt) -- close tab
 
 -- move between tabs
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+
+-- use ESC to turn off search highlighting
+map("n", "<Esc>", ":noh<CR>", opt)
+
+-- get out of terminal with jk
+map("t", "jk", "<C-\\><C-n>", opt)

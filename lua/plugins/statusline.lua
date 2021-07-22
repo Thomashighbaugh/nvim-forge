@@ -1,10 +1,15 @@
-local gl = require("galaxyline")
+local present1, gl = pcall(require, "galaxyline")
+local present2, condition = pcall(require, "galaxyline.condition")
+if not (present1 or present2) then
+    return
+end
+
 local gls = gl.section
-local condition = require("galaxyline.condition")
 
 gl.short_line_list = {" "}
 
-local colors = require 'themes/vice'
+local global_theme = "themes/vice"
+local colors = require(global_theme)
 
 gls.left[1] = {
     FirstElement = {
