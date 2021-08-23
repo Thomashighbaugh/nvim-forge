@@ -40,6 +40,16 @@ return packer.startup(
             end
         }
         use "nekonako/xresources-nvim"
+        use {
+            "ThePrimeagen/refactoring.nvim",
+            requires = {
+                {"nvim-lua/plenary.nvim"},
+                {"nvim-treesitter/nvim-treesitter"}
+            },
+            config = function()
+                require "plugins.refactoring"
+            end
+        }
 
         -- color related stuff
         use {
@@ -207,6 +217,9 @@ return packer.startup(
                 "SessionLoad",
                 "SessionSave"
             },
+            config = function()
+                require "plugins.dashboard"
+            end,
             setup = function()
                 require "plugins.dashboard"
             end
@@ -228,6 +241,7 @@ return packer.startup(
             end
         }
 
+        use "kosayoda/nvim-lightbulb"
         -- smooth scroll
         use {
             "karb94/neoscroll.nvim",

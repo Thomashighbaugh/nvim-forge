@@ -1,13 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
--- Turn these off at startup, will be enabled later just before loading the theme
-vim.cmd([[
-    syntax off
-    filetype off
-    filetype plugin indent off
-]])
-
+opt.undofile = true
 opt.ruler = false
 opt.hidden = true
 opt.ignorecase = true
@@ -21,10 +15,15 @@ opt.cmdheight = 1
 opt.updatetime = 250 -- update interval for gitsigns
 opt.timeoutlen = 400
 opt.clipboard = "unnamedplus"
-
--- disable nvim intro
-opt.shortmess:append("sI")
-
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.expandtab = true
+opt.smartindent = true
+opt.number = true
+opt.relativenumber = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.list = true
 -- disable tilde on end of buffer: https://github.com/  neovim/neovim/pull/8546#issuecomment-643643758
 vim.cmd("let &fcs='eob: '")
 
@@ -55,14 +54,9 @@ local disabled_built_ins = {
     "zipPlugin",
     "tar",
     "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
     "2html_plugin",
     "logipat",
     "rrhelper",
-    "spellfile_plugin",
     "matchit"
 }
 

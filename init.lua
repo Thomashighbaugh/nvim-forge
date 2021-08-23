@@ -1,9 +1,17 @@
-require "options"
-
+require("autocommands")
+require("options")
+require("mappings")
+require("utils")
+require("highlights")
+require("pluginList")
+require("plugins.bufferline")
+require("packerInit")
+require("plugins.dashboard")
 local modules = {
     "pluginList",
     "plugins.bufferline",
     "mappings",
+    "options",
     "utils"
 }
 
@@ -24,3 +32,7 @@ async =
     )
 )
 async:send()
+
+for i = 1, #modules, 1 do
+    pcall(require, modules[i])
+end

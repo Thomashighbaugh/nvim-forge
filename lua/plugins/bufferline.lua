@@ -1,4 +1,4 @@
-local global_theme = "themes/" .. vim.g.nvchad_theme
+local global_theme = "themes/vice"
 local colors = require(global_theme)
 
 local present, bufferline = pcall(require, "bufferline")
