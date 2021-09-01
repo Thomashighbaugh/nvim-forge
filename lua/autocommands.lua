@@ -1,10 +1,5 @@
 local augroup = vim.api.nvim_exec
-augroup([[
- augroup fmt
-         autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-augroup END
-    ]], true)
+
 augroup(
     [[
 
