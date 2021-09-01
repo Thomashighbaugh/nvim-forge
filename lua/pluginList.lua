@@ -1,8 +1,8 @@
-local present, _ = pcall(require, "packerInit")
+local present, _ = pcall(require, 'packerInit')
 local packer
 
 if present then
-    packer = require "packer"
+    packer = require 'packer'
 else
     return false
 end
@@ -12,252 +12,251 @@ local use = packer.use
 return packer.startup(
     function()
         use {
-            "wbthomason/packer.nvim",
-            event = "VimEnter"
+            'wbthomason/packer.nvim',
+            event = 'VimEnter'
         }
         use {
-            "vimwiki/vimwiki",
+            'vimwiki/vimwiki',
             config = function()
-                require "plugins.vimwiki"
+                require 'plugins.vimwiki'
             end
         }
         use {
-            "wincent/corpus",
+            'wincent/corpus',
             config = function()
-                require "plugins.corpus"
+                require 'plugins.corpus'
             end
         }
         use {
-            "akinsho/nvim-bufferline.lua",
-            after = "nvim-base16.lua"
+            'akinsho/nvim-bufferline.lua',
+            after = 'nvim-base16.lua'
         }
 
         use {
-            "glepnir/galaxyline.nvim",
-            after = "nvim-base16.lua",
+            'glepnir/galaxyline.nvim',
+            after = 'nvim-base16.lua',
             config = function()
-                require "plugins.statusline"
+                require 'plugins.statusline'
             end
         }
-        use "nekonako/xresources-nvim"
+        use 'nekonako/xresources-nvim'
         use {
-            "ThePrimeagen/refactoring.nvim",
+            'ThePrimeagen/refactoring.nvim',
             requires = {
-                {"nvim-lua/plenary.nvim"},
-                {"nvim-treesitter/nvim-treesitter"}
+                {'nvim-lua/plenary.nvim'},
+                {'nvim-treesitter/nvim-treesitter'}
             },
             config = function()
-                require "plugins.refactoring"
+                require 'plugins.refactoring'
             end
         }
 
         -- color related stuff
         use {
-            "siduck76/nvim-base16.lua",
-            after = "packer.nvim",
+            'siduck76/nvim-base16.lua',
+            after = 'packer.nvim',
             config = function()
-                require "theme"
+                require 'theme'
             end
         }
 
         use {
-            "norcalli/nvim-colorizer.lua",
-            event = "BufRead",
+            'norcalli/nvim-colorizer.lua',
+            event = 'BufRead',
             config = function()
-                require("plugins.others").colorizer()
+                require('plugins.others').colorizer()
             end
         }
 
         -- language related plugins
         use {
-            "nvim-treesitter/nvim-treesitter",
-            event = "BufRead",
+            'nvim-treesitter/nvim-treesitter',
+            event = 'BufRead',
             config = function()
-                require "plugins.treesitter"
+                require 'plugins.treesitter'
             end
         }
 
         use {
-            "kabouzeid/nvim-lspinstall",
-            event = "BufRead"
+            'kabouzeid/nvim-lspinstall',
+            event = 'BufRead'
         }
         use {
-            "folke/which-key.nvim",
+            'folke/which-key.nvim',
             config = function()
-                require "plugins.whichkey"
+                require 'plugins.whichkey'
             end
         }
 
         use {
-            "neovim/nvim-lspconfig",
-            after = "nvim-lspinstall",
+            'neovim/nvim-lspconfig',
+            after = 'nvim-lspinstall',
             config = function()
-                require "plugins.lspconfig"
+                require 'plugins.lspconfig'
             end
         }
 
         use {
-            "onsails/lspkind-nvim",
-            event = "BufRead",
+            'onsails/lspkind-nvim',
+            event = 'BufRead',
             config = function()
-                require("plugins.others").lspkind()
+                require('plugins.others').lspkind()
             end
         }
-
         -- load compe in insert mode only
         use {
-            "hrsh7th/nvim-compe",
-            event = "InsertEnter",
+            'hrsh7th/nvim-compe',
+            event = 'InsertEnter',
             config = function()
-                require "plugins.compe"
+                require 'plugins.compe'
             end,
-            wants = "LuaSnip",
+            wants = 'LuaSnip',
             requires = {
                 {
-                    "L3MON4D3/LuaSnip",
-                    wants = "friendly-snippets",
-                    event = "InsertCharPre",
+                    'L3MON4D3/LuaSnip',
+                    wants = 'friendly-snippets',
+                    event = 'InsertCharPre',
                     config = function()
-                        require "plugins.luasnip"
+                        require 'plugins.luasnip'
                     end
                 },
                 {
-                    "rafamadriz/friendly-snippets",
-                    event = "InsertCharPre"
+                    'rafamadriz/friendly-snippets',
+                    event = 'InsertCharPre'
                 }
             }
         }
 
         use {
-            "sbdchd/neoformat",
-            cmd = "Neoformat"
+            'sbdchd/neoformat',
+            cmd = 'Neoformat'
         }
 
         -- file managing , picker etc
         use {
-            "kyazdani42/nvim-tree.lua",
-            cmd = "NvimTreeToggle",
+            'kyazdani42/nvim-tree.lua',
+            cmd = 'NvimTreeToggle',
             config = function()
-                require "plugins.nvimtree"
+                require 'plugins.nvimtree'
             end
         }
 
         use {
-            "kyazdani42/nvim-web-devicons",
-            after = "nvim-base16.lua",
+            'kyazdani42/nvim-web-devicons',
+            after = 'nvim-base16.lua',
             config = function()
-                require "plugins.icons"
+                require 'plugins.icons'
             end
         }
 
         use {
-            "nvim-lua/plenary.nvim",
-            event = "BufRead"
+            'nvim-lua/plenary.nvim',
+            event = 'BufRead'
         }
         use {
-            "nvim-lua/popup.nvim",
-            after = "plenary.nvim"
+            'nvim-lua/popup.nvim',
+            after = 'plenary.nvim'
         }
 
         use {
-            "nvim-telescope/telescope.nvim",
-            cmd = "Telescope",
+            'nvim-telescope/telescope.nvim',
+            cmd = 'Telescope',
             config = function()
-                require "plugins.telescope"
+                require 'plugins.telescope'
             end
         }
 
         use {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            run = "make",
-            cmd = "Telescope"
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make',
+            cmd = 'Telescope'
         }
         use {
-            "nvim-telescope/telescope-media-files.nvim",
-            cmd = "Telescope"
+            'nvim-telescope/telescope-media-files.nvim',
+            cmd = 'Telescope'
         }
 
         -- git stuff
         use {
-            "lewis6991/gitsigns.nvim",
-            after = "plenary.nvim",
+            'lewis6991/gitsigns.nvim',
+            after = 'plenary.nvim',
             config = function()
-                require "plugins.gitsigns"
+                require 'plugins.gitsigns'
             end
         }
 
         -- misc plugins
         use {
-            "windwp/nvim-autopairs",
-            after = "nvim-compe",
+            'windwp/nvim-autopairs',
+            after = 'nvim-compe',
             config = function()
-                require "plugins.autopairs"
+                require 'plugins.autopairs'
             end
         }
 
         use {
-            "andymass/vim-matchup",
-            event = "CursorMoved"
+            'andymass/vim-matchup',
+            event = 'CursorMoved'
         }
 
         use {
-            "terrortylor/nvim-comment",
-            cmd = "CommentToggle",
+            'terrortylor/nvim-comment',
+            cmd = 'CommentToggle',
             config = function()
-                require("plugins.others").comment()
+                require('plugins.others').comment()
             end
         }
 
         use {
-            "glepnir/dashboard-nvim",
+            'glepnir/dashboard-nvim',
             cmd = {
-                "Dashboard",
-                "DashboardNewFile",
-                "DashboardJumpMarks",
-                "SessionLoad",
-                "SessionSave"
+                'Dashboard',
+                'DashboardNewFile',
+                'DashboardJumpMarks',
+                'SessionLoad',
+                'SessionSave'
             },
             config = function()
-                require "plugins.dashboard"
+                require 'plugins.dashboard'
             end,
             setup = function()
-                require "plugins.dashboard"
+                require 'plugins.dashboard'
             end
         }
 
         use {
-            "tweekmonster/startuptime.vim",
-            cmd = "StartupTime"
+            'tweekmonster/startuptime.vim',
+            cmd = 'StartupTime'
         }
 
         -- load autosave only if its globally enabled
         use {
-            "Pocco81/AutoSave.nvim",
+            'Pocco81/AutoSave.nvim',
             config = function()
-                require "plugins.autosave"
+                require 'plugins.autosave'
             end,
             cond = function()
                 return vim.g.auto_save == true
             end
         }
 
-        use "kosayoda/nvim-lightbulb"
+        use 'kosayoda/nvim-lightbulb'
         -- smooth scroll
         use {
-            "karb94/neoscroll.nvim",
-            event = "WinScrolled",
+            'karb94/neoscroll.nvim',
+            event = 'WinScrolled',
             config = function()
-                require("plugins.others").neoscroll()
+                require('plugins.others').neoscroll()
             end
         }
 
-        use "alvan/vim-closetag" -- for html autoclosing tag
+        use 'alvan/vim-closetag' -- for html autoclosing tag
 
         use {
-            "lukas-reineke/indent-blankline.nvim",
-            event = "BufRead",
+            'lukas-reineke/indent-blankline.nvim',
+            event = 'BufRead',
             setup = function()
-                require("plugins.others").blankline()
+                require('plugins.others').blankline()
             end
         }
     end

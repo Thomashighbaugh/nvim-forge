@@ -1,7 +1,13 @@
 local augroup = vim.api.nvim_exec
-
+augroup([[
+ augroup fmt
+         autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+augroup END
+    ]], true)
 augroup(
     [[
+
 augroup Terminal
     autocmd!
     autocmd TermOpen * setlocal nonumber
@@ -10,9 +16,9 @@ augroup END
 ]],
     true
 )
-
 augroup(
     [[
+
 augroup Config
     autocmd!
     autocmd InsertEnter * set nocursorline
@@ -23,10 +29,9 @@ augroup END
 ]],
     true
 )
-
-
 augroup(
     [[
+
 augroup UpdateGlobal
     autocmd!
     autocmd FileType markdown,gitcommit setlocal spell
@@ -37,9 +42,9 @@ augroup END
 ]],
     true
 )
-
 augroup(
     [[
+
     augroup lightbulb
     autocmd!
         autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
