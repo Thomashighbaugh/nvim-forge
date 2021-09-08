@@ -1,122 +1,122 @@
-local present, icons = pcall(require, "nvim-web-devicons")
+local present, icons = pcall(require, 'nvim-web-devicons')
 if not present then
     return
 end
 
-local global_theme = "themes/vice"
+local global_theme = 'colors/themes/vice'
 local colors = require(global_theme)
 
 icons.setup {
     override = {
         html = {
-            icon = "",
+            icon = '',
             color = colors.baby_pink,
-            name = "html"
+            name = 'html'
         },
         css = {
-            icon = "",
+            icon = '',
             color = colors.blue,
-            name = "css"
+            name = 'css'
         },
         js = {
-            icon = "",
+            icon = '',
             color = colors.sun,
-            name = "js"
+            name = 'js'
         },
         ts = {
-            icon = "ﯤ",
+            icon = 'ﯤ',
             color = colors.teal,
-            name = "ts"
+            name = 'ts'
         },
         kt = {
-            icon = "󱈙",
+            icon = '󱈙',
             color = colors.orange,
-            name = "kt"
+            name = 'kt'
         },
         png = {
-            icon = "",
+            icon = '',
             color = colors.dark_purple,
-            name = "png"
+            name = 'png'
         },
         jpg = {
-            icon = "",
+            icon = '',
             color = colors.dark_purple,
-            name = "jpg"
+            name = 'jpg'
         },
         jpeg = {
-            icon = "",
+            icon = '',
             color = colors.dark_purple,
-            name = "jpeg"
+            name = 'jpeg'
         },
         mp3 = {
-            icon = "",
+            icon = '',
             color = colors.white,
-            name = "mp3"
+            name = 'mp3'
         },
         mp4 = {
-            icon = "",
+            icon = '',
             color = colors.white,
-            name = "mp4"
+            name = 'mp4'
         },
         out = {
-            icon = "",
+            icon = '',
             color = colors.white,
-            name = "out"
+            name = 'out'
         },
         Dockerfile = {
-            icon = "",
+            icon = '',
             color = colors.cyan,
-            name = "Dockerfile"
+            name = 'Dockerfile'
         },
         rb = {
-            icon = "",
+            icon = '',
             color = colors.pink,
-            name = "rb"
+            name = 'rb'
         },
         vue = {
-            icon = "﵂",
+            icon = '﵂',
             color = colors.vibrant_green,
-            name = "vue"
+            name = 'vue'
         },
         py = {
-            icon = "",
+            icon = '',
             color = colors.cyan,
-            name = "py"
+            name = 'py'
         },
         toml = {
-            icon = "",
+            icon = '',
             color = colors.blue,
-            name = "toml"
+            name = 'toml'
         },
         lock = {
-            icon = "",
+            icon = '',
             color = colors.red,
-            name = "lock"
+            name = 'lock'
         },
         zip = {
-            icon = "",
+            icon = '',
             color = colors.sun,
-            name = "zip"
+            name = 'zip'
         },
         xz = {
-            icon = "",
+            icon = '',
             color = colors.sun,
-            name = "xz"
+            name = 'xz'
         },
         deb = {
-            icon = "",
+            icon = '',
             color = colors.cyan,
-            name = "deb"
+            name = 'deb'
         },
         rpm = {
-            icon = "",
+            icon = '',
             color = colors.orange,
-            name = "rpm"
+            name = 'rpm'
         },
         lua = {
-            icon = "",
+            icon = '',
             color = colors.blue,
-            name = "lua"
+            name = 'lua'
         }
     }
 }

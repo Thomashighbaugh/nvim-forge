@@ -20,14 +20,14 @@ M.reload_plugin = function(plugins)
             package.loaded[plugin] = nil
         end
         if not pcall(require, plugin) then
-            print("Error: Cannot load " .. plugin .. " plugin!")
+            print('Error: Cannot load ' .. plugin .. ' plugin!')
             status = false
         end
     end
 
-    if type(plugins) == "string" then
+    if type(plugins) == 'string' then
         _reload_plugin(plugins)
-    elseif type(plugins) == "table" then
+    elseif type(plugins) == 'table' then
         for _, plugin in ipairs(plugins) do
             _reload_plugin(plugin)
         end
@@ -39,7 +39,7 @@ end
 M.list_themes = function(return_type)
     local themes = {}
     -- folder where theme files are stored
-    local themes_folder = vim.fn.stdpath("config") .. "/lua/themes"
+    local themes_folder = vim.fn.stdpath('config') .. '/lua/colors/themes'
     -- list all the contents of the folder and filter out files with .lua extension, then append to themes table
     local fd = vim.loop.fs_scandir(themes_folder)
     if fd then
@@ -48,12 +48,12 @@ M.list_themes = function(return_type)
             if name == nil then
                 break
             end
-            if typ ~= "directory" and string.find(name, ".lua") then
+            if typ ~= 'directory' and string.find(name, '.lua') then
                 -- return the table values as keys if specified
-                if return_type == "keys_as_value" then
-                    themes[vim.fn.fnamemodify(name, ":r")] = true
+                if return_type == 'keys_as_value' then
+                    themes[vim.fn.fnamemodify(name, ':r')] = true
                 else
-                    table.insert(themes, vim.fn.fnamemodify(name, ":r"))
+                    table.insert(themes, vim.fn.fnamemodify(name, ':r'))
                 end
             end
         end
@@ -69,10 +69,10 @@ M.file = function(mode, filepath, content)
     local data
     local fd = assert(vim.loop.fs_open(filepath, mode, 438))
     local stat = assert(vim.loop.fs_fstat(fd))
-    if stat.type ~= "file" then
+    if stat.type ~= 'file' then
         data = false
     else
-        if mode == "r" then
+        if mode == 'r' then
             data = assert(vim.loop.fs_read(fd, stat.size, 0))
         else
             assert(vim.loop.fs_write(fd, content, 0))
@@ -86,32 +86,32 @@ end
 -- 1st arg as current theme, 2nd as new theme
 M.change_theme = function(current_theme, new_theme)
     if current_theme == nil or new_theme == nil then
-        print "Error: Provide current and new theme name"
+        print 'Error: Provide current and new theme name'
         return false
     end
     if current_theme == new_theme then
         return
     end
 
-    local file = vim.fn.stdpath("config") .. "/lua/user_config.lua"
+    local file = vim.fn.stdpath('config') .. '/lua/user_config.lua'
     -- store in data variable
-    local data = assert(M.file("r", file))
-    local find = "theme = .?" .. current_theme .. ".?"
+    local data = assert(M.file('r', file))
+    local find = 'theme = .?' .. current_theme .. '.?'
     local replace = 'theme = "' .. new_theme .. '"'
     local content = string.gsub(data, find, replace)
     -- see if the find string exists in file
     if content == data then
-        print("Error: Cannot change default theme with " .. new_theme .. ", edit " .. file .. " manually")
+        print('Error: Cannot change default theme with ' .. new_theme .. ', edit ' .. file .. ' manually')
         return false
     else
-        assert(M.file("w", file, content))
+        assert(M.file('w', file, content))
     end
 end
 
 M.clear_cmdline = function()
     vim.defer_fn(
         function()
-            vim.cmd("echo")
+            vim.cmd('echo')
         end,
         0
     )
@@ -127,14 +127,14 @@ function M.tablelength(T)
 end
 
 -- Credit https://github.com/kosayoda/nvim-lightbulb/blob/master/lua/nvim-lightbulb.lua
-if vim.tbl_isempty(vim.fn.sign_getdefined("CodeActionSign")) then
-    vim.fn.sign_define("CodeActionSign", {text = "", texthl = "LspDiagnosticsDefaultInformation"})
+if vim.tbl_isempty(vim.fn.sign_getdefined('CodeActionSign')) then
+    vim.fn.sign_define('CodeActionSign', {text = '', texthl = 'LspDiagnosticsDefaultInformation'})
 end
 
 -- Credit https://github.com/kosayoda/nvim-lightbulb/blob/master/lua/nvim-lightbulb.lua
 local function _update_sign(priority, old_line, new_line)
     if old_line then
-        vim.fn.sign_unplace("code_action", {id = old_line, buffer = "%"})
+        vim.fn.sign_unplace('code_action', {id = old_line, buffer = '%'})
 
         -- Update current lightbulb line
         vim.b.lightbulb_line = nil
@@ -142,7 +142,7 @@ local function _update_sign(priority, old_line, new_line)
 
     -- Avoid redrawing lightbulb if code action line did not change
     if new_line and (vim.b.lightbulb_line ~= new_line) then
-        vim.fn.sign_place(new_line, "code_action", "CodeActionSign", "%", {lnum = new_line, priority = priority})
+        vim.fn.sign_place(new_line, 'code_action', 'CodeActionSign', '%', {lnum = new_line, priority = priority})
         -- Update current lightbulb line
         vim.b.lightbulb_line = new_line
     end
@@ -168,7 +168,7 @@ function M.code_action()
     local context = {diagnostics = vim.lsp.diagnostic.get_line_diagnostics()}
     local params = vim.lsp.util.make_range_params()
     params.context = context
-    vim.lsp.buf_request(0, "textDocument/codeAction", params, handler_factory(params.range.start.line))
+    vim.lsp.buf_request(0, 'textDocument/codeAction', params, handler_factory(params.range.start.line))
 end
 
 return M

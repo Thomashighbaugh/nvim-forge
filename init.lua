@@ -2,11 +2,11 @@ require('core.autocommands')
 require('core.options')
 require('core.mappings')
 require('core.utils')
-require('highlights')
-require('pluginList')
-require('packerInit')
+require('colors.highlights')
+require('plugins')
+require('plugins.packerInit')
 local modules = {
-    'pluginList',
+    'plugins',
     'core.mappings',
     'core.options',
     'core.utils'

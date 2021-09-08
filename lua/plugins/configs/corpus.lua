@@ -1,17 +1,18 @@
-require "corpus"
+require 'corpus'
 -- init.lua (as Lua global):
 CorpusDirectories = {
-    ["~/.vimwiki/corpus"] = {
+    ['~/.vimwiki/corpus'] = {
         autocommit = true,
         autoreference = 1,
         autotitle = 1,
-        base = "./",
-        transform = "local"
+        base = './',
+        transform = 'web'
     },
-    ["~/256/Dropbox/HinduismWiki/zettelkasten"] = {
+    ['~/256/Dropbox/HinduismWiki/zettelkasten'] = {
         autocommit = false,
         autoreference = 1,
         autotitle = 1,
-        base = "./"
+        base = './',
+        transform = 'web'
     }
 }

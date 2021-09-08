@@ -1,4 +1,4 @@
-local present, _ = pcall(require, 'packerInit')
+local present, _ = pcall(require, 'plugins.packerInit')
 local packer
 
 if present then
@@ -15,6 +15,7 @@ return packer.startup(
             'wbthomason/packer.nvim',
             event = 'VimEnter'
         }
+        -- Note Taking
         use {
             'vimwiki/vimwiki',
             config = function()
@@ -27,6 +28,7 @@ return packer.startup(
                 require 'plugins.configs.corpus'
             end
         }
+
         use {
             'romgrk/barbar.nvim',
             after = 'nvim-web-devicons'
@@ -56,7 +58,7 @@ return packer.startup(
             'siduck76/nvim-base16.lua',
             after = 'packer.nvim',
             config = function()
-                require 'theme'
+                require 'colors.theme'
             end
         }
 
@@ -259,14 +261,6 @@ return packer.startup(
                 require('plugins.configs.others').blankline()
             end
         }
-        use {
-            'onsails/lspkind-nvim',
-            event = 'BufRead',
-            config = function()
-                require('lspkind').init()
-            end
-        }
-
         use(
             {
                 'kdheepak/lazygit.nvim',
@@ -277,7 +271,7 @@ return packer.startup(
         use {
             'lewis6991/gitsigns.nvim',
             config = function()
-                require('modules.configs.gitsigns')
+                require('plugins.configs.gitsigns')
             end,
             module = 'gitsigns',
             keys = '<space>g'
@@ -301,25 +295,11 @@ return packer.startup(
         use {
             'akinsho/nvim-toggleterm.lua',
             config = function()
-                require('modules.configs.toggleterm')
+                require('plugins.configs.toggleterm')
             end,
             module = {'toggleterm', 'toggleterm.terminal'},
             cmd = {'ToggleTerm', 'TermExec'},
             keys = {'n', '<space>t'}
-        }
-        use {
-            'kristijanhusak/orgmode.nvim',
-            ft = {'org'},
-            config = function()
-                require('plugins.configs.orgmode').config()
-            end
-        }
-        use {
-            'akinsho/org-bullets.nvim',
-            after = 'orgmode.nvim',
-            config = function()
-                require('plugins.configs.orgmode').bullets()
-            end
         }
     end
 )
