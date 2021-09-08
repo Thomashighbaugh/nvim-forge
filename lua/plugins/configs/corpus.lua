@@ -8,7 +8,7 @@ CorpusDirectories = {
         base = './',
         transform = 'web'
     },
-    ['~/256/Dropbox/HinduismWiki/zettelkasten'] = {
+    ['~/Dropbox/HinduismWiki/zettelkasten'] = {
         autocommit = false,
         autoreference = 1,
         autotitle = 1,
