@@ -18,25 +18,25 @@ return packer.startup(
         use {
             'vimwiki/vimwiki',
             config = function()
-                require 'plugins.vimwiki'
+                require 'plugins.configs.vimwiki'
             end
         }
         use {
             'wincent/corpus',
             config = function()
-                require 'plugins.corpus'
+                require 'plugins.configs.corpus'
             end
         }
         use {
-            'akinsho/nvim-bufferline.lua',
-            after = 'nvim-base16.lua'
+            'romgrk/barbar.nvim',
+            after = 'nvim-web-devicons'
         }
 
         use {
             'glepnir/galaxyline.nvim',
             after = 'nvim-base16.lua',
             config = function()
-                require 'plugins.statusline'
+                require 'plugins.configs.statusline'
             end
         }
         use 'nekonako/xresources-nvim'
@@ -47,7 +47,7 @@ return packer.startup(
                 {'nvim-treesitter/nvim-treesitter'}
             },
             config = function()
-                require 'plugins.refactoring'
+                require 'plugins.configs.refactoring'
             end
         }
 
@@ -64,7 +64,7 @@ return packer.startup(
             'norcalli/nvim-colorizer.lua',
             event = 'BufRead',
             config = function()
-                require('plugins.others').colorizer()
+                require('plugins.configs.others').colorizer()
             end
         }
 
@@ -73,7 +73,7 @@ return packer.startup(
             'nvim-treesitter/nvim-treesitter',
             event = 'BufRead',
             config = function()
-                require 'plugins.treesitter'
+                require 'plugins.configs.treesitter'
             end
         }
 
@@ -84,7 +84,7 @@ return packer.startup(
         use {
             'folke/which-key.nvim',
             config = function()
-                require 'plugins.whichkey'
+                require 'plugins.configs.whichkey'
             end
         }
 
@@ -92,7 +92,7 @@ return packer.startup(
             'neovim/nvim-lspconfig',
             after = 'nvim-lspinstall',
             config = function()
-                require 'plugins.lspconfig'
+                require 'plugins.configs.lspconfig'
             end
         }
 
@@ -100,7 +100,7 @@ return packer.startup(
             'onsails/lspkind-nvim',
             event = 'BufRead',
             config = function()
-                require('plugins.others').lspkind()
+                require('plugins.configs.others').lspkind()
             end
         }
         -- load compe in insert mode only
@@ -108,7 +108,7 @@ return packer.startup(
             'hrsh7th/nvim-compe',
             event = 'InsertEnter',
             config = function()
-                require 'plugins.compe'
+                require 'plugins.configs.compe'
             end,
             wants = 'LuaSnip',
             requires = {
@@ -117,7 +117,7 @@ return packer.startup(
                     wants = 'friendly-snippets',
                     event = 'InsertCharPre',
                     config = function()
-                        require 'plugins.luasnip'
+                        require 'plugins.configs.luasnip'
                     end
                 },
                 {
@@ -131,13 +131,19 @@ return packer.startup(
             'sbdchd/neoformat',
             cmd = 'Neoformat'
         }
-
+        use {
+            'lukas-reineke/format.nvim',
+            cmd = 'FormatWrite',
+            config = function()
+                require 'plugins.configs.configs.format'
+            end
+        }
         -- file managing , picker etc
         use {
             'kyazdani42/nvim-tree.lua',
             cmd = 'NvimTreeToggle',
             config = function()
-                require 'plugins.nvimtree'
+                require 'plugins.configs.nvimtree'
             end
         }
 
@@ -145,7 +151,7 @@ return packer.startup(
             'kyazdani42/nvim-web-devicons',
             after = 'nvim-base16.lua',
             config = function()
-                require 'plugins.icons'
+                require 'plugins.configs.icons'
             end
         }
 
@@ -162,7 +168,7 @@ return packer.startup(
             'nvim-telescope/telescope.nvim',
             cmd = 'Telescope',
             config = function()
-                require 'plugins.telescope'
+                require 'plugins.configs.telescope'
             end
         }
 
@@ -175,22 +181,19 @@ return packer.startup(
             'nvim-telescope/telescope-media-files.nvim',
             cmd = 'Telescope'
         }
-
-        -- git stuff
         use {
-            'lewis6991/gitsigns.nvim',
-            after = 'plenary.nvim',
+            'mfussenegger/nvim-lint',
             config = function()
-                require 'plugins.gitsigns'
+                require('plugins.configs.linter')
             end
+            -- module = "lint",
         }
-
         -- misc plugins
         use {
             'windwp/nvim-autopairs',
             after = 'nvim-compe',
             config = function()
-                require 'plugins.autopairs'
+                require 'plugins.configs.autopairs'
             end
         }
 
@@ -203,7 +206,7 @@ return packer.startup(
             'terrortylor/nvim-comment',
             cmd = 'CommentToggle',
             config = function()
-                require('plugins.others').comment()
+                require('plugins.configs.others').comment()
             end
         }
 
@@ -217,10 +220,7 @@ return packer.startup(
                 'SessionSave'
             },
             config = function()
-                require 'plugins.dashboard'
-            end,
-            setup = function()
-                require 'plugins.dashboard'
+                require 'plugins.configs.dashboard'
             end
         }
 
@@ -233,7 +233,7 @@ return packer.startup(
         use {
             'Pocco81/AutoSave.nvim',
             config = function()
-                require 'plugins.autosave'
+                require 'plugins.configs.autosave'
             end,
             cond = function()
                 return vim.g.auto_save == true
@@ -246,7 +246,7 @@ return packer.startup(
             'karb94/neoscroll.nvim',
             event = 'WinScrolled',
             config = function()
-                require('plugins.others').neoscroll()
+                require('plugins.configs.others').neoscroll()
             end
         }
 
@@ -256,7 +256,69 @@ return packer.startup(
             'lukas-reineke/indent-blankline.nvim',
             event = 'BufRead',
             setup = function()
-                require('plugins.others').blankline()
+                require('plugins.configs.others').blankline()
+            end
+        }
+        use {
+            'onsails/lspkind-nvim',
+            event = 'BufRead',
+            config = function()
+                require('lspkind').init()
+            end
+        }
+
+        use(
+            {
+                'kdheepak/lazygit.nvim',
+                cmd = {'LazyGit', 'LazyGitConfig'},
+                keys = '<leader>gg'
+            }
+        )
+        use {
+            'lewis6991/gitsigns.nvim',
+            config = function()
+                require('modules.configs.gitsigns')
+            end,
+            module = 'gitsigns',
+            keys = '<space>g'
+        }
+        use {
+            'lambdalisue/suda.vim',
+            cmd = {'SudaRead', 'SudaWrite'}
+        }
+        use {
+            'rinx/nvim-minimap',
+            cmd = {
+                'Minimap',
+                'MinimapClose',
+                'MinimapToggle',
+                'MinimapRefresh',
+                'MinimapUpdateHighlight'
+            }
+        }
+        -- Terminal
+
+        use {
+            'akinsho/nvim-toggleterm.lua',
+            config = function()
+                require('modules.configs.toggleterm')
+            end,
+            module = {'toggleterm', 'toggleterm.terminal'},
+            cmd = {'ToggleTerm', 'TermExec'},
+            keys = {'n', '<space>t'}
+        }
+        use {
+            'kristijanhusak/orgmode.nvim',
+            ft = {'org'},
+            config = function()
+                require('plugins.configs.orgmode').config()
+            end
+        }
+        use {
+            'akinsho/org-bullets.nvim',
+            after = 'orgmode.nvim',
+            config = function()
+                require('plugins.configs.orgmode').bullets()
             end
         }
     end

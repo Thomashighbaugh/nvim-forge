@@ -1,18 +1,15 @@
-require("autocommands")
-require("options")
-require("mappings")
-require("utils")
-require("highlights")
-require("pluginList")
-require("plugins.bufferline")
-require("packerInit")
-require("plugins.dashboard")
+require('core.autocommands')
+require('core.options')
+require('core.mappings')
+require('core.utils')
+require('highlights')
+require('pluginList')
+require('packerInit')
 local modules = {
-    "pluginList",
-    "plugins.bufferline",
-    "mappings",
-    "options",
-    "utils"
+    'pluginList',
+    'core.mappings',
+    'core.options',
+    'core.utils'
 }
 
 local async
@@ -23,7 +20,7 @@ async =
             for i = 1, #modules, 1 do
                 local ok, res = xpcall(require, debug.traceback, modules[i])
                 if not (ok) then
-                    print("Error loading module : " .. modules[i])
+                    print('Error loading module : ' .. modules[i])
                     print(res) -- print stack traceback of the error
                 end
             end

@@ -32,7 +32,7 @@ augroup UpdateGlobal
     autocmd FileType markdown,gitcommit setlocal spell
     autocmd Filetype go,tex set tabstop=2 | set shiftwidth=2
     autocmd BufRead,BufNewFile *.md,*.gitcommit setlocal spell
-    autocmd CursorHold,CursorHoldI * lua require'utils'.code_action()
+    autocmd CursorHold,CursorHoldI * lua require'core.utils'.code_action()
 augroup END
 ]],
     true
