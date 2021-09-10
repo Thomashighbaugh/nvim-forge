@@ -23,12 +23,18 @@ return packer.startup(
             end
         }
         use {
+          'ishchow/nvim-deardiary',
+          config = function()
+            require'plugins.configs.deardiary'
+          end
+
+        }
+        use {
             'wincent/corpus',
             config = function()
                 require 'plugins.configs.corpus'
             end
         }
-
         use {
             'romgrk/barbar.nvim',
             after = 'nvim-web-devicons'

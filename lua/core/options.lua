@@ -41,7 +41,7 @@ opt.smartindent = true
 opt.whichwrap:append("<>hl")
 
 g.mapleader = " "
-g.auto_save = true
+g.auto_save = false
 
 -- disable builtin vim plugins
 local disabled_built_ins = {
