@@ -1,4 +1,3 @@
-M = {}
 
 local config = require("deardiary.config")
 
@@ -13,4 +12,3 @@ config.journals = {
     },
 }
 
-return M 
