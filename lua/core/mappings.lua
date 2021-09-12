@@ -149,3 +149,5 @@ map("n", "<Esc>", ":noh<CR>", opt)
 
 -- get out of terminal with jk
 map("t", "jk", "<C-\\><C-n>", opt)
+
+map("n", "<Leader>jsd", "<Plug>(DearDiarySelectJournal)", {})

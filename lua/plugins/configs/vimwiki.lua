@@ -21,8 +21,8 @@ wiki2.auto_toc = 1
 wiki2.auto_generate_links = 1
 
 local wiki3 = {}
-wiki3.path = "~/PersonalWiki"
-wiki3.path_html = "~/PersonalWiki/html"
+wiki3.path = "~/Notes"
+wiki3.path_html = "~/Notes/html"
 wiki3.syntax = "markdown"
 wiki3.ext = ".md"
 wiki3.list_margin = 0

@@ -5,6 +5,7 @@ require('core.utils')
 require('colors.highlights')
 require('plugins')
 require('plugins.packerInit')
+require('deardiary')
 local modules = {
     'plugins',
     'core.mappings',
