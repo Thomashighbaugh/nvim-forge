@@ -1,13 +1,6 @@
 local config = require('deardiary.config')
 local lustache = require('lib.lustache')
 
-local personal_daily_template = [[
-# {{ date }}
-## Todo
-## Notes
-## Journal
-]]
-
 local default_weekly_template = [[
 # {{ header }}
 {{ #dates }}
@@ -17,22 +10,42 @@ local default_weekly_template = [[
 
 local personal_weekly_template =
     [[
+
 # {{ header }}
+
 {{ #dates }}
+
 ## {{ . }}
-### Meal Plan
-- Breakfast:
-- Lunch:
-- Dinner:
+
+
 ### Todo
 [ ] Task 1
 [ ] Task 2
+
 {{ /dates }}
 ]]
 
 local dev_daily_template = [[
 # {{ date }}
+## To Do 
+Project: 
+- [ ]
+- [ ]
+- [ ]
+
 ## Notes
+Project: 
+
+]]
+local dev_weekly_template = [[
+# {{ header }}
+
+Week In Review 
+-
+-
+Prospective 
+-
+-
 ]]
 
 local template_daily = function(entry_date, daily_template_str)
@@ -64,11 +77,6 @@ config.journals = {
     {
         path = '~/Notes/personal/journal',
         frequencies = {
-            daily = {
-                template = function(entry_date)
-                    return template_daily(entry_date, personal_daily_template)
-                end
-            },
             weekly = {
                 template = function(entry_date)
                     return template_weekly(entry_date, personal_weekly_template)
@@ -84,8 +92,11 @@ config.journals = {
                     return template_daily(entry_date, dev_daily_template)
                 end
             },
-            'weekly'
-        }
+     weekly = {
+         template = function(entry_date)
+           return template_weekly(entry_date, dev_weekly_template)
+             end
+ }                                                                           }
     }
 }
 
