@@ -151,3 +151,8 @@ map("n", "<Esc>", ":noh<CR>", opt)
 map("t", "jk", "<C-\\><C-n>", opt)
 
 map("n", "<Leader>jsd", "<Plug>(DearDiarySelectJournal)", {})
+
+map("n", "<Leader>qn", [[<Cmd>QNext<CR>]], opt)
+map("n", "<Leader>qp", [[<Cmd>QPrev<CR>]], opt)
+map("n", "<Leader>qt", [[<Cmd>QFToggle!<CR>]], opt)
+map("n", "<Leader>ql", [[<Cmd>LLToggle!<CR>]], opt)

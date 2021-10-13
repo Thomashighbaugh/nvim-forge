@@ -34,10 +34,30 @@ return packer.startup(
                 require "plugins.configs.deardiary"
             end
         }
+        use {"MattesGroeger/vim-bookmarks"} --- bookmarks
+        use {"tpope/vim-commentary"} --- commenting
 
         use {
-            "romgrk/barbar.nvim",
-            after = "nvim-web-devicons"
+            "stevearc/qf_helper.nvim",
+            config = function()
+                require("plugins.configs.qfhelper")
+            end
+        }
+        use {"voldikss/vim-floaterm"} --- Terminal
+        use {"vim-scripts/genutils"} --- general utilities
+        use {"godlygeek/tabular"} --- tabbing
+        use {"rafamadriz/friendly-snippets"} --- snippets
+        use {"edluffy/specs.nvim"} --- cursor beacon
+        -- use { 'mfussenegger/nvim-dap' }     --- debugging
+        use {"qpkorr/vim-bufkill"} --- kill buffers properly
+        use {"hoob3rt/lualine.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
+        -- Tabline {{{
+        use {
+            "kdheepak/tabline.nvim",
+            config = function()
+                require("plugins.configs.tabline")
+            end,
+            requires = {{"hoob3rt/lualine.nvim"}, {"kyazdani42/nvim-web-devicons", opt = true}}
         }
 
         use {
@@ -59,14 +79,12 @@ return packer.startup(
             end
         }
         use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-require("plugins.configs.trouble")
-  end
-}
-        use "hrsh7th/cmp-nvim-lsp"
-        use "hrsh7th/nvim-cmp"
+            "folke/trouble.nvim",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require("plugins.configs.trouble")
+            end
+        }
         -- color related stuff
         use {
             "siduck76/nvim-base16.lua",
@@ -114,10 +132,35 @@ require("plugins.configs.trouble")
 
         use {
             "onsails/lspkind-nvim",
-            event = "BufRead",
             config = function()
                 require("plugins.configs.others").lspkind()
             end
+        }
+        use {"ray-x/lsp_signature.nvim", module = "lsp_signature"}
+        use {
+            "simrat39/symbols-outline.nvim",
+            setup = function()
+                vim.g.symbols_outline = {
+                    highlight_hovered_item = true,
+                    show_guides = true,
+                    auto_preview = true,
+                    position = "right",
+                    width = 25,
+                    show_numbers = false,
+                    show_relative_numbers = false,
+                    show_symbol_details = true,
+                    keymaps = {
+                        close = "q",
+                        goto_location = "<CR>",
+                        focus_location = "<space>",
+                        hover_symbol = "K",
+                        toggle_preview = "p",
+                        rename_symbol = "r",
+                        code_actions = "a"
+                    }
+                }
+            end,
+            cmd = {"SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose"}
         }
         -- load compe in insert mode only
         use {
@@ -142,7 +185,28 @@ require("plugins.configs.trouble")
                 }
             }
         }
-
+        use {
+            "hrsh7th/nvim-cmp", --- Autocompletion
+            config = function()
+                require("plugins.configs.cmp")
+            end,
+            requires = {
+                {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
+                {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"},
+                {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
+                {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
+                {"hrsh7th/cmp-calc", after = "nvim-cmp"},
+                {"hrsh7th/cmp-path", after = "nvim-cmp"},
+                {"L3MON4D3/LuaSnip"}
+            }
+        }
+        use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
+        use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
+        use {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"}
+        use {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"}
+        use {"hrsh7th/cmp-calc", after = "nvim-cmp"}
+        use {"hrsh7th/cmp-path", after = "nvim-cmp"}
+        use {"L3MON4D3/LuaSnip"}
         use {
             "sbdchd/neoformat",
             cmd = "Neoformat"
@@ -155,13 +219,7 @@ require("plugins.configs.trouble")
             end
         }
         -- file managing , picker etc
-        use {
-            "kyazdani42/nvim-tree.lua",
-            cmd = "NvimTreeToggle",
-            config = function()
-                require "plugins.configs.nvimtree"
-            end
-        }
+        -- file managing , picker etc
 
         use {
             "kyazdani42/nvim-web-devicons",
@@ -220,29 +278,13 @@ require("plugins.configs.trouble")
 
         use {
             "terrortylor/nvim-comment",
-            cmd = "CommentToggle",
             config = function()
                 require("plugins.configs.others").comment()
             end
         }
 
         use {
-            "glepnir/dashboard-nvim",
-            cmd = {
-                "Dashboard",
-                "DashboardNewFile",
-                "DashboardJumpMarks",
-                "SessionLoad",
-                "SessionSave"
-            },
-            config = function()
-                require "plugins.configs.dashboard"
-            end
-        }
-
-        use {
-            "tweekmonster/startuptime.vim",
-            cmd = "StartupTime"
+            "tweekmonster/startuptime.vim"
         }
 
         -- load autosave only if its globally enabled
@@ -314,6 +356,208 @@ require("plugins.configs.trouble")
             module = {"toggleterm", "toggleterm.terminal"},
             cmd = {"ToggleTerm", "TermExec"},
             keys = {"n", "<space>t"}
+        }
+        use {
+            "nvim-neorg/neorg",
+            branch = "unstable",
+            config = function()
+                require("neorg").setup {
+                    load = {
+                        ["core.defaults"] = {}, -- Load all the defaults
+                        ["core.norg.concealer"] = {}, -- Allows the use of icons
+                        ["core.keybinds"] = {config = {default_keybinds = true, neorg_leader = "<leader>o"}},
+                        ["core.gtd.base"] = {config = {workspace = "gtd"}},
+                        ["core.integrations.treesitter"] = {
+                            config = {
+                                highlights = {
+                                    Unordered = {
+                                        List = {
+                                            ["1"] = "+NeorgHeading1Title",
+                                            ["2"] = "+NeorgHeading2Title",
+                                            ["3"] = "+NeorgHeading3Title",
+                                            ["4"] = "+NeorgHeading4Title",
+                                            ["5"] = "+NeorgHeading5Title",
+                                            ["6"] = "+NeorgHeading6Title"
+                                        },
+                                        Link = {
+                                            ["1"] = "+htmlh1",
+                                            ["2"] = "+htmlh2",
+                                            ["3"] = "+htmlh3",
+                                            ["4"] = "+htmlh4",
+                                            ["5"] = "+htmlh5",
+                                            ["6"] = "+htmlh6"
+                                        }
+                                    },
+                                    Ordered = {
+                                        List = {
+                                            ["1"] = "+NeorgHeading1Title",
+                                            ["2"] = "+NeorgHeading2Title",
+                                            ["3"] = "+NeorgHeading3Title",
+                                            ["4"] = "+NeorgHeading4Title",
+                                            ["5"] = "+NeorgHeading5Title",
+                                            ["6"] = "+NeorgHeading6Title"
+                                        },
+                                        Link = {
+                                            ["1"] = "+htmlh1",
+                                            ["2"] = "+htmlh2",
+                                            ["3"] = "+htmlh3",
+                                            ["4"] = "+htmlh4",
+                                            ["5"] = "+htmlh5",
+                                            ["6"] = "+htmlh6"
+                                        }
+                                    },
+                                    Quote = {
+                                        ["1"] = {[""] = "+htmlH1", Content = "+htmlH1"},
+                                        ["2"] = {[""] = "+htmlH2", Content = "+htmlH2"},
+                                        ["3"] = {[""] = "+htmlH3", Content = "+htmlH3"},
+                                        ["4"] = {[""] = "+htmlH4", Content = "+htmlH4"},
+                                        ["5"] = {[""] = "+htmlH5", Content = "+htmlH5"},
+                                        ["6"] = {[""] = "+htmlH6", Content = "+htmlH6"}
+                                    },
+                                    Definition = {
+                                        [""] = "+Exception",
+                                        End = "+Exception",
+                                        Title = "+TSStrong",
+                                        -- TODO: figure out odd highlighting of ranged tag when using TSNone
+                                        Content = "+TSEmphasis"
+                                    },
+                                    TodoItem = {
+                                        ["1"] = {
+                                            [""] = "+NeorgUnorderedList1",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        },
+                                        ["2"] = {
+                                            [""] = "+NeorgUnorderedList2",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        },
+                                        ["3"] = {
+                                            [""] = "+NeorgUnorderedList3",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        },
+                                        ["4"] = {
+                                            [""] = "+NeorgUnorderedList4",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        },
+                                        ["5"] = {
+                                            [""] = "+NeorgUnorderedList5",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        },
+                                        ["6"] = {
+                                            [""] = "+NeorgUnorderedList6",
+                                            Undone = "+StringDelimiter",
+                                            Pending = "+TSPunctDelimiter",
+                                            Done = "+TSString"
+                                        }
+                                    },
+                                    EscapeSequence = "+TSType",
+                                    StrongParagraphDelimiter = "+Comment",
+                                    WeakParagraphDelimiter = "+Comment",
+                                    HorizontalLine = "+htmlH4",
+                                    Marker = {[""] = "+Structure", Title = "+TSStrong"},
+                                    Tag = {
+                                        Begin = "+TSKeyword",
+                                        ["End"] = "+TSKeyword",
+                                        Name = {[""] = "+Normal", Word = "+TSKeyword"},
+                                        Parameter = "+TSType",
+                                        Content = "+Normal"
+                                    },
+                                    Insertion = {
+                                        [""] = "cterm=bold gui=bold",
+                                        Prefix = "+TSPunctDelimiter",
+                                        Variable = {
+                                            [""] = "+TSString",
+                                            Value = "+TSPunctDelimiter"
+                                        },
+                                        Item = "+TSNamespace",
+                                        Parameters = "+TSComment"
+                                    },
+                                    EscapeSequence = "+TSType"
+                                }
+                            }
+                        },
+                        ["core.norg.dirman"] = {
+                            -- Manage Neorg directories
+                            config = {
+                                workspaces = {
+                                    main = "~/dev/neorg",
+                                    work = "~/dev/neorg/work",
+                                    school = "~/dev/neorg/school"
+                                },
+                                autochdir = false,
+                                autodetect = false
+                            }
+                        },
+                        -- ["core.integrations.telescope"] = {},
+                        ["core.norg.completion"] = {config = {engine = "nvim-cmp"}}
+                    },
+                    logger = {level = "warn"}
+                }
+            end,
+            after = "nvim-treesitter"
+        }
+        use {
+            "williamboman/nvim-lsp-installer"
+        }
+        use {"nvim-lua/lsp-status.nvim"}
+        use {
+            "RishabhRD/popfix",
+            "RishabhRD/nvim-lsputils"
+        }
+        use {
+            "weilbith/nvim-code-action-menu",
+            cmd = "CodeActionMenu"
+        }
+        -- }}}
+        use {"RRethy/nvim-treesitter-textsubjects", after = "nvim-treesitter"}
+        use {"nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter"}
+        use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle", after = "nvim-treesitter"}
+        use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
+        --- }}}
+        --- [[ Languages ]]
+        use {"sheerun/vim-polyglot"} --- *
+        use {"rust-lang/rust.vim"} --- rust!
+        use {"arzg/vim-rust-syntax-ext"} --- rust: syntax extension
+        use {"simrat39/rust-tools.nvim"} --- rust: loads of tools
+        -- use { 'plasticboy/vim-markdown' }  --- markdown
+
+        use {
+            "kyazdani42/nvim-tree.lua",
+            requires = "kyazdani42/nvim-web-devicons",
+            config = function()
+                require "plugins.configs.nvimtree"
+            end
+        }
+        -- [[ Make it pretty ]]
+
+        use {"xiyaowong/nvim-transparent"} --- transparency
+
+        -- finder
+        use {"unblevable/quick-scope"} --- horizonal movement
+
+        -- [[ Miscellaneous ]]
+        use {"stevearc/aerial.nvim"}
+        use {
+            "glepnir/dashboard-nvim",
+            config = function()
+                require("plugins.configs.dashboard")
+            end
+        } --- Start Screen
+        use {
+            "jghauser/mkdir.nvim", --- Make directory
+            config = function()
+                require("mkdir")
+            end,
+            event = "BufWritePre"
         }
     end
 )

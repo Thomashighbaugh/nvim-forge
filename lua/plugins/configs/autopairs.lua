@@ -10,5 +10,14 @@ autopairs_completion.setup(
     {
         map_cr = true,
         map_complete = true -- insert () func completion
-    }
+    },
+    vim.cmd [[
+        let g:AutoPairsFlyMode = 0
+        let g:AutoPairsShortcutBackInsert = '<M-C-v>'
+        let g:AutoPairsShortcutFastWrap = '<M-S-n>'
+        let g:AutoPairsMapCh = 0
+        let g:AutoPairsMoveCharacter = "()[]{}\"'"
+        au FileType rust let b:AutoPairs = AutoPairsDefine({'\w\zs<': '>', '\W\zs|': '|', '/*': '*/', "\W\zs\'": ''})
+        au FileType c,cpp let b:AutoPairs = AutoPairsDefine({'<': '>', '/*': '*/', "\W\zs\'": ''})
+      ]]
 )

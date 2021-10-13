@@ -31,14 +31,18 @@ M.neoscroll = function()
 end
 
 M.blankline = function()
-    vim.g.indentLine_enabled = 1
-    vim.g.indent_blankline_char = "▏"
-
-    vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
-    vim.g.indent_blankline_buftype_exclude = {"terminal"}
-
     vim.g.indent_blankline_show_trailing_blankline_indent = false
     vim.g.indent_blankline_show_first_indent_level = false
+    vim.cmd [[hi IndentBlanklineIndent1 guifg=#17191e guibg=NONE blend=10]]
+    vim.cmd [[hi IndentBlanklineIndent2 guifg=#17191e guibg=NONE blend=10]]
+    vim.cmd [[hi IndentBlanklineIndent3 guifg=#17191e guibg=NONE blend=10]]
+    vim.cmd [[hi IndentBlanklineIndent4 guifg=#17191e guibg=NONE blend=10]]
+    vim.cmd [[hi IndentBlanklineIndent5 guifg=#17191e guibg=NONE blend=10]]
+    vim.cmd [[hi IndentBlanklineIndent6 guifg=#17191e guibg=NONE blend=10]]
+    vim.g.indentLine_enabled = 1
+    vim.g.indent_blankline_char = "▏"
+    vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard", "packer", "norg"}
+    vim.g.indent_blankline_buftype_exclude = {"terminal", "norg", "TelescopePrompt", "Startify"}
 end
 
 return M

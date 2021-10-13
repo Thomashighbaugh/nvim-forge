@@ -16,6 +16,6 @@ autosave.setup(
         },
         write_all_buffers = false,
         on_off_commands = true,
-        clean_command_line_interval = 2500
+        clean_command_line_interval = 3000
     }
 )
