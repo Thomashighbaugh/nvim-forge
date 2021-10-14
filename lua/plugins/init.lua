@@ -22,6 +22,7 @@ return packer.startup(
                 require "plugins.configs.vimwiki"
             end
         }
+
         use {
             "wincent/corpus",
             config = function()
@@ -262,6 +263,14 @@ return packer.startup(
             end
             -- module = "lint",
         }
+        use {
+            "AckslD/nvim-neoclip.lua",
+            requires = {"tami5/sqlite.lua", module = "sqlite"},
+            config = function()
+                require("neoclip").setup()
+            end
+        }
+
         -- misc plugins
         use {
             "windwp/nvim-autopairs",
