@@ -106,7 +106,6 @@ return packer.startup(
         -- language related plugins
         use {
             "nvim-treesitter/nvim-treesitter",
-            event = "BufRead",
             config = function()
                 require "plugins.configs.treesitter"
             end
@@ -219,8 +218,6 @@ return packer.startup(
                 require "plugins.configs.format"
             end
         }
-        -- file managing , picker etc
-        -- file managing , picker etc
 
         use {
             "kyazdani42/nvim-web-devicons",
@@ -244,7 +241,14 @@ return packer.startup(
             cmd = "Telescope",
             config = function()
                 require "plugins.configs.telescope"
-            end
+            end,
+            requires = {
+                'nvim-lua/plenary.nvim', -- Useful Lua utilities
+                'nvim-lua/popup.nvim',
+          
+                -- FZF sorter for Telescope
+                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+              },
         }
 
         use {
@@ -269,6 +273,20 @@ return packer.startup(
             config = function()
                 require("neoclip").setup()
             end
+        }
+
+        use {
+            "mnowotnik/noteflow.nvim",
+            run = "bash build.sh",
+            config = function()
+                require("plugins.configs.noteflow")
+            end,
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-telescope/telescope.nvim",
+                "nvim-lua/popup.nvim",
+                "kyazdani42/nvim-web-devicons"
+            }
         }
 
         -- misc plugins
@@ -427,7 +445,6 @@ return packer.startup(
                                         [""] = "+Exception",
                                         End = "+Exception",
                                         Title = "+TSStrong",
-                                        -- TODO: figure out odd highlighting of ranged tag when using TSNone
                                         Content = "+TSEmphasis"
                                     },
                                     TodoItem = {
@@ -498,21 +515,27 @@ return packer.startup(
                             -- Manage Neorg directories
                             config = {
                                 workspaces = {
-                                    main = "~/dev/neorg",
-                                    work = "~/dev/neorg/work",
-                                    school = "~/dev/neorg/school"
+                                    main = "~/neorg",
+                                    work = "~/neorg/work",
+                                    personal = "~/neorg/personal"
                                 },
-                                autochdir = false,
+                                autochdir = true,
                                 autodetect = false
                             }
                         },
-                        -- ["core.integrations.telescope"] = {},
+                        ["core.integrations.telescope"] = {},
                         ["core.norg.completion"] = {config = {engine = "nvim-cmp"}}
                     },
                     logger = {level = "warn"}
                 }
             end,
             after = "nvim-treesitter"
+        }
+        use {
+            "kristijanhusak/orgmode.nvim",
+            config = function()
+                require("orgmode").setup {}
+            end
         }
         use {
             "williamboman/nvim-lsp-installer"
@@ -533,7 +556,7 @@ return packer.startup(
         use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
         --- }}}
         --- [[ Languages ]]
-        use {"sheerun/vim-polyglot"} --- *
+        use {"sheerun/vim-polyglot"}
         use {"rust-lang/rust.vim"} --- rust!
         use {"arzg/vim-rust-syntax-ext"} --- rust: syntax extension
         use {"simrat39/rust-tools.nvim"} --- rust: loads of tools

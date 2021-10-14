@@ -69,7 +69,8 @@ functionality I would even attempt to on an IDE available to me with the power a
 ## Intended Result
 
 While not the nightmare to manage that it looks like, this configuration has a relatively straightforward goal that by and large it achieves, namely:
-> Provide IDE like functionality without long startups or too much of a hassle to modify.
+
+> Provide IDE like functionality without long startups or too much of a hassle to modify/customize the configuration for as of yet unknown needs and situations.
 
 This is why the traditional vim configuration subdirectories have been eschewed and I have instead preferred housing most of the configuration within the `lua` subdirectory. Its easier and specific ordering can be accomplished by the order that the files are called within the `init.lua` file that the program itself sees. 
 
@@ -82,11 +83,10 @@ cd neovim
 sudo make CMAKE_BUILD_TYPE=Release install
 cd ~ && sudo rm -r neovim
 ```
+## Note Management 
+Until recently, I was pretty much exclusive to vimwiki, which I still keep around and use for certain sets of notes but I have moved altogether towards a brave new world with my notes. Artifacts of this period still are present in this configuration primarily because I still use it to keep certain notes, like my continued study of the Vedic Sanatana Dharma (aka Hinduism) which converting to plain markdown (sans vimwiki links) would be a bit more painful as the notebook is rather expansive. 
 
-## Vimwiki
-If you struggle with finding a note management application, and you are not impressed with org-mode, try vimwiki. It makes managing several local and version sourced notebooks easily managed by providing a streamlined set of functions without without too much fuss, which is how I like my text editing programs personally. 
 
-With it, I can record my notes in the heirarchical style I tend to organize my thoughts in, add to it and subtract as I feel necessary, all with the power of vim and streamlined responsive nature of this particular configuration that makes editing my notes a breeze. Because I control the content completely, I am even able to nest the pages of the wiki as I write it out and prefer it, which blows away the typical database system other note applications use that make recovering from reinstallation a bit of a nightmare. Not so with vimwiki. 
 
 ## Credit Where Due
 
