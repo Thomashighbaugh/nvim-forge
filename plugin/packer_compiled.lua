@@ -209,7 +209,7 @@ _G.packer_plugins = {
     path = "/home/tlh/.local/share/nvim/site/pack/packer/opt/neoformat"
   },
   neorg = {
-    config = { "\27LJ\2\n–\19\0\0\t\0K\0]6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2G\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\a\0005\5\6\0=\5\b\4=\4\t\0035\4\v\0005\5\n\0=\5\b\4=\4\f\0035\4<\0005\5:\0005\6\18\0005\a\14\0005\b\r\0=\b\15\a5\b\16\0=\b\17\a=\a\19\0065\a\21\0005\b\20\0=\b\15\a5\b\22\0=\b\17\a=\a\23\0065\a\25\0005\b\24\0=\b\26\a5\b\27\0=\b\28\a5\b\29\0=\b\30\a5\b\31\0=\b \a5\b!\0=\b\"\a5\b#\0=\b$\a=\a%\0065\a&\0=\a'\0065\a)\0005\b(\0=\b\26\a5\b*\0=\b\28\a5\b+\0=\b\30\a5\b,\0=\b \a5\b-\0=\b\"\a5\b.\0=\b$\a=\a/\0065\a0\0=\a1\0065\a2\0005\b3\0=\b4\a=\a5\0065\a6\0005\b7\0=\b8\a=\a9\6=\6;\5=\5\b\4=\4=\0035\4A\0005\5?\0005\6>\0=\6@\5=\5\b\4=\4B\0034\4\0\0=\4C\0035\4E\0005\5D\0=\5\b\4=\4F\3=\3H\0025\3I\0=\3J\2B\0\2\1K\0\1\0\vlogger\1\0\1\nlevel\twarn\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp core.integrations.telescope\21core.norg.dirman\1\0\0\15workspaces\1\0\2\15autodetect\1\14autochdir\2\1\0\3\tmain\f~/neorg\rpersonal\21~/neorg/personal\twork\17~/neorg/work!core.integrations.treesitter\1\0\0\15highlights\1\0\0\14Insertion\rVariable\1\0\2\nValue\22+TSPunctDelimiter\5\14+TSString\1\0\4\15Parameters\15+TSComment\tItem\17+TSNamespace\vPrefix\22+TSPunctDelimiter\5\24cterm=bold gui=bold\bTag\tName\1\0\2\tWord\15+TSKeyword\5\f+Normal\1\0\4\14Parameter\f+TSType\fContent\f+Normal\nBegin\15+TSKeyword\bEnd\15+TSKeyword\vMarker\1\0\2\nTitle\14+TSStrong\5\15+Structure\rTodoItem\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList6\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList5\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList4\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList3\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList2\1\0\0\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList1\15Definition\1\0\4\bEnd\15+Exception\fContent\16+TSEmphasis\nTitle\14+TSStrong\5\15+Exception\nQuote\0066\1\0\2\fContent\f+htmlH6\5\f+htmlH6\0065\1\0\2\fContent\f+htmlH5\5\f+htmlH5\0064\1\0\2\fContent\f+htmlH4\5\f+htmlH4\0063\1\0\2\fContent\f+htmlH3\5\f+htmlH3\0062\1\0\2\fContent\f+htmlH2\5\f+htmlH2\0061\1\0\0\1\0\2\fContent\f+htmlH1\5\f+htmlH1\fOrdered\1\0\6\0065\f+htmlh5\0063\f+htmlh3\0066\f+htmlh6\0062\f+htmlh2\0061\f+htmlh1\0064\f+htmlh4\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0063\24+NeorgHeading3Title\0066\24+NeorgHeading6Title\0062\24+NeorgHeading2Title\0061\24+NeorgHeading1Title\0064\24+NeorgHeading4Title\14Unordered\1\0\4\27WeakParagraphDelimiter\r+Comment\29StrongParagraphDelimiter\r+Comment\19HorizontalLine\f+htmlH4\19EscapeSequence\f+TSType\tLink\1\0\6\0065\f+htmlh5\0063\f+htmlh3\0066\f+htmlh6\0062\f+htmlh2\0061\f+htmlh1\0064\f+htmlh4\tList\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0063\24+NeorgHeading3Title\0066\24+NeorgHeading6Title\0062\24+NeorgHeading2Title\0061\24+NeorgHeading1Title\0064\24+NeorgHeading4Title\18core.gtd.base\1\0\0\1\0\1\14workspace\bgtd\18core.keybinds\vconfig\1\0\0\1\0\2\17neorg_leader\14<leader>o\21default_keybinds\2\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
+    config = { "\27LJ\2\n–\19\0\0\t\0K\0]6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2G\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\a\0005\5\6\0=\5\b\4=\4\t\0035\4\v\0005\5\n\0=\5\b\4=\4\f\0035\4<\0005\5:\0005\6\18\0005\a\14\0005\b\r\0=\b\15\a5\b\16\0=\b\17\a=\a\19\0065\a\21\0005\b\20\0=\b\15\a5\b\22\0=\b\17\a=\a\23\0065\a\25\0005\b\24\0=\b\26\a5\b\27\0=\b\28\a5\b\29\0=\b\30\a5\b\31\0=\b \a5\b!\0=\b\"\a5\b#\0=\b$\a=\a%\0065\a&\0=\a'\0065\a)\0005\b(\0=\b\26\a5\b*\0=\b\28\a5\b+\0=\b\30\a5\b,\0=\b \a5\b-\0=\b\"\a5\b.\0=\b$\a=\a/\0065\a0\0=\a1\0065\a2\0005\b3\0=\b4\a=\a5\0065\a6\0005\b7\0=\b8\a=\a9\6=\6;\5=\5\b\4=\4=\0035\4A\0005\5?\0005\6>\0=\6@\5=\5\b\4=\4B\0034\4\0\0=\4C\0035\4E\0005\5D\0=\5\b\4=\4F\3=\3H\0025\3I\0=\3J\2B\0\2\1K\0\1\0\vlogger\1\0\1\nlevel\twarn\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp core.integrations.telescope\21core.norg.dirman\1\0\0\15workspaces\1\0\2\14autochdir\2\15autodetect\1\1\0\3\tmain\f~/neorg\rpersonal\21~/neorg/personal\twork\17~/neorg/work!core.integrations.treesitter\1\0\0\15highlights\1\0\0\14Insertion\rVariable\1\0\2\nValue\22+TSPunctDelimiter\5\14+TSString\1\0\4\vPrefix\22+TSPunctDelimiter\15Parameters\15+TSComment\tItem\17+TSNamespace\5\24cterm=bold gui=bold\bTag\tName\1\0\2\tWord\15+TSKeyword\5\f+Normal\1\0\4\fContent\f+Normal\nBegin\15+TSKeyword\bEnd\15+TSKeyword\14Parameter\f+TSType\vMarker\1\0\2\nTitle\14+TSStrong\5\15+Structure\rTodoItem\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList6\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList5\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList4\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList3\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList2\1\0\0\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList1\15Definition\1\0\4\bEnd\15+Exception\fContent\16+TSEmphasis\nTitle\14+TSStrong\5\15+Exception\nQuote\0066\1\0\2\fContent\f+htmlH6\5\f+htmlH6\0065\1\0\2\fContent\f+htmlH5\5\f+htmlH5\0064\1\0\2\fContent\f+htmlH4\5\f+htmlH4\0063\1\0\2\fContent\f+htmlH3\5\f+htmlH3\0062\1\0\2\fContent\f+htmlH2\5\f+htmlH2\0061\1\0\0\1\0\2\fContent\f+htmlH1\5\f+htmlH1\fOrdered\1\0\6\0065\f+htmlh5\0061\f+htmlh1\0066\f+htmlh6\0064\f+htmlh4\0063\f+htmlh3\0062\f+htmlh2\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0061\24+NeorgHeading1Title\0066\24+NeorgHeading6Title\0064\24+NeorgHeading4Title\0063\24+NeorgHeading3Title\0062\24+NeorgHeading2Title\14Unordered\1\0\4\29StrongParagraphDelimiter\r+Comment\27WeakParagraphDelimiter\r+Comment\19EscapeSequence\f+TSType\19HorizontalLine\f+htmlH4\tLink\1\0\6\0065\f+htmlh5\0061\f+htmlh1\0066\f+htmlh6\0064\f+htmlh4\0063\f+htmlh3\0062\f+htmlh2\tList\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0061\24+NeorgHeading1Title\0066\24+NeorgHeading6Title\0064\24+NeorgHeading4Title\0063\24+NeorgHeading3Title\0062\24+NeorgHeading2Title\18core.gtd.base\1\0\0\1\0\1\14workspace\bgtd\18core.keybinds\vconfig\1\0\0\1\0\2\17neorg_leader\14<leader>o\21default_keybinds\2\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
     load_after = {},
     loaded = true,
     needs_bufread = true,
@@ -246,7 +246,7 @@ _G.packer_plugins = {
     path = "/home/tlh/.local/share/nvim/site/pack/packer/opt/nvim-base16.lua"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-buffer", "cmp-calc", "cmp-nvim-lsp", "cmp-nvim-lua", "cmp_luasnip", "cmp-path" },
+    after = { "cmp-buffer", "cmp-nvim-lsp", "cmp-nvim-lua", "cmp_luasnip", "cmp-path", "cmp-calc" },
     loaded = true,
     only_config = true
   },
@@ -269,7 +269,6 @@ _G.packer_plugins = {
   },
   ["nvim-compe"] = {
     after = { "nvim-autopairs" },
-    after_files = { "/home/tlh/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe.vim" },
     config = { "\27LJ\2\n5\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\26plugins.configs.compe\frequire\0" },
     loaded = false,
     needs_bufread = false,
@@ -342,7 +341,7 @@ _G.packer_plugins = {
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "playground", "neorg", "nvim-treesitter-textsubjects", "nvim-ts-rainbow", "nvim-treesitter-textobjects" },
+    after = { "playground", "nvim-ts-rainbow", "nvim-treesitter-textobjects", "neorg", "nvim-treesitter-textsubjects" },
     loaded = true,
     only_config = true
   },
@@ -515,9 +514,8 @@ _G.packer_plugins = {
     path = "/home/tlh/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-matchup"] = {
-    after_files = { "/home/tlh/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
     loaded = false,
-    needs_bufread = true,
+    needs_bufread = false,
     path = "/home/tlh/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
   ["vim-polyglot"] = {
@@ -576,70 +574,38 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Setup for: symbols-outline.nvim
-time([[Setup for symbols-outline.nvim]], true)
-try_loadstring("\27LJ\2\n¼\2\0\0\3\0\6\0\a6\0\0\0009\0\1\0005\1\3\0005\2\4\0=\2\5\1=\1\2\0K\0\1\0\fkeymaps\1\0\a\17code_actions\6a\17hover_symbol\6K\19focus_location\f<space>\nclose\6q\18goto_location\t<CR>\18rename_symbol\6r\19toggle_preview\6p\1\0\b\27highlight_hovered_item\2\24show_symbol_details\2\26show_relative_numbers\1\17show_numbers\1\nwidth\3\25\rposition\nright\17auto_preview\2\16show_guides\2\20symbols_outline\6g\bvim\0", "setup", "symbols-outline.nvim")
-time([[Setup for symbols-outline.nvim]], false)
 -- Setup for: indent-blankline.nvim
 time([[Setup for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\nH\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\14blankline\27plugins.configs.others\frequire\0", "setup", "indent-blankline.nvim")
 time([[Setup for indent-blankline.nvim]], false)
--- Config for: nvim-deardiary
-time([[Config for nvim-deardiary]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30plugins.configs.deardiary\frequire\0", "config", "nvim-deardiary")
-time([[Config for nvim-deardiary]], false)
--- Config for: corpus
-time([[Config for corpus]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.configs.corpus\frequire\0", "config", "corpus")
-time([[Config for corpus]], false)
--- Config for: dashboard-nvim
-time([[Config for dashboard-nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30plugins.configs.dashboard\frequire\0", "config", "dashboard-nvim")
-time([[Config for dashboard-nvim]], false)
--- Config for: orgmode.nvim
-time([[Config for orgmode.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\forgmode\frequire\0", "config", "orgmode.nvim")
-time([[Config for orgmode.nvim]], false)
--- Config for: noteflow.nvim
-time([[Config for noteflow.nvim]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.noteflow\frequire\0", "config", "noteflow.nvim")
-time([[Config for noteflow.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31plugins.configs.treesitter\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
+-- Setup for: symbols-outline.nvim
+time([[Setup for symbols-outline.nvim]], true)
+try_loadstring("\27LJ\2\n¼\2\0\0\3\0\6\0\a6\0\0\0009\0\1\0005\1\3\0005\2\4\0=\2\5\1=\1\2\0K\0\1\0\fkeymaps\1\0\a\nclose\6q\17hover_symbol\6K\19focus_location\f<space>\18goto_location\t<CR>\17code_actions\6a\18rename_symbol\6r\19toggle_preview\6p\1\0\b\26show_relative_numbers\1\17show_numbers\1\nwidth\3\25\rposition\nright\17auto_preview\2\16show_guides\2\27highlight_hovered_item\2\24show_symbol_details\2\20symbols_outline\6g\bvim\0", "setup", "symbols-outline.nvim")
+time([[Setup for symbols-outline.nvim]], false)
 -- Config for: qf_helper.nvim
 time([[Config for qf_helper.nvim]], true)
 try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.qfhelper\frequire\0", "config", "qf_helper.nvim")
 time([[Config for qf_helper.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24plugins.configs.cmp\frequire\0", "config", "nvim-cmp")
-time([[Config for nvim-cmp]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.trouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: refactoring.nvim
-time([[Config for refactoring.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 plugins.configs.refactoring\frequire\0", "config", "refactoring.nvim")
-time([[Config for refactoring.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.nvimtree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31plugins.configs.treesitter\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: nvim-neoclip.lua
 time([[Config for nvim-neoclip.lua]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
 time([[Config for nvim-neoclip.lua]], false)
+-- Config for: refactoring.nvim
+time([[Config for refactoring.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0 plugins.configs.refactoring\frequire\0", "config", "refactoring.nvim")
+time([[Config for refactoring.nvim]], false)
+-- Config for: vimwiki
+time([[Config for vimwiki]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.vimwiki\frequire\0", "config", "vimwiki")
+time([[Config for vimwiki]], false)
 -- Config for: nvim-comment
 time([[Config for nvim-comment]], true)
 try_loadstring("\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\fcomment\27plugins.configs.others\frequire\0", "config", "nvim-comment")
 time([[Config for nvim-comment]], false)
--- Config for: tabline.nvim
-time([[Config for tabline.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.tabline\frequire\0", "config", "tabline.nvim")
-time([[Config for tabline.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.whichkey\frequire\0", "config", "which-key.nvim")
@@ -648,14 +614,46 @@ time([[Config for which-key.nvim]], false)
 time([[Config for lspkind-nvim]], true)
 try_loadstring("\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\flspkind\27plugins.configs.others\frequire\0", "config", "lspkind-nvim")
 time([[Config for lspkind-nvim]], false)
+-- Config for: nvim-deardiary
+time([[Config for nvim-deardiary]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30plugins.configs.deardiary\frequire\0", "config", "nvim-deardiary")
+time([[Config for nvim-deardiary]], false)
+-- Config for: corpus
+time([[Config for corpus]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.configs.corpus\frequire\0", "config", "corpus")
+time([[Config for corpus]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.trouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
 -- Config for: nvim-lint
 time([[Config for nvim-lint]], true)
 try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.configs.linter\frequire\0", "config", "nvim-lint")
 time([[Config for nvim-lint]], false)
--- Config for: vimwiki
-time([[Config for vimwiki]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.vimwiki\frequire\0", "config", "vimwiki")
-time([[Config for vimwiki]], false)
+-- Config for: orgmode.nvim
+time([[Config for orgmode.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\forgmode\frequire\0", "config", "orgmode.nvim")
+time([[Config for orgmode.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24plugins.configs.cmp\frequire\0", "config", "nvim-cmp")
+time([[Config for nvim-cmp]], false)
+-- Config for: tabline.nvim
+time([[Config for tabline.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\28plugins.configs.tabline\frequire\0", "config", "tabline.nvim")
+time([[Config for tabline.nvim]], false)
+-- Config for: noteflow.nvim
+time([[Config for noteflow.nvim]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.noteflow\frequire\0", "config", "noteflow.nvim")
+time([[Config for noteflow.nvim]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\30plugins.configs.dashboard\frequire\0", "config", "dashboard-nvim")
+time([[Config for dashboard-nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins.configs.nvimtree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 -- Conditional loads
 time("Condition for { 'AutoSave.nvim' }", true)
 if
@@ -674,50 +672,50 @@ time("Condition for { 'AutoSave.nvim' }", false)
 end
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp_luasnip ]]
+vim.cmd [[ packadd cmp-path ]]
+vim.cmd [[ packadd cmp-nvim-lua ]]
+vim.cmd [[ packadd cmp-nvim-lsp ]]
+vim.cmd [[ packadd cmp-calc ]]
 vim.cmd [[ packadd nvim-treesitter-textobjects ]]
 vim.cmd [[ packadd nvim-ts-rainbow ]]
 vim.cmd [[ packadd nvim-treesitter-textsubjects ]]
 vim.cmd [[ packadd neorg ]]
 
 -- Config for: neorg
-try_loadstring("\27LJ\2\n–\19\0\0\t\0K\0]6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2G\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\a\0005\5\6\0=\5\b\4=\4\t\0035\4\v\0005\5\n\0=\5\b\4=\4\f\0035\4<\0005\5:\0005\6\18\0005\a\14\0005\b\r\0=\b\15\a5\b\16\0=\b\17\a=\a\19\0065\a\21\0005\b\20\0=\b\15\a5\b\22\0=\b\17\a=\a\23\0065\a\25\0005\b\24\0=\b\26\a5\b\27\0=\b\28\a5\b\29\0=\b\30\a5\b\31\0=\b \a5\b!\0=\b\"\a5\b#\0=\b$\a=\a%\0065\a&\0=\a'\0065\a)\0005\b(\0=\b\26\a5\b*\0=\b\28\a5\b+\0=\b\30\a5\b,\0=\b \a5\b-\0=\b\"\a5\b.\0=\b$\a=\a/\0065\a0\0=\a1\0065\a2\0005\b3\0=\b4\a=\a5\0065\a6\0005\b7\0=\b8\a=\a9\6=\6;\5=\5\b\4=\4=\0035\4A\0005\5?\0005\6>\0=\6@\5=\5\b\4=\4B\0034\4\0\0=\4C\0035\4E\0005\5D\0=\5\b\4=\4F\3=\3H\0025\3I\0=\3J\2B\0\2\1K\0\1\0\vlogger\1\0\1\nlevel\twarn\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp core.integrations.telescope\21core.norg.dirman\1\0\0\15workspaces\1\0\2\15autodetect\1\14autochdir\2\1\0\3\tmain\f~/neorg\rpersonal\21~/neorg/personal\twork\17~/neorg/work!core.integrations.treesitter\1\0\0\15highlights\1\0\0\14Insertion\rVariable\1\0\2\nValue\22+TSPunctDelimiter\5\14+TSString\1\0\4\15Parameters\15+TSComment\tItem\17+TSNamespace\vPrefix\22+TSPunctDelimiter\5\24cterm=bold gui=bold\bTag\tName\1\0\2\tWord\15+TSKeyword\5\f+Normal\1\0\4\14Parameter\f+TSType\fContent\f+Normal\nBegin\15+TSKeyword\bEnd\15+TSKeyword\vMarker\1\0\2\nTitle\14+TSStrong\5\15+Structure\rTodoItem\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList6\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList5\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList4\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList3\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList2\1\0\0\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList1\15Definition\1\0\4\bEnd\15+Exception\fContent\16+TSEmphasis\nTitle\14+TSStrong\5\15+Exception\nQuote\0066\1\0\2\fContent\f+htmlH6\5\f+htmlH6\0065\1\0\2\fContent\f+htmlH5\5\f+htmlH5\0064\1\0\2\fContent\f+htmlH4\5\f+htmlH4\0063\1\0\2\fContent\f+htmlH3\5\f+htmlH3\0062\1\0\2\fContent\f+htmlH2\5\f+htmlH2\0061\1\0\0\1\0\2\fContent\f+htmlH1\5\f+htmlH1\fOrdered\1\0\6\0065\f+htmlh5\0063\f+htmlh3\0066\f+htmlh6\0062\f+htmlh2\0061\f+htmlh1\0064\f+htmlh4\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0063\24+NeorgHeading3Title\0066\24+NeorgHeading6Title\0062\24+NeorgHeading2Title\0061\24+NeorgHeading1Title\0064\24+NeorgHeading4Title\14Unordered\1\0\4\27WeakParagraphDelimiter\r+Comment\29StrongParagraphDelimiter\r+Comment\19HorizontalLine\f+htmlH4\19EscapeSequence\f+TSType\tLink\1\0\6\0065\f+htmlh5\0063\f+htmlh3\0066\f+htmlh6\0062\f+htmlh2\0061\f+htmlh1\0064\f+htmlh4\tList\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0063\24+NeorgHeading3Title\0066\24+NeorgHeading6Title\0062\24+NeorgHeading2Title\0061\24+NeorgHeading1Title\0064\24+NeorgHeading4Title\18core.gtd.base\1\0\0\1\0\1\14workspace\bgtd\18core.keybinds\vconfig\1\0\0\1\0\2\17neorg_leader\14<leader>o\21default_keybinds\2\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
+try_loadstring("\27LJ\2\n–\19\0\0\t\0K\0]6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2G\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\a\0005\5\6\0=\5\b\4=\4\t\0035\4\v\0005\5\n\0=\5\b\4=\4\f\0035\4<\0005\5:\0005\6\18\0005\a\14\0005\b\r\0=\b\15\a5\b\16\0=\b\17\a=\a\19\0065\a\21\0005\b\20\0=\b\15\a5\b\22\0=\b\17\a=\a\23\0065\a\25\0005\b\24\0=\b\26\a5\b\27\0=\b\28\a5\b\29\0=\b\30\a5\b\31\0=\b \a5\b!\0=\b\"\a5\b#\0=\b$\a=\a%\0065\a&\0=\a'\0065\a)\0005\b(\0=\b\26\a5\b*\0=\b\28\a5\b+\0=\b\30\a5\b,\0=\b \a5\b-\0=\b\"\a5\b.\0=\b$\a=\a/\0065\a0\0=\a1\0065\a2\0005\b3\0=\b4\a=\a5\0065\a6\0005\b7\0=\b8\a=\a9\6=\6;\5=\5\b\4=\4=\0035\4A\0005\5?\0005\6>\0=\6@\5=\5\b\4=\4B\0034\4\0\0=\4C\0035\4E\0005\5D\0=\5\b\4=\4F\3=\3H\0025\3I\0=\3J\2B\0\2\1K\0\1\0\vlogger\1\0\1\nlevel\twarn\tload\1\0\0\25core.norg.completion\1\0\0\1\0\1\vengine\rnvim-cmp core.integrations.telescope\21core.norg.dirman\1\0\0\15workspaces\1\0\2\14autochdir\2\15autodetect\1\1\0\3\tmain\f~/neorg\rpersonal\21~/neorg/personal\twork\17~/neorg/work!core.integrations.treesitter\1\0\0\15highlights\1\0\0\14Insertion\rVariable\1\0\2\nValue\22+TSPunctDelimiter\5\14+TSString\1\0\4\vPrefix\22+TSPunctDelimiter\15Parameters\15+TSComment\tItem\17+TSNamespace\5\24cterm=bold gui=bold\bTag\tName\1\0\2\tWord\15+TSKeyword\5\f+Normal\1\0\4\fContent\f+Normal\nBegin\15+TSKeyword\bEnd\15+TSKeyword\14Parameter\f+TSType\vMarker\1\0\2\nTitle\14+TSStrong\5\15+Structure\rTodoItem\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList6\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList5\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList4\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList3\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList2\1\0\0\1\0\4\fPending\22+TSPunctDelimiter\vUndone\21+StringDelimiter\tDone\14+TSString\5\25+NeorgUnorderedList1\15Definition\1\0\4\bEnd\15+Exception\fContent\16+TSEmphasis\nTitle\14+TSStrong\5\15+Exception\nQuote\0066\1\0\2\fContent\f+htmlH6\5\f+htmlH6\0065\1\0\2\fContent\f+htmlH5\5\f+htmlH5\0064\1\0\2\fContent\f+htmlH4\5\f+htmlH4\0063\1\0\2\fContent\f+htmlH3\5\f+htmlH3\0062\1\0\2\fContent\f+htmlH2\5\f+htmlH2\0061\1\0\0\1\0\2\fContent\f+htmlH1\5\f+htmlH1\fOrdered\1\0\6\0065\f+htmlh5\0061\f+htmlh1\0066\f+htmlh6\0064\f+htmlh4\0063\f+htmlh3\0062\f+htmlh2\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0061\24+NeorgHeading1Title\0066\24+NeorgHeading6Title\0064\24+NeorgHeading4Title\0063\24+NeorgHeading3Title\0062\24+NeorgHeading2Title\14Unordered\1\0\4\29StrongParagraphDelimiter\r+Comment\27WeakParagraphDelimiter\r+Comment\19EscapeSequence\f+TSType\19HorizontalLine\f+htmlH4\tLink\1\0\6\0065\f+htmlh5\0061\f+htmlh1\0066\f+htmlh6\0064\f+htmlh4\0063\f+htmlh3\0062\f+htmlh2\tList\1\0\0\1\0\6\0065\24+NeorgHeading5Title\0061\24+NeorgHeading1Title\0066\24+NeorgHeading6Title\0064\24+NeorgHeading4Title\0063\24+NeorgHeading3Title\0062\24+NeorgHeading2Title\18core.gtd.base\1\0\0\1\0\1\14workspace\bgtd\18core.keybinds\vconfig\1\0\0\1\0\2\17neorg_leader\14<leader>o\21default_keybinds\2\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
 
-vim.cmd [[ packadd cmp-path ]]
-vim.cmd [[ packadd cmp_luasnip ]]
-vim.cmd [[ packadd cmp-nvim-lua ]]
-vim.cmd [[ packadd cmp-nvim-lsp ]]
-vim.cmd [[ packadd cmp-calc ]]
-vim.cmd [[ packadd cmp-buffer ]]
 time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapRefresh lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapRefresh", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapUpdateHighlight lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapUpdateHighlight", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neoformat lua require("packer.load")({'neoformat'}, { cmd = "Neoformat", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file FormatWrite lua require("packer.load")({'format.nvim'}, { cmd = "FormatWrite", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file LazyGit lua require("packer.load")({'lazygit.nvim'}, { cmd = "LazyGit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file LazyGitConfig lua require("packer.load")({'lazygit.nvim'}, { cmd = "LazyGitConfig", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope-media-files.nvim', 'telescope-packer.nvim', 'telescope.nvim', 'telescope-fzf-native.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file CodeActionMenu lua require("packer.load")({'nvim-code-action-menu'}, { cmd = "CodeActionMenu", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SymbolsOutline lua require("packer.load")({'symbols-outline.nvim'}, { cmd = "SymbolsOutline", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SymbolsOutlineOpen lua require("packer.load")({'symbols-outline.nvim'}, { cmd = "SymbolsOutlineOpen", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SymbolsOutlineClose lua require("packer.load")({'symbols-outline.nvim'}, { cmd = "SymbolsOutlineClose", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ToggleTerm lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "ToggleTerm", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TermExec lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "TermExec", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file LazyGit lua require("packer.load")({'lazygit.nvim'}, { cmd = "LazyGit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file LazyGitConfig lua require("packer.load")({'lazygit.nvim'}, { cmd = "LazyGitConfig", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file CodeActionMenu lua require("packer.load")({'nvim-code-action-menu'}, { cmd = "CodeActionMenu", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SudaWrite lua require("packer.load")({'suda.vim'}, { cmd = "SudaWrite", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SudaRead lua require("packer.load")({'suda.vim'}, { cmd = "SudaRead", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neoformat lua require("packer.load")({'neoformat'}, { cmd = "Neoformat", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlaygroundToggle lua require("packer.load")({'playground'}, { cmd = "TSPlaygroundToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file FormatWrite lua require("packer.load")({'format.nvim'}, { cmd = "FormatWrite", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope-fzf-native.nvim', 'telescope-media-files.nvim', 'telescope-packer.nvim', 'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SudaWrite lua require("packer.load")({'suda.vim'}, { cmd = "SudaWrite", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Minimap lua require("packer.load")({'nvim-minimap'}, { cmd = "Minimap", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapClose lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapClose", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapToggle lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapRefresh lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapRefresh", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MinimapUpdateHighlight lua require("packer.load")({'nvim-minimap'}, { cmd = "MinimapUpdateHighlight", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file ToggleTerm lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "ToggleTerm", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TermExec lua require("packer.load")({'nvim-toggleterm.lua'}, { cmd = "TermExec", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlaygroundToggle lua require("packer.load")({'playground'}, { cmd = "TSPlaygroundToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
 vim.cmd [[noremap <silent> <space>g <cmd>lua require("packer.load")({'gitsigns.nvim'}, { keys = "<lt>space>g", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <leader>gg <cmd>lua require("packer.load")({'lazygit.nvim'}, { keys = "<lt>leader>gg", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <space>t <cmd>lua require("packer.load")({'nvim-toggleterm.lua'}, { keys = "<lt>space>t", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <leader>gg <cmd>lua require("packer.load")({'lazygit.nvim'}, { keys = "<lt>leader>gg", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> n <cmd>lua require("packer.load")({'nvim-toggleterm.lua'}, { keys = "n", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
@@ -726,11 +724,11 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au WinScrolled * ++once lua require("packer.load")({'neoscroll.nvim'}, { event = "WinScrolled *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWritePre * ++once lua require("packer.load")({'mkdir.nvim'}, { event = "BufWritePre *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-matchup'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'indent-blankline.nvim', 'nvim-colorizer.lua', 'plenary.nvim', 'nvim-lspinstall'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'indent-blankline.nvim', 'nvim-colorizer.lua', 'nvim-lspinstall', 'plenary.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWritePre * ++once lua require("packer.load")({'mkdir.nvim'}, { event = "BufWritePre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
