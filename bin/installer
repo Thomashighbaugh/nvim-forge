@@ -10,54 +10,54 @@ MAGENTABG="$(printf '\033[45m')" CYANBG="$(printf '\033[46m')" WHITEBG="$(printf
 set -o nounset # error when referencing undefined variable
 set -o errexit # exit when command fails
 
-# Banner 
-clear 
+# Banner
+clear
 cat <<- _EOF_
 ${CYAN}┌─────────────────────────────────────────────────────────────────────────────┐
 │  ${MAGENTA}                                                                           ${CYAN}│
-│  ${MAGENTA} __   _ _______  _____  _    _ _____ _______                               ${CYAN}│ 
-│  ${MAGENTA} | \  | |______ |     |  \  /    |   |  |  |                               ${CYAN}│ 
-│  ${MAGENTA} |  \_| |______ |_____|   \/   __|__ |  |  |                               ${CYAN}│    
-└─────────────────────────────────────────────────────────────────────────────┘        
+│  ${MAGENTA} __   _ _______  _____  _    _ _____ _______                               ${CYAN}│
+│  ${MAGENTA} | \  | |______ |     |  \  /    |   |  |  |                               ${CYAN}│
+│  ${MAGENTA} |  \_| |______ |_____|   \/   __|__ |  |  |                               ${CYAN}│
+└─────────────────────────────────────────────────────────────────────────────┘
 
 _EOF_
 
 
 
 moveoldnvim() {
-	echo ${GREEN}"Moving your ~/.config/nvim folder to ~/.config/nvim.bak"}
-	cp -rn "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+    echo ${GREEN}"Moving your ~/.config/nvim folder to ~/.config/nvim.bak"
+    cp -rn "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
 }
 
-installpacker() {i
-  echo ${GREEN} "Cloning Packer Now"
-	git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+installpacker() {
+    echo ${GREEN} "Cloning Packer Now"
+    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 }
 
 cloneconfig() {
-	echo ${GREEN}"Cloning NeoVim configuration"}
-	git clone --branch main https://github.com/Thomashighbaugh/nvim.git ~/.config/nvim
-	cd "$HOME"/.config/nvim/
-	nvim +PackerSync
-	nvim +PackerCompile
-	echo  ${BLUE}"\nCompile Complete"}
+    echo ${GREEN}"Cloning NeoVim configuration"
+    git clone --branch main https://github.com/Thomashighbaugh/nvim.git ~/.config/nvim
+    cd "$HOME"/.config/nvim/
+    nvim +PackerSync
+    nvim +PackerCompile
+    echo  ${BLUE}"\nCompile Complete"
 }
 
 # Welcome
-echo ${MAGENTA}'Installing NeoVim Configuration'}
+echo ${MAGENTA}'Installing NeoVim Configuration'
 
 # move old nvim directory if it exists
 [ -d "$HOME/.config/nvim" ] && moveoldnvim
 
 # Packer Installation
 if [ -e "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
-	echo ${ORANGE}'packer already installed'}
+    echo ${ORANGE}'packer already installed'
 else
-	rm -rf ~/.local/share/nvim/site/pack/packer
-	installpacker
+    rm -rf ~/.local/share/nvim/site/pack/packer
+    installpacker
 fi
 
-	# clone config down
-	cloneconfig
+# clone config down
+cloneconfig
 
 echo ${GREEN}"Visit https://github.com/ryanoasis/nerd-fonts to get a font for your terminal that can display all of the necessary characters for optimally displaying NeoVim in your terminal!"
