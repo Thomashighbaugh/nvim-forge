@@ -243,21 +243,20 @@ return packer.startup(
                 require "plugins.configs.telescope"
             end,
             requires = {
-                'nvim-lua/plenary.nvim', -- Useful Lua utilities
-                'nvim-lua/popup.nvim',
-          
+                "nvim-lua/plenary.nvim", -- Useful Lua utilities
+                "nvim-lua/popup.nvim",
                 -- FZF sorter for Telescope
-                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-              },
+                {"nvim-telescope/telescope-fzf-native.nvim", run = "make", cmd = "Telescope"}
+            }
         }
 
         use {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            run = "make",
+            "nvim-telescope/telescope-media-files.nvim",
             cmd = "Telescope"
         }
+
         use {
-            "nvim-telescope/telescope-media-files.nvim",
+            "nvim-telescope/telescope-packer.nvim",
             cmd = "Telescope"
         }
         use {

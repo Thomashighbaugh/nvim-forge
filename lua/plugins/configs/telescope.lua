@@ -62,7 +62,8 @@ telescope.setup(
             media_files = {
                 filetypes = {"png", "webp", "jpg", "jpeg"},
                 find_cmd = "rg" -- find command (defaults to `fd`)
-            }
+
+            },
         }
     }
 )
@@ -78,4 +79,4 @@ telescope.setup(
     -- Trigger packer compile on PackerComplete, so it properly waits for PackerSync
     vim.cmd 'autocmd User PackerComplete ++once lua require("packer").compile()'
     require("packer").sync("telescope-fzf-native.nvim", "telescope-media-files.nvim")
-
+require('telescope').extensions.packer.plugins(opts)
