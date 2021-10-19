@@ -23,13 +23,7 @@ return packer.startup(
                 require "plugins.configs.vimwiki"
             end
         }
-        use {
-            "mnowotnik/noteflow.nvim",
-            run = "bash build.sh",
-            config = function()
-                require "plugins.configs.noteflow"
-            end
-        }
+
         use {
             "wincent/corpus",
             config = function()
