@@ -3,6 +3,6 @@
     "vim"
   ],
   "Lua.diagnostics.disable": [
-    "W113"
+    "different-requires"
   ]
 }
