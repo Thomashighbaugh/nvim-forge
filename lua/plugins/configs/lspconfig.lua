@@ -89,16 +89,6 @@ lspinstall.post_install_hook = function()
     vim.cmd("bufdo e") -- triggers FileType autocmd that starts the server
 end
 
--- replace the default lsp diagnostic symbols
-function lspSymbol(name, icon)
-    vim.fn.sign_define("LspDiagnosticsSign" .. name, {text = icon, numhl = "LspDiagnosticsDefaul" .. name})
-end
-
-lspSymbol("Error", "")
-lspSymbol("Warning", "")
-lspSymbol("Information", "")
-lspSymbol("Hint", "")
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,

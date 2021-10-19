@@ -1,7 +1,5 @@
 local cmd = vim.cmd
-cmd('let g:nvcode_termcolors=256')
-
-cmd('colorscheme xresources')
+cmd("let g:nvcode_termcolors=256")
 
 vim.cmd([[
         syntax on
@@ -9,7 +7,7 @@ vim.cmd([[
         filetype plugin indent on
     ]])
 
-cmd('let g:nvcode_termcolors=256')
+cmd("let g:nvcode_termcolors=256")
 
-cmd('colorscheme xresources')
-require 'colors.highlights'
+cmd("colorscheme xresources")
+require "colors.highlights"

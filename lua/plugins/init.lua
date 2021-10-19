@@ -1,3 +1,4 @@
+-- TODO organize this again its all outta whack
 local present, _ = pcall(require, "plugins.packerInit")
 local packer
 
@@ -22,7 +23,13 @@ return packer.startup(
                 require "plugins.configs.vimwiki"
             end
         }
-
+        use {
+            "mnowotnik/noteflow.nvim",
+            run = "bash build.sh",
+            config = function()
+                require "plugins.configs.noteflow"
+            end
+        }
         use {
             "wincent/corpus",
             config = function()
@@ -43,7 +50,6 @@ return packer.startup(
             end
         }
 
-        use {"hoob3rt/lualine.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
         -- Tabline
         use {
             "kdheepak/tabline.nvim",
@@ -55,7 +61,6 @@ return packer.startup(
 
         use {
             "glepnir/galaxyline.nvim",
-            after = "nvim-base16.lua",
             config = function()
                 require "plugins.configs.statusline"
             end
@@ -63,10 +68,6 @@ return packer.startup(
         use "nekonako/xresources-nvim"
         use {
             "ThePrimeagen/refactoring.nvim",
-            requires = {
-                {"nvim-lua/plenary.nvim"},
-                {"nvim-treesitter/nvim-treesitter"}
-            },
             config = function()
                 require "plugins.configs.refactoring"
             end
@@ -96,7 +97,10 @@ return packer.startup(
         }
 
         use {
-            "kabouzeid/nvim-lspinstall"
+            "kabouzeid/nvim-lspinstall",
+            config = function()
+                require "plugins.configs.lspconfig"
+            end
         }
         use {
             "folke/which-key.nvim",
@@ -107,7 +111,6 @@ return packer.startup(
 
         use {
             "neovim/nvim-lspconfig",
-            after = "nvim-lspinstall",
             config = function()
                 require "plugins.configs.lspconfig"
             end
@@ -128,16 +131,7 @@ return packer.startup(
             "hrsh7th/nvim-cmp", --- Autocompletion
             config = function()
                 require("plugins.configs.cmp")
-            end,
-            requires = {
-                {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
-                {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"},
-                {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
-                {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
-                {"hrsh7th/cmp-calc", after = "nvim-cmp"},
-                {"hrsh7th/cmp-path", after = "nvim-cmp"},
-                {"L3MON4D3/LuaSnip"}
-            }
+            end
         }
         use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
         use {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"}
@@ -146,10 +140,7 @@ return packer.startup(
         use {"hrsh7th/cmp-calc", after = "nvim-cmp"}
         use {"hrsh7th/cmp-path", after = "nvim-cmp"}
         use {"L3MON4D3/LuaSnip"}
-        use {
-            "sbdchd/neoformat",
-            cmd = "Neoformat"
-        }
+
         use {"voldikss/vim-floaterm"} --- Terminal
         use {"vim-scripts/genutils"} --- general utilities
         use {"godlygeek/tabular"} --- tabbing

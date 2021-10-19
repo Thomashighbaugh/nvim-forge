@@ -59,9 +59,9 @@ functionality I would even attempt to on an IDE available to me with the power a
   `nacro90/numb.nvim` - unobtrusive bufferline peeking 
   `turbio/bracey.vim` - live edit html, css & js
 
-  `phaazon/hop.nvim ` - jump around in the buffer
-  `windwp/nvim-spectre` - find & replace
-  `simrat39/symbols-outline.nvim` - LSP + tree-like view 
+
+
+
   `folke/which-key.nvim` - emacs like command options menu 
   `lukas-reineke/indent-blankline.nvim` - keep the indent from getting sloppy
 
