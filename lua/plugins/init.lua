@@ -258,16 +258,6 @@ return packer.startup(
             "lambdalisue/suda.vim",
             cmd = {"SudaRead", "SudaWrite"}
         }
-        use {
-            "rinx/nvim-minimap",
-            cmd = {
-                "Minimap",
-                "MinimapClose",
-                "MinimapToggle",
-                "MinimapRefresh",
-                "MinimapUpdateHighlight"
-            }
-        }
         -- Terminal
 
         use {
@@ -302,7 +292,7 @@ return packer.startup(
         use {"RRethy/nvim-treesitter-textsubjects"}
         use {"nvim-treesitter/nvim-treesitter-textobjects"}
         use {"nvim-treesitter/playground", cmd = "TSPlaygroundToggle"}
-        use {"p00f/nvim-ts-rainbow"}
+
         --- }}}
         --- [[ Languages ]]
         use {"sheerun/vim-polyglot"}
@@ -321,9 +311,6 @@ return packer.startup(
         -- [[ Make it pretty ]]
 
         use {"xiyaowong/nvim-transparent"} --- transparency
-
-        -- finder
-        use {"unblevable/quick-scope"} --- horizonal movement
 
         -- [[ Miscellaneous ]]
         use {"stevearc/aerial.nvim"}

@@ -43,20 +43,50 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- lspInstall + lspconfig stuff
+
 local function setup_servers()
-    require "lspinstall".setup()
-    local servers = require "lspinstall".installed_servers()
-    for _, server in pairs(servers) do
-        require "lspconfig"[server].setup {}
+    lspinstall.setup()
+    local servers = lspinstall.installed_servers()
+
+    for _, lang in pairs(servers) do
+        if lang ~= "lua" then
+            lspconfig[lang].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                root_dir = vim.loop.cwd
+            }
+        elseif lang == "lua" then
+            lspconfig[lang].setup {
+                root_dir = vim.loop.cwd,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = {"vim"}
+                        },
+                        workspace = {
+                            library = {
+                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+                            },
+                            maxPreload = 100000,
+                            preloadFileSize = 10000
+                        },
+                        telemetry = {
+                            enable = false
+                        }
+                    }
+                }
+            }
+        end
     end
 end
 
 setup_servers()
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require "lspinstall".post_install_hook = function()
+lspinstall.post_install_hook = function()
     setup_servers() -- reload installed servers
-    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+    vim.cmd("bufdo e") -- triggers FileType autocmd that starts the server
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
