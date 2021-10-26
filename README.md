@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/assets/nvim.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">NeoVim Configuration</h3>
@@ -26,7 +26,7 @@ curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/instal
 ## Documentation 
 For more about the configuration, follow the links below to the documentation available in the repository's wiki. 
 
-- [🧐 About](https://github.com/Thomashighbaugh/nvim/wiki/About)
+- [About](https://github.com/Thomashighbaugh/nvim/wiki/About)
 - [Installing](https://github.com/Thomashighbaugh/nvim/wiki/Installing)
 - [Plugins](https://github.com/Thomashighbaugh/nvim/wiki/Plugins) 
 - [FAQs](https://github.com/Thomashighbaugh/nvim/wiki/FAQs)
