@@ -1,0 +1,109 @@
+require('formatter').setup({
+  {  filetype = {
+    javascript = {
+      -- prettier
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
+          stdin = true
+        }
+      end
+    },
+  }
+},
+ {  filetype = {
+   rust = {
+     -- Rustfmt
+     function()
+       return {
+         exe = "rustfmt",
+         args = {"--emit=stdout"},
+         stdin = true
+       }
+     end
+   },
+ }
+  },
+
+
+
+
+
+{  filetype = {
+    sh = {
+        -- Shell Script Formatter
+       function()
+         return {
+           exe = "shfmt",
+           args = { "-i", 2 },
+           stdin = true,
+         }
+       end,
+   }
+  }
+},
+
+  {  filetype = {
+     lua = {
+      function()
+        return {
+          exe = "stylua",
+          args = {
+            "--config-path "
+              .. os.getenv("XDG_CONFIG_HOME")
+              .. "/stylua/stylua.toml",
+            "-",
+          },
+          stdin = true,
+        }
+      end,
+    },
+  }
+},
+
+
+  {filetype = {
+    cpp = {
+        -- clang-format
+       function()
+          return {
+            exe = "clang-format",
+            args = {"--assume-filename", vim.api.nvim_buf_get_name(0)},
+            stdin = true,
+            cwd = vim.fn.expand('%:p:h')  -- Run clang-format in cwd of the file.
+          }
+        end
+    },
+  }
+},
+
+  {filetype = {
+    ruby = {
+       -- rubocop
+       function()
+         return {
+           exe = "rubocop", -- might prepend `bundle exec `
+           args = { '--auto-correct', '--stdin', '%:p', '2>/dev/null', '|', "awk 'f; /^====================$/{f=1}'"},
+           stdin = true,
+         }
+       end
+     }
+  }
+},
+
+
+
+  {  filetype = {
+    terraform = {
+      function()
+        return {
+          exe = "terraform",
+          args = { "fmt", "-" },
+          stdin = true
+        }
+      end
+    }
+  }
+},
+})

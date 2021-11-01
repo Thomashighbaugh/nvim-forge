@@ -12,15 +12,9 @@ function M.init()
         severity = {
           min = vim.diagnostic.severity.HINT
         }
-        -- todo: icons for diagnostics?
-        --[[ format = function(diagnostic)
-        if diagnostic.severity == vim.diagnostic.severity.ERROR then
-          return string.format('E: %s', diagnostic.message)
-        end
-        return diagnostic.message
-      end, ]]
       },
       signs = true,
+
       severity_sort = true,
       float = {
         show_header = false,
@@ -46,7 +40,6 @@ function M.init()
       end
     end
   end
-
   local function do_legacy_diagnostic_signs()
     local signs = {
       Error = icons.error .. " ",
@@ -68,3 +61,4 @@ function M.init()
 end
 
 return M
+

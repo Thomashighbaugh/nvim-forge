@@ -22,10 +22,10 @@ lsp_installer.on_server_ready(
   function(server)
     local opts = default_config
 
-    if server.name == "sumneko_lua" then
-      local config = require("config.lsp.providers.lua")
-      opts = vim.tbl_deep_extend("force", opts, config)
-    elseif server.name == "tsserver" then
+    -- if server.name == "sumneko_lua" then
+      -- local config = require("config.lsp.providers.lua")
+      -- opts = vim.tbl_deep_extend("force", opts, config)
+   if server.name == "tsserver" then
       local config = require("config.lsp.providers.tsserver")
       opts = vim.tbl_deep_extend("force", opts, config)
     elseif server.name == "efm" then
