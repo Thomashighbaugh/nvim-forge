@@ -42,4 +42,6 @@ local colors = {
   lightbg2 = "#3c3f4c"
 }
 
+
+
 return colors
