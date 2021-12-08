@@ -291,7 +291,7 @@ return packer.startup(function()
 	-- ########################################################################
 	-- ########################################################################
 	-- ########################################################################
-	-- ToDo Comment formatting
+	-- To Do Comment formatting
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
