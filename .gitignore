@@ -3,3 +3,4 @@ sessions/**
 .netrwhist
 plugin/
 lua/config/compiled.lua
+.autogit

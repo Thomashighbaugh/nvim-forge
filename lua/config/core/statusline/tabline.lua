@@ -6,7 +6,7 @@ require "tabline".setup {
         max_bufferline_percent = 66,
         show_tabs_always = true,
         show_devicons = true,
-        show_bufnr = false,
+        show_bufnr = true,
         show_filename_only = true
     }
 }
