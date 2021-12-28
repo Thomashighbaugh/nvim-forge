@@ -4,6 +4,7 @@
         "vim",
         "files",
         "read_globals",
-        "globals"
+        "globals",
+        "config"
     ]
 }
