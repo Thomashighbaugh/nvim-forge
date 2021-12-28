@@ -1,0 +1,14 @@
+local util = require("lspconfig").util
+
+return {
+  settings = {
+    packageManager = "npm",
+    format = true
+  },
+  root_dir = function(fname)
+    return util.root_pattern(".git")(fname) or util.root_pattern("tsbase.json")(fname) or
+      util.root_pattern("package.json")(fname) or
+      util.root_pattern(".eslintrc.js")(fname) or
+      util.root_pattern("tsjson")(fname)
+  end
+}
