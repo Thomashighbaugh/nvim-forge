@@ -1,1 +1,1 @@
-require("config")
+pcall(require, "lua")
