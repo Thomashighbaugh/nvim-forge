@@ -1,5 +1,5 @@
 require 'corpus'
--- init.lua (as Lua global):
+
 CorpusDirectories = {
     ['~/Notes'] = {
         autocommit = true,
@@ -8,5 +8,5 @@ CorpusDirectories = {
         base = './',
         transform = 'web',
         tags = true
-    }
+    },
 }
