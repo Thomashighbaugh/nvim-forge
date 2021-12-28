@@ -66,10 +66,7 @@ return packer.startup(
                 -- statusline
                 "NTBBloodbath/galaxyline.nvim",
                 branch = "main",
-                requires = {
-                    "kyazdani42/nvim-web-devicons",
-                    opt = true
-                },
+                requires = {"kyazdani42/nvim-web-devicons", opt = true},
                 config = function()
                     require("config.core.statusline")
                 end,
@@ -82,13 +79,7 @@ return packer.startup(
                 config = function()
                     require("config.core.statusline.tabline")
                 end,
-                requires = {
-                    {"hoob3rt/lualine.nvim"},
-                    {
-                        "kyazdani42/nvim-web-devicons",
-                        opt = true
-                    }
-                }
+                requires = {{"hoob3rt/lualine.nvim"}, {"kyazdani42/nvim-web-devicons", opt = true}}
             }
         )
         use(
@@ -127,7 +118,11 @@ return packer.startup(
         use(
             {
                 "williamboman/nvim-lsp-installer",
-                requires = {"neovim/nvim-lspconfig", "ray-x/lsp_signature.nvim", "jose-elias-alvarez/nvim-lsp-ts-utils"},
+                requires = {
+                    "neovim/nvim-lspconfig",
+                    "ray-x/lsp_signature.nvim",
+                    "jose-elias-alvarez/nvim-lsp-ts-utils"
+                },
                 config = function()
                     require("config.lsp")
                 end
@@ -135,7 +130,12 @@ return packer.startup(
         )
 
         use({"nvim-lua/lsp-status.nvim"})
-        use({"RishabhRD/popfix", "RishabhRD/nvim-lsputils"})
+        use(
+            {
+                "RishabhRD/popfix",
+                "RishabhRD/nvim-lsputils"
+            }
+        )
         -- ########################################################################
         -- ########################################################################
         -- ########################################################################
@@ -249,16 +249,15 @@ return packer.startup(
         use(
             {
                 "b3nj5m1n/kommentary",
-                event = "BufRead",
-                config = function()
-                    require("config.core.formatting.comment-bars")
-                end
+                event = "BufRead"
             }
         )
         use(
             {
                 "s1n7ax/nvim-comment-frame",
-                requires = {{"nvim-treesitter"}},
+                requires = {
+                    {"nvim-treesitter"}
+                },
                 config = function()
                     require("config.core.formatting.comment-bars")
                 end
@@ -317,7 +316,7 @@ return packer.startup(
         -- ########################################################################
         -- ########################################################################
         -- ########################################################################
-        -- whichkey
+        --whichkey
         use(
             {
                 "folke/which-key.nvim",
@@ -347,13 +346,25 @@ return packer.startup(
         -- ########################################################################
         -- ########################################################################
         -- AI powered autocopletion and more
-        use({"github/copilot.vim"})
+        use(
+            {
+                "github/copilot.vim"
+            }
+        )
         -- ########################################################################
         -- ########################################################################
         -- ########################################################################
         -- Resize buffers
-        use({"camspiers/animate.vim"})
-        use({"camspiers/lens.vim"})
+        use(
+            {
+                "camspiers/animate.vim"
+            }
+        )
+        use(
+            {
+                "camspiers/lens.vim"
+            }
+        )
         -- ########################################################################
         -- ########################################################################
         -- ########################################################################
