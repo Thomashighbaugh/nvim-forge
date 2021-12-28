@@ -1,1 +1,1 @@
-pcall(require, "lua")
+require("nvim")
