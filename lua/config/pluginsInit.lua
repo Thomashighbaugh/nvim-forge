@@ -250,7 +250,9 @@ return packer.startup(
             {
                 'b3nj5m1n/kommentary',
                 event = 'BufRead'
-            }
+            },
+            config = function()
+                require('')
         )
         use(
             {
