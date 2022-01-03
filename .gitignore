@@ -2,5 +2,9 @@ pack/**
 sessions/**
 .netrwhist
 plugin/
-lua/config/compiled.lua
-.autogit
+lua/neovim/compiled.lua
+lua/neovim/config/editor.lua
+lua/neovim/config/config.lua
+lua/neovim/config/mappings.lua
+lua/neovim/config/plugins.lua
+lua/neovim/config/utils.lua
