@@ -1,182 +1,141 @@
-local actions = require('telescope.actions')
-local config = require('neovim.config')
-local icons = require('neovim.theme.icons')
-local utils = require('neovim.utils')
-
-local default_mappings = {
-    n = {
-        ['Q'] = actions.smart_add_to_qflist + actions.open_qflist,
-        ['q'] = actions.smart_send_to_qflist + actions.open_qflist,
-        ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
-        ['<s-tab>'] = actions.toggle_selection + actions.move_selection_previous,
-        ['v'] = actions.file_vsplit,
-        ['s'] = actions.file_split,
-        ['<cr>'] = actions.file_edit
-    }
-}
-
-local opts_cursor = {
-    initial_mode = 'normal',
-    sorting_strategy = 'ascending',
-    layout_strategy = 'cursor',
-    results_title = true,
-    layout_config = {
-        width = 0.5,
-        height = 0.4
-    }
-}
-
-local opts_vertical = {
-    initial_mode = 'normal',
-    sorting_strategy = 'ascending',
-    layout_strategy = 'vertical',
-    results_title = true,
-    layout_config = {
-        width = 0.3,
-        height = 0.5,
-        prompt_position = 'top',
-        mirror = true
-    }
-}
-
-local opts_flex = {
-    layout_strategy = 'flex',
-    results_title = true,
-    layout_config = {
-        width = 0.7,
-        height = 0.7
-    }
-}
-
-require('telescope').setup(
-    utils.merge(
+local telescope = require('telescope')
+local previewers = require('telescope.previewers')
+local Job = require('plenary.job')
+local new_maker = function(filepath, bufnr, opts)
+    filepath = vim.fn.expand(filepath)
+    Job:new(
         {
-            defaults = {
-                prompt_prefix = ' ',
-                selection_caret = icons.folder.arrow_closed,
-                file_ignore_patterns = {
-                    '.git/'
-                },
-                dynamic_preview_title = true,
-                vimgrep_arguments = {
-                    'rg',
-                    '--ignore',
-                    '--hidden',
-                    '--color=never',
-                    '--no-heading',
-                    '--with-filename',
-                    '--line-number',
-                    '--column',
-                    '--smart-case',
-                    '--trim'
-                }
+            command = 'file',
+            args = {'--mime-type', '-b', filepath},
+            on_exit = function(j)
+                local mime_type = vim.split(j:result()[1], '/')[1]
+                if mime_type == 'text' then
+                    previewers.buffer_previewer_maker(filepath, bufnr, opts)
+                else
+                    -- maybe we want to write something to the buffer here
+                    vim.schedule(
+                        function()
+                            vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {'BINARY'})
+                        end
+                    )
+                end
+            end
+        }
+    ):sync()
+end
+
+local os = vim.loop.os_uname().sysname
+if os == 'Linux' then
+    -- Find the name of the fd binary file in the operating system.
+    if vim.fn.filereadable('/bin/fdfind') == 1 then
+        finder = 'fdfind'
+    else
+        finder = 'fd'
+    end
+
+    telescope.setup {
+        defaults = {
+            buffer_previewer_maker = new_maker,
+            vimgrep_arguments = {
+                'rg',
+                '--color=never',
+                '--no-heading',
+                '--with-filename',
+                '--line-number',
+                '--column',
+                '--smart-case',
+                '--hidden',
+                '--glob=!.git/'
             },
-            extensions = {
-                fzf = {
-                    fuzzy = true, -- false will only do exact matching
-                    override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
-                    case_mode = 'smart_case' -- or "ignore_case" or "respect_case"
-                    -- the default case_mode is "smart_case"
-                }
-            },
-            pickers = {
-                buffers = utils.merge(
-                    opts_flex,
-                    {
-                        prompt_title = '✨ Search Buffers ✨',
-                        mappings = utils.merge(
-                            {
-                                n = {
-                                    ['d'] = actions.delete_buffer
-                                }
-                            },
-                            default_mappings
-                        ),
-                        sort_mru = true,
-                        preview_title = false
-                    }
-                ),
-                lsp_code_actions = utils.merge(
-                    opts_cursor,
-                    {
-                        prompt_title = ' Code Actions'
-                    }
-                ),
-                lsp_range_code_actions = utils.merge(
-                    opts_vertical,
-                    {
-                        prompt_title = ' Code Actions'
-                    }
-                ),
-                lsp_document_diagnostics = utils.merge(
-                    opts_vertical,
-                    {
-                        prompt_title = ' Document Diagnostics',
-                        mappings = default_mappings
-                    }
-                ),
-                lsp_implementations = utils.merge(
-                    opts_cursor,
-                    {
-                        prompt_title = ' Implementations',
-                        mappings = default_mappings
-                    }
-                ),
-                lsp_definitions = utils.merge(
-                    opts_cursor,
-                    {
-                        prompt_title = 'Definitions',
-                        mappings = default_mappings
-                    }
-                ),
-                lsp_references = utils.merge(
-                    opts_vertical,
-                    {
-                        prompt_title = ' References',
-                        mappings = default_mappings
-                    }
-                ),
-                find_files = utils.merge(
-                    opts_flex,
-                    {
-                        prompt_title = ' Search Project for Files',
-                        mappings = default_mappings,
-                        hidden = true
-                    }
-                ),
-                diagnostics = utils.merge(
-                    opts_vertical,
-                    {
-                        mappings = default_mappings
-                    }
-                ),
-                git_files = utils.merge(
-                    opts_flex,
-                    {
-                        prompt_title = ' Search Git Project for Files ',
-                        mappings = default_mappings,
-                        hidden = true
-                    }
-                ),
-                live_grep = utils.merge(
-                    opts_flex,
-                    {
-                        prompt_title = ' Live Grep ',
-                        mappings = default_mappings
-                    }
-                ),
-                grep_string = utils.merge(
-                    opts_vertical,
-                    {
-                        prompt_title = ' Grep String ',
-                        mappings = default_mappings
-                    }
-                )
+            prompt_prefix = '   ',
+            selection_caret = ' '
+        },
+        pickers = {
+            find_files = {
+                find_command = {finder, '--type=file', '--hidden', '--follow', '--exclude=.git'}
             }
         },
-        config.telescope or {}
-    )
-)
-
-require('telescope').load_extension('fzf')
+        extensions = {
+            media_files = {
+                filetypes = {'png', 'webp', 'jpg', 'jpeg'},
+                find_cmd = 'rg'
+            },
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = 'smart_case'
+            }
+        }
+    }
+    telescope.load_extension('media_files')
+    telescope.load_extension('find_directories')
+    telescope.load_extension('fzf')
+elseif os == 'Darwin' then
+    telescope.setup {
+        defaults = {
+            buffer_previewer_maker = new_maker,
+            vimgrep_arguments = {
+                'rg',
+                '--color=never',
+                '--no-heading',
+                '--with-filename',
+                '--line-number',
+                '--column',
+                '--smart-case',
+                '--hidden',
+                '--glob=!.git/'
+            },
+            prompt_prefix = '   ',
+            selection_caret = ' '
+        },
+        pickers = {
+            find_files = {
+                find_command = {'fd', '--type=file', '--hidden', '--follow', '--exclude=.git'}
+            }
+        },
+        extensions = {
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = 'smart_case'
+            }
+        }
+    }
+    telescope.load_extension('find_directories')
+    telescope.load_extension('fzf')
+else
+    telescope.setup {
+        defaults = {
+            vimgrep_arguments = {
+                'rg',
+                '--color=never',
+                '--no-heading',
+                '--with-filename',
+                '--line-number',
+                '--column',
+                '--smart-case',
+                '--hidden',
+                '--glob=!.git/'
+            },
+            prompt_prefix = '   ',
+            selection_caret = ' '
+        },
+        pickers = {
+            find_files = {
+                find_command = {'fd', '--type=file', '--hidden', '--follow', '--exclude=.git'}
+            }
+        },
+        extensions = {
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = 'smart_case'
+            }
+        }
+    }
+    telescope.load_extension('fzf')
+    telescope.load_extension('find_directories')
+end

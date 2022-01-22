@@ -5,7 +5,8 @@ local config = require('neovim.config')
 local icons = require('neovim.theme.icons')
 
 local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line,
+        col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
@@ -78,7 +79,8 @@ local default_cmp_opts = {
             {name = 'nvim_lua'},
             {name = 'buffer'},
             {name = 'luasnip'},
-            {name = 'path'}
+            {name = 'path'},
+            {name = 'orgmode'}
         }
     ),
     formatting = {
