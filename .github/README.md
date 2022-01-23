@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img  src="https://github.com/Thomashighbaugh/nvim/blob/main/.github/assets/nvim.png?raw=true" alt="Project logo"></a>
+ <img  src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">NeoVim Configuration</h3>

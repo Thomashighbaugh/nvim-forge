@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Add Colorizer
+RED="$(printf '\033[31m')" GREEN="$(printf '\033[32m')" ORANGE="$(printf '\033[33m')" BLUE="$(printf '\033[34m')"
+MAGENTA="$(printf '\033[35m')" CYAN="$(printf '\033[36m')" WHITE="$(printf '\033[37m')" BLACK="$(printf '\033[30m')"
+REDBG="$(printf '\033[41m')" GREENBG="$(printf '\033[42m')" ORANGEBG="$(printf '\033[43m')" BLUEBG="$(printf '\033[44m')"
+MAGENTABG="$(printf '\033[45m')" CYANBG="$(printf '\033[46m')" WHITEBG="$(printf '\033[47m')" BLACKBG="$(printf '\033[40m')"
+
+# Script Options
+set -o nounset # error when referencing undefined variable
+set -o errexit # exit when command fails
+
+# Banner
+clear
+cat <<- _EOF_
+${CYAN}┌─────────────────────────────────────────────────────────────────────────────┐
+│  ${MAGENTA}  _______                     __                            ${CYAN}│
+│  ${MAGENTA} |    |  |.-----.-----.--.--.|__|.--------.                 ${CYAN}│
+│  ${MAGENTA} |       ||  -__|  _  |  |  ||  ||        |                 ${CYAN}│
+│  ${MAGENTA} |__|____||_____|_____|\___/ |__||__|__|__|                 ${CYAN}│
+└─────────────────────────────────────────────────────────────────────────────┘
+
+_EOF_
+
+
+
+moveoldnvim() {
+    echo ${GREEN}"Moving your ~/.config/nvim folder to ~/.config/nvim.bak"
+    cp -rn "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+}
+
+installpacker() {
+    echo ${GREEN} "Cloning Packer Now"
+    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+}
+
+cloneconfig() {
+    echo ${GREEN}"Cloning NeoVim configuration"
+    git clone --branch main https://github.com/Thomashighbaugh/nvim.git ~/.config/nvim
+    cd "$HOME"/.config/nvim/
+    nvim +PackerSync
+    nvim +PackerCompile
+    echo  ${BLUE}"\nCompile Complete"
+}
+
+# Welcome
+echo ${MAGENTA}'Installing NeoVim Configuration'
+
+# move old nvim directory if it exists
+[ -d "$HOME/.config/nvim" ] && moveoldnvim
+
+# Packer Installation
+if [ -e "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
+    echo ${ORANGE}'packer already installed'
+else
+    rm -rf ~/.local/share/nvim/site/pack/packer
+    installpacker
+fi
+
+# clone config down
+cloneconfig
+
+echo ${GREEN}"Visit https://github.com/ryanoasis/nerd-fonts to get a font for your terminal that can display all of the necessary characters for optimally displaying NeoVim in your terminal!"

@@ -1,0 +1,5 @@
+require('config.core.disabled')
+require('config.core.plugins')
+require('config.compiled')
+require('config.core.mappings')
+require('config.editor')
