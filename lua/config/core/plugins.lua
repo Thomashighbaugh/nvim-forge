@@ -74,8 +74,8 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         --                   User Interface                  --
+        -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- --------------------- colors -------------------- --
         use('nekonako/xresources-nvim')
@@ -111,6 +111,7 @@ return packer.startup(
                 requires = {{'hoob3rt/lualine.nvim'}, {'kyazdani42/nvim-web-devicons', opt = true}}
             }
         )
+
         -- ------------------------------------------------- --
         use(
             {
@@ -121,7 +122,7 @@ return packer.startup(
             }
         )
         -- ------------------------------------------------- --
-        -- file explorer
+        -- ----------------- file explorer ----------------- --
         use(
             {
                 'kyazdani42/nvim-tree.lua',
@@ -151,6 +152,53 @@ return packer.startup(
             }
         )
         -- ------------------------------------------------- --
+        use({'stevearc/dressing.nvim'})
+        -- ------------------------------------------------- --
+        use({'MunifTanjim/nui.nvim'})
+        -- ------------------------------------------------- --
+        -- ---------------- file navigation ---------------- --
+        use(
+            {
+                'nvim-telescope/telescope.nvim',
+                requires = {
+                    'nvim-lua/popup.nvim',
+                    'nvim-lua/plenary.nvim',
+                    {
+                        'nvim-telescope/telescope-fzf-native.nvim',
+                        run = 'make'
+                    }
+                },
+                config = function()
+                    require('config.plugins.navigation')
+                end,
+                event = 'BufRead'
+            }
+        )
+        -- -------------------- whichkey ------------------- --
+        use(
+            {
+                'folke/which-key.nvim',
+                config = function()
+                    require('config.plugins.statusline.whichkey')
+                end
+            }
+        )
+        -- ------------------------------------------------- --
+        -- ----------------- Resize Buffers ---------------- --
+        use {
+            'artart222/vim-resize',
+            event = 'BufEnter'
+        }
+        -- --------------- Window Management --------------- --
+        use(
+            {
+                'sindrets/winshift.nvim',
+                config = function()
+                    require('config.plugins.window.winshift')
+                end
+            }
+        )
+        -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- lsp
@@ -158,9 +206,14 @@ return packer.startup(
             {
                 'williamboman/nvim-lsp-installer',
                 requires = {
-                    'neovim/nvim-lspconfig',
-                    'ray-x/lsp_signature.nvim',
-                    'jose-elias-alvarez/nvim-lsp-ts-utils'
+                    {'neovim/nvim-lspconfig'},
+                    {'ray-x/lsp_signature.nvim'},
+                    {'jose-elias-alvarez/nvim-lsp-ts-utils'},
+                    {'b0o/SchemaStore.nvim'},
+                    {
+                        'jose-elias-alvarez/null-ls.nvim',
+                        after = 'nvim-lspconfig'
+                    }
                 },
                 config = function()
                     require('config.lsp')
@@ -201,7 +254,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- git commands
+        -- ------------------ git commands ----------------- --
         use(
             {
                 'tpope/vim-fugitive',
@@ -210,7 +263,7 @@ return packer.startup(
             }
         )
         -- ------------------------------------------------- --
-        -- git column signs
+        -- ---------------- git column signs --------------- --
         use(
             {
                 'lewis6991/gitsigns.nvim',
@@ -238,45 +291,24 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- file navigation
-        use(
-            {
-                'nvim-telescope/telescope.nvim',
-                requires = {
-                    'nvim-lua/popup.nvim',
-                    'nvim-lua/plenary.nvim',
-                    {
-                        'nvim-telescope/telescope-fzf-native.nvim',
-                        run = 'make'
-                    }
-                },
-                config = function()
-                    require('config.plugins.navigation')
-                end,
-                event = 'BufRead'
-            }
-        )
+        -- --------------- session management -------------- --
+        -- use(
+        --     {
+        --         'rmagatti/auto-session',
+        --         event = 'VimEnter',
+        --         config = function()
+        --             require('auto-session').setup(
+        --                 {
+        --                     pre_save_cmds = {'NvimTreeClose', 'cclose'}
+        --                 }
+        --             )
+        --         end
+        --     }
+        -- )
+        -- -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- session management
-        use(
-            {
-                'rmagatti/auto-session',
-                event = 'VimEnter',
-                config = function()
-                    require('auto-session').setup(
-                        {
-                            pre_save_cmds = {'NvimTreeClose', 'cclose'}
-                        }
-                    )
-                end
-            }
-        )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- lang/syntax stuff
+        -- --------------- lang/syntax stuff --------------- --
         use(
             {
                 'nvim-treesitter/nvim-treesitter',
@@ -291,23 +323,29 @@ return packer.startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
+        -- ------------------ code actions ----------------- --
         use(
             {
                 'weilbith/nvim-code-action-menu',
                 cmd = 'CodeActionMenu'
             }
         )
+        -- ------------------------------------------------- --
+        -- -------------- Syntax Highlighting -------------- --
         use({'sheerun/vim-polyglot'})
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- comments
+        -- -------------------- Comments ------------------- --
         use(
             {
                 'b3nj5m1n/kommentary',
                 event = 'BufRead'
             }
         )
+        -- ------------------------------------------------- --
+        -- ----------------- Comment Boxes ----------------- --
         use(
             {
                 's1n7ax/nvim-comment-frame',
@@ -322,7 +360,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- colorized hex codes
+        -- -------------- colorized hex codes -------------- --
         use(
             {
                 'norcalli/nvim-colorizer.lua',
@@ -336,7 +374,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- clipboard normalization
+        -- ------------ clipboard normalization ------------ --
         use(
             {
                 'AckslD/nvim-neoclip.lua',
@@ -348,7 +386,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- error highlighting
+        -- --------------- error highlighting -------------- --
         use(
             {
                 'folke/trouble.nvim',
@@ -358,11 +396,13 @@ return packer.startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
+
         use('kosayoda/nvim-lightbulb')
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- Sudo in vim
+        -- ------------------ Sudo in vim ------------------ --
         use(
             {
                 'lambdalisue/suda.vim',
@@ -372,20 +412,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        --whichkey
-        use(
-            {
-                'folke/which-key.nvim',
-                config = function()
-                    require('config.plugins.statusline.whichkey')
-                end
-            }
-        )
-
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- Formatting
+        -- ------------------- Formatting ------------------ --
         use(
             {
                 'mhartington/formatter.nvim',
@@ -397,7 +424,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- AI powered autocopletion and more
+        -- ------- AI powered autocopletion and more ------- --
         use(
             {
                 'github/copilot.vim'
@@ -406,7 +433,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- Resize buffers
+        -- ----------------- Resize buffers ---------------- --
         use(
             {
                 'camspiers/animate.vim'
@@ -420,7 +447,7 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- Makes Directories If They Don't Exist at Save Time
+        -- --------------- Makes Directories --------------- --
         use(
             {
                 'jghauser/mkdir.nvim',
@@ -432,17 +459,15 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
-        -- Window Management
-        use(
-            {
-                'sindrets/winshift.nvim',
-                config = function()
-                    require('config.plugins.window.winshift')
-                end
-            }
-        )
-
-        -- spell checker
+        -- -------------------- MatchUp -------------------- --
+        use {
+            'andymass/vim-matchup',
+            event = 'BufRead'
+        }
+        -- ------------------------------------------------- --
+        -- ------------------------------------------------- --
+        -- ------------------------------------------------- --
+        -- ----------------- spell checker ----------------- --
         use {
             'lewis6991/spellsitter.nvim',
             config = function()
