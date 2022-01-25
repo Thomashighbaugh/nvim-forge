@@ -130,3 +130,5 @@ require('telescope').setup(
 )
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('find_directories')
+require('telescope').load_extension('media_files')

@@ -77,6 +77,15 @@ return packer.startup(
         --                   User Interface                  --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
+        -- ------------------ landing page ----------------- --
+        use(
+            {
+                'glepnir/dashboard-nvim',
+                config = function()
+                    require('config.plugins.dashboard')
+                end
+            }
+        )
         -- --------------------- colors -------------------- --
         use('nekonako/xresources-nvim')
 
@@ -163,6 +172,8 @@ return packer.startup(
                 requires = {
                     'nvim-lua/popup.nvim',
                     'nvim-lua/plenary.nvim',
+                    'nvim-telescope/telescope-media-files.nvim',
+                    'artart222/telescope_find_directories',
                     {
                         'nvim-telescope/telescope-fzf-native.nvim',
                         run = 'make'
@@ -171,7 +182,8 @@ return packer.startup(
                 config = function()
                     require('config.plugins.navigation')
                 end,
-                event = 'BufRead'
+                -- event = 'BufRead'
+                cmd = 'Telescope'
             }
         )
         -- -------------------- whichkey ------------------- --
@@ -444,6 +456,12 @@ return packer.startup(
                 'camspiers/lens.vim'
             }
         )
+            use ({
+    "kwkarlwang/bufresize.nvim",
+    config = function()
+        require("bufresize").setup()
+    end
+        })
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
