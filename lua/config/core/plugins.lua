@@ -197,10 +197,12 @@ return packer.startup(
         )
         -- ------------------------------------------------- --
         -- ----------------- Resize Buffers ---------------- --
-        use {
-            'artart222/vim-resize',
-            event = 'BufEnter'
-        }
+            use {
+    "kwkarlwang/bufresize.nvim",
+    config = function()
+        require("bufresize").setup()
+    end
+}
         -- --------------- Window Management --------------- --
         use(
             {
