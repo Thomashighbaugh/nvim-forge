@@ -30,14 +30,14 @@ return packer.startup(
             }
         )
         -- ------------------------------------------------- --
-        use(
-            {
-                'wincent/corpus',
-                config = function()
-                    require('config.plugins.notes.corpus')
-                end
-            }
-        )
+      use(
+          {
+              'wincent/corpus',
+              config = function()
+                  require('config.plugins.notes.corpus')
+              end
+          }
+      )
         -- ------------------------------------------------- --
         use(
             {
@@ -204,8 +204,8 @@ return packer.startup(
     end
 }
         -- --------------- Window Management --------------- --
-        use(
-            {
+       use(
+         {
                 'sindrets/winshift.nvim',
                 config = function()
                     require('config.plugins.window.winshift')
@@ -355,7 +355,10 @@ return packer.startup(
         use(
             {
                 'b3nj5m1n/kommentary',
-                event = 'BufRead'
+                event = 'BufRead',
+                config = function()
+                    require('config.plugins.formatting.comments')
+                 end
             }
         )
         -- ------------------------------------------------- --
