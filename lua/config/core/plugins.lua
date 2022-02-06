@@ -30,15 +30,6 @@ return packer.startup(
             }
         )
         -- ------------------------------------------------- --
-      use(
-          {
-              'wincent/corpus',
-              config = function()
-                  require('config.plugins.notes.corpus')
-              end
-          }
-      )
-        -- ------------------------------------------------- --
         use(
             {
                 'kristijanhusak/orgmode.nvim',
@@ -195,14 +186,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ----------------- Resize Buffers ---------------- --
-            use {
-    "kwkarlwang/bufresize.nvim",
-    config = function()
-        require("bufresize").setup()
-    end
-}
         -- --------------- Window Management --------------- --
        use(
          {
