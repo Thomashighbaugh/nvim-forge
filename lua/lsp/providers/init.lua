@@ -1,4 +1,4 @@
-local default_config = require("config.lsp.providers.defaults")
+local default_config = require("lsp.providers.defaults")
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.settings(
@@ -23,19 +23,19 @@ lsp_installer.on_server_ready(
     local opts = default_config
 
     -- if server.name == "sumneko_lua" then
-      -- local config = require("config.lsp.providers.lua")
-      -- opts = vim.tbl_deep_extend("force", opts, config)
-   if server.name == "tsserver" then
-      local config = require("config.lsp.providers.tsserver")
+    -- local config = require("lsp.providers.lua")
+    -- opts = vim.tbl_deep_extend("force", opts, config)
+    if server.name == "tsserver" then
+      local config = require("lsp.providers.tsserver")
       opts = vim.tbl_deep_extend("force", opts, config)
     elseif server.name == "efm" then
-      local config = require("config.lsp.providers.efm")
+      local config = require("lsp.providers.efm")
       opts = vim.tbl_deep_extend("force", opts, config)
     elseif server.name == "jsonls" then
-      local config = require("config.lsp.providers.jsonls")
+      local config = require("lsp.providers.jsonls")
       opts = vim.tbl_deep_extend("force", opts, config)
     elseif server.name == "eslint" then
-      local config = require("config.lsp.providers.eslint")
+      local config = require("lsp.providers.eslint")
       opts = vim.tbl_deep_extend("force", opts, config)
     end
 

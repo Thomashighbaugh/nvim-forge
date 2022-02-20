@@ -1,5 +1,5 @@
 local g = vim.g
-local icons = require('config.plugins.theme.icons')
+local icons = require("plugins.theme.icons")
 local M = {}
 
 function M.init()
@@ -16,7 +16,7 @@ function M.init()
     }
 
     g.nvim_tree_icons = {
-        default = '',
+        default = "",
         symlink = icons.symlink,
         git = icons.git,
         folder = icons.folder,
@@ -40,7 +40,7 @@ function M.init()
         }
     }
 
-    require('nvim-tree').setup(args)
+    require("nvim-tree").setup(args)
 end
 
 return M

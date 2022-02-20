@@ -1,4 +1,4 @@
-local map = require("config.utils").map
+local map = require("utils").map
 
 map("n", "<C-l>", ":FloatermToggle<CR>", {noremap = true})
 map("t", "<C-l>", [[<C-\><C-n>]], {noremap = true})

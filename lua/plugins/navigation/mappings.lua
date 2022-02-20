@@ -1,4 +1,4 @@
-local map = require("config.utils").map
+local map = require("utils").map
 local M = {}
 
 function M.init()

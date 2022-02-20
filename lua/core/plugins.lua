@@ -1,5 +1,4 @@
-local present,
-    packer = pcall(require, 'config.packer')
+local present, packer = pcall(require, "config.packer")
 
 if not present then
     return false
@@ -9,11 +8,11 @@ local use = packer.use
 
 return packer.startup(
     function()
-        use('wbthomason/packer.nvim')
+        use("wbthomason/packer.nvim")
         -- startup diagnostics
-        use('lewis6991/impatient.nvim')
-        use('nathom/filetype.nvim')
-        use('nvim-lua/plenary.nvim')
+        use("lewis6991/impatient.nvim")
+        use("nathom/filetype.nvim")
+        use("nvim-lua/plenary.nvim")
 
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
@@ -23,42 +22,42 @@ return packer.startup(
         -- ------------------------------------------------- --
         use(
             {
-                'vimwiki/vimwiki',
+                "vimwiki/vimwiki",
                 config = function()
-                    require('config.plugins.notes.vimwiki')
+                    require("plugins.notes.vimwiki")
                 end
             }
         )
         -- ------------------------------------------------- --
         use(
             {
-                'kristijanhusak/orgmode.nvim',
+                "kristijanhusak/orgmode.nvim",
                 config = function()
-                    require('config.plugins.notes.orgmode')
+                    require("plugins.notes.orgmode")
                 end
             }
         )
         -- ------------------------------------------------- --
         use {
-            'nvim-neorg/neorg',
+            "nvim-neorg/neorg",
             config = function()
-                require('neorg').setup {
+                require("neorg").setup {
                     -- Tell Neorg what modules to load
                     load = {
-                        ['core.defaults'] = {}, -- Load all the default modules
-                        ['core.norg.concealer'] = {}, -- Allows for use of icons
-                        ['core.norg.dirman'] = {
+                        ["core.defaults"] = {}, -- Load all the default modules
+                        ["core.norg.concealer"] = {}, -- Allows for use of icons
+                        ["core.norg.dirman"] = {
                             -- Manage your directories with Neorg
                             config = {
                                 workspaces = {
-                                    my_workspace = '~/Notes'
+                                    my_workspace = "~/Notes"
                                 }
                             }
                         }
                     }
                 }
             end,
-            requires = 'nvim-lua/plenary.nvim'
+            requires = "nvim-lua/plenary.nvim"
         }
 
         -- ------------------------------------------------- --
@@ -71,20 +70,20 @@ return packer.startup(
         -- ------------------ landing page ----------------- --
         use(
             {
-                'glepnir/dashboard-nvim',
+                "glepnir/dashboard-nvim",
                 config = function()
-                    require('config.plugins.dashboard')
+                    require("plugins.dashboard")
                 end
             }
         )
         -- --------------------- colors -------------------- --
-        use('nekonako/xresources-nvim')
+        use("nekonako/xresources-nvim")
 
         use(
             {
                 -- icons
-                'kyazdani42/nvim-web-devicons',
-                after = 'xresources-nvim'
+                "kyazdani42/nvim-web-devicons",
+                after = "xresources-nvim"
             }
         )
         -- ------------------------------------------------- --
@@ -92,32 +91,32 @@ return packer.startup(
         use(
             {
                 -- statusline
-                'NTBBloodbath/galaxyline.nvim',
-                branch = 'main',
-                requires = {'kyazdani42/nvim-web-devicons', opt = true},
+                "NTBBloodbath/galaxyline.nvim",
+                branch = "main",
+                requires = {"kyazdani42/nvim-web-devicons", opt = true},
                 config = function()
-                    require('config.plugins.statusline')
+                    require("plugins.statusline")
                 end,
-                after = 'nvim-web-devicons'
+                after = "nvim-web-devicons"
             }
         )
         -- ------------------------------------------------- --
         use(
             {
-                'kdheepak/tabline.nvim',
+                "kdheepak/tabline.nvim",
                 config = function()
-                    require('config.plugins.statusline.tabline')
+                    require("plugins.statusline.tabline")
                 end,
-                requires = {{'hoob3rt/lualine.nvim'}, {'kyazdani42/nvim-web-devicons', opt = true}}
+                requires = {{"hoob3rt/lualine.nvim"}, {"kyazdani42/nvim-web-devicons", opt = true}}
             }
         )
 
         -- ------------------------------------------------- --
         use(
             {
-                'lukas-reineke/headlines.nvim',
+                "lukas-reineke/headlines.nvim",
                 config = function()
-                    require('headlines').setup()
+                    require("headlines").setup()
                 end
             }
         )
@@ -125,18 +124,18 @@ return packer.startup(
         -- ----------------- file explorer ----------------- --
         use(
             {
-                'kyazdani42/nvim-tree.lua',
+                "kyazdani42/nvim-tree.lua",
                 config = function()
-                    require('config.plugins.file-explorer').init()
+                    require("plugins.file-explorer").init()
                 end,
                 opt = true,
                 cmd = {
-                    'NvimTreeClipboard',
-                    'NvimTreeClose',
-                    'NvimTreeFindFile',
-                    'NvimTreeOpen',
-                    'NvimTreeRefresh',
-                    'NvimTreeToggle'
+                    "NvimTreeClipboard",
+                    "NvimTreeClose",
+                    "NvimTreeFindFile",
+                    "NvimTreeOpen",
+                    "NvimTreeRefresh",
+                    "NvimTreeToggle"
                 }
             }
         )
@@ -144,54 +143,54 @@ return packer.startup(
         -- ----------------- Notifications ----------------- --
         use(
             {
-                'rcarriga/nvim-notify',
+                "rcarriga/nvim-notify",
                 config = function()
-                    require('notify').setup()
+                    require("notify").setup()
                 end,
-                after = 'xresources-nvim'
+                after = "xresources-nvim"
             }
         )
         -- ------------------------------------------------- --
-        use({'stevearc/dressing.nvim'})
+        use({"stevearc/dressing.nvim"})
         -- ------------------------------------------------- --
-        use({'MunifTanjim/nui.nvim'})
+        use({"MunifTanjim/nui.nvim"})
         -- ------------------------------------------------- --
         -- ---------------- file navigation ---------------- --
         use(
             {
-                'nvim-telescope/telescope.nvim',
+                "nvim-telescope/telescope.nvim",
                 requires = {
-                    'nvim-lua/popup.nvim',
-                    'nvim-lua/plenary.nvim',
-                    'nvim-telescope/telescope-media-files.nvim',
-                    'artart222/telescope_find_directories',
+                    "nvim-lua/popup.nvim",
+                    "nvim-lua/plenary.nvim",
+                    "nvim-telescope/telescope-media-files.nvim",
+                    "artart222/telescope_find_directories",
                     {
-                        'nvim-telescope/telescope-fzf-native.nvim',
-                        run = 'make'
+                        "nvim-telescope/telescope-fzf-native.nvim",
+                        run = "make"
                     }
                 },
                 config = function()
-                    require('config.plugins.navigation')
+                    require("plugins.navigation")
                 end,
                 -- event = 'BufRead'
-                cmd = 'Telescope'
+                cmd = "Telescope"
             }
         )
         -- -------------------- whichkey ------------------- --
         use(
             {
-                'folke/which-key.nvim',
+                "folke/which-key.nvim",
                 config = function()
-                    require('config.plugins.statusline.whichkey')
+                    require("plugins.statusline.whichkey")
                 end
             }
         )
         -- --------------- Window Management --------------- --
-       use(
-         {
-                'sindrets/winshift.nvim',
+        use(
+            {
+                "sindrets/winshift.nvim",
                 config = function()
-                    require('config.plugins.window.winshift')
+                    require("plugins.window.winshift")
                 end
             }
         )
@@ -201,28 +200,28 @@ return packer.startup(
         -- lsp
         use(
             {
-                'williamboman/nvim-lsp-installer',
+                "williamboman/nvim-lsp-installer",
                 requires = {
-                    {'neovim/nvim-lspconfig'},
-                    {'ray-x/lsp_signature.nvim'},
-                    {'jose-elias-alvarez/nvim-lsp-ts-utils'},
-                    {'b0o/SchemaStore.nvim'},
+                    {"neovim/nvim-lspconfig"},
+                    {"ray-x/lsp_signature.nvim"},
+                    {"jose-elias-alvarez/nvim-lsp-ts-utils"},
+                    {"b0o/SchemaStore.nvim"},
                     {
-                        'jose-elias-alvarez/null-ls.nvim',
-                        after = 'nvim-lspconfig'
+                        "jose-elias-alvarez/null-ls.nvim",
+                        after = "nvim-lspconfig"
                     }
                 },
                 config = function()
-                    require('config.lsp')
+                    require("lsp")
                 end
             }
         )
 
-        use({'nvim-lua/lsp-status.nvim'})
+        use({"nvim-lua/lsp-status.nvim"})
         use(
             {
-                'RishabhRD/popfix',
-                'RishabhRD/nvim-lsputils'
+                "RishabhRD/popfix",
+                "RishabhRD/nvim-lsputils"
             }
         )
         -- ------------------------------------------------- --
@@ -231,20 +230,20 @@ return packer.startup(
         -- ----------------- autocompletion ---------------- --
         use(
             {
-                'hrsh7th/nvim-cmp',
+                "hrsh7th/nvim-cmp",
                 config = function()
-                    require('config.lsp.autocomplete')
+                    require("lsp.autocomplete")
                 end,
                 requires = {
-                    'hrsh7th/cmp-nvim-lsp',
-                    'windwp/nvim-autopairs',
-                    'hrsh7th/cmp-buffer',
-                    'hrsh7th/cmp-path',
-                    'hrsh7th/cmp-nvim-lua',
-                    'hrsh7th/nvim-cmp',
-                    'L3MON4D3/LuaSnip',
-                    'saadparwaiz1/cmp_luasnip',
-                    'onsails/lspkind-nvim'
+                    "hrsh7th/cmp-nvim-lsp",
+                    "windwp/nvim-autopairs",
+                    "hrsh7th/cmp-buffer",
+                    "hrsh7th/cmp-path",
+                    "hrsh7th/cmp-nvim-lua",
+                    "hrsh7th/nvim-cmp",
+                    "L3MON4D3/LuaSnip",
+                    "saadparwaiz1/cmp_luasnip",
+                    "onsails/lspkind-nvim"
                 }
             }
         )
@@ -254,20 +253,20 @@ return packer.startup(
         -- ------------------ git commands ----------------- --
         use(
             {
-                'tpope/vim-fugitive',
+                "tpope/vim-fugitive",
                 opt = true,
-                cmd = 'Git'
+                cmd = "Git"
             }
         )
         -- ------------------------------------------------- --
         -- ---------------- git column signs --------------- --
         use(
             {
-                'lewis6991/gitsigns.nvim',
-                requires = {'nvim-lua/plenary.nvim'},
-                event = 'BufRead',
+                "lewis6991/gitsigns.nvim",
+                requires = {"nvim-lua/plenary.nvim"},
+                event = "BufRead",
                 config = function()
-                    require('gitsigns').setup()
+                    require("gitsigns").setup()
                 end
             }
         )
@@ -277,11 +276,11 @@ return packer.startup(
         -- --------------- floating terminal --------------- --
         use(
             {
-                'voldikss/vim-floaterm',
+                "voldikss/vim-floaterm",
                 opt = true,
-                cmd = {'FloatermToggle', 'FloatermNew', 'FloatermSend'},
+                cmd = {"FloatermToggle", "FloatermNew", "FloatermSend"},
                 config = function()
-                    require('config.plugins.terminal')
+                    require("plugins.terminal")
                 end
             }
         )
@@ -308,15 +307,15 @@ return packer.startup(
         -- --------------- lang/syntax stuff --------------- --
         use(
             {
-                'nvim-treesitter/nvim-treesitter',
+                "nvim-treesitter/nvim-treesitter",
                 requires = {
-                    'windwp/nvim-ts-autotag',
-                    'JoosepAlviste/nvim-ts-context-commentstring',
-                    'nvim-treesitter/nvim-treesitter-refactor'
+                    "windwp/nvim-ts-autotag",
+                    "JoosepAlviste/nvim-ts-context-commentstring",
+                    "nvim-treesitter/nvim-treesitter-refactor"
                 },
-                run = ':TSUpdate',
+                run = ":TSUpdate",
                 config = function()
-                    require('config.plugins.treesitter')
+                    require("plugins.treesitter")
                 end
             }
         )
@@ -324,36 +323,36 @@ return packer.startup(
         -- ------------------ code actions ----------------- --
         use(
             {
-                'weilbith/nvim-code-action-menu',
-                cmd = 'CodeActionMenu'
+                "weilbith/nvim-code-action-menu",
+                cmd = "CodeActionMenu"
             }
         )
         -- ------------------------------------------------- --
         -- -------------- Syntax Highlighting -------------- --
-        use({'sheerun/vim-polyglot'})
+        use({"sheerun/vim-polyglot"})
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- -------------------- Comments ------------------- --
         use(
             {
-                'b3nj5m1n/kommentary',
-                event = 'BufRead',
+                "b3nj5m1n/kommentary",
+                event = "BufRead",
                 config = function()
-                    require('config.plugins.formatting.comments')
-                 end
+                    require("plugins.formatting.comments")
+                end
             }
         )
         -- ------------------------------------------------- --
         -- ----------------- Comment Boxes ----------------- --
         use(
             {
-                's1n7ax/nvim-comment-frame',
+                "s1n7ax/nvim-comment-frame",
                 requires = {
-                    {'nvim-treesitter'}
+                    {"nvim-treesitter"}
                 },
                 config = function()
-                    require('config.plugins.formatting.comment-bars')
+                    require("plugins.formatting.comment-bars")
                 end
             }
         )
@@ -363,11 +362,11 @@ return packer.startup(
         -- -------------- colorized hex codes -------------- --
         use(
             {
-                'norcalli/nvim-colorizer.lua',
+                "norcalli/nvim-colorizer.lua",
                 opt = true,
-                cmd = {'ColorizerToggle'},
+                cmd = {"ColorizerToggle"},
                 config = function()
-                    require('colorizer').setup()
+                    require("colorizer").setup()
                 end
             }
         )
@@ -377,9 +376,9 @@ return packer.startup(
         -- ------------ clipboard normalization ------------ --
         use(
             {
-                'AckslD/nvim-neoclip.lua',
+                "AckslD/nvim-neoclip.lua",
                 config = function()
-                    require('neoclip').setup()
+                    require("neoclip").setup()
                 end
             }
         )
@@ -389,24 +388,24 @@ return packer.startup(
         -- --------------- error highlighting -------------- --
         use(
             {
-                'folke/trouble.nvim',
-                requires = 'kyazdani42/nvim-web-devicons',
+                "folke/trouble.nvim",
+                requires = "kyazdani42/nvim-web-devicons",
                 config = function()
-                    require('config.plugins.treesitter.trouble')
+                    require("plugins.treesitter.trouble")
                 end
             }
         )
         -- ------------------------------------------------- --
 
-        use('kosayoda/nvim-lightbulb')
+        use("kosayoda/nvim-lightbulb")
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------ Sudo in vim ------------------ --
         use(
             {
-                'lambdalisue/suda.vim',
-                cmd = {'SudaRead', 'SudaWrite'}
+                "lambdalisue/suda.vim",
+                cmd = {"SudaRead", "SudaWrite"}
             }
         )
         -- ------------------------------------------------- --
@@ -415,9 +414,9 @@ return packer.startup(
         -- ------------------- Formatting ------------------ --
         use(
             {
-                'mhartington/formatter.nvim',
+                "mhartington/formatter.nvim",
                 config = function()
-                    require('config.plugins.formatting')
+                    require("plugins.formatting")
                 end
             }
         )
@@ -427,7 +426,7 @@ return packer.startup(
         -- ------- AI powered autocopletion and more ------- --
         use(
             {
-                'github/copilot.vim'
+                "github/copilot.vim"
             }
         )
         -- ------------------------------------------------- --
@@ -436,29 +435,31 @@ return packer.startup(
         -- ----------------- Resize buffers ---------------- --
         use(
             {
-                'camspiers/animate.vim'
+                "camspiers/animate.vim"
             }
         )
         use(
             {
-                'camspiers/lens.vim'
+                "camspiers/lens.vim"
             }
         )
-            use ({
-    "kwkarlwang/bufresize.nvim",
-    config = function()
-        require("bufresize").setup()
-    end
-        })
+        use(
+            {
+                "kwkarlwang/bufresize.nvim",
+                config = function()
+                    require("bufresize").setup()
+                end
+            }
+        )
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- --------------- Makes Directories --------------- --
         use(
             {
-                'jghauser/mkdir.nvim',
+                "jghauser/mkdir.nvim",
                 config = function()
-                    require('mkdir')
+                    require("mkdir")
                 end
             }
         )
@@ -467,17 +468,17 @@ return packer.startup(
         -- ------------------------------------------------- --
         -- -------------------- MatchUp -------------------- --
         use {
-            'andymass/vim-matchup',
-            event = 'BufRead'
+            "andymass/vim-matchup",
+            event = "BufRead"
         }
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         -- ----------------- spell checker ----------------- --
         use {
-            'lewis6991/spellsitter.nvim',
+            "lewis6991/spellsitter.nvim",
             config = function()
-                require('spellsitter').setup()
+                require("spellsitter").setup()
             end
         }
     end
