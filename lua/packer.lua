@@ -10,14 +10,16 @@ if not present then
 	print("Cloning packer..")
 	-- remove the dir before cloning
 	vim.fn.delete(packer_path, "rf")
-	vim.fn.system({
-		"git",
-		"clone",
-		"https://github.com/wbthomason/packer.nvim",
-		"--depth",
-		"20",
-		packer_path,
-	})
+	vim.fn.system(
+		{
+			"git",
+			"clone",
+			"https://github.com/wbthomason/packer.nvim",
+			"--depth",
+			"20",
+			packer_path
+		}
+	)
 
 	cmd("packadd packer.nvim")
 	present, packer = pcall(require, "packer")
@@ -29,19 +31,21 @@ if not present then
 	end
 end
 
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "single" })
-		end,
-		prompt_border = "single",
-	},
-	git = {
-		clone_timeout = 800, -- Timeout, in seconds, for git clones
-	},
-	compile_path = vim.fn.stdpath("config") .. "/lua/config/compiled.lua",
-	auto_clean = true,
-	compile_on_sync = true,
-})
+packer.init(
+	{
+		display = {
+			open_fn = function()
+				return require("packer.util").float({border = "single"})
+			end,
+			prompt_border = "single"
+		},
+		git = {
+			clone_timeout = 800 -- Timeout, in seconds, for git clones
+		},
+		compile_path = vim.fn.stdpath("config") .. "/lua/compiled.lua",
+		auto_clean = true,
+		compile_on_sync = true
+	}
+)
 
 return packer

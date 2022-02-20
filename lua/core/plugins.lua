@@ -1,4 +1,4 @@
-local present, packer = pcall(require, "config.packer")
+local present, packer = pcall(require, "packer")
 
 if not present then
     return false

@@ -1,5 +1,5 @@
 require("core.disabled")
 require("core.plugins")
-require("config.compiled")
+require("compiled")
 require("core.mappings")
-require("config.editor")
+require("editor")
