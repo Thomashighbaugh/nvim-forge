@@ -12,25 +12,26 @@
 </p>
 
 ## tl;dr
+
 ![dashboard](assets/dashboard.png)
 ![whichkey](assets/whichkey.png)
 ![neovimtree](assets/neovimtree.png)
 Install Latest NeoVim
+
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install-latest-neovim.sh | bash
 ```
 
 Install this configuration
+
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install | bash
 ```
 
 ## Documentation
+
 For more about the configuration, follow the links below to the documentation available in the repository's wiki.
 
 - [About](https://github.com/Thomashighbaugh/nvim/wiki/About)
 - [Installing](https://github.com/Thomashighbaugh/nvim/wiki/Installing)
-- [Plugins](https://github.com/Thomashighbaugh/nvim/wiki/Plugins)
-- [FAQs](https://github.com/Thomashighbaugh/nvim/wiki/FAQs)
 - [Acknowledgements](https://github.com/Thomashighbaugh/nvim/wiki/Acknowledgements)
-

@@ -1,22 +1,28 @@
-local present, packer = pcall(require, "packer")
-
-if not present then
-    return false
+---@diagnostic disable: different-requires
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap =
+        fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
-local use = packer.use
+vim.cmd(
+    [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]]
+)
 
-return packer.startup(
-    function()
+return require("packer").startup(
+    function(use)
         use("wbthomason/packer.nvim")
         -- startup diagnostics
         use("lewis6991/impatient.nvim")
         use("nathom/filetype.nvim")
         use("nvim-lua/plenary.nvim")
 
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         --                                 Note Taking                                --
         -- ------------------------------------------------- --
@@ -60,9 +66,6 @@ return packer.startup(
             requires = "nvim-lua/plenary.nvim"
         }
 
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------------------------------------------------- --
         --                   User Interface                  --
         -- ------------------------------------------------- --
@@ -139,6 +142,19 @@ return packer.startup(
                 }
             }
         )
+        -- ------------------ Indent Lines ----------------- --
+        use({"lukas-reineke/indent-blankline.nvim"})
+        -- -------------- Increment Decrement -------------- --
+        use(
+            {
+                "zegervdv/nrpattern.nvim",
+                config = function()
+                    -- Basic setup
+                    -- See below for more options
+                    require "nrpattern".setup()
+                end
+            }
+        )
         -- ------------------------------------------------- --
         -- ----------------- Notifications ----------------- --
         use(
@@ -162,6 +178,10 @@ return packer.startup(
                 requires = {
                     "nvim-lua/popup.nvim",
                     "nvim-lua/plenary.nvim",
+                    "nvim-telescope/telescope-frecency.nvim",
+                    "nvim-telescope/telescope-symbols.nvim",
+                    "nvim-telescope/telescope-file-browser.nvim",
+                    "nvim-telescope/telescope-hop.nvim",
                     "nvim-telescope/telescope-media-files.nvim",
                     "artart222/telescope_find_directories",
                     {
@@ -194,14 +214,14 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- lsp
+        -- ------------------ editorconfig ----------------- --
+        use({"gpanders/editorconfig.nvim"})
+        -- ---------------------- lsp ---------------------- --
         use(
             {
                 "williamboman/nvim-lsp-installer",
                 requires = {
+                    {"onsails/lspkind-nvim"},
                     {"neovim/nvim-lspconfig"},
                     {"ray-x/lsp_signature.nvim"},
                     {"jose-elias-alvarez/nvim-lsp-ts-utils"},
@@ -216,6 +236,18 @@ return packer.startup(
                 end
             }
         )
+        use(
+            {
+                "j-hui/fidget.nvim",
+                config = function()
+                    require("fidget").setup(
+                        {
+                            text = {spinner = "bouncing_bar"}
+                        }
+                    )
+                end
+            }
+        )
 
         use({"nvim-lua/lsp-status.nvim"})
         use(
@@ -224,9 +256,6 @@ return packer.startup(
                 "RishabhRD/nvim-lsputils"
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ----------------- autocompletion ---------------- --
         use(
             {
@@ -236,6 +265,13 @@ return packer.startup(
                 end,
                 requires = {
                     "hrsh7th/cmp-nvim-lsp",
+                    "petertriho/cmp-git",
+                    "hrsh7th/cmp-calc",
+                    "ray-x/cmp-treesitter",
+                    "lukas-reineke/cmp-rg",
+                    "hrsh7th/cmp-copilot",
+                    "hrsh7th/cmp-cmdline",
+                    "hrsh7th/cmp-nvim-lsp-signature-help",
                     "windwp/nvim-autopairs",
                     "hrsh7th/cmp-buffer",
                     "hrsh7th/cmp-path",
@@ -243,13 +279,20 @@ return packer.startup(
                     "hrsh7th/nvim-cmp",
                     "L3MON4D3/LuaSnip",
                     "saadparwaiz1/cmp_luasnip",
-                    "onsails/lspkind-nvim"
+                    "rafamadriz/friendly-snippets"
                 }
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
+
+        use(
+            {
+                "windwp/nvim-autopairs",
+                config = function()
+                    require("plugins.formatting.auto-pairs")
+                end,
+                after = "nvim-cmp"
+            }
+        )
         -- ------------------ git commands ----------------- --
         use(
             {
@@ -270,9 +313,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- --------------- floating terminal --------------- --
         use(
             {
@@ -284,9 +324,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- --------------- session management -------------- --
         -- use(
         --     {
@@ -301,14 +338,25 @@ return packer.startup(
         --         end
         --     }
         -- )
-        -- -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- --------------- lang/syntax stuff --------------- --
+        -- -------------------- Projects ------------------- --
+        use(
+            {
+                "ahmedkhalf/project.nvim",
+                config = function()
+                    require("plugins.project")
+                end
+            }
+        )
+
+        -- -- --------------- lang/syntax stuff --------------- --
         use(
             {
                 "nvim-treesitter/nvim-treesitter",
                 requires = {
+                    {"nvim-treesitter/nvim-treesitter-textobjects", event = "BufRead"},
+                    "RRethy/nvim-treesitter-textsubjects",
+                    "nvim-treesitter/playground",
+                    "RRethy/nvim-treesitter-endwise",
                     "windwp/nvim-ts-autotag",
                     "JoosepAlviste/nvim-ts-context-commentstring",
                     "nvim-treesitter/nvim-treesitter-refactor"
@@ -319,25 +367,70 @@ return packer.startup(
                 end
             }
         )
+        use({"p00f/nvim-ts-rainbow"})
+        use({"TornaxO7/tree-setter"})
+        use(
+            {
+                "yioneko/nvim-yati",
+                requires = "nvim-treesitter/nvim-treesitter",
+                config = function()
+                    require("nvim-treesitter.configs").setup(
+                        {
+                            yati = {enable = true}
+                        }
+                    )
+                end
+            }
+        )
+        -- ------------------ Refactoring ------------------ --
+        use(
+            {
+                "ThePrimeagen/refactoring.nvim",
+                requires = {"nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter"},
+                event = "BufRead",
+                config = function()
+                    require("refactoring").setup({})
+                end
+            }
+        )
         -- ------------------------------------------------- --
-        -- ------------------ code actions ----------------- --
+        -- ------------------ co` actions ----------------- --
         use(
             {
                 "weilbith/nvim-code-action-menu",
                 cmd = "CodeActionMenu"
             }
         )
+        -- ------------------- Quick Fix ------------------- --
+        use(
+            {
+                "stefandtw/quickfix-reflector.vim",
+                config = function()
+                    vim.g.qf_write_changes = 0
+                end
+            }
+        )
+
         -- ------------------------------------------------- --
         -- -------------- Syntax Highlighting -------------- --
         use({"sheerun/vim-polyglot"})
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
+
+        -- -------------------- Tab Out -------------------- --
+        use(
+            {
+                "abecodes/tabout.nvim",
+                config = function()
+                    require("plugins.formatting.tabout")
+                end,
+                wants = {"nvim-treesitter"}, -- or require if not used so far
+                after = {"nvim-cmp"} -- if a completion plugin is using tabs load it before
+            }
+        )
         -- -------------------- Comments ------------------- --
         use(
             {
-                "b3nj5m1n/kommentary",
-                event = "BufRead",
+                "numToStr/Comment.nvim",
+                event = "BufWinEnter",
                 config = function()
                     require("plugins.formatting.comments")
                 end
@@ -356,9 +449,17 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
+        -- todo highlights
+        use(
+            {
+                "folke/todo-comments.nvim",
+                requires = "nvim-lua/plenary.nvim",
+                config = function()
+                    require("plugins.formatting.todo-comments")
+                end,
+                event = "BufWinEnter"
+            }
+        )
         -- -------------- colorized hex codes -------------- --
         use(
             {
@@ -370,9 +471,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------------ clipboard normalization ------------ --
         use(
             {
@@ -382,9 +480,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- --------------- error highlighting -------------- --
         use(
             {
@@ -398,9 +493,6 @@ return packer.startup(
         -- ------------------------------------------------- --
 
         use("kosayoda/nvim-lightbulb")
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------------------ Sudo in vim ------------------ --
         use(
             {
@@ -408,9 +500,6 @@ return packer.startup(
                 cmd = {"SudaRead", "SudaWrite"}
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------------------- Formatting ------------------ --
         use(
             {
@@ -420,18 +509,12 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ------- AI powered autocopletion and more ------- --
         use(
             {
                 "github/copilot.vim"
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ----------------- Resize buffers ---------------- --
         use(
             {
@@ -451,9 +534,6 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- --------------- Makes Directories --------------- --
         use(
             {
@@ -463,17 +543,11 @@ return packer.startup(
                 end
             }
         )
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- -------------------- MatchUp -------------------- --
         use {
             "andymass/vim-matchup",
             event = "BufRead"
         }
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
-        -- ------------------------------------------------- --
         -- ----------------- spell checker ----------------- --
         use {
             "lewis6991/spellsitter.nvim",
