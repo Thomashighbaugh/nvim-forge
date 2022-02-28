@@ -1,5 +1,6 @@
 require("core.disabled")
 require("core.plugins")
-require("compiled")
+
 require("core.mappings")
+
 require("editor")

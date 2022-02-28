@@ -29,7 +29,7 @@ wiki3.list_margin = 0
 wiki3.auto_toc = 1
 wiki3.auto_generate_links = 1
 
-vim.g.vimwiki_list = {wiki, wiki2, wiki3}
+vim.g.vimwiki_list = { wiki, wiki2, wiki3 }
 vim.g.vimwiki_autowriteall = 1
 vim.g.vimwiki_global_ext = 0
 vim.g.vimwiki_use_mouse = 1

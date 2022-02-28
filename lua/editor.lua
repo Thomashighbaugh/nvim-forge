@@ -12,8 +12,8 @@ opt.syntax = "enable"
 opt.hidden = true
 opt.encoding = "utf-8"
 opt.clipboard = "unnamedplus"
-opt.backspace = {"eol", "start", "indent"}
-opt.matchpairs = {"(:)", "{:}", "[:]", "<:>"}
+opt.backspace = { "eol", "start", "indent" }
+opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
 
 -- indention
 opt.autoindent = true
@@ -29,7 +29,7 @@ opt.expandtab = true
 opt.wildmenu = true
 opt.ignorecase = true
 opt.smartcase = true
-opt.wildignore = opt.wildignore + {"*/node_modules/*", "*/wp-includes/*", "*/wp-admin/*", "*/vendor/*"}
+opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/wp-includes/*", "*/wp-admin/*", "*/vendor/*" }
 opt.hlsearch = false
 
 -- ui
@@ -43,12 +43,12 @@ opt.scrolloff = 18
 opt.sidescrolloff = 3 -- Lines to scroll horizontally
 opt.list = true
 opt.listchars = {
-  tab = "❘-",
-  trail = "·",
-  lead = "·",
-  extends = "»",
-  precedes = "«",
-  nbsp = "×"
+	tab = "❘-",
+	trail = "·",
+	lead = "·",
+	extends = "»",
+	precedes = "«",
+	nbsp = "×",
 }
 opt.showmode = false
 opt.lazyredraw = true
@@ -62,8 +62,8 @@ opt.backup = false
 opt.writebackup = false
 
 -- autocomplete
-opt.completeopt = {"menu", "menuone", "noselect"}
-opt.shortmess = opt.shortmess + {c = true}
+opt.completeopt = { "menu", "menuone", "noselect" }
+opt.shortmess = opt.shortmess + { c = true }
 
 -- perfomance
 opt.updatetime = 100

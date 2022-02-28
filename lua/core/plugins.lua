@@ -45,30 +45,21 @@ return require("packer").startup(
         )
         -- ------------------------------------------------- --
         use {
-            "nvim-neorg/neorg",
+            "akinsho/org-bullets.nvim",
             config = function()
-                require("neorg").setup {
-                    -- Tell Neorg what modules to load
-                    load = {
-                        ["core.defaults"] = {}, -- Load all the default modules
-                        ["core.norg.concealer"] = {}, -- Allows for use of icons
-                        ["core.norg.dirman"] = {
-                            -- Manage your directories with Neorg
-                            config = {
-                                workspaces = {
-                                    my_workspace = "~/Notes"
-                                }
-                            }
-                        }
-                    }
+                require("org-bullets").setup {
+                    symbols = function(default_list)
+                        table.insert(default_list, "♥")
+                        return default_list
+                    end
                 }
-            end,
-            requires = "nvim-lua/plenary.nvim"
+            end
         }
 
         -- ------------------------------------------------- --
         --                   User Interface                  --
         -- ------------------------------------------------- --
+
         -- ------------------------------------------------- --
         -- ------------------ landing page ----------------- --
         use(
@@ -79,6 +70,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- --------------------- colors -------------------- --
         use("nekonako/xresources-nvim")
 
@@ -103,18 +95,22 @@ return require("packer").startup(
                 after = "nvim-web-devicons"
             }
         )
-        -- ------------------------------------------------- --
-        use(
-            {
-                "kdheepak/tabline.nvim",
-                config = function()
-                    require("plugins.statusline.tabline")
-                end,
-                requires = {{"hoob3rt/lualine.nvim"}, {"kyazdani42/nvim-web-devicons", opt = true}}
-            }
-        )
+        use ({
+  'romgrk/barbar.nvim',
+  requires = {'kyazdani42/nvim-web-devicons'}
+})
+     -- -- ------------------------------------------------- --
+     -- use(
+     --     {
+     --         "kdheepak/tabline.nvim",
+     --         config = function()
+     --             require("plugins.statusline.tabline")
+     --         end,
+     --         requires = {{"hoob3rt/lualine.nvim"}, {"kyazdani42/nvim-web-devicons", opt = true}}
+     --     }
+     -- )
 
-        -- ------------------------------------------------- --
+     -- -- ------------------------------------------------- --
         use(
             {
                 "lukas-reineke/headlines.nvim",
@@ -142,8 +138,10 @@ return require("packer").startup(
                 }
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------ Indent Lines ----------------- --
         use({"lukas-reineke/indent-blankline.nvim"})
+        -- ------------------------------------------------- --
         -- -------------- Increment Decrement -------------- --
         use(
             {
@@ -196,6 +194,7 @@ return require("packer").startup(
                 cmd = "Telescope"
             }
         )
+        -- ------------------------------------------------- --
         -- -------------------- whichkey ------------------- --
         use(
             {
@@ -205,6 +204,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- --------------- Window Management --------------- --
         use(
             {
@@ -214,8 +214,10 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------ editorconfig ----------------- --
         use({"gpanders/editorconfig.nvim"})
+        -- ------------------------------------------------- --
         -- ---------------------- lsp ---------------------- --
         use(
             {
@@ -236,6 +238,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         use(
             {
                 "j-hui/fidget.nvim",
@@ -248,7 +251,7 @@ return require("packer").startup(
                 end
             }
         )
-
+        -- ------------------------------------------------- --
         use({"nvim-lua/lsp-status.nvim"})
         use(
             {
@@ -256,6 +259,7 @@ return require("packer").startup(
                 "RishabhRD/nvim-lsputils"
             }
         )
+        -- ------------------------------------------------- --
         -- ----------------- autocompletion ---------------- --
         use(
             {
@@ -283,7 +287,7 @@ return require("packer").startup(
                 }
             }
         )
-
+        -- ------------------------------------------------- --
         use(
             {
                 "windwp/nvim-autopairs",
@@ -293,6 +297,7 @@ return require("packer").startup(
                 after = "nvim-cmp"
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------ git commands ----------------- --
         use(
             {
@@ -313,6 +318,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- --------------- floating terminal --------------- --
         use(
             {
@@ -338,6 +344,7 @@ return require("packer").startup(
         --         end
         --     }
         -- )
+        -- ------------------------------------------------- --
         -- -------------------- Projects ------------------- --
         use(
             {
@@ -348,7 +355,9 @@ return require("packer").startup(
             }
         )
 
-        -- -- --------------- lang/syntax stuff --------------- --
+        -- ------------------------------------------------- --
+        --                 lang/syntax stuff                 --
+        -- ------------------------------------------------- --
         use(
             {
                 "nvim-treesitter/nvim-treesitter",
@@ -367,8 +376,11 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         use({"p00f/nvim-ts-rainbow"})
+        -- ------------------------------------------------- --
         use({"TornaxO7/tree-setter"})
+        -- ------------------------------------------------- --
         use(
             {
                 "yioneko/nvim-yati",
@@ -382,6 +394,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------ Refactoring ------------------ --
         use(
             {
@@ -394,13 +407,14 @@ return require("packer").startup(
             }
         )
         -- ------------------------------------------------- --
-        -- ------------------ co` actions ----------------- --
+        -- ------------------ code actions ----------------- --
         use(
             {
                 "weilbith/nvim-code-action-menu",
                 cmd = "CodeActionMenu"
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------- Quick Fix ------------------- --
         use(
             {
@@ -414,7 +428,7 @@ return require("packer").startup(
         -- ------------------------------------------------- --
         -- -------------- Syntax Highlighting -------------- --
         use({"sheerun/vim-polyglot"})
-
+        -- ------------------------------------------------- --
         -- -------------------- Tab Out -------------------- --
         use(
             {
@@ -426,6 +440,7 @@ return require("packer").startup(
                 after = {"nvim-cmp"} -- if a completion plugin is using tabs load it before
             }
         )
+        -- ------------------------------------------------- --
         -- -------------------- Comments ------------------- --
         use(
             {
@@ -449,7 +464,8 @@ return require("packer").startup(
                 end
             }
         )
-        -- todo highlights
+        -- ------------------------------------------------- --
+        -- ---------------- to do highlights --------------- --
         use(
             {
                 "folke/todo-comments.nvim",
@@ -460,6 +476,7 @@ return require("packer").startup(
                 event = "BufWinEnter"
             }
         )
+        -- ------------------------------------------------- --
         -- -------------- colorized hex codes -------------- --
         use(
             {
@@ -471,6 +488,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- ------------ clipboard normalization ------------ --
         use(
             {
@@ -480,6 +498,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- --------------- error highlighting -------------- --
         use(
             {
@@ -491,8 +510,8 @@ return require("packer").startup(
             }
         )
         -- ------------------------------------------------- --
-
         use("kosayoda/nvim-lightbulb")
+        -- ------------------------------------------------- --
         -- ------------------ Sudo in vim ------------------ --
         use(
             {
@@ -500,6 +519,7 @@ return require("packer").startup(
                 cmd = {"SudaRead", "SudaWrite"}
             }
         )
+        -- ------------------------------------------------- --
         -- ------------------- Formatting ------------------ --
         use(
             {
@@ -509,12 +529,14 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- ------- AI powered autocopletion and more ------- --
         use(
             {
                 "github/copilot.vim"
             }
         )
+        -- ------------------------------------------------- --
         -- ----------------- Resize buffers ---------------- --
         use(
             {
@@ -534,6 +556,7 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- --------------- Makes Directories --------------- --
         use(
             {
@@ -543,17 +566,41 @@ return require("packer").startup(
                 end
             }
         )
+        -- ------------------------------------------------- --
         -- -------------------- MatchUp -------------------- --
         use {
             "andymass/vim-matchup",
             event = "BufRead"
         }
+        -- ------------------------------------------------- --
         -- ----------------- spell checker ----------------- --
         use {
             "lewis6991/spellsitter.nvim",
             config = function()
-                require("spellsitter").setup()
+                require("spellsitter").setup {enable = true}
             end
         }
+        -- ------------------------------------------------- --
+        -- ----------------- Format Installer  ----------------- --
+        use(
+            {
+                "jose-elias-alvarez/null-ls.nvim",
+                requires = "PlatyPew/format-installer.nvim",
+                config = function()
+                    require("plugins.formatting.finstaller")
+                end,
+                after = "nvim-lspconfig" -- To prevent null-ls from failing to read buffer
+            }
+        )
+        -- ------------------------------------------------- --
+        -- --------------- Buffer Switcher ----------------- --
+        use(
+            {
+                "matbme/JABS.nvim",
+                config = function()
+                    require("plugins.file-explorer.jabs")
+                end
+            }
+        )
     end
 )

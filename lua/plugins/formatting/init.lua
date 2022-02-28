@@ -33,16 +33,16 @@ require("formatter").setup({
 			end,
 		},
 
-		lua = {
-			function()
-				return {
-					exe = "stylua",
-					args = {"."},
-					stdin = true,
-				}
-			end,
-		},
-
+    lua = {
+        -- luafmt
+        function()
+          return {
+            exe = "luafmt",
+            args = {"--indent-count", 2, "--stdin"},
+            stdin = true
+          }
+        end
+    },
 		cpp = {
 			-- clang-format
 			function()
@@ -50,7 +50,7 @@ require("formatter").setup({
 					exe = "clang-format",
 					args = { "--assume-filename", vim.api.nvim_buf_get_name(0) },
 					stdin = true,
-					cwd = vim.fn.expand("%:p:h"),  -- Run clang-format in cwd of the file.
+					cwd = vim.fn.expand("%:p:h"), -- Run clang-format in cwd of the file.
 				}
 			end,
 		},

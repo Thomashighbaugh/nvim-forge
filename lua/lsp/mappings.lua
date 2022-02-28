@@ -1,7 +1,7 @@
 local map = require("utils").map
 
 -- Mappings.
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 map("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', opts)
