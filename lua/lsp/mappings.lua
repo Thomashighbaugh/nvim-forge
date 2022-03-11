@@ -8,7 +8,7 @@ map("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', op
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 map("n", "gi", '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', opts)
 map("n", "gt", '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', opts)
-map("n", "gr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>', opts)
+map("n", "gr", '<cmd>lua require("builtin.treesitter").lsp_references()<cr>', opts)
 map("n", "gn", '<cmd>lua require("plugins.theme.ui").rename()<cr>', opts)
 
 -- diagnostics

@@ -56,6 +56,7 @@ return require("packer").startup(
             end
         }
 
+
         -- ------------------------------------------------- --
         --                   User Interface                  --
         -- ------------------------------------------------- --
@@ -190,7 +191,7 @@ return require("packer").startup(
                 config = function()
                     require("plugins.navigation")
                 end,
-                -- event = 'BufRead'
+                 event = 'BufRead',
                 cmd = "Telescope"
             }
         )
