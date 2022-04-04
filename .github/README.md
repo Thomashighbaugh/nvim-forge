@@ -6,6 +6,9 @@
 <h3 align="center">NeoVim Configuration</h3>
 
 ---
+<p align='center'>
+  To everyone that thinks that <i>nvim-forge</i> is bloat, you are totally right. This configuration has ~100 plugins and guess what? That's how I like it. If you don't like it, that's awesome and I advise you check out other repos of NeoVim configurations for something more suited to your spartan taste. 
+  </p>
 
 <p align="center"> A Lua based NeoVim configuration, now as a module, that bakes in no solutions and adds no additional complexity between the user and the configuration, enabling you to freely tweak it to your needs while still packaging in all of the functionality necessary for a fully featured, IDE-like experience.
     <br>
