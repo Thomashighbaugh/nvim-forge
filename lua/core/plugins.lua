@@ -196,6 +196,9 @@ return require("packer").startup(
             }
         )
         -- ------------------------------------------------- --
+        -- ------------------- filetype  ------------------- --
+        use { "nathom/filetype.nvim" }
+        -- ------------------------------------------------- --
         -- -------------------- whichkey ------------------- --
         use(
             {
@@ -260,7 +263,16 @@ return require("packer").startup(
                 "RishabhRD/nvim-lsputils"
             }
         )
-        -- ------------------------------------------------- --
+
+        -- --------------- Window Management --------------- --
+        use(
+            {
+                "onsails/diaglist.nvim",
+                config = function()
+                    require("plugins.formatting.diaglist")
+                end
+            }
+        )                                                              -- ------------------------------------------------- --
         -- ----------------- autocompletion ---------------- --
         use(
             {
