@@ -6,26 +6,23 @@
 <h3 align="center">NeoVim Configuration</h3>
 
 ---
-<p align='center'>
- <b> To everyone that thinks that <i>nvim-forge</i> is bloat, you are totally right. This configuration has ~100 plugins and guess what? That's how I like it. If you don't like it, that's awesome and I advise you check out other repos of NeoVim configurations for something more suited to your spartan taste. 
-  </b> </p>
 
-<p align="center"> A Lua based NeoVim configuration, now as a module, that bakes in no solutions and adds no additional complexity between the user and the configuration, enabling you to freely tweak it to your needs while still packaging in all of the functionality necessary for a fully featured, IDE-like experience.
-    <br>
-</p>
+Ok so I rewrote the entire thing over again using an even more complicated but powerful configuration as a base [by CreativeNull](https://github.com/CreativeNull/nvim-config). There are a few things now trimmed out of the configuration (namely note managers as I have succumbed to Notion.so's convenience and ease of use once more). 
 
 ## tl;dr
 
 ![dashboard](assets/dashboard.png)
 ![whichkey](assets/whichkey.png)
 ![neovimtree](assets/neovimtree.png)
-Install Latest NeoVim
+
+
+#### Install the Latest NeoVim
 
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install-latest-neovim.sh | bash
 ```
 
-Install this configuration
+#### Install this configuration
 
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install | bash
