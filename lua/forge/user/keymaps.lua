@@ -4,15 +4,6 @@ local vmap   = keymap.vmap
 local tmap   = keymap.tmap
 local imap   = keymap.imap
 
--- Unbind default bindings for arrow keys, trust me this is for your own good
-imap('<Up>', '')
-imap('<Down>', '')
-imap('<Left>', '')
-imap('<Right>', '')
-vmap('<Up>', '')
-vmap('<Down>', '')
-vmap('<Left>', '')
-vmap('<Right>', '')
 
 -- Resize window panes, we can use those arrow keys
 -- to help use resize windows - at least we give them some purpose

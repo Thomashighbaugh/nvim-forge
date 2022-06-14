@@ -1,0 +1,22 @@
+Resize +2 | <Leader><Up>
+Resize -2 | <Leader><Down>
+Vertical Resize -2 | <Leader><Left>
+Vertical Resize +2 | <Leader><Right>
+Disable Highlights | <Leader><CR>
+List All Buffers | <Leader>bl
+Next Buffer | <C-l>
+Next Buffer | <Leader>bn
+Previous Buffer | <C-h>
+Previous Buffer | <Leader>bp
+Close Current Buffer | <Leader>bd 
+Close All Buffers But Current | <Leader>bx
+Move Line Up | <Alt>j
+Move Line Down | <Alt>k
+Edit vimrc | <Leader>vs 
+Reload Configuration | <Leader>r 
+Copy to Clipboard | <Leader>y
+Paste Fron Clipboard | <Leader>p
+Install LSP Servers | :LspInstallInfo 
+Install Tree Sitter Parsers | :TSInstall (name)
+
+

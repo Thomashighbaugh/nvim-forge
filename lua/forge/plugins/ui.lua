@@ -25,6 +25,15 @@ local M = {
       "kyazdani42/nvim-web-devicons",
       after = "xresources-nvim"
     },
+{
+  'sudormrfbin/cheatsheet.nvim',
+
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+  }
+},
     {
       "rcarriga/nvim-notify",
       config = function()
