@@ -1,10 +1,11 @@
 local M = {
   plugins = {
-    -- UI Deps
-    {"kyazdani42/nvim-web-devicons"},
     -- UI Plugins
     {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
     {"nvim-treesitter/nvim-treesitter-textobjects"},
+    {"nvim-treesitter/nvim-treesitter-context"},
+    {"p00f/nvim-ts-rainbow"},
+    {"JoosepAlviste/nvim-ts-context-commentstring"},
     {"nvim-treesitter/nvim-treesitter-refactor"},
     {"code-biscuits/nvim-biscuits"},
     {"lukas-reineke/indent-blankline.nvim", opt = true},
@@ -17,23 +18,26 @@ local M = {
     {"stevearc/dressing.nvim"},
     {"onsails/diaglist.nvim"},
     {"folke/which-key.nvim"},
-    {"nekonako/xresources-nvim"},
+    {
+      "sidebar-nvim/sidebar.nvim",
+      rocks = {"luatz"}
+    },
     {"j-hui/fidget.nvim"},
-    {"glepnir/dashboard-nvim"},
+    {"goolord/alpha-nvim"},
+    {"weilbith/nvim-code-action-menu", cmd = "CodeActionMenu"},
     {
       -- icons
       "kyazdani42/nvim-web-devicons",
       after = "xresources-nvim"
     },
-{
-  'sudormrfbin/cheatsheet.nvim',
-
-  requires = {
-    {'nvim-telescope/telescope.nvim'},
-    {'nvim-lua/popup.nvim'},
-    {'nvim-lua/plenary.nvim'},
-  }
-},
+    {
+      "sudormrfbin/cheatsheet.nvim",
+      requires = {
+        {"nvim-telescope/telescope.nvim"},
+        {"nvim-lua/popup.nvim"},
+        {"nvim-lua/plenary.nvim"}
+      }
+    },
     {
       "rcarriga/nvim-notify",
       config = function()
@@ -49,8 +53,9 @@ function M.after()
   require("forge.plugins.ui.biscuits")
   require("forge.plugins.ui.bufferline")
   require("forge.plugins.ui.diaglist")
-  require("forge.plugins.ui.dashboard")
+  require("forge.plugins.ui.alpha")
   require("forge.plugins.ui.whichkey")
+  require("forge.plugins.ui.sidebar")
   require("fidget").setup(
     {
       text = {spinner = "bouncing_bar"}

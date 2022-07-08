@@ -9,6 +9,10 @@ local M = {
     {"nvim-telescope/telescope-hop.nvim"},
     {"nvim-telescope/telescope-media-files.nvim"},
     {"artart222/telescope_find_directories"},
+    { "ahmedkhalf/project.nvim" },
+    { "nvim-telescope/telescope-github.nvim" },
+    { "junegunn/fzf", run = "./install --bin" },
+    { "ibhagwan/fzf-lua" },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       run = "make"

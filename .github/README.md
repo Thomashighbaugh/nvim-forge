@@ -1,28 +1,31 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img  src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo"></a>
+<h1 align="center">NeoVim Configuration</h1>
+
+<p align="left">
+    <a href="" rel="noopener">
+        <img   src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo">
+    </a>
 </p>
 
-<h3 align="center">NeoVim Configuration</h3>
+<br/>
+<p align="right">
+<p>Ok so I rewrote the entire thing over again using an even more complicated but powerful configuration as a base [by CreativeNull](https://github.com/CreativeNull/nvim-config). There are a few things now trimmed out of the configuration (namely note managers as I have succumbed to Notion.so's convenience and ease of use once more).</p>
+</p>
 
----
+<hr/>
 
-Ok so I rewrote the entire thing over again using an even more complicated but powerful configuration as a base [by CreativeNull](https://github.com/CreativeNull/nvim-config). There are a few things now trimmed out of the configuration (namely note managers as I have succumbed to Notion.so's convenience and ease of use once more). 
-
-## tl;dr
+## Screenshots
 
 ![dashboard](assets/dashboard.png)
 ![whichkey](assets/whichkey.png)
 ![neovimtree](assets/neovimtree.png)
 
-
-#### Install the Latest NeoVim
+## Install the Latest NeoVim
 
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install-latest-neovim.sh | bash
 ```
 
-#### Install this configuration
+## Install this configuration
 
 ```
 curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install | bash

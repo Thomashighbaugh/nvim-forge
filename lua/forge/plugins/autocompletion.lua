@@ -14,27 +14,28 @@ local M = {
     {"hrsh7th/cmp-buffer"},
     {"hrsh7th/cmp-path"},
     {"hrsh7th/cmp-nvim-lua"},
-    {"rafamadriz/friendly-snippets"}
+    {"rafamadriz/friendly-snippets"},
 
-    -- coq_nvim
-    -- { 'ms-jpq/coq_nvim', branch = 'coq' },
-    -- { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+  --   coq_nvim
+    { 'ms-jpq/coq_nvim', branch = 'coq' },
+    { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
 
     -- ddc.vim
-    -- { 'Shougo/ddc.vim' },
-    -- { 'tani/ddc-fuzzy' },
-    -- { 'matsui54/denops-popup-preview.vim' },
-    -- { 'Shougo/ddc-nvim-lsp' },
-    -- { 'Shougo/ddc-around' },
-    -- { 'matsui54/ddc-buffer' },
-    -- { 'hrsh7th/vim-vsnip-integ' },
+   { 'Shougo/ddc.vim' },
+   { 'tani/ddc-fuzzy' },
+   {'vim-denops/denops.vim'},
+  { 'matsui54/denops-popup-preview.vim' },
+  { 'Shougo/ddc-nvim-lsp' },
+  { 'Shougo/ddc-around' },
+  { 'matsui54/ddc-buffer' },
+  { 'hrsh7th/vim-vsnip-integ' },
   }
 }
 
 function M.before()
   -- coq_nvim Config
   -- ---
-  -- require('forge.plugins.autocompletions.coq').before()
+  require('forge.plugins.autocompletions.coq').before()
 end
 
 function M.after()
@@ -44,11 +45,11 @@ function M.after()
 
   -- coq_nvim Config
   -- ---
-  -- require('forge.plugins.autocompletions.coq').after()
+  require('forge.plugins.autocompletions.coq').after()
 
   -- ddc.vim Config
   -- ---
-  -- require('forge.plugins.autocompletions.ddc')
+  require('forge.plugins.autocompletions.ddc')
 end
 
 return M
