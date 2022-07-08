@@ -2,7 +2,7 @@
 
 <p align="left">
     <a href="" rel="noopener">
-        <img   src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo">
+        <img  width="45%" height="45%" src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo">
     </a>
 </p>
 
