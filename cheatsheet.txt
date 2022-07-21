@@ -22,7 +22,7 @@ Install Tree Sitter Parsers | :TSInstall (name)
 
 File Manager Edit | l  
 File Manager Edit | <CR> 
-File Manager Open In Split | <C-s>
+File Manager Open in Split | <C-s>
 File Manager Open in VSplit | <C-v> 
 File Manager Edit in New Tab | <C-t>
 File Manager Actions Up One Level |h 
@@ -38,3 +38,7 @@ File Manager Mark | J
 File Manager Copy | C 
 File Manager Cut | X 
 File Manager Paste | P 
+
+
+
+

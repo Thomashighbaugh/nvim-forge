@@ -1,10 +1,9 @@
 local M = {
   plugins = {
-    { 'mattn/emmet-vim', opt = true },
-    { 'hrsh7th/vim-vsnip' },
-    { 'rafamadriz/friendly-snippets' },
-    -- { 'L3MON4D3/LuaSnip' },
-  },
+    {'mattn/emmet-vim', opt = true},
+    {'hrsh7th/vim-vsnip'},
+    {'L3MON4D3/LuaSnip'}
+  }
 }
 
 function M.before()
