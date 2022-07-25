@@ -1,44 +1,16 @@
-Resize +2 | <Leader><Up>
-Resize -2 | <Leader><Down>
-Vertical Resize -2 | <Leader><Left>
-Vertical Resize +2 | <Leader><Right>
-Disable Highlights | <Leader><CR>
-List All Buffers | <Leader>bl
-Next Buffer | <C-l>
-Next Buffer | <Leader>bn
-Previous Buffer | <C-h>
-Previous Buffer | <Leader>bp
-Close Current Buffer | <Leader>bd 
-Close All Buffers But Current | <Leader>bx
-Move Line Up | <Alt>j
-Move Line Down | <Alt>k
-Edit vimrc | <Leader>vs 
-Reload Configuration | <Leader>r 
-Copy to Clipboard | <Leader>y
-Paste Fron Clipboard | <Leader>p
-Install LSP Servers | :LspInstallInfo 
-Install Tree Sitter Parsers | :TSInstall (name)
+Buffer Command Prefix | <leader>b
+Buffer Line Pick | <leader>bi
+Buffer Move Next | <leader>bn
+Buffer Move Previous | <leader>bp
+Buffer Close Left | <leader>>bl
+Buffer Close Right | <leader>br
+Buffer Close Pick | <leader>bx
 
+Buffer Sort by Directory | <leader>bsd
+Buffer Sort by Tabs | <leader>bst 
+Buffer Sort by Extension | <leader>bse
+Buffer Sory by Relative Directory | <leader>bsr
 
-File Manager Edit | l  
-File Manager Edit | <CR> 
-File Manager Open in Split | <C-s>
-File Manager Open in VSplit | <C-v> 
-File Manager Edit in New Tab | <C-t>
-File Manager Actions Up One Level |h 
-File Manager Quit | q 
-File Manager mkdir | K 
-File Manager New | N 
-File Manager Rename | R
-File Manager CD | @ 
-File Manager Yank | Y 
-File Manager Show Hidden | .
-File Manager Delete | D
-File Manager Mark | J 
-File Manager Copy | C 
-File Manager Cut | X 
-File Manager Paste | P 
-
-
+Go to Buffer 1-9 | <leader>b=(1-9)
 
 

@@ -1,63 +1,21 @@
--- Name: Arnold Chand
--- Github: https://github.com/creativenull
--- My vimrc, tested on Linux and Windows
--- + python3
--- + ripgrep
--- + bat
--- + curl
--- + deno
--- =============================================================================
+-- setup vim options, auto-commands, user commands, etc.
+require("setting")
 
--- Initialize
-local core = require("forge.core")
-core.setup(
-  {
-    config = {
-      -- Leader key
-      leader = " ",
-      -- Colorscheme config
-      theme = {
-        name = "xresources",
-        enable_transparent_features = false,
-        enable_custom_visual_hl = true,
-        on_before = function()
-          -- nightfly
-          vim.g.nightflyNormalFloat = true
-          vim.g.nightflyTransparent = true
+local stdpath = vim.fn.stdpath
+local exists = require("utils").exists
 
-          -- starry
-          vim.g.starry_disable_background = true
-        end
-      },
-      -- Adjust packer config
-      plugins = {
-        init = {
-          compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua"
-        }
-      }
-    },
-    -- Events
-    on_before = function()
-      local autocmd = require("forge.core.event").autocmd
+local pk_install = exists(stdpath("data") .. "/site/pack/packer/opt/packer.nvim")
+local pk_compile = exists(stdpath("config") .. "/lua/plugin/compiledSpec.lua")
 
-      -- Highlight text yank
-      autocmd(
-        {
-          event = "TextYankPost",
-          exec = function()
-            vim.highlight.on_yank({higroup = "Search", timeout = 500})
-          end
-        }
-      )
-    end,
-    on_after = function()
-      require("forge.user.keymaps")
-      require("forge.user.options")
-      require("forge.user.abbreviations")
+-- bootstrap
+-- if packer doesn't exist then clone and generate plugins spec
+-- if packer plugin spec file doesn't exist then generate it
+if not pk_install or not pk_compile then
+  require("plugin.spec")
+end
 
-      -- Custom user commands
-      require("forge.user.conceal")
-      require("forge.user.codeshot")
-    end
-  }
-)
+-- Load plugin specs and statusline
+pcall(require, "plugin.config.core.impatient")
+require("stline").setup()
+
+-- vim:ft=lua
