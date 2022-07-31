@@ -50,7 +50,7 @@ if PACKER_BOOTSTRAP then
     nv.notify({
       message = "Run :LspInstall and :TSStart",
       icon = " ",
-      title = "KrakeNvim",
+      title = "NeoVim Forge",
     })
   end
   packer.sync()

@@ -1,40 +1,19 @@
-<h1 align="center">NeoVim Configuration</h1>
+# Neovim Forge
 
-<p align="left">
-    <a href="" rel="noopener">
-        <img  width="45%" height="45%" src="https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/.github/assets/nvim.png" alt="Project logo">
-    </a>
-</p>
+My Winchester Mysterey NeoVim Configuration.
 
-<br/>
-<p align="right">
-<p>Ok so I rewrote the entire thing over again using an even more complicated but powerful configuration as a base [by CreativeNull](https://github.com/CreativeNull/nvim-config). There are a few things now trimmed out of the configuration (namely note managers as I have succumbed to Notion.so's convenience and ease of use once more).</p>
-</p>
+## Focus
 
-<hr/>
+As you may have become aware reading other NeoVim configurations' `README.md` files, even personal configurations such as this one usually have a focus or their authors try to build them around a guiding principle or two. `NVChad` for instance is very concerned with the minimization of whatever "bloat" means in the context of a terminal text editor that (unlike emacs...) loads almost instantly.
 
-## Screenshots
+The configuration this was based on is focused on providing a certain, principled maximumism that means that the author goes so far as to not remove any functionality, which is an admirable goal that made it a natural choice for use as the basis of this configuration as all the tooling I wanted just needed to be enabled, but also not my focus in particular and so that is not continued in this configuration.
 
-![dashboard](assets/dashboard.png)
-![whichkey](assets/whichkey.png)
-![neovimtree](assets/neovimtree.png)
+> Ok so what the hell is _your_ focus than dude?
 
-## Install the Latest NeoVim
+Without wanting to fall into the typical and annoying cliche this usually means, I want to have my terminal text editor to fuse into the already ergonomic modal text editing environment all of the other features that **I** use in IDEs (for lua, I have tended to use VSCode and for web, I think WebStorm is the least painful option to use and all its limited plugins seem to work unlike critical plugins in VSCode like eslint).
 
-```
-curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install-latest-neovim.sh | bash
-```
+So this means things like treesitter and various LSPs should be working,
 
-## Install this configuration
+# Credit Where It Is Due
 
-```
-curl -o-  https://raw.githubusercontent.com/Thomashighbaugh/nvim/main/bin/install | bash
-```
-
-## Documentation
-
-For more about the configuration, follow the links below to the documentation available in the repository's wiki.
-
-- [About](https://github.com/Thomashighbaugh/nvim/wiki/About)
-- [Installing](https://github.com/Thomashighbaugh/nvim/wiki/Installing)
-- [Acknowledgements](https://github.com/Thomashighbaugh/nvim/wiki/Acknowledgements)
+Based substatially on [KrakenNvim](https://github.com/pagankeymaster/KrakeNvim) and 100% of the credit for the expansive snippet selection included with this repository belongs to `pagankeymaster` who did an excellent job assembling a useful selection of snippets for an impressive number of languages, frameworks and markup languages.

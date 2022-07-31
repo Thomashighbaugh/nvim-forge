@@ -1,12 +1,12 @@
 {
-  "name": "nvim-config-plus-snippets",
+  "name": "nvim-forge",
   "os": [
     "linux"
   ],
   "arch": "x64",
   "license": "GPL-3.0",
   "version": "0.0.1",
-  "homepage": "https://github.com/pagankeymaster/KrakeNvim",
+  "homepage": "",
   "keywords": [
     "neovim",
     "config",
@@ -21,13 +21,23 @@
   "contributes": {
     "snippets": [
       {
-        "language": [
-          "plaintext",
-          "markdown",
-          "tex",
-          "html",
-          "global"
-        ],
+        "language": "plaintext",
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": "tex",
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/global.json"
+      },
+      {
+        "language": "global",
         "path": "./snippets/global.json"
       },
       {
@@ -39,10 +49,7 @@
         "path": "./snippets/cpp.json"
       },
       {
-        "language": [
-          "gitcommit",
-          "NeogitCommitMessage"
-        ],
+        "language": "gitcommit",
         "path": "./snippets/gitcommit.json"
       },
       {
@@ -74,65 +81,91 @@
         "path": "./snippets/sql.json"
       },
       {
-        "language": [
-          "shellscript",
-          "shell",
-          "sh",
-          "zsh"
-        ],
+        "language": "shellscript",
         "path": "./snippets/shell.json"
       },
       {
-        "language": [
-          "markdown",
-          "rmd"
-        ],
+        "language": "shell",
+        "path": "./snippets/shell.json"
+      },
+      {
+        "language": "sh",
+        "path": "./snippets/shell.json"
+      },
+      {
+        "language": "zsh",
+        "path": "./snippets/shell.json"
+      },
+      {
+        "language": "markdown",
         "path": "./snippets/markdown.json"
       },
       {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex.json"
+        "language": "rmd",
+        "path": "./snippets/markdown.json"
       },
       {
         "language": "java",
         "path": "./snippets/java.json"
       },
       {
-        "language": [
-          "html",
-          "jade",
-          "pug",
-          "eruby"
-        ],
+        "language": "html",
         "path": "./snippets/html.json"
       },
       {
-        "language": [
-          "css",
-          "scss",
-          "sass",
-          "less",
-          "stylus"
-        ],
+        "language": "jade",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "pug",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "eruby",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "css",
         "path": "./snippets/css.json"
       },
       {
-        "language": [
-          "javascript",
-          "javascriptreact",
-          "vue",
-          "svelte"
-        ],
+        "language": "scss",
+        "path": "./snippets/css.json"
+      },
+      {
+        "language": "sass",
+        "path": "./snippets/css.json"
+      },
+      {
+        "language": "less",
+        "path": "./snippets/css.json"
+      },
+      {
+        "language": "stylus",
+        "path": "./snippets/css.json"
+      },
+      {
+        "language": "javascript",
         "path": "./snippets/javascript/javascript.json"
       },
       {
-        "language": [
-          "typescript",
-          "typescriptreact"
-        ],
+        "language": "javascriptreact",
+        "path": "./snippets/javascript/javascript.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/javascript/javascript.json"
+      },
+      {
+        "language": "svelte",
+        "path": "./snippets/javascript/javascript.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/javascript/typescript.json"
+      },
+      {
+        "language": "typescriptreact",
         "path": "./snippets/javascript/typescript.json"
       },
       {
@@ -218,20 +251,6 @@
       {
         "language": "kotlin",
         "path": "./snippets/kotlin.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex/latex-snippets.json"
-      },
-      {
-        "language": [
-          "plaintex",
-          "tex"
-        ],
-        "path": "./snippets/latex/vscode-latex-snippets.json"
       },
       {
         "language": "org",

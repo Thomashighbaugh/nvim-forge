@@ -1,3 +1,3 @@
-return {theme = 'xresources', dir_icon_hl = 'NvimTreeFolderIcon'}
+return { theme = "ivy", dir_icon_hl = "NvimTreeFolderIcon" }
 
 -- vim:ft=lua

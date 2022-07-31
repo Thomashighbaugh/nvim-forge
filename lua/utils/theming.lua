@@ -5,7 +5,7 @@ local M = {}
 --- Returns the current theme colors.
 -- @return table of highlight groups and their color values
 function M.get_active_theme()
-  return require("theming.themes." .. theme)
+  return require("theming.themes.vice")
 end
 
 --- Applies highlight to a group. Creates the group if it doesn't exists.

@@ -1,174 +1,140 @@
 --- Autocommand configuration list.
 -- @module settings.autocmds
 
-local nv = require('utils.neovim')
+local nv = require("utils.neovim")
 local autocmd = nv.autocmd
 local augroup = nv.augroup
 local notify = nv.notify
 local opt_local = vim.opt_local
 
+autocmd("BufEnter", "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif", {
+  nested = true,
+  desc = "Auto-close NvimTree on opening a file",
+})
+
 -- IMPROVE: Filter out plugins/init.lua as recompiling on its change is redundant.
-autocmd(
-  'BufWritePost',
-  function()
-    require('packer').compile()
-  end,
-  {
-    patterns = '*/lua/plugin/spec/*.lua',
-    desc = 'Automatically re-compile plugin specifications on changing the matched pattern files.'
-  }
-)
+autocmd("BufWritePost", function()
+  require("packer").compile()
+end, {
+  patterns = "*/lua/plugin/spec/*.lua",
+  desc = "Automatically re-compile plugin specifications on changing the matched pattern files.",
+})
 
-autocmd(
-  'TextYankPost',
-  function()
-    vim.highlight.on_yank(
-      {
-        higroup = 'YankFeed',
-        on_macro = true,
-        on_visual = true,
-        timeout = 150
-      }
-    )
-  end,
-  {
-    desc = 'Provide a visual color feedback on yanking.'
-  }
-)
+autocmd("TextYankPost", function()
+  vim.highlight.on_yank({
+    higroup = "YankFeed",
+    on_macro = true,
+    on_visual = true,
+    timeout = 150,
+  })
+end, {
+  desc = "Provide a visual color feedback on yanking.",
+})
 
-augroup(
-  'ReplaceModes',
+augroup("ReplaceModes", {
   {
-    {
-      events = {
-        'BufEnter',
-        'FileType'
-      },
-      command = function()
-        require('utils.mapping').cmdline_override(true)
-      end,
-      options = {
-        desc = 'Adds mappings specific to fine-cmdline.nvim',
-        patterns = 'cmdline'
-      }
+    events = {
+      "BufEnter",
+      "FileType",
     },
-    {
-      events = {
-        'BufEnter',
-        'FileType'
-      },
-      command = function()
-        require('utils.mapping').search_override()
-      end,
-      options = {
-        desc = 'Adds mappings specific to searchbox.nvim',
-        patterns = 'search'
-      }
-    }
-  }
-)
-
-augroup(
-  'NativeAdjustments',
-  {
-    {
-      events = {
-        'TermOpen',
-        'BufReadCmd'
-      },
-      command = function()
-        opt_local.number = false
-        opt_local.relativenumber = false
-        require('utils.term')._TERM_KEYMAPS()
-      end,
-      options = {
-        patterns = {
-          'term://*',
-          'zsh',
-          '*/zsh',
-          'sh',
-          'bash',
-          'toggleterm'
-        },
-        desc = 'Add convenience terminal keymaps for getting out of a terminal easily, for instance.'
-      }
+    command = function()
+      require("utils.mapping").cmdline_override(true)
+    end,
+    options = {
+      desc = "Adds mappings specific to fine-cmdline.nvim",
+      patterns = "cmdline",
     },
-    {
-      events = 'FileType',
-      command = function()
-        opt_local.formatoptions:remove(
-          {
-            'c',
-            'r',
-            'o'
-          }
-        )
-      end,
-      options = {
-        desc = 'Removes comment continuations from every file.'
-      }
-    }
-  }
-)
-
-augroup(
-  'NotifyOnPackerOperation',
+  },
   {
-    {
-      events = 'User',
-      command = function()
-        notify(
-          {
-            message = 'Operation complete!',
-            title = 'packer.nvim',
-            icon = ''
-          }
-        )
-      end,
-      options = {
-        patterns = 'PackerComplete',
-        desc = "Show a notification when any packer operation is complete. For example a notification with the title 'Finised compiled!' will be shot when Compiling plugin specifications are finished!"
-      }
+    events = {
+      "BufEnter",
+      "FileType",
     },
-    {
-      events = 'User',
-      command = function()
-        notify(
-          {
-            message = 'Finished compiling!',
-            title = 'packer.nvim',
-            icon = ''
-          }
-        )
-      end,
-      options = {
-        patterns = 'PackerCompileDone',
-        options = {
-          desc = 'Show a notification when any packer operation is complete!'
-        }
-      }
-    }
-  }
-)
+    command = function()
+      require("utils.mapping").search_override()
+    end,
+    options = {
+      desc = "Adds mappings specific to searchbox.nvim",
+      patterns = "search",
+    },
+  },
+})
 
-autocmd(
-  'FileType',
-  [[nnoremap <buffer><silent> q :quit<CR>]],
+augroup("NativeAdjustments", {
   {
-    patterns = 'man'
-  }
-)
-augroup(
-  'user_colorizer_events',
+    events = {
+      "TermOpen",
+      "BufReadCmd",
+    },
+    command = function()
+      opt_local.number = false
+      opt_local.relativenumber = false
+      require("utils.term")._TERM_KEYMAPS()
+    end,
+    options = {
+      patterns = {
+        "term://*",
+        "zsh",
+        "*/zsh",
+        "sh",
+        "bash",
+        "toggleterm",
+      },
+      desc = "Add convenience terminal keymaps for getting out of a terminal easily, for instance.",
+    },
+  },
   {
-    {
-      event = 'ColorScheme',
-      exec = function()
-        require('colorizer').setup({'html', 'css', 'javascriptreact', 'typescriptreact', 'lua'})
-      end
-    }
-  }
-)
+    events = "FileType",
+    command = function()
+      opt_local.formatoptions:remove({
+        "c",
+        "r",
+        "o",
+      })
+    end,
+    options = {
+      desc = "Removes comment continuations from every file.",
+    },
+  },
+})
+
+augroup("NotifyOnPackerOperation", {
+  {
+    events = "User",
+    command = function()
+      notify({
+        message = "Operation complete!",
+        title = "packer.nvim",
+        icon = "",
+      })
+    end,
+    options = {
+      patterns = "PackerComplete",
+      desc = "Show a notification when any packer operation is complete. For example a notification with the title 'Finised compiled!' will be shot when Compiling plugin specifications are finished!",
+    },
+  },
+  {
+    events = "User",
+    command = function()
+      notify({
+        message = "Finished compiling!",
+        title = "packer.nvim",
+        icon = "",
+      })
+    end,
+    options = {
+      patterns = "PackerCompileDone",
+      options = {
+        desc = "Show a notification when any packer operation is complete!",
+      },
+    },
+  },
+})
+
+autocmd("FileType", [[nnoremap <buffer><silent> q :quit<CR>]], {
+  patterns = "man",
+})
+
 -- augroup("PersistentMarkdownFolds", {
 --   {
 --     events = "BufWinLeave",
