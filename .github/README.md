@@ -2,6 +2,8 @@
 
 My Winchester Mysterey NeoVim Configuration.
 
+> **Warning**: This is my personal configuration, subject to experimentation and radical rewrites periodically, rebasing on new configurations the Github Gods throw my way and other things that may make this unstable for you to use. Nonetheless **feel free to take from it as you please** and even **submit pull requests** if it so pleases you, that's why its on Github/Gitlab ;]
+
 ## Focus
 
 As you may have become aware reading other NeoVim configurations' `README.md` files, even personal configurations such as this one usually have a focus or their authors try to build them around a guiding principle or two. `NVChad` for instance is very concerned with the minimization of whatever "bloat" means in the context of a terminal text editor that (unlike emacs...) loads almost instantly.
