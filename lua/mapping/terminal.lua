@@ -4,76 +4,72 @@ M.mappings = {
   ["name"] = " Consoles",
   ["n"] = {
     "<CMD>lua require('utils.term')._NODE_TOGGLE()<CR>",
-    " Node",
+    " Node"
   },
   ["t"] = {
     "<CMD>lua require('utils.term')._BTOP_TOGGLE()<CR>",
-    " Btop",
+    " Btop"
   },
   ["p"] = {
     "<CMD>lua require('utils.term')._PYTHON_TOGGLE()<CR>",
-    " Python",
+    " Python"
   },
   ["b"] = {
     "<CMD>lua require('utils.term')._BPYTHON_TOGGLE()<CR>",
-    " BPython",
+    " BPython"
   },
   ["y"] = {
     "<CMD>lua require('utils.term')._PYPY_TOGGLE()<CR>",
-    " PyPy",
+    " PyPy"
   },
   ["x"] = {
     "<CMD>lua require('utils.term')._FISH_TOGGLE()<CR>",
-    " Fish",
+    " Fish"
   },
   ["k"] = {
     "<CMD>lua require('utils.term')._BASH_TOGGLE()<CR>",
-    " Bash",
+    " Bash"
   },
   ["z"] = {
     "<CMD>lua require('utils.term')._ZSH_TOGGLE()<CR>",
-    " Zsh",
+    " Zsh"
   },
   ["i"] = {
     "<CMD>lua require('utils.term')._POSIX_TOGGLE()<CR>",
-    " Sh",
+    " Sh"
   },
   ["r"] = {
     "<CMD>lua require('utils.term')._RANGER_TOGGLE()<CR>",
-    " Ranger",
+    " Ranger"
   },
   ["l"] = {
     "<CMD>lua require('utils.term')._LUA_TOGGLE()<CR>",
-    " Lua",
+    " Lua"
   },
   ["j"] = {
     "<CMD>lua require('utils.term')._JSHELL_TOGGLE()<CR>",
-    " JShell",
+    " JShell"
   },
   ["g"] = {
     "<CMD>lua require('utils.term')._GROOVY_TOGGLE()<CR>",
-    " GroovySh",
+    " GroovySh"
   },
   ["c"] = {
     "<CMD>lua require('utils.term')._BLUETOOTHCTL_TOGGLE()<CR>",
-    " BluetoothCTL",
-  },
-  ["m"] = {
-    "<CMD>lua require('utils.term')._HILBISH_TOGGLE()<CR>",
-    " Hilbish",
+    " BluetoothCTL"
   },
   ["f"] = {
     "<CMD>ToggleTerm direction=float<CR>",
-    " Float",
+    " Float"
   },
   ["h"] = {
     "<CMD>ToggleTerm size=10 direction=horizontal<CR>",
-    " Horizontal",
+    " Horizontal"
   },
   ["v"] = {
     "<CMD>ToggleTerm size=80 direction=vertical<CR>",
-    " Vertical",
-  },
+    " Vertical"
+  }
 }
 
 M.options = {
@@ -81,7 +77,7 @@ M.options = {
   silent = true,
   noremap = true,
   prefix = "<leader>/",
-  nowait = true,
+  nowait = true
 }
 
 return M

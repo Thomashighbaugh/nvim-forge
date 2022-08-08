@@ -14,14 +14,14 @@ local config = {
   dic = {
     ["*"] = {
       prepare("en"),
-      stdpath_config .. "/spell/en.utf-8.add",
+      stdpath_config .. "/spell/en.utf-8.add"
     },
     filepath = {
       ["*.txt"] = {
-        prepare("bn"),
-        prepare("hi"),
-      },
-    },
+        prepare("es"),
+        prepare("hi")
+      }
+    }
   },
   exact = 2,
   first_case_insensitive = false,
@@ -29,7 +29,7 @@ local config = {
   document_command = "wn %s -over",
   async = false,
   capacity = 15,
-  debug = false,
+  debug = false
 }
 
 cmp_dictionary.setup(config)

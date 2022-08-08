@@ -2,66 +2,78 @@
 --- NOTE: urlshortner, minimaps, discord-rpc, scrollbar, etc.
 local use = require("packer").use
 
-local disabled = require("control.disabled")
+use(
+  {
+    "rktjmp/paperplanes.nvim",
+    config = function()
+      require("plugin.config.others.paperplanes")
+    end,
+    cmd = "PP"
+  }
+)
 
-use({
-  "rktjmp/paperplanes.nvim",
-  config = function()
-    require("plugin.config.others.paperplanes")
-  end,
-  cmd = "PP",
-})
+use(
+  {
+    "rinx/nvim-minimap",
+    cmd = {"MinimapOpen", "MinimapClose", "MinimapRefresh", "MinimapToggle"}
+  }
+)
 
-use({
-  "rinx/nvim-minimap",
-  cmd = { "MinimapOpen", "MinimapClose", "MinimapRefresh", "MinimapToggle" },
-})
+use(
+  {
+    "tpope/vim-dispatch",
+    cmd = {"Dispatch", "Make", "Focus", "Start"}
+  }
+)
 
-use({ 
-  "tpope/vim-dispatch", cmd = { "Dispatch", "Make", "Focus", "Start" },
-})
+use(
+  {
+    "andweeb/presence.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("plugin.config.others.presence")
+    end
+  }
+)
 
-use({
-  "andweeb/presence.nvim",
-  event = "InsertEnter",
-  config = function()
-    require("plugin.config.others.presence")
-  end,
-})
+use(
+  {
+    "KadoBOT/nvim-spotify",
+    wants = "telescope.nvim",
+    config = function()
+      require("plugin.config.others.spotify")
+    end,
+    run = "make",
+    cmd = {"SpotifyDevices", "Spotify"}
+  }
+)
 
+use(
+  {
+    "karb94/neoscroll.nvim",
+    cmd = {
+      "NeoscrollEnablePM",
+      "NeoscrollEnableGlobalPM",
+      "NeoscrollDisablePM",
+      "NeoscrollDisableGlobalePM",
+      "NeoscrollEnableBufferPM",
+      "NeoscrollDisableBufferPM"
+    },
+    config = function()
+      require("plugin.config.others.neoscroll")
+    end
+  }
+)
 
-use({
-  "KadoBOT/nvim-spotify",
-  wants = "telescope.nvim",
-  config = function()
-    require("plugin.config.others.spotify")
-  end,
-  run = "make",
-  cmd = { "SpotifyDevices", "Spotify" },
-})
-
-use({
-  "karb94/neoscroll.nvim",
-  cmd = {
-    "NeoscrollEnablePM",
-    "NeoscrollEnableGlobalPM",
-    "NeoscrollDisablePM",
-    "NeoscrollDisableGlobalePM",
-    "NeoscrollEnableBufferPM",
-    "NeoscrollDisableBufferPM",
-  },
-  config = function()
-    require("plugin.config.others.neoscroll")
-  end,
-})
-
-use({
-  "Xuyuanp/scrollbar.nvim",
-  event = { "WinScrolled", "VimResized", "QuitPre" },
-  setup = function()
-    require("plugin.config.others.scrollbar")
-  end,
-  module = "scrollbar",
-})
+use(
+  {
+    "Xuyuanp/scrollbar.nvim",
+    event = {"WinScrolled", "VimResized", "QuitPre"},
+    setup = function()
+      require("plugin.config.others.scrollbar")
+    end,
+    module = "scrollbar"
+  }
+)
 
 -- vim:ft=lua

@@ -5,12 +5,204 @@ Buffer Move Previous | <leader>bp
 Buffer Close Left | <leader>>bl
 Buffer Close Right | <leader>br
 Buffer Close Pick | <leader>bx
-
 Buffer Sort by Directory | <leader>bsd
 Buffer Sort by Tabs | <leader>bst 
 Buffer Sort by Extension | <leader>bse
 Buffer Sory by Relative Directory | <leader>bsr
-
 Go to Buffer 1-9 | <leader>b=(1-9)
+Buffer Line Cycle Next | <mod4>]
+Buffer Line Cycle Previous | <mod4>[
+New Tab | <control>t
+New Buffer | <control>b
+Last Tab | <leader>Bh
+First Tab | <leader>Bl
+Only Tab | <leader>Bk
+Rewind Tab | <leader>Bj
+Delete Buffer | <leader>q
+Toggle Colorizer | <F3>
+Color Toggle | <leader>k <F1>
+Color Clear | <leader>k <F2>
+Color Contrast | <leader>k <F3>
+Color Highlight | <leader>k <F4>
+Swap Forground and Background Colors | <leader>k <F5>
+Attach Colorizer to the Buffer | <leader>k <F6>
+Detach Colorizer from Buffer | <leader>k <F7>
+Colorizer Reload All Buffers | <leader>k <F8>
+Comment Toggle Line | ghh
+Comment Line | gc 
+Comment Block | gbc 
+Comment Above | gcA 
+Comment Below | gc0 
+Git Next Hunk | <leader><leader>j
+Git Previous Hunk | <leader><leader>k
+Git Blame | <leader><leader>l
+Git Review Hunk | <leader><leader>p
+Git Reset Hunk | <leader><leader>r 
+Git Stage Hunk | <leader><leader>s
+Git Undo Hunk | <leader><leader>u
+Git Highlight Number Column | <leader><leader>h
+GIt Diff | <leader><leader>d 
+Lazygit | <leader><leader>L
+Toggle Bookmark | <F9>
+LSP | <leader>l
+LSP Hover | <leader>lbK
+LSP Code Action | <leader>lbc
+LSP Rename | | <leader>lbr
+LSP Find and Run Code-Lens | | <leader>lbl
+LSP Disagnostics | <leader>lde 
+LSP Previous Errors | <leader>ld[ 
+LSP Next Errors | <leader>ld] 
+LSP Set Loclist | <leader>ldq
+LSP Go To Declarations | <leader>lgD 
+LSP Go To Definitions | <leader>lgd 
+LSP Signature | <leader>lgs 
+LSP Implementation | <leader>lgi 
+LSP Type Definition | <leader>lgt
+LSP References | <leader>lgr
+LSP Clear References | <leader>lgc
+LSP Add Workspace  | <leader>lwa 
+LSP Remove Workspace | <leader>lwr 
+LSP Workspaces | <leader>lwl
+Mode Replacement | <leader>M
+Find | <leader>Ms 
+Find and Replace | <leader>Mr 
+Clear Highlights | <leader>Ml 
+Find All | <leader>Mm 
+Insert Search | <leader>Mi
+Cmdline | <leader>Mc
+Use NUI Cmdline Backend | <leader>MC 
+Use NUI Search Backend | <leader>MS
+LSP Start | <leader>l<CR>
+Treesitter | <leader>T 
+Code Ready | <leader>L
+Nvim Tree Toggle | <control>n
+Ranger File Explorer | <F5> 
+Statusline | <leader>us
+Relative Number Column | <leader>ur
+Number Column | <leader>un 
+Tabline | <leader>ut 
+Save File | <control>s
+Vertical Split | <leader>v 
+Vertical Split | <leader>V
+Horizontal Split | <leader>h 
+Horizontal Split | <leader>H 
+Remove Highlights | <escape>
+Copy All | <control>y
+Check Spelling | <F2>
+Spotify Skip | <leader>sn 
+Spotify Pause | <leader>sp 
+Spotify Save |  <leader>ss 
+Spotify Start | <leader>so 
+Spotify Devices |  <leader>sd 
+Spotify Previous |  <leader>sb 
+Reach Marks | <leader>rm
+Reach Tabpages |  <leader>rt 
+Buffers | <leader><tab>
+Save URI Image to Imgur | <leader>og 
+Shorten URL | <leader>ol 
+Save BBuffer to DPaste | <leader>oc 
+Pandoc Render | <leader>jr 
+Pandoc Build | <leader>jb 
+Pandoc Equation | <leader>je  
+Packer Sync | <leader>ps 
+Packer Update | <leader>pu 
+Packer Install | <leader>pi
+Packer Clean | <leader>pc 
+Packer Status | <leader>pp
+Packer Compile | <leader>pr 
+Packer Profile | <leader>pf
+Telescope | <leader>t 
+Telescope Registers | <leader>tr 
+Telescope Filetypes | <leader>tt
+Telescope Neoclip | <leader>tc 
+Telescope Variable | <leader>te 
+Telescope Buffers | <leader>tb 
+Telescope Projects | <leader>to 
+Telescope FZF | <leader>tz
+Telescope Packer | <leader>tm 
+Telescope Notifications | <leader>tn 
+Telescope Pickers | <leader>tk 
+Telescope Load Previous State | <leader>tl 
+Telescope File Operations | <leader>tf 
+Telescope FInd FIles | <leader>tff 
+Telescope Find Files Drop | <leader>tfF 
+Telescope Old Files | <leader>tfo
+Telescope Word Search [L] | <leader>tfw
+Telescope Word Search | <leader>tfW 
+Telescope Media Files | <leader>tfi 
+Telescope File Browser | <leader>tfz 
+Telescope ZOxide | <leader>tfc 
+Telescope Symbols | <leader>tss 
+Telecope Gitmoji  | <leader>tsg 
+Telescope Math | <leader>tsm 
+Telescope LaTeX | <leader>tsl 
+Telescope Kaomoji | <leader>tsk
+Telescope Emojis | <leader>tse
+Telescope Web Search | <leader>tpw 
+Telescope Bookmarks | <leader>tpb 
+Telescope Search History | <leader>tps 
+Telescope Command History | <leader>tpc 
+Telescope Git Files | <leader>tgf 
+Telescope Git Stash | <leader>tgt 
+Telescope Git Status  | <leader>tgs 
+Telescope Git Commits | <leader>tgc 
+Telescope Git Branches | <leader>tgb 
+Telescope Git BCommits | <leader>tgm
+Telescope Git Repositories | <leader>tgr 
+Telescope Git Issues | <leader>tgi
+Telescope Git Pull Request | <leader>tgp 
+Telescope Git Gist | <leader>tgg 
+Telescope Git Run | <leader>tge
+Telescope Help | <leader>th
+Telescope Help Tags | <leader>thh
+Telescope Man Pages | <leader>thm
+Telescope Cheatsheet | <leader>thc
+Telescope Vim Options | <leader>tho
+Telescope Vim Commands | <leader>thp
+Telescope Vim Mappings  | <leader>thk
+Telescope Vim Autocommands | <leader>tha
+Telescope Code| <leader>tw
+Telescope Spelling| <leader>tws
+Telescope Colorscheme | <leader>twt
+Telescope LSP| <leader>twl
+Telescope LSP Dynamic Workspace Symbols | <leader>twlw
+Telescope Range Code Actions | <leader>twlA
+Telescope Workspace Symbols | <leader>twls
+Telescope Document Symbols | <leader>twls
+Telescope Type Definitions | <leader>twlD
+Telescope Implementations | <leader>twli
+Telescope Code Actions | <leader>twla 
+Consoles  | <leader>/
+Console Node | <leader>/n
+Console BTop | <leader>/t 
+Console Python | <leader>/p
+Console BPython | <leader>/b
+Console Pypy | <leader>/y
+Console Fish | <leader>/x 
+Console Bash | <leader>/k 
+Console ZSH | <leader>/z
+Console SH | <leader>/i 
+Console Ranger | <leader>/r 
+Console Lua | <leader>/l 
+Console JShell | <leader>/j 
+Console GroovySh | <leader>/g 
+Console BluetoothCTL | <leader>/c 
+Console Hilbish | <leader>/m 
+Console Floating | <leader>/f 
+Console Horizontal | <leader>/h 
+Console Vertical | <leader>/v 
+Gitsigns Stage Hunk | <leader>hs
+Gitsigns Undo Stage Hunk | <leader>hu
+Gitsigns Reset Hunk | <leader>hr
+Gitsigns Reset Buffer |<leader>hR
+Gitsigns preview_hunk | <leader>hp
+Gitsigns Blame Line | <leader>hb
+Move Line Up | <alt>j 
+Move Line Down | <alt>k 
+Move Block Visual Mode | <alt>j 
+Move Block Visual Mode | <alt>k 
+Move H Char | <alt>l 
+Move H Char Back | <alt>h 
+Shade | <leader>s 
 
 

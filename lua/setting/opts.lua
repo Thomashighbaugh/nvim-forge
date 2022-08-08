@@ -8,7 +8,7 @@ opt.laststatus = 3 -- enables the global statusline
 opt.backspace = {
   "indent",
   "eol",
-  "start",
+  "start"
 } -- show backspace characters
 opt.completeopt = "menuone,noselect" -- completion options
 opt.title = true -- set window title same as the file name
@@ -25,10 +25,11 @@ opt.shiftwidth = 2 -- affects >>, << or == maps and autoindent
 opt.smartindent = true -- reacts to the syntax/style of the code
 opt.wildignore = {
   "*/cache/*",
-  "*/tmp/*",
+  "*/tmp/*"
 } -- these	patterns is ignored when expanding wildcards
 opt.errorformat = "%f|%l col %c|%m" -- option specifies a list of formats that are recognized
-opt.fillchars = { -- Characters to fill the statuslines and vertical separators. See :h 'fillchars'
+opt.fillchars = {
+  -- Characters to fill the statuslines and vertical separators. See :h 'fillchars'
   eob = " ",
   stlnc = " ",
   diff = "░",
@@ -42,7 +43,7 @@ opt.fillchars = { -- Characters to fill the statuslines and vertical separators.
   vert = "┃",
   vertleft = "┫",
   vertright = "┣",
-  verthoriz = "╋",
+  verthoriz = "╋"
 }
 opt.ignorecase = false -- if its on, the case of normal letters is ignored
 opt.smartcase = true -- 	override 'ignorecase' if search pattern contains uppercase
@@ -56,8 +57,8 @@ opt.tabstop = 4 -- no of spaces that a <tab> in the file counts for
 opt.timeoutlen = 250 -- delay between keys (millisecond)
 opt.undofile = true -- enable/disable persistent undo
 opt.updatetime = 500 -- after this delay swap file will be (re)written
-opt.wrap = false -- enable/disable text wrap
-opt.spell = false -- enable/disable spellcheck
+opt.wrap = true -- enable/disable text wrap
+opt.spell = true -- enable/disable spellcheck
 opt.spelllang = "en_us,en_gb,cjk" -- set spellcheck lang
 opt.spellsuggest = "best,9" -- see :h ;spellsuggest'
 opt.scrolloff = 8 -- min no of screen lines to keep above and below the cursor

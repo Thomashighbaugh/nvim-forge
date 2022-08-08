@@ -1,65 +1,43 @@
-local present, alpha = pcall(require, "alpha")
+local status_ok, alpha = pcall(require, "alpha")
+if not status_ok then
+  return
+end
 
-local btn_gen = require("utils.plugins").btn_gen
+local function footer()
+  local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
+  local datetime = os.date("  %m-%d-%Y   %H:%M:%S")
+  local version = vim.version()
+  local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+  return datetime .. "   Plugins " .. plugins_count .. nvim_version_info
+end
 
-local heading = {
-  type = "text",
-  val = require("tables.banners")["pacman"],
-  opts = {
-    position = "center",
-    hl = "AlphaHeading",
-  },
+local dashboard = require("alpha.themes.dashboard")
+dashboard.section.header.val = {
+  [[ ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗]],
+  [[ ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║]],
+  [[ ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║]],
+  [[ ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║]],
+  [[ ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║]],
+  [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝]]
 }
+local buttonhl = function(shortcut, text, command, hl)
+  local button = dashboard.button(shortcut, text, command)
+  button.opts.hl_shortcut = hl
+  return button
+end
 
-local buttons = {
-  type = "group",
-  val = {
-    btn_gen("  Find File", " LDR tff ", "AlphaButtonLabelText", "WildMenu"),
-    btn_gen("  Recents", " LDR tfo ", "AlphaButtonLabelText", "Boolean"),
-    btn_gen("  Find Word", " LDR tfw ", "AlphaButtonLabelText", "String"),
-  },
-  opts = {
-    position = "center",
-    spacing = 1,
-  },
+dashboard.section.buttons.val = {
+  buttonhl("<leader>   f", "   File Browser", ":Telescope file_browser <CR>"),
+  buttonhl("<leader> e n", "   New File", ":ene <BAR> startinsert <CR>"),
+  buttonhl("<leader> f p", "   Find Project", ":Telescope projects <CR>"),
+  buttonhl("<leader> f h", "   Recently Files", ":Telescope oldfiles <CR>"),
+  buttonhl("<leader> f t", "   Find Text", ":Telescope live_grep <CR>"),
+  buttonhl("<leader>   u", "   Update Plugins", ":PackerUpdate <CR>"),
+  buttonhl("<leader> i p", "   Add/Remove Plugins", ":e ~/.config/nvim/lua/core/plugins.lua<CR>"),
+  buttonhl("<leader> e v", "   Configuration", ":e ~/.config/nvim/lua/config.lua <CR>"),
+  buttonhl("<leader>   q", "   Quit Neovim", ":qa<CR>")
 }
-
-local loaded = {
-  type = "text",
-  val = string.format(" Loaded %d plugins", vim.tbl_count(packer_plugins)),
-  opts = {
-    position = "center",
-    hl = "AlphaLoaded",
-  },
-}
-
-local footing = {
-  type = "text",
-  val = "-kv- ",
-  opts = {
-    position = "center",
-    hl = "AlphaFooting",
-  },
-}
-
-local layout = {
-  { type = "padding", val = 9 },
-  heading,
-  { type = "padding", val = 2 },
-  footing,
-  { type = "padding", val = 1 },
-  buttons,
-  { type = "padding", val = 1 },
-  loaded,
-}
-
-local config = {
-  layout = layout,
-  opts = { margin = 10 },
-}
-
-alpha.setup(config)
-
-return config
-
--- vim:ft=lua
+dashboard.section.footer.val = footer()
+-- dashboard.opts.opts.noautocmd = true
+vim.cmd [[autocmd User AlphaReady echo 'ready']]
+alpha.setup(dashboard.opts)

@@ -1,12 +1,10 @@
 local M = {}
 
 M.invisible = {
-  "dashboard",
-  "alpha",
   "NvimTree",
   "undotree",
   "diff",
-  "Outline",
+  "Outline"
 }
 
 M.hidden = {
@@ -27,7 +25,7 @@ M.hidden = {
   "term://*",
   "Term://*",
   "toggleterm",
-  "qf",
+  "qf"
 }
 
 return M
