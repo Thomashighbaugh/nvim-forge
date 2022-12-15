@@ -12,14 +12,19 @@ end
 -- @see help highlight-{guifg,guibg,gui,guisp,link,args,groups}
 function M.highlight(group, colors)
   if colors.link then
-    vim.highlight.link(group, colors.link, true)
+    vim.api.nvim_set_hl(0, group, {link = colors.link})
     return
   end
-  colors = vim.tbl_extend("keep", colors, {
-    guifg = "NONE",
-    guibg = "NONE",
-  })
-  vim.highlight.create(group, colors)
+  colors =
+    vim.tbl_extend(
+    "keep",
+    colors,
+    {
+      fg = "NONE",
+      bg = "NONE"
+    }
+  )
+  vim.api.nvim_set_hl(0, group, colors)
 end
 
 return M

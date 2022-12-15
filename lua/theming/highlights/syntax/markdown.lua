@@ -2,25 +2,25 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["markdownH1"] = {
-    guifg = colors.syntax.color00,
-    gui = "bold",
+    fg = colors.syntax.color00,
+    bold = true,
   },
   ["markdownH2"] = {
-    guifg = colors.syntax.color02,
-    gui = "bold",
+    fg = colors.syntax.color02,
+    bold = true,
   },
   ["markdownH3"] = {
-    guifg = colors.syntax.color03,
-    gui = "bold",
+    fg = colors.syntax.color03,
+    bold = true,
   },
   ["markdownH1Delimiter"] = {
-    guifg = colors.syntax.color16,
+    fg = colors.syntax.color16,
   },
   ["markdownH2Delimiter"] = {
-    guifg = colors.syntax.color17,
+    fg = colors.syntax.color17,
   },
   ["markdownH3Delimiter"] = {
-    guifg = colors.syntax.color15,
+    fg = colors.syntax.color15,
   },
 }
 

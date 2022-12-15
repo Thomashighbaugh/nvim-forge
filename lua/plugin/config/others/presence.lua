@@ -22,6 +22,6 @@ local config = {
   file_assets = require("tables.presence"),
 }
 
-presence:setup(config)
+presence:setup({})
 
 -- vim:ft=lua:nowrap

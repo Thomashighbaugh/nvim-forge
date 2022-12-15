@@ -2,40 +2,40 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["diffAdded"] = {
-    guifg = colors.common.base14,
+    fg = colors.common.base14,
   },
   ["diffRemoved"] = {
-    guifg = colors.common.base11,
+    fg = colors.common.base11,
   },
   ["diffChanged"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
   ["diffOldFile"] = {
-    guifg = colors.common.base13,
+    fg = colors.common.base13,
   },
   ["diffNewFile"] = {
-    guifg = colors.common.base12,
+    fg = colors.common.base12,
   },
   ["diffFile"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["diffLine"] = {
-    guifg = colors.common.base03,
+    fg = colors.common.base03,
   },
   ["diffIndexLine"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["DiffAdd"] = {
-    guifg = colors.common.base14,
+    fg = colors.common.base14,
   },
   ["DiffChange"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
   ["DiffDelete"] = {
-    guifg = colors.common.base11,
+    fg = colors.common.base11,
   },
   ["DiffText"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
 }
 

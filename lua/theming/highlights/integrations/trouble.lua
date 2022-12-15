@@ -2,7 +2,7 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["TroubleNormal"] = {
-    guibg = colors.shades.shade08,
+    bg = colors.shades.shade08,
   },
 }
 

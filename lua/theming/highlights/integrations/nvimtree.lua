@@ -2,66 +2,66 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["NvimTreeRootFolder"] = {
-    guifg = colors.common.base11,
-    gui = "bold",
+    fg = colors.common.base11,
+    bold = true,
   },
   ["NvimTreeGitDirty"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
   ["NvimTreeCursorLine"] = {
-    guifg = colors.syntax.color04,
-    gui = "bold",
+    fg = colors.syntax.color04,
+    bold = true,
   },
   ["NvimTreeGitNew"] = {
-    guifg = colors.common.base14,
-    gui = "bold",
+    fg = colors.common.base14,
+    bold = true,
   },
   ["NvimTreeExecFile"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["NvimTreeSpecialFile"] = {
-    guifg = colors.common.base12,
-    gui = "bold",
+    fg = colors.common.base12,
+    bold = true,
   },
   ["NvimTreeFolderName"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["NvimTreeEmptyFolderName"] = {
-    guifg = colors.common.base03,
+    fg = colors.common.base03,
   },
   ["NvimTreeOpenedFolderName"] = {
-    guifg = colors.common.base10,
+    fg = colors.common.base10,
   },
   ["NvimTreeFolderIcon"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["NvimTreeIndentMarker"] = {
-    guifg = colors.shades.shade00,
+    fg = colors.shades.shade00,
   },
   ["NvimTreeNormal"] = {
-    guibg = colors.shades.shade11,
+    bg = colors.shades.shade11,
   },
   ["NvimTreeRenamed"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["NvimTreeSymlink"] = {
-    guifg = colors.common.base13,
+    fg = colors.common.base13,
   },
   ["NvimTreeVertSplit"] = {
-    guifg = colors.common.base00,
-    guibg = colors.common.base00,
+    fg = colors.common.base00,
+    bg = colors.common.base00,
   },
   ["NvimTreeWinSeparator"] = {
-    guifg = colors.common.base00,
-    guibg = colors.common.base00,
+    fg = colors.common.base00,
+    bg = colors.common.base00,
   },
   ["NvimTreeImageFile"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
   ["NvimTreeWindowPicker"] = {
-    guifg = colors.common.base09,
-    guibg = colors.common.base02,
-    gui = "bold",
+    fg = colors.common.base09,
+    bg = colors.common.base02,
+    bold = true,
   },
 }
 

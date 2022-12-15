@@ -2,28 +2,28 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["htmlLink"] = {
-    guifg = colors.syntax.color15,
-    gui = "underline",
+    fg = colors.syntax.color15,
+    underline = true,
   },
   ["htmlH1"] = {
-    guifg = colors.syntax.color09,
-    gui = "bold",
+    fg = colors.syntax.color09,
+    bold = true,
   },
   ["htmlH2"] = {
-    guifg = colors.syntax.color17,
-    gui = "bold",
+    fg = colors.syntax.color17,
+    bold = true,
   },
   ["htmlH3"] = {
-    guifg = colors.syntax.color13,
-    gui = "bold",
+    fg = colors.syntax.color13,
+    bold = true,
   },
   ["htmlH4"] = {
-    guifg = colors.syntax.color06,
-    gui = "bold",
+    fg = colors.syntax.color06,
+    bold = true,
   },
   ["htmlH5"] = {
-    guifg = colors.syntax.color00,
-    gui = "bold",
+    fg = colors.syntax.color00,
+    bold = true,
   },
 }
 

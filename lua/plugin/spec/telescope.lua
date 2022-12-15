@@ -1,5 +1,7 @@
 local use = require("packer").use
 
+local disabled = require("control.disabled")
+
 use(
   {
     "nvim-telescope/telescope.nvim",
@@ -8,7 +10,9 @@ use(
       require("plugin.config.telescope")
       require("telescope").load_extension("notify")
     end,
-    module = "telescope"
+    wants = "nvim-treesitter",
+    module = "telescope",
+    disable = disabled["telescope.nvim"]
   }
 )
 
@@ -18,7 +22,8 @@ use(
     config = function()
       require("telescope").load_extension("vim_bookmarks")
     end,
-    after = {"vim-bookmarks", "telescope.nvim"}
+    after = {"vim-bookmarks", "telescope.nvim"},
+    disable = disabled["telescope-vim-bookmarks.nvim"]
   }
 )
 
@@ -28,7 +33,8 @@ use(
     config = function()
       require("telescope").load_extension("zoxide")
     end,
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["telescope-zoxide"]
   }
 )
 
@@ -38,7 +44,8 @@ use(
     config = function()
       require("telescope").load_extension("ui-select")
     end,
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["telescope-ui-select.nvim"]
   }
 )
 
@@ -48,7 +55,8 @@ use(
     config = function()
       require("telescope").load_extension("gh")
     end,
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["telescope-github.nvim"]
   }
 )
 
@@ -59,7 +67,8 @@ use(
     config = function()
       require("plugin.config.telescope.ext.neoclip")
       require("telescope").load_extension("neoclip")
-    end
+    end,
+    disable = disabled["nvim-neoclip.lua"]
   }
 )
 
@@ -70,7 +79,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("fzf")
-    end
+    end,
+    disable = disabled["telescope-fzf-native.nvim"]
   }
 )
 
@@ -80,7 +90,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("dict")
-    end
+    end,
+    disable = disabled["telescope-dict.nvim"]
   }
 )
 
@@ -90,7 +101,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("command_palette")
-    end
+    end,
+    disable = disabled["telescope-command-palette.nvim"]
   }
 )
 
@@ -100,7 +112,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("env")
-    end
+    end,
+    disable = disabled["telescope-env.nvim"]
   }
 )
 
@@ -113,7 +126,8 @@ use(
       require("telescope").load_extension("cheatsheet")
     end,
     cmd = {"Cheatsheet", "CheatsheetEdit"},
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["cheatsheet.nvim"]
   }
 )
 
@@ -123,7 +137,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("node_modules")
-    end
+    end,
+    disable = disabled["telescope-node-modules.nvim"]
   }
 )
 
@@ -133,7 +148,19 @@ use(
     config = function()
       require("telescope").load_extension("luasnip")
     end,
-    after = {"LuaSnip", "telescope.nvim"}
+    after = {"LuaSnip", "telescope.nvim"},
+    disable = disabled["telescope-luasnip.nvim"]
+  }
+)
+
+use(
+  {
+    "xiyaowong/telescope-emoji.nvim",
+    after = "telescope.nvim",
+    config = function()
+      require("telescope").load_extension("emoji")
+    end,
+    disable = disabled["telescope-emoji.nvim"]
   }
 )
 
@@ -144,7 +171,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("heading")
-    end
+    end,
+    disable = disabled["telescope-heading.nvim"]
   }
 )
 
@@ -155,7 +183,20 @@ use(
     wants = "sqlite.lua",
     config = function()
       require("telescope").load_extension("bookmarks")
-    end
+    end,
+    disable = disabled["telescope-bookmarks.nvim"]
+  }
+)
+
+use(
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    after = "telescope.nvim",
+    wants = "sqlite.lua",
+    config = function()
+      require("telescope").load_extension("frecency")
+    end,
+    disable = disabled["telescope-frecency.nvim"]
   }
 )
 
@@ -165,7 +206,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("tele_tabby")
-    end
+    end,
+    disable = disabled["telescope-tele-tabby.nvim"]
   }
 )
 
@@ -175,24 +217,27 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("repo")
-    end
+    end,
+    disable = disabled["telescope-repo.nvim"]
   }
 )
 
 use(
   {
     "nvim-telescope/telescope-symbols.nvim",
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["telescope-symbols.nvim"]
   }
 )
 
 use(
   {
-    "pagankeymaster/telescope-media-files.nvim",
+    "dharmx/telescope-media-files.nvim",
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("media_files")
-    end
+    end,
+    disable = disabled["telescope-media-files.nvim"]
   }
 )
 
@@ -202,7 +247,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("project")
-    end
+    end,
+    disable = disabled["telescope-project.nvim"]
   }
 )
 
@@ -212,7 +258,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("packer")
-    end
+    end,
+    disable = disabled["telescope-packer.nvim"]
   }
 )
 
@@ -222,7 +269,8 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("bibtex")
-    end
+    end,
+    disable = disabled["telescope-bibtex.nvim"]
   }
 )
 
@@ -232,14 +280,16 @@ use(
     after = "telescope.nvim",
     config = function()
       require("telescope").load_extension("file_browser")
-    end
+    end,
+    disable = disabled["telescope-file-browser.nvim"]
   }
 )
 
 use(
   {
     "lalitmee/browse.nvim",
-    after = "telescope.nvim"
+    after = "telescope.nvim",
+    disable = disabled["browse.nvim"]
   }
 )
 

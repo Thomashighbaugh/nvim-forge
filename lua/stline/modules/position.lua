@@ -29,17 +29,17 @@ function M.position()
   local loaded = packer_plugins and packer_plugins["gitsigns.nvim"].loaded
   local colors = theming.get_active_theme()
   local transition = {
-    guifg = colors.common.base03,
-    gui = "bold",
+    fg = colors.common.base03,
+    bold = true,
   }
 
   -- handle dynamic modules like lsp / lightbulb / git
   if loaded then
-    transition.guibg = loaded and colors.common.base02 or colors.shades.shade06
+    transition.bg = loaded and colors.common.base02 or colors.shades.shade06
   elseif #clients ~= 0 then
-    transition.guibg = colors.common.base01
+    transition.bg = colors.common.base01
   else
-    transition.guibg = colors.shades.shade06
+    transition.bg = colors.shades.shade06
   end
   theming.highlight("StatusLinePositionFirst", transition)
 

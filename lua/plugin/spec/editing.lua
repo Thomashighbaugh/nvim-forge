@@ -2,213 +2,249 @@
 --- NOTE: Such as syntax highlighting, build helpers, URL highlights, previews, etc.
 local use = require("packer").use
 
-use(
-  {
-    "protex/better-digraphs.nvim",
-    after = "telescope.nvim",
-    setup = function()
-      require("plugin.config.editing.digraph")
-    end
-  }
-)
+local disabled = require("control.disabled")
 
-use(
-  {
-    "sheerun/vim-polyglot",
-    event = "UIEnter"
-  }
-)
+use({
+  "lukas-reineke/virt-column.nvim",
+  event = "UIEnter",
+  disable = disabled["virt-column.nvim"]
+})
 
-use(
-  {
-    "fedepujol/move.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("plugin.config.editing.move")
-    end
-  }
-)
+use({
+  "protex/better-digraphs.nvim",
+  after = "telescope.nvim",
+  setup = function()
+    require("plugin.config.editing.digraph")
+  end,
+  disable = disabled["better-digraphs.nvim"],
+})
 
-use(
-  {
-    "bhurlow/vim-parinfer",
-    ft = "yuck"
-  }
-)
+use({
+  "sheerun/vim-polyglot",
+  event = "UIEnter",
+  disable = disabled["vim-polyglot"],
+})
 
-use(
-  {
-    "lervag/vimtex",
-    ft = "tex"
-  }
-)
+use({
+  "fedepujol/move.nvim",
+  event = "InsertEnter",
+  config = function()
+    require("plugin.config.editing.move")
+  end,
+  disable = disabled["move.nvim"],
+})
 
-use(
-  {
-    "xuhdev/vim-latex-live-preview",
-    ft = "tex"
-  }
-)
+use({
+  "bhurlow/vim-parinfer",
+  ft = "yuck",
+  disable = disabled["vim-parinfer"],
+})
 
-use(
-  {
-    "aspeddro/pandoc.nvim",
-    ft = {
-      "markdown",
-      "tex",
-      "xml",
-      "org",
-      "html",
-      "plaintext",
-      "txt"
-    },
-    config = function()
-      require("plugin.config.editing.pandoc")
-    end
-  }
-)
+use({
+  "lervag/vimtex",
+  ft = "tex",
+  disable = disabled["vimtex"],
+})
 
-use({"Fymyte/rasi.vim", ft = "rasi"})
-use({"elkowar/yuck.vim", ft = "yuck"})
-use({"kovetskiy/sxhkd-vim", ft = "sxhkd"})
-use({"MTDL9/vim-log-highlighting", ft = "log"})
-use({"vuki656/package-info.nvim", ft = "package.json"})
+use({
+  "xuhdev/vim-latex-live-preview",
+  ft = "tex",
+  disable = disabled["vim-latex-live-preview"],
+})
 
-use(
-  {
-    "TimUntersberger/neogit",
-    cmd = "Neogit",
-    module = "neogit"
-  }
-)
+use({
+  "aspeddro/pandoc.nvim",
+  ft = {
+    "markdown",
+    "tex",
+    "xml",
+    "org",
+    "html",
+    "plaintext",
+    "txt",
+  },
+  disable = disabled["pandoc.nvim"],
+  config = function()
+    require("plugin.config.editing.pandoc")
+  end,
+})
 
-use(
-  {
-    "lewis6991/gitsigns.nvim",
-    cmd = "Gitsigns",
-    config = function()
-      require("plugin.config.editing.gitsigns")
-    end,
-    module = "gitsigns"
-  }
-)
+use({ "Fymyte/rasi.vim", ft = "rasi", disable = disabled["rasi.vim"] })
+use({ "elkowar/yuck.vim", ft = "yuck", disable = disabled["yuck.vim"] })
+use({ "kovetskiy/sxhkd-vim", ft = "sxhkd", disable = disabled["sxhkd-vim"] })
+use({ "MTDL9/vim-log-highlighting", ft = "log", disable = disabled["vim-log-highlighting"] })
+use({ "vuki656/package-info.nvim", ft = "package.json", disable = disabled["package-info.nvim"] })
 
-use(
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("plugin.config.editing.comments")
-    end,
-    event = {"CursorMoved", "InsertEnter"}
-  }
-)
+use({
+  "TimUntersberger/neogit",
+  cmd = "Neogit",
+  module = "neogit",
+  disable = disabled["neogit"],
+})
 
-use(
-  {
-    "folke/todo-comments.nvim",
-    event = {"CmdlineEnter", "InsertEnter", "CursorMoved", "CursorHold"},
-    config = function()
-      require("plugin.config.editing.todo")
-    end
-  }
-)
+use({
+  "lewis6991/gitsigns.nvim",
+  cmd = "Gitsigns",
+  config = function()
+    require("plugin.config.editing.gitsigns")
+  end,
+  module = "gitsigns",
+  disable = disabled["gitsigns.nvim"],
+})
 
-use(
-  {
-    "ellisonleao/glow.nvim",
-    cmd = "Glow",
-    setup = function()
-      require("plugin.config.editing.glow")
-    end
-  }
-)
+use({
+  "numToStr/Comment.nvim",
+  config = function()
+    require("plugin.config.editing.comments")
+  end,
+  event = { "CursorMoved", "InsertEnter" },
+  disable = disabled["Comment.nvim"],
+})
 
-use(
-  {
-    "iamcco/markdown-preview.nvim",
-    setup = function()
-      require("plugin.config.editing.mdpreview")
-    end,
-    run = "cd app && yarn install",
-    ft = "markdown"
-  }
-)
+use({
+  "folke/todo-comments.nvim",
+  event = { "CmdlineEnter", "InsertEnter", "CursorMoved", "CursorHold" },
+  config = function()
+    require("plugin.config.editing.todo")
+  end,
+  disable = disabled["todo-comments.nvim"],
+})
 
-use(
-  {
-    "norcalli/nvim-colorizer.lua",
-    cmd = {
-      "ColorizerToggle",
-      "ColorizerReloadAllBuffers",
-      "ColorizerAttachToBuffers",
-      "ColorizerDetachFromBuffers"
-    }
-  }
-)
+use({
+  "ellisonleao/glow.nvim",
+  cmd = "Glow",
+  setup = function()
+    require("plugin.config.editing.glow")
+  end,
+  disable = disabled["glow.nvim"],
+})
 
-use(
-  {
-    "chrisbra/Colorizer",
-    cmd = {
-      "ColorToggle",
-      "ColorClear",
-      "ColorContrast",
-      "ColorHighlight",
-      "ColorSwapFgBg"
-    }
-  }
-)
+use({
+  "jubnzv/mdeval.nvim",
+  cmd = "MdEval",
+  config = function()
+    require("plugin.config.editing.mdeval")
+  end,
+  disable = disabled["mdeval.nvim"]
+})
 
-use(
-  {
-    "folke/trouble.nvim",
-    cmd = {"Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle"},
-    config = function()
-      require("plugin.config.editing.trouble")
-    end
-  }
-)
+use({
+  "iamcco/markdown-preview.nvim",
+  setup = function()
+    require("plugin.config.editing.mdpreview")
+  end,
+  run = "cd app && yarn install",
+  ft = "markdown",
+  disable = disabled["markdown-preview.nvim"],
+})
 
-use(
-  {
-    "NFrid/due.nvim",
-    cmd = {"DueDraw", "DueRedraw", "DueClean", "DueAsyncUpdate"}
-  }
-)
+use({
+  "norcalli/nvim-colorizer.lua",
+  cmd = {
+    "ColorizerToggle",
+    "ColorizerReloadAllBuffers",
+    "ColorizerAttachToBuffers",
+    "ColorizerDetachFromBuffers",
+  },
+  disable = disabled["nvim-colorizer.lua"],
+})
 
-use({"jbyuki/venn.nvim", cmd = "ToggleVenn"})
+use({
+  "RRethy/vim-hexokinase",
+  run = "make hexokinase",
+  setup = function()
+    require("plugin.config.editing.hexokinase")
+  end,
+  cmd = {
+    "HexokinaseToggle",
+    "HexokinaseTurnOn",
+    "HexokinaseTurnOff",
+  },
+  disable = disabled["vim-hexokinase"]
+})
 
-use(
-  {
-    "nvim-neorg/neorg",
-    ft = "norg",
-    wants = "nvim-treesitter",
-    config = function()
-      require("plugin.config.editing.neorg")
-    end
-  }
-)
+use({
+  "chrisbra/Colorizer",
+  cmd = {
+    "ColorToggle",
+    "ColorClear",
+    "ColorContrast",
+    "ColorHighlight",
+    "ColorSwapFgBg",
+  },
+  disable = disabled["Colorizer"],
+})
 
-use(
-  {
-    "nvim-orgmode/orgmode",
-    ft = "org",
-    config = function()
-      require("plugin.config.editing.orgmode")
-    end
-  }
-)
+use({
+  "folke/trouble.nvim",
+  cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
+  config = function()
+    require("plugin.config.editing.trouble")
+  end,
+  disable = disabled["trouble.nvim"],
+})
 
-use(
-  {
-    "axieax/urlview.nvim",
-    wants = "telescope-ui-select.nvim",
-    cmd = "UrlView"
-  }
-)
+use({
+  "NFrid/due.nvim",
+  cmd = { "DueDraw", "DueRedraw", "DueClean", "DueAsyncUpdate" },
+  disable = disabled["due.nvim"],
+})
 
-use({"jbyuki/nabla.nvim", after = "orgmode"})
+use({
+  "stevearc/gkeep.nvim",
+  run = ":UpdateRemotePlugins",
+  after = "telescope.nvim",
+  disable = disabled["gkeep.nvim"],
+})
 
-use({"glepnir/coman.nvim"})
+use({ "jbyuki/venn.nvim", cmd = "ToggleVenn", disable = disabled["venn.nvim"] })
+
+use({
+  "oberblastmeister/neuron.nvim",
+  wants = "popup.nvim",
+  after = "telescope.nvim",
+  disable = disabled["neuron.nvim"],
+})
+
+use({
+  "nvim-neorg/neorg",
+  ft = "norg",
+  wants = "nvim-treesitter",
+  config = function()
+    require("plugin.config.editing.neorg")
+  end,
+  disable = disabled["neorg"],
+})
+
+use({
+  "nvim-orgmode/orgmode",
+  ft = "org",
+  config = function()
+    require("plugin.config.editing.orgmode")
+  end,
+  disable = disabled["orgmode"],
+})
+
+use({
+  "axieax/urlview.nvim",
+  wants = "telescope-ui-select.nvim",
+  cmd = "UrlView",
+  disable = disabled["urlview.nvim"],
+})
+
+use({ "jbyuki/nabla.nvim", after = "orgmode", disable = disabled["nabla.nvim"] })
+
+use({ "phelipetls/vim-hugo", ft = "markdown", disable = disabled["vim-hugo"] })
+
+use({ "robertbasic/vim-hugo-helper", ft = "markdown", disable = disabled["vim-hugo-helper"] })
+
+use({
+  "yamatsum/nvim-cursorline",
+  event = "UIEnter",
+  config = function()
+    require("plugin.config.editing.cursorline")
+  end,
+  disable = disabled["nvim-cursorline"]
+})
 
 -- vim:ft=lua

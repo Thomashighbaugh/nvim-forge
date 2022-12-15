@@ -2,20 +2,20 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["YankFeed"] = {
-    guifg = colors.rainbow.cobalt,
-    gui = "bold",
+    fg = colors.rainbow.cobalt,
+    bold = true,
   },
   ["Hidden"] = {
-    guifg = colors.common.base00,
-    guibg = colors.common.base00,
+    fg = colors.common.base00,
+    bg = colors.common.base00,
   },
   ["LightBulbSign"] = {
-    guifg = colors.common.base13,
-    guibg = colors.common.base00,
+    fg = colors.common.base13,
+    bg = colors.common.base00,
   },
   ["Default"] = {
-    guifg = "NONE",
-    guibg = "NONE",
+    fg = "NONE",
+    bg = "NONE",
   },
 }
 

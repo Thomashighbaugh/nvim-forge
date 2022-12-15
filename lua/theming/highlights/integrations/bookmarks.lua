@@ -2,18 +2,18 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["BookmarkSign"] = {
-    guifg = colors.common.base13,
-    gui = "bold",
+    fg = colors.common.base13,
+    bold = true,
   },
   ["BookmarkAnnotationSign"] = {
-    guifg = colors.common.base07,
-    gui = "bold",
+    fg = colors.common.base07,
+    bold = true,
   },
   ["BookmarkLine"] = {
-    guifg = colors.common.base13,
+    fg = colors.common.base13,
   },
   ["BookmarkAnnotationLine"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
 }
 

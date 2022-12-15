@@ -2,102 +2,108 @@
 --- NOTE: Their extensions and modules.
 local use = require("packer").use
 
-use({"danymat/neogen", after = "nvim-treesitter"})
+local disabled = require("control.disabled")
 
-use(
-  {
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("plugin.config.treesitter")
-    end,
-    cmd = "TSUpdate"
-  }
-)
+use({
+  "nvim-treesitter/nvim-treesitter",
+  config = function()
+    require("plugin.config.treesitter")
+  end,
+  cmd = "TSUpdate",
+  disable = disabled["nvim-treesitter"],
+})
 
-use(
-  {
-    "theHamsta/nvim-treesitter-commonlisp",
-    after = "nvim-treesitter"
-  }
-)
+use({ 
+  "danymat/neogen",
+  after = "nvim-treesitter",
+  config = function()
+    require("plugin.config.treesitter.neogen")
+  end,
+  disable = disabled["neogen"]
+})
 
-use(
-  {
-    "RRethy/nvim-treesitter-textsubjects",
-    after = "nvim-treesitter"
-  }
-)
+use({ 
+  "m-demare/hlargs.nvim",
+  config = function()
+    require("plugin.config.treesitter.hlargs")
+  end,
+  after = "nvim-treesitter",
+  disable = disabled["hlargs.nvim"]
+})
 
-use(
-  {
-    "andymass/vim-matchup",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "theHamsta/nvim-treesitter-commonlisp",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-treesitter-commonlisp"],
+})
 
-use(
-  {
-    "nvim-treesitter/nvim-treesitter-refactor",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "RRethy/nvim-treesitter-textsubjects",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-treesitter-textsubjects"],
+})
 
-use(
-  {
-    "p00f/nvim-ts-rainbow",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "andymass/vim-matchup",
+  disable = disabled["vim-matchup"],
+  after = "nvim-treesitter",
+})
 
-use(
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "nvim-treesitter/nvim-treesitter-refactor",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-treesitter-refactor"],
+})
 
-use(
-  {
-    "nvim-treesitter/playground",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "p00f/nvim-ts-rainbow",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-ts-rainbow"],
+})
 
-use(
-  {
-    "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-treesitter-textobjects"],
+})
 
-use(
-  {
-    "romgrk/nvim-treesitter-context",
-    after = "nvim-treesitter",
-    config = function()
-      require("plugin.config.treesitter.plugins.context")
-    end
-  }
-)
+use({
+  "nvim-treesitter/playground",
+  after = "nvim-treesitter",
+  disable = disabled["playground"],
+})
 
-use(
-  {
-    "SmiteshP/nvim-gps",
-    after = "nvim-treesitter",
-    config = function()
-      require("plugin.config.treesitter.plugins.gps")
-    end
-  }
-)
+use({
+  "windwp/nvim-ts-autotag",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-ts-autotag"],
+})
 
-use(
-  {
-    "lewis6991/spellsitter.nvim",
-    after = "nvim-treesitter",
-    config = function()
-      require("plugin.config.treesitter.plugins.spellsitter")
-    end
-  }
-)
+use({
+  "romgrk/nvim-treesitter-context",
+  after = "nvim-treesitter",
+  config = function()
+    require("plugin.config.treesitter.plugins.context")
+  end,
+  disable = disabled["nvim-treesitter-context"],
+})
+
+use({
+  "SmiteshP/nvim-gps",
+  after = "nvim-treesitter",
+  config = function()
+    require("plugin.config.treesitter.plugins.gps")
+  end,
+  disable = disabled["nvim-gps"],
+})
+
+use({
+  "lewis6991/spellsitter.nvim",
+  after = "nvim-treesitter",
+  config = function()
+    require("plugin.config.treesitter.plugins.spellsitter")
+  end,
+  disable = disabled["spellsitter.nvim"],
+})
 
 -- vim:ft=lua

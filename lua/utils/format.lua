@@ -1,24 +1,8 @@
+local lsp_util = require("utils.lsp")
+
 function format_checked(active_client)
   if active_client.supports_method("textDocument/formatting") then
-    vim.lsp.buf.format({
-      timeout_ms = 3000, -- NOTE: Ignored if async is true.
-      async = true,
-      bufnr = buffer,
-      filter = function(clients)
-        return vim.tbl_filter(function(client)
-          if vim.bo.filetype == "lua" then
-            if client.name == "sumneko_lua" then
-              return false
-            end
-            return client.name == "null-ls"
-          end
-          if client.name == "pyright" then
-            return false
-          end
-          return true
-        end, clients)
-      end,
-    })
+    lsp_util.format(0)
   end
 end
 

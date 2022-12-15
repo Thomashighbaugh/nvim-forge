@@ -4,8 +4,8 @@ if not present then
   return
 end
 
-local neovim = require("utils.neovim")
-local notify = neovim.notify
+local nv = require("utils.neovim")
+local notify = nv.notify
 
 require("nvim-treesitter.install").prefer_git = true
 
@@ -13,44 +13,6 @@ local config = {
   ensure_installed = {
     "lua",
     "http",
-    "c",
-    "clojure",
-    "cmake",
-    "cpp",
-    "dart",
-    "dockerfile",
-    "dot",
-    "eex",
-    "elixir",
-    "fortran",
-    "gleam",
-    "glimmer",
-    "gdscript",
-    "go",
-    "graphql",
-    "hack",
-    "haskell",
-    "javascript",
-    "julia",
-    "json",
-    "jsonc",
-    "kotlin",
-    "make",
-    "ninja",
-    "nix",
-    "norg",
-    "org",
-    "perl",
-    "php",
-    "pug",
-    "ruby",
-    "rust",
-    "sql",
-    "todotxt",
-    "yaml",
-    "vue",
-    "typescript",
-    "toml",
     "java",
     "latex",
     "json",
@@ -70,6 +32,10 @@ local config = {
     "yaml",
     "comment",
     "norg",
+    "make",
+    "markdown_inline",
+    "meson",
+    "ninja",
     "commonlisp",
   },
   sync_installed = false,
@@ -107,6 +73,6 @@ notify({
   icon = "",
 })
 
-neovim.ensure_treesitter_language_installed()
+nv.ensure_treesitter_language_installed()
 
 -- vim:ft=lua

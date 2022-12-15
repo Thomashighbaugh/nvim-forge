@@ -2,236 +2,236 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["MatchParen"] = {
-    guifg = colors.common.base08,
-    guibg = colors.shades.shade03,
-    gui = "bold",
+    fg = colors.common.base08,
+    bg = colors.shades.shade03,
+    bold = true,
   },
   ["Normal"] = {
-    guibg = colors.common.base00,
+    bg = colors.common.base00,
   },
   ["NormalFloat"] = {
-    guifg = colors.common.base11,
-    guibg = colors.shades.shade11,
+    fg = colors.common.base11,
+    bg = colors.shades.shade11,
   },
   ["cheatSeparator"] = {
-    guifg = colors.common.base02,
+    fg = colors.common.base02,
   },
   ["FloatBorder"] = {
-    guibg = colors.shades.shade11,
-    guifg = colors.shades.shade11,
+    bg = colors.shades.shade11,
+    fg = colors.shades.shade11,
   },
   ["ColorColumn"] = {
-    guibg = colors.common.base01,
+    bg = colors.common.base01,
   },
   ["Conceal"] = {
-    guifg = colors.common.base01,
+    fg = colors.common.base01,
   },
   ["Directory"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["DiffAdd"] = {
-    guifg = colors.common.base14,
-    gui = "reverse",
+    fg = colors.common.base14,
+    reverse = true,
   },
   ["DiffChange"] = {
-    guifg = colors.common.base13,
-    gui = "reverse",
+    fg = colors.common.base13,
+    reverse = true,
   },
   ["DiffDelete"] = {
-    guifg = colors.common.base11,
-    gui = "reverse",
+    fg = colors.common.base11,
+    reverse = true,
   },
   ["DiffText"] = {
-    guifg = colors.common.base15,
-    gui = "reverse",
+    fg = colors.common.base15,
+    reverse = true,
   },
   ["EndOfBuffer"] = {
-    guifg = colors.common.base01,
+    fg = colors.common.base01,
   },
   ["ErrorMsg"] = {
-    guifg = colors.common.base11,
-    gui = "undercurl",
+    fg = colors.common.base11,
+    undercurl = true,
   },
   ["Folded"] = {
-    guifg = colors.common.base03,
+    fg = colors.common.base03,
   },
   ["FoldColumn"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["IncSearch"] = {
-    guifg = colors.common.base13,
-    guibg = colors.common.base02,
+    fg = colors.common.base13,
+    bg = colors.common.base02,
   },
   ["LineNr"] = {
-    guifg = colors.shades.shade01,
-    gui = "bold",
+    fg = colors.shades.shade01,
+    bold = true,
   },
   ["LineNrAbove"] = {
-    guifg = colors.common.base13,
-    gui = "bold",
+    fg = colors.common.base13,
+    bold = true,
   },
   ["LineNrBelow"] = {
-    guifg = colors.common.base15,
-    gui = "bold",
+    fg = colors.common.base15,
+    bold = true,
   },
   ["SignColumn"] = {
     link = "Normal",
   },
   ["VertSplit"] = {
-    guifg = colors.shades.shade03,
+    fg = colors.shades.shade03,
   },
   ["WinSeparator"] = {
-    guifg = colors.shades.shade03,
+    fg = colors.shades.shade03,
   },
   ["CursorLineNr"] = {
-    guifg = colors.common.base08,
-    gui = "bold",
+    fg = colors.common.base08,
+    bold = true,
   },
   ["CursorLine"] = {
-    guibg = "NONE",
+    bg = "NONE",
   },
   ["ModeMsg"] = {
-    guifg = colors.common.base14,
-    gui = "bold",
+    fg = colors.common.base14,
+    bold = true,
   },
   ["MsgArea"] = {
-    guifg = colors.common.base09,
-    gui = "bold",
+    fg = colors.common.base09,
+    bold = true,
   },
   ["MsgSeparator"] = {
-    guifg = colors.common.base15,
-    gui = "bold",
+    fg = colors.common.base15,
+    bold = true,
   },
   ["MoreMsg"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["NonText"] = {
-    guifg = colors.shades.shade03,
+    fg = colors.shades.shade03,
   },
   ["PmenuSel"] = {
-    guibg = colors.common.base14,
-    guifg = colors.common.base02,
-    gui = "bold",
+    bg = colors.common.base14,
+    fg = colors.common.base02,
+    bold = true,
   },
   ["PmenuSbar"] = {
-    guibg = colors.shades.shade05,
-    guifg = colors.shades.shade05,
+    bg = colors.shades.shade05,
+    fg = colors.shades.shade05,
   },
   ["PmenuThumb"] = {
-    guibg = colors.common.base02,
-    guifg = colors.common.base02,
+    bg = colors.common.base02,
+    fg = colors.common.base02,
   },
   ["Pmenu"] = {
-    guibg = colors.shades.shade12,
-    guifg = colors.common.base04,
+    bg = colors.shades.shade12,
+    fg = colors.common.base04,
   },
   ["Question"] = {
-    guifg = colors.common.base14,
+    fg = colors.common.base14,
   },
   ["QuickFixLine"] = {
-    guifg = colors.common.base04,
-    gui = "reverse",
+    fg = colors.common.base04,
+    reverse = true,
   },
   ["qfLineNr"] = {
-    guifg = colors.common.base04,
-    gui = "reverse",
+    fg = colors.common.base04,
+    reverse = true,
   },
   ["Search"] = {
-    guifg = colors.common.base10,
-    guibg = colors.common.base06,
-    gui = "reverse",
+    fg = colors.common.base10,
+    bg = colors.common.base06,
+    reverse = true,
   },
   ["SpecialKey"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["SpellBad"] = {
-    guifg = colors.common.base11,
-    gui = "undercurl",
+    fg = colors.common.base11,
+    undercurl = true,
   },
   ["SpellCap"] = {
-    guifg = colors.common.base07,
-    gui = "undercurl",
+    fg = colors.common.base07,
+    undercurl = true,
   },
   ["SpellLocal"] = {
-    guifg = colors.common.base08,
+    fg = colors.common.base08,
   },
   ["SpellRare"] = {
-    guifg = colors.common.base09,
+    fg = colors.common.base09,
   },
   ["TabLineFill"] = {
-    guifg = colors.common.base04,
+    fg = colors.common.base04,
   },
   ["TablineSel"] = {
-    guifg = colors.common.base01,
-    guibg = colors.common.base09,
+    fg = colors.common.base01,
+    bg = colors.common.base09,
   },
   ["Tabline"] = {
-    guifg = colors.common.base04,
-    guibg = colors.common.base01,
+    fg = colors.common.base04,
+    bg = colors.common.base01,
   },
   ["Title"] = {
-    guifg = colors.common.base14,
-    gui = "bold",
+    fg = colors.common.base14,
+    bold = true,
   },
-  ["Visual"] = { guibg = colors.shades.shade05 },
+  ["Visual"] = { bg = colors.shades.shade05 },
   ["VisualNC"] = {
-    guibg = colors.common.base11,
-    guifg = colors.common.base13,
+    bg = colors.common.base11,
+    fg = colors.common.base13,
   },
   ["VisualNOS"] = {
-    guibg = colors.shades.shade05,
-    guifg = colors.common.base13,
+    bg = colors.shades.shade05,
+    fg = colors.common.base13,
   },
   ["WarningMsg"] = {
-    guifg = colors.common.base15,
-    gui = "underline",
+    fg = colors.common.base15,
+    underline = true,
   },
   ["WildMenu"] = {
-    guifg = colors.common.base12,
-    gui = "bold",
+    fg = colors.common.base12,
+    bold = true,
   },
   ["CursorColumn"] = {
-    guibg = colors.common.base01,
+    bg = colors.common.base01,
   },
   ["ToolbarLine"] = {
-    guifg = colors.common.base04,
-    guibg = colors.common.base01,
+    fg = colors.common.base04,
+    bg = colors.common.base01,
   },
   ["ToolbarButton"] = {
-    guifg = colors.common.base04,
-    gui = "bold",
+    fg = colors.common.base04,
+    bold = true,
   },
   ["NormalMode"] = {
-    guifg = colors.common.base04,
-    gui = "reverse",
+    fg = colors.common.base04,
+    reverse = true,
   },
   ["InsertMode"] = {
-    guifg = colors.common.base14,
-    gui = "reverse",
+    fg = colors.common.base14,
+    reverse = true,
   },
   ["ReplacelMode"] = {
-    guifg = colors.common.base11,
-    gui = "reverse",
+    fg = colors.common.base11,
+    reverse = true,
   },
   ["VisualMode"] = {
-    guifg = colors.common.base09,
-    gui = "reverse",
+    fg = colors.common.base09,
+    reverse = true,
   },
   ["CommandMode"] = {
-    guifg = colors.common.base04,
-    gui = "reverse",
+    fg = colors.common.base04,
+    reverse = true,
   },
   ["Warnings"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
   ["healthError"] = {
-    guifg = colors.common.base11,
+    fg = colors.common.base11,
   },
   ["healthSuccess"] = {
-    guifg = colors.common.base14,
+    fg = colors.common.base14,
   },
   ["healthWarning"] = {
-    guifg = colors.common.base15,
+    fg = colors.common.base15,
   },
 }
 

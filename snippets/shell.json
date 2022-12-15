@@ -35,7 +35,7 @@
   "else": {
     "prefix": "else",
     "body": "else\n\t${0:command}",
-    "description": "else portion of the conditional (if statement)"
+    "description": "else"
   },
   "for_in": {
     "prefix": "for_in",

@@ -1,9 +1,8 @@
 return {
   base_dirs = {
-    { path = "~/Dotfiles/dots.sh/config/_standalone/nvim" },
-    { path = "~/Dotfiles/dots.sh" },
+    {path = "~/dotfiles"}
   },
-  hidden_files = true,
+  hidden_files = true
 }
 
 -- vim:ft=lua

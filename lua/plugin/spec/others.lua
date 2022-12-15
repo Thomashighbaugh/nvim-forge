@@ -2,27 +2,32 @@
 --- NOTE: urlshortner, minimaps, discord-rpc, scrollbar, etc.
 local use = require("packer").use
 
+local disabled = require("control.disabled")
+
 use(
   {
     "rktjmp/paperplanes.nvim",
     config = function()
       require("plugin.config.others.paperplanes")
     end,
-    cmd = "PP"
+    cmd = "PP",
+    disable = disabled["paperplanes.nvim"]
   }
 )
 
 use(
   {
     "rinx/nvim-minimap",
-    cmd = {"MinimapOpen", "MinimapClose", "MinimapRefresh", "MinimapToggle"}
+    cmd = {"MinimapOpen", "MinimapClose", "MinimapRefresh", "MinimapToggle"},
+    disable = disabled["nvim-minimap"]
   }
 )
 
 use(
   {
     "tpope/vim-dispatch",
-    cmd = {"Dispatch", "Make", "Focus", "Start"}
+    cmd = {"Dispatch", "Make", "Focus", "Start"},
+    disable = disabled["vim-dispatch"]
   }
 )
 
@@ -32,19 +37,8 @@ use(
     event = "InsertEnter",
     config = function()
       require("plugin.config.others.presence")
-    end
-  }
-)
-
-use(
-  {
-    "KadoBOT/nvim-spotify",
-    wants = "telescope.nvim",
-    config = function()
-      require("plugin.config.others.spotify")
     end,
-    run = "make",
-    cmd = {"SpotifyDevices", "Spotify"}
+    disable = disabled["presence.nvim"]
   }
 )
 
@@ -61,7 +55,8 @@ use(
     },
     config = function()
       require("plugin.config.others.neoscroll")
-    end
+    end,
+    disable = disabled["neoscroll.nvim"]
   }
 )
 
@@ -72,7 +67,8 @@ use(
     setup = function()
       require("plugin.config.others.scrollbar")
     end,
-    module = "scrollbar"
+    module = "scrollbar",
+    disable = disabled["scrollbar.nvim"]
   }
 )
 

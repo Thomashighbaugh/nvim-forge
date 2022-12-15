@@ -2,135 +2,145 @@
 --- NOTE: bookmarks, auto-save, file explorer, etc.
 local use = require("packer").use
 
-use({"tweekmonster/haunted.vim"})
+local disabled = require("control.disabled")
 
-use(
-  {
-    "MattesGroeger/vim-bookmarks",
-    setup = function()
-      require("plugin.config.workflow.bookmarks")
-    end,
-    cmd = "BookmarkToggle",
-    event = {
-      "InsertEnter",
-      "CmdlineEnter",
-      "CursorMoved"
-    }
-  }
-)
+use({ "tweekmonster/haunted.vim", cmd = "Haunt", disable = disabled["haunted.vim"] })
 
-use(
-  {
-    "tjdevries/train.nvim",
-    cmd = {
-      "TrainUpDown",
-      "TrainWord",
-      "TrainTextObj"
-    }
-  }
-)
+use({
+  "MattesGroeger/vim-bookmarks",
+  setup = function()
+    require("plugin.config.workflow.bookmarks")
+  end,
+  cmd = "BookmarkToggle",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter",
+    "CursorMoved",
+  },
+  disable = disabled["vim-bookmarks"],
+})
 
-use(
-  {
-    "kevinhwang91/rnvimr",
-    cmd = {
-      "RnvimrToggle",
-      "RnvimrResize"
-    },
-    setup = function()
-      require("plugin.config.workflow.rnvimr")
-    end
-  }
-)
+use({
+  "tjdevries/train.nvim",
+  cmd = {
+    "TrainUpDown",
+    "TrainWord",
+    "TrainTextObj",
+  },
+  disable = disabled["train.nvim"],
+})
 
-use(
-  {
-    "kyazdani42/nvim-tree.lua",
-    cmd = {"NvimTreeToggle", "NvimTreeRefresh", "NvimTreeFocus"},
-    config = function()
-      require("plugin.config.workflow.nvimtree")
-    end
-  }
-)
+use({
+  "kevinhwang91/rnvimr",
+  cmd = {
+    "RnvimrToggle",
+    "RnvimrResize",
+  },
+  setup = function()
+    require("plugin.config.workflow.rnvimr")
+  end,
+  disable = disabled["rnvimr"],
+})
 
-use(
-  {
-    "phaazon/hop.nvim",
-    cmd = {"HopWord", "HopLine", "HopChar1", "HopChar2", "HopPattern"},
-    config = function()
-      require("plugin.config.workflow.hop")
-    end
-  }
-)
+use({
+  "kyazdani42/nvim-tree.lua",
+  cmd = { "NvimTreeToggle", "NvimTreeRefresh", "NvimTreeFocus" },
+  config = function()
+    require("plugin.config.workflow.nvimtree")
+  end,
+  disable = disabled["nvim-tree.lua"],
+})
 
-use(
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    config = function()
-      require("plugin.config.workflow.undotree")
-    end
-  }
-)
+use({
+  "phaazon/hop.nvim",
+  cmd = { "HopWord", "HopLine", "HopChar1", "HopChar2", "HopPattern" },
+  config = function()
+    require("plugin.config.workflow.hop")
+  end,
+  disable = disabled["hop.nvim"],
+})
 
-use(
-  {
-    "max397574/better-escape.nvim",
-    config = function()
-      require("plugin.config.workflow.escape")
-    end,
-    event = "InsertLeave"
-  }
-)
+use({
+  "Pocco81/AutoSave.nvim",
+  cmd = { "ASOn", "ASOff", "ASToggle" },
+  config = function()
+    require("plugin.config.workflow.autosave")
+  end,
+  disable = disabled["AutoSave.nvim"],
+})
 
-use({"abecodes/tabout.nvim", opt = true})
+use({ "Shatur/neovim-session-manager", cmd = "SessionManager", disable = disabled["neovim-session-manager"] })
 
-use(
-  {
-    "akinsho/toggleterm.nvim",
-    config = function()
-      require("plugin.config.workflow.toggleterm")
-    end,
-    module = {"toggleterm"},
-    cmd = {"ToggleTerm", "ToggleTermToggleAll"}
-  }
-)
+use({
+  "mbbill/undotree",
+  disable = disabled["undotree"],
+  cmd = "UndotreeToggle",
+  config = function()
+    require("plugin.config.workflow.undotree")
+  end,
+})
 
-use(
-  {
-    "folke/which-key.nvim",
-    event = "UIEnter",
-    config = function()
-      require("plugin.config.workflow.whichkey")
-    end
-  }
-)
+use({
+  "max397574/better-escape.nvim",
+  config = function()
+    require("plugin.config.workflow.escape")
+  end,
+  event = "InsertLeave",
+  disable = disabled["better-escape.nvim"],
+})
 
-use(
-  {
-    "ggandor/lightspeed.nvim",
-    opt = true
-  }
-)
+use({ "abecodes/tabout.nvim", opt = true, disable = disabled["tabout.nvim"] })
 
-use({"ggandor/leap.nvim", opt = true})
+use({
+  "akinsho/toggleterm.nvim",
+  disable = disabled["toggleterm.nvim"],
+  config = function()
+    require("plugin.config.workflow.toggleterm")
+  end,
+  module = { "toggleterm" },
+  cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+})
 
-use(
-  {
-    "bennypowers/nvim-regexplainer",
-    config = function()
-      require("plugin.config.workflow.regexplainer")
-    end,
-    wants = "nui.nvim",
-    after = "nvim-treesitter"
-  }
-)
+use({
+  "folke/which-key.nvim",
+  event = "UIEnter",
+  disable = disabled["which-key.nvim"],
+  config = function()
+    require("plugin.config.workflow.whichkey")
+  end,
+})
 
-use(
-  {
-    "winston0410/cmd-parser.nvim",
-    event = "CmdlineEnter"
-  }
-)
+use({
+  "ggandor/lightspeed.nvim",
+  opt = true,
+  disable = disabled["lightspeed.nvim"],
+})
+
+use({ "ggandor/leap.nvim", opt = true, disable = disabled["leap.nvim"] })
+
+use({
+  "bennypowers/nvim-regexplainer",
+  config = function()
+    require("plugin.config.workflow.regexplainer")
+  end,
+  wants = "nui.nvim",
+  after = "nvim-treesitter",
+  disable = disabled["nvim-regexplainer"],
+})
+
+use({
+  "winston0410/cmd-parser.nvim",
+  event = "CmdlineEnter",
+  disable = disabled["cmd-parser.nvim"],
+})
+
+use({
+  "kevinhwang91/nvim-hlslens",
+  event = "UIEnter",
+  config = function()
+    require("plugin.config.workflow.hlslens")
+  end,
+  disable = disabled["nvim-hlslens"]
+})
 
 -- vim:ft=lua

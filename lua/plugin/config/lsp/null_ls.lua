@@ -19,49 +19,64 @@ local sources = {
     end,
   }),
   formatting.google_java_format.with({ extra_args = { "--aosp" } }),
+  formatting.shfmt.with({
+    extra_args = function(params)
+      return {
+        "--indent",
+        vim.api.nvim_buf_get_option(params.bufnr, "shiftwidth"),
+        "--binary-next-line",
+        "--case-indent",
+        "--space-redirects",
+        "--keep-padding"
+      }
+    end
+  }),
 
-  formatting.prettier,
   formatting.autopep8,
-  formatting.black,
-  -- formatting.clang_format,
-  formatting.cmake_format,
-  -- formatting.codespell,
   formatting.eslint,
-  formatting.fish_indent,
   formatting.fixjson,
   formatting.isort,
   formatting.json_tool,
   formatting.latexindent,
   formatting.markdownlint,
-  formatting.nginx_beautifier,
-  formatting.nixfmt,
-  formatting.qmlformat,
   formatting.rustfmt,
   formatting.rustywind,
-  formatting.shellharden,
-  formatting.shfmt,
   formatting.sqlformat,
   formatting.stylelint,
-  formatting.taplo,
   formatting.trim_whitespace,
-  -- formatting.uncrustify,
-  -- formatting.astyle,
 
-  -- code_actions.gitsigns,
   code_actions.shellcheck,
-  code_actions.statix,
-  code_actions.proselint,
 
-  hover.dictionary,
-  -- completion.luasnip,
-  diagnostics.standardjs,
   diagnostics.chktex,
   diagnostics.stylelint,
-  diagnostics.qmllint,
   diagnostics.shellcheck,
   diagnostics.vint,
-  diagnostics.write_good,
-  diagnostics.yamllint,
+
+  -- hover.dictionary,
+  -- completion.luasnip,
+
+  -- diagnostics.qmllint,
+  -- diagnostics.write_good,
+  -- diagnostics.standardjs,
+  -- diagnostics.yamllint,
+
+  -- formatting.fish_indent,
+  -- formatting.prettier,
+  -- formatting.black,
+  -- formatting.cmake_format,
+  -- formatting.nginx_beautifier,
+  -- formatting.nixfmt,
+  -- formatting.qmlformat,
+  -- formatting.taplo,
+  -- formatting.shellharden,
+  -- formatting.uncrustify,
+  -- formatting.astyle,
+  -- formatting.clang_format,
+  -- formatting.codespell,
+
+  -- code_actions.statix,
+  -- code_actions.proselint,
+  -- code_actions.gitsigns,
 }
 
 local helpers = require("null-ls.helpers")

@@ -5,12 +5,12 @@ return {
     link = "Keyword",
   },
   ["luaDocTag"] = {
-    guifg = colors.syntax.color15,
-    gui = "bold",
+    fg = colors.syntax.color15,
+    bold = true,
   },
   ["luaFuncTable"] = {
-    guifg = colors.syntax.color06,
-    gui = "bold",
+    fg = colors.syntax.color06,
+    bold = true,
   },
   ["luaIn"] = {
     link = "Keyword",
@@ -40,28 +40,28 @@ return {
     link = "Conditional",
   },
   ["luaSpecialTable"] = {
-    guifg = colors.syntax.color10,
-    gui = "bold",
+    fg = colors.syntax.color10,
+    bold = true,
   },
   ["luaFuncParen"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["luaFuncParens"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["luaFuncArgName"] = {
-    guifg = colors.syntax.color19,
+    fg = colors.syntax.color19,
   },
   ["luaTable"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["luaSpecial"] = {
-    guifg = colors.syntax.color05,
-    gui = "bold",
+    fg = colors.syntax.color05,
+    bold = true,
   },
   ["luaEllipsis"] = {
-    guifg = colors.syntax.color01,
-    gui = "bold",
+    fg = colors.syntax.color01,
+    bold = true,
   },
 }
 

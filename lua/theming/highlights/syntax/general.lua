@@ -2,124 +2,124 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["Function"] = {
-    guifg = colors.syntax.color09,
-    gui = "bold",
+    fg = colors.syntax.color09,
+    bold = true,
   },
   ["Method"] = {
-    guifg = colors.syntax.color01,
-    gui = "bold",
+    fg = colors.syntax.color01,
+    bold = true,
   },
   ["Type"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["StorageClass"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["Float"] = {
-    guifg = colors.syntax.color01,
+    fg = colors.syntax.color01,
   },
   ["Number"] = {
-    guifg = colors.syntax.color06,
+    fg = colors.syntax.color06,
   },
   ["Boolean"] = {
-    guifg = colors.syntax.color03,
-    gui = "bold",
+    fg = colors.syntax.color03,
+    bold = true,
   },
   ["String"] = {
-    guifg = colors.syntax.color15,
+    fg = colors.syntax.color15,
   },
   ["Character"] = {
-    guifg = colors.syntax.color05,
+    fg = colors.syntax.color05,
   },
   ["Constant"] = {
-    guifg = colors.syntax.color00,
-    gui = "bold",
+    fg = colors.syntax.color00,
+    bold = true,
   },
   ["Keyword"] = {
-    guifg = colors.syntax.color16,
-    gui = "bold",
+    fg = colors.syntax.color16,
+    bold = true,
   },
   ["Structure"] = {
     link = "Keyword",
   },
   ["Label"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["Operator"] = {
-    guifg = colors.syntax.color19,
+    fg = colors.syntax.color19,
   },
   ["Exception"] = {
-    guifg = colors.syntax.color02,
+    fg = colors.syntax.color02,
   },
   ["PreProc"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["Include"] = {
-    guifg = colors.syntax.color02,
+    fg = colors.syntax.color02,
   },
   ["Macro"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["Typedef"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["PreCondit"] = {
-    guifg = colors.syntax.color10,
+    fg = colors.syntax.color10,
   },
   ["Define"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["Special"] = {
-    guifg = colors.syntax.color00,
-    gui = "bold",
+    fg = colors.syntax.color00,
+    bold = true,
   },
   ["SpecialChar"] = {
-    guifg = colors.syntax.color09,
+    fg = colors.syntax.color09,
   },
   ["SpecialComment"] = {
-    guifg = colors.syntax.color11,
-    gui = "bold",
+    fg = colors.syntax.color11,
+    bold = true,
   },
   ["Comment"] = {
-    guifg = colors.syntax.color14,
+    fg = colors.syntax.color14,
   },
   ["Tag"] = {
-    guifg = colors.syntax.color16,
+    fg = colors.syntax.color16,
   },
   ["Delimiter"] = {
-    guifg = colors.syntax.color16,
+    fg = colors.syntax.color16,
   },
   ["Debug"] = {
-    guifg = colors.syntax.color17,
+    fg = colors.syntax.color17,
   },
   ["Underlined"] = {
-    guifg = colors.syntax.color15,
-    gui = "underline",
+    fg = colors.syntax.color15,
+    underline = true,
   },
   ["Ignore"] = {
-    guifg = colors.syntax.color18,
+    fg = colors.syntax.color18,
   },
   ["Error"] = {
-    guifg = colors.syntax.color17,
-    gui = "underline,",
+    fg = colors.syntax.color17,
+    underline = true,
   },
   ["Todo"] = {
-    guifg = colors.syntax.color10,
+    fg = colors.syntax.color10,
   },
   ["Conditional"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["Repeat"] = {
-    guifg = colors.syntax.color03,
+    fg = colors.syntax.color03,
   },
   ["Conceal"] = {
-    guifg = "NONE",
+    fg = "NONE",
   },
   ["Statement"] = {
-    guifg = colors.syntax.color00,
+    fg = colors.syntax.color00,
   },
   ["Identifier"] = {
-    guifg = colors.syntax.color04,
+    fg = colors.syntax.color04,
   },
 }
 

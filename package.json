@@ -1,12 +1,12 @@
 {
-  "name": "nvim-forge",
+  "name": "nvim-config-plus-snippets",
   "os": [
     "linux"
   ],
   "arch": "x64",
   "license": "GPL-3.0",
   "version": "0.0.1",
-  "homepage": "",
+  "homepage": "https://github.com/dharmx/KrakeNvim",
   "keywords": [
     "neovim",
     "config",
@@ -14,30 +14,27 @@
     "linux"
   ],
   "description": "My personal neovim configurations",
-  "author": "pagankeymaster <pagankeymaster@gmail.com> (https://github.com/pagankeymaster)",
+  "author": "dharmx <dharmx.dev@gmail.com> (https://github.com/dharmx)",
   "engines": {
     "vscode": "^1.11.0"
   },
   "contributes": {
     "snippets": [
       {
-        "language": "plaintext",
-        "path": "./snippets/global.json"
+        "language": [
+          "meson",
+          "build"
+        ],
+        "path": "./snippets/meson.json"
       },
       {
-        "language": "markdown",
-        "path": "./snippets/global.json"
-      },
-      {
-        "language": "tex",
-        "path": "./snippets/global.json"
-      },
-      {
-        "language": "html",
-        "path": "./snippets/global.json"
-      },
-      {
-        "language": "global",
+        "language": [
+          "plaintext",
+          "markdown",
+          "tex",
+          "html",
+          "global"
+        ],
         "path": "./snippets/global.json"
       },
       {
@@ -49,7 +46,10 @@
         "path": "./snippets/cpp.json"
       },
       {
-        "language": "gitcommit",
+        "language": [
+          "gitcommit",
+          "NeogitCommitMessage"
+        ],
         "path": "./snippets/gitcommit.json"
       },
       {
@@ -81,91 +81,65 @@
         "path": "./snippets/sql.json"
       },
       {
-        "language": "shellscript",
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
         "path": "./snippets/shell.json"
       },
       {
-        "language": "shell",
-        "path": "./snippets/shell.json"
-      },
-      {
-        "language": "sh",
-        "path": "./snippets/shell.json"
-      },
-      {
-        "language": "zsh",
-        "path": "./snippets/shell.json"
-      },
-      {
-        "language": "markdown",
+        "language": [
+          "markdown",
+          "rmd"
+        ],
         "path": "./snippets/markdown.json"
       },
       {
-        "language": "rmd",
-        "path": "./snippets/markdown.json"
+        "language": [
+          "plaintex",
+          "tex"
+        ],
+        "path": "./snippets/latex.json"
       },
       {
         "language": "java",
         "path": "./snippets/java.json"
       },
       {
-        "language": "html",
+        "language": [
+          "html",
+          "jade",
+          "pug",
+          "eruby"
+        ],
         "path": "./snippets/html.json"
       },
       {
-        "language": "jade",
-        "path": "./snippets/html.json"
-      },
-      {
-        "language": "pug",
-        "path": "./snippets/html.json"
-      },
-      {
-        "language": "eruby",
-        "path": "./snippets/html.json"
-      },
-      {
-        "language": "css",
+        "language": [
+          "css",
+          "scss",
+          "sass",
+          "less",
+          "stylus"
+        ],
         "path": "./snippets/css.json"
       },
       {
-        "language": "scss",
-        "path": "./snippets/css.json"
-      },
-      {
-        "language": "sass",
-        "path": "./snippets/css.json"
-      },
-      {
-        "language": "less",
-        "path": "./snippets/css.json"
-      },
-      {
-        "language": "stylus",
-        "path": "./snippets/css.json"
-      },
-      {
-        "language": "javascript",
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "svelte"
+        ],
         "path": "./snippets/javascript/javascript.json"
       },
       {
-        "language": "javascriptreact",
-        "path": "./snippets/javascript/javascript.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/javascript/javascript.json"
-      },
-      {
-        "language": "svelte",
-        "path": "./snippets/javascript/javascript.json"
-      },
-      {
-        "language": "typescriptreact",
-        "path": "./snippets/javascript/typescript.json"
-      },
-      {
-        "language": "typescriptreact",
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
         "path": "./snippets/javascript/typescript.json"
       },
       {
@@ -253,6 +227,20 @@
         "path": "./snippets/kotlin.json"
       },
       {
+        "language": [
+          "plaintex",
+          "tex"
+        ],
+        "path": "./snippets/latex/latex-snippets.json"
+      },
+      {
+        "language": [
+          "plaintex",
+          "tex"
+        ],
+        "path": "./snippets/latex/vscode-latex-snippets.json"
+      },
+      {
         "language": "org",
         "path": "./snippets/org.json"
       },
@@ -276,9 +264,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pagankeymaster/KrakeNvim.git"
+    "url": "git+https://github.com/dharmx/KrakeNvim.git"
   },
   "bugs": {
-    "url": "https://github.com/pagankeymaster/KrakeNvim/issues"
+    "url": "https://github.com/dharmx/KrakeNvim/issues"
   }
 }

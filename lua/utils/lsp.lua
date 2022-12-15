@@ -26,24 +26,23 @@ function M.format(buffer)
     timeout_ms = 3000, -- NOTE: Ignored if async is true.
     async = true,
     bufnr = buffer,
-    filter = function(clients)
-      return vim.tbl_filter(function(client)
-        if vim.bo.filetype == "lua" then
-          if client.name == "sumneko_lua" then
-            return false
-          end
-          return client.name == "null-ls"
-        end
-        if client.name == "pyright" then
+    filter = function(client)
+      if vim.bo.filetype == "lua" then
+        if client.name == "sumneko_lua" then
           return false
         end
-        return true
-      end, clients)
+        return client.name == "null-ls"
+      end
+      if client.name == "pyright" then
+        return false
+      end
+      return true
     end,
+    clients,
   })
 end
 
-function M.on_attach()
+function M.on_attach(notify)
   return function(client, buffer)
     require("mapping.lsp").setup(client, buffer)
     require("plugin.config.lsp.autocmds").setup(client, buffer)
@@ -54,11 +53,13 @@ function M.on_attach()
       client.config.flags.allow_incremental_sync = true
     end
 
-    nv.notify({
-      message = "LSP has been initialised.",
-      title = "LSP: " .. client.name,
-      icon = " ",
-    })
+    if notify ~= nil or notify then
+      nv.notify({
+        message = "LSP has been initialised.",
+        title = "LSP: " .. client.name,
+        icon = " ",
+      })
+    end
   end
 end
 

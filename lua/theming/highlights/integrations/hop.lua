@@ -2,18 +2,18 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["HopNextKey"] = {
-    guifg = colors.common.base08,
-    gui = "bold",
+    fg = colors.common.base08,
+    bold = true,
   },
   ["HopNextKey1"] = {
-    guifg = colors.common.base07,
-    gui = "bold",
+    fg = colors.common.base07,
+    bold = true,
   },
   ["HopNextKey2"] = {
-    guifg = colors.common.base07,
+    fg = colors.common.base07,
   },
   ["HopUnmatched"] = {
-    guifg = colors.common.base03,
+    fg = colors.common.base03,
   },
 }
 

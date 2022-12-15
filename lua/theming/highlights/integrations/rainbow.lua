@@ -2,25 +2,25 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["rainbowcol1"] = {
-    guifg = colors.rainbow.cobalt,
+    fg = colors.rainbow.cobalt,
   },
   ["rainbowcol2"] = {
-    guifg = colors.rainbow.pink,
+    fg = colors.rainbow.pink,
   },
   ["rainbowcol3"] = {
-    guifg = colors.rainbow.cyan,
+    fg = colors.rainbow.cyan,
   },
   ["rainbowcol4"] = {
-    guifg = colors.rainbow.green,
+    fg = colors.rainbow.green,
   },
   ["rainbowcol5"] = {
-    guifg = colors.rainbow.yellow,
+    fg = colors.rainbow.yellow,
   },
   ["rainbowcol6"] = {
-    guifg = colors.rainbow.orange,
+    fg = colors.rainbow.orange,
   },
   ["rainbowcol7"] = {
-    guifg = colors.rainbow.purple,
+    fg = colors.rainbow.purple,
   },
 }
 

@@ -2,13 +2,13 @@ local colors = require("utils.theming").get_active_theme()
 
 return {
   ["LightBulbFloatWin"] = {
-    guifg = colors.common.base09,
-    guibg = colors.shades.shade08,
-    gui = "bold",
+    fg = colors.common.base09,
+    bg = colors.shades.shade08,
+    bold = true,
   },
   ["LightBulbVirtualText"] = {
-    guifg = colors.common.base12,
-    gui = "bold",
+    fg = colors.common.base12,
+    bold = true,
   },
 }
 

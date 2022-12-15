@@ -27,74 +27,74 @@ function M.set_stl_float(float)
   local colors = require("utils.theming").get_active_theme()
   if not float then
     hi("StatusLineScopesReverse", {
-      guifg = colors.shades.shade06,
-      guibg = colors.shades.shade06,
+      fg = colors.shades.shade06,
+      bg = colors.shades.shade06,
     })
     hi("StatusLineBG", {
-      guibg = colors.shades.shade06,
-      guifg = colors.shades.shade06,
+      bg = colors.shades.shade06,
+      fg = colors.shades.shade06,
     })
     hi("StatusLineScopesON", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base14,
-      gui = "bold",
+      bg = colors.shades.shade06,
+      fg = colors.common.base14,
+      bold = true,
     })
     hi("StatusLineScopesOFF", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base11,
-      gui = "bold",
+      bg = colors.shades.shade06,
+      fg = colors.common.base11,
+      bold = true,
     })
     hi("StatusLineError", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base11,
+      bg = colors.shades.shade06,
+      fg = colors.common.base11,
     })
     hi("StatusLineWarn", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base12,
+      bg = colors.shades.shade06,
+      fg = colors.common.base12,
     })
     hi("StatusLineHint", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base09,
+      bg = colors.shades.shade06,
+      fg = colors.common.base09,
     })
     hi("StatusLineInfo", {
-      guibg = colors.shades.shade06,
-      guifg = colors.common.base13,
+      bg = colors.shades.shade06,
+      fg = colors.common.base13,
     })
     return
   end
   hi("StatusLineError", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base11,
+    bg = colors.common.base00,
+    fg = colors.common.base11,
   })
   hi("StatusLineWarn", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base12,
+    bg = colors.common.base00,
+    fg = colors.common.base12,
   })
   hi("StatusLineHint", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base09,
+    bg = colors.common.base00,
+    fg = colors.common.base09,
   })
   hi("StatusLineInfo", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base13,
+    bg = colors.common.base00,
+    fg = colors.common.base13,
   })
   hi("StatusLineBG", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base00,
+    bg = colors.common.base00,
+    fg = colors.common.base00,
   })
   hi("StatusLineScopesReverse", {
-    guifg = colors.common.base00,
-    guibg = colors.common.base00,
+    fg = colors.common.base00,
+    bg = colors.common.base00,
   })
   hi("StatusLineScopesON", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base14,
-    gui = "bold",
+    bg = colors.common.base00,
+    fg = colors.common.base14,
+    bold = true,
   })
   hi("StatusLineScopesOFF", {
-    guibg = colors.common.base00,
-    guifg = colors.common.base11,
-    gui = "bold",
+    bg = colors.common.base00,
+    fg = colors.common.base11,
+    bold = true,
   })
 end
 
@@ -105,59 +105,59 @@ end
 function M.set_colors(current)
   local colors = theming.get_active_theme()
   hi("StatusLineFilename", {
-    guifg = colors.modes[current],
-    guibg = colors.common.base01,
+    fg = colors.modes[current],
+    bg = colors.common.base01,
   })
   hi("StatusLineFilenameReverse", {
-    guifg = colors.common.base01,
-    guibg = colors.modes[current],
+    fg = colors.common.base01,
+    bg = colors.modes[current],
   })
   hi("StatusLineFilenameReverseExtra", {
-    guifg = colors.modes[current],
+    fg = colors.modes[current],
   })
   hi("StatusLineMode", {
-    guibg = colors.modes[current],
-    guifg = colors.common.base02,
-    gui = "bold",
+    bg = colors.modes[current],
+    fg = colors.common.base02,
+    bold = true,
   })
   hi("StatusLineModeReverse", {
-    guibg = colors.common.base15,
-    guifg = colors.modes[current],
+    bg = colors.common.base15,
+    fg = colors.modes[current],
   })
   hi("StatusLineInactive", {
-    guibg = colors.common.base00,
-    guifg = colors.modes[current],
+    bg = colors.common.base00,
+    fg = colors.modes[current],
   })
   hi("StatusLineFilenameExtraExtraRight", {
-    guibg = colors.modes[current],
-    guifg = colors.common.base01,
+    bg = colors.modes[current],
+    fg = colors.common.base01,
   })
   hi("StatusLinePosition", {
-    guifg = colors.common.base01,
-    guibg = colors.modes[current],
-    gui = "bold",
+    fg = colors.common.base01,
+    bg = colors.modes[current],
+    bold = true,
   })
   hi("StatusLinePositionLast", {
-    guifg = colors.common.base15,
-    guibg = colors.modes[current],
-    gui = "bold",
+    fg = colors.common.base15,
+    bg = colors.modes[current],
+    bold = true,
   })
   hi("StatusLinePositionReverse", {
-    guifg = colors.modes[current],
-    guibg = colors.common.base03,
+    fg = colors.modes[current],
+    bg = colors.common.base03,
   })
   hi("StatusLineFilenameExtraExtraRight", {
-    guibg = colors.modes[current],
-    guifg = colors.common.base01,
+    bg = colors.modes[current],
+    fg = colors.common.base01,
   })
   hi("StatusLineLSP", {
-    guifg = colors.modes[current],
-    guibg = colors.common.base01,
-    gui = "bold",
+    fg = colors.modes[current],
+    bg = colors.common.base01,
+    bold = true,
   })
   hi("BufferLineTabClose", {
-    guifg = colors.common.base01,
-    guibg = colors.modes[current],
+    fg = colors.common.base01,
+    bg = colors.modes[current],
   })
 end
 

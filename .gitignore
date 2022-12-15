@@ -50,3 +50,4 @@ test.lua
 node_modules/
 
 **/*.spl
+.sourcery

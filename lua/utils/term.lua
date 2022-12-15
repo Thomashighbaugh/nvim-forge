@@ -12,17 +12,16 @@ local api = vim.api
 function T._TERM_KEYMAPS()
   local options = {
     silent = true,
-    noremap = false,
+    noremap = true,
     nowait = true,
   }
 
-  -- NOTE: Migrate to vim.keymap.set
-  api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], options)
-  api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], options)
-  api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], options)
-  api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], options)
-  api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], options)
-  api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], options)
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], options)
+  vim.keymap.set("t", "jk", [[<C-\><C-n>]], options)
+  vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-W>h]], options)
+  vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-W>j]], options)
+  vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-W>k]], options)
+  vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-W>l]], options)
 end
 
 -- @see help toggleterm-Caveats
