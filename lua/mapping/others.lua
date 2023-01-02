@@ -34,20 +34,17 @@ M.mappings = {
   },
   ["<leader>v"] = {
     "<CMD>vs | terminal<CR>",
-    " Vertical split"
+    " Vertical split"
   },
   ["<leader>h"] = {
     "<CMD>sp | terminal<CR>",
-    " Horizontal split"
+    " Horizontal split"
   },
-  ["<leader>V"] = {
-    "<CMD>vs | new<CR>",
-    " Vertical split"
+  ["<leader>ga"] = {
+    "<CMD>lua require('cosmic-ui').code_actions()<CR>",
+    "Code Actions"
   },
-  ["<leader>H"] = {
-    "<CMD>sp | new<CR>",
-    " Horizontal split"
-  },
+  
   ["<Esc>"] = {
     "<CMD>noh<CR>",
     " Remove highlights"
@@ -92,6 +89,7 @@ M.mappings = {
       "<CMD>PP<CR>",
       "Save buffer to dpaste.com"
     }
+
   }
 }
 

@@ -11,7 +11,7 @@ M.setup = function(client, buffer)
         " Hover",
       },
       ["c"] = {
-        "<CMD>lua vim.lsp.buf.code_action()<CR>",
+        "<CMD>lua require('cosmic-ui').code_actions()<CR>",
         " Code action",
       },
       ["r"] = {
