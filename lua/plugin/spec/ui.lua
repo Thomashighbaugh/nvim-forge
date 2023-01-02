@@ -9,7 +9,6 @@ use {
     require("plugin.config.ui.winbar")
   end,
   event = "UIEnter",
-  disable = disabled["winbar.nvim"]
 }
 
 use {
@@ -18,7 +17,6 @@ use {
         require("plugin.config.ui.winsep")
     end,
     event = "UIEnter",
-    disable = disabled["colorful-winsep.nvim"]
 }
 
 use({
@@ -27,7 +25,6 @@ use({
     require("plugin.config.ui.specs")
   end,
   event = { "CursorMoved", "CursorMovedI" },
-  disable = disabled["specs.nvim"],
 })
 
 use({
@@ -36,7 +33,6 @@ use({
     require("plugin.config.ui.incline")
   end,
   wants = "nvim-web-devicons",
-  disable = disabled["incline.nvim"]
 })
 
 use({
@@ -45,7 +41,6 @@ use({
     require("plugin.config.ui.reach")
   end,
   module = "reach",
-  disable = disabled["reach.nvim"],
 })
 
 use({
@@ -56,7 +51,6 @@ use({
     require("plugin.config.ui.bufferline")
   end,
   wants = "nvim-web-devicons",
-  disable = disabled["bufferline.nvim"],
 })
 
 use({
@@ -65,7 +59,6 @@ use({
     require("plugin.config.ui.devicons")
   end,
   module = "nvim-web-devicons",
-  disable = disabled["nvim-web-devicons"],
 })
 
 use({
@@ -81,7 +74,7 @@ use({
   config = function()
     require("plugin.config.ui.blankline")
   end,
-  disable = disabled["indent-blankline.nvim"],
+
 })
 
 use({
@@ -90,7 +83,7 @@ use({
   config = function()
     require("plugin.config.ui.finecmdline")
   end,
-  disable = disabled["fine-cmdline.nvim"],
+
 })
 
 use({
@@ -105,7 +98,7 @@ use({
   config = function()
     require("plugin.config.ui.searchbox")
   end,
-  disable = disabled["searchbox.nvim"],
+
 })
 
 use({
@@ -118,7 +111,7 @@ use({
     "Alpha",
     "AlphaRedraw",
   },
-  disable = disabled["alpha-nvim"],
+
 })
 
 use({
@@ -127,7 +120,7 @@ use({
     require("plugin.config.ui.scrollbar")
   end,
   after = "gitsigns.nvim",
-  disable = disabled["nvim-scrollbar"],
+
 })
 
 use({
@@ -135,8 +128,15 @@ use({
   config = function()
     require("plugin.config.workflow.sidebar")
   end,
-  disable = disabled["sidebar.nvim"],
   after = "nvim-lsp-installer",
 })
 
+-- Why Not?
+use({
+   'CosmicNvim/cosmic-ui',
+    requires = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('cosmic-ui').setup()
+    end,
+})
 -- vim:ft=lua
