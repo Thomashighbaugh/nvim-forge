@@ -7,14 +7,6 @@ local lsp = vim.lsp
 local fn = vim.fn
 local cmd = vim.cmd
 
-alias("Focus", function()
-  vim.o.laststatus = 0
-  vim.o.showtabline = 0
-  vim.api.nvim_command(":TZAtaraxis")
-end, {
-  desc = "TrueZen Ataraxis + No StatusLine + No BufferLine",
-})
-
 alias("LoadNullLsp", function()
   require("null-ls")
 end, {
@@ -34,12 +26,6 @@ alias("CommitList", function()
   require("telescope.builtin").git_commits()
 end, {
   desc = "View git commits in a telescope window.",
-})
-
-alias("Shade", function()
-  require("packer").loader("shade.nvim")
-end, {
-  desc = "Load shade.nvim health plugin.",
 })
 
 alias("PersistClip", function()

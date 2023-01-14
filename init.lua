@@ -12,7 +12,8 @@ if not pk_install or not pk_compile then
   require("plugin.spec")
 end
 
-pcall(require, "plugin.config.core.impatient")
+--pcall(require, "plugin.config.core.impatient")
+require("plugin.config.core.impatient")
 require("stline").setup()
 
 -- vim:filetype=lua

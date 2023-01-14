@@ -7,7 +7,6 @@ local disabled = require("control.disabled")
 use({
   "nvim-lua/popup.nvim",
   opt = true,
-  disable = disabled["popup.nvim"],
 })
 
 use({
@@ -16,7 +15,6 @@ use({
     "CmdlineEnter",
     "InsertEnter",
   },
-  disable = disabled["stabilize.nvim"],
 })
 
 use({
@@ -25,17 +23,15 @@ use({
   config = function()
     require("plugin.config.utils.notify")
   end,
-  disable = disabled["nvim-notify"],
 })
 
 use({
   "anuvyklack/hydra.nvim",
   event = "UIEnter",
-  disable = disabled["hydra.nvim"]
 })
 
-use({ "MunifTanjim/nui.nvim", module = "nui", disable = disabled["nui.nvim"] })
+use({ "MunifTanjim/nui.nvim", module = "nui" })
 
-use({ "tami5/sqlite.lua", module = "sqlite", disable = disabled["sqlite.lua"] })
+use({ "tami5/sqlite.lua", module = "sqlite" })
 
 -- vim:ft=lua

@@ -6,7 +6,7 @@
   "arch": "x64",
   "license": "GPL-3.0",
   "version": "0.0.1",
-  "homepage": "https://github.com/dharmx/KrakeNvim",
+  "homepage": "https://github.com/Thomashighbaugh/nvim-forge",
   "keywords": [
     "neovim",
     "config",
@@ -14,7 +14,7 @@
     "linux"
   ],
   "description": "My personal neovim configurations",
-  "author": "dharmx <dharmx.dev@gmail.com> (https://github.com/dharmx)",
+  "author": "Thomashighbaugh (https://github.com/Thomashighbaugh)",
   "engines": {
     "vscode": "^1.11.0"
   },
@@ -264,9 +264,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dharmx/KrakeNvim.git"
+    "url": "git+https://github.com/Thomashighbaugh/nvim-forge.git"
   },
   "bugs": {
-    "url": "https://github.com/dharmx/KrakeNvim/issues"
+    "url": "https://github.com/Thomashighbaugh/nvim-forge/issues"
   }
 }

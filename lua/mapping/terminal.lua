@@ -67,14 +67,6 @@ M.mappings = {
       "<CMD>ToggleTerm direction=float<CR>",
       " Float",
     },
-    ["h"] = {
-      "<CMD>ToggleTerm size=10 direction=horizontal<CR>",
-      " Horizontal",
-    },
-    ["v"] = {
-      "<CMD>ToggleTerm size=80 direction=vertical<CR>",
-      " Vertical",
-    },
   },
   ["<C-\\>"] = {
     "<CMD>ToggleTerm<CR>",

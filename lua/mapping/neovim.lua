@@ -12,7 +12,7 @@ M.mappings = {
   ["L"] = {
     "<CMD>TSStart<CR><CMD>LspStart<CR><CMD>lua require('telescope')<CR>",
     " Code ready",
-  },
+  }
 }
 
 M.options = {

@@ -1,4 +1,4 @@
-vim.api.nvim_command("set guifont=Iosevka\\ Nerd\\ Font,Cooper\\ Hewitt:h13")
+vim.api.nvim_command("set guifont=Operator\\ SSn\\ Bold,Goldman:h13")
 
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_transparency = 1.0

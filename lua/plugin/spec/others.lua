@@ -11,7 +11,6 @@ use(
       require("plugin.config.others.paperplanes")
     end,
     cmd = "PP",
-    disable = disabled["paperplanes.nvim"]
   }
 )
 
@@ -19,7 +18,6 @@ use(
   {
     "rinx/nvim-minimap",
     cmd = {"MinimapOpen", "MinimapClose", "MinimapRefresh", "MinimapToggle"},
-    disable = disabled["nvim-minimap"]
   }
 )
 
@@ -27,7 +25,6 @@ use(
   {
     "tpope/vim-dispatch",
     cmd = {"Dispatch", "Make", "Focus", "Start"},
-    disable = disabled["vim-dispatch"]
   }
 )
 
@@ -38,7 +35,6 @@ use(
     config = function()
       require("plugin.config.others.presence")
     end,
-    disable = disabled["presence.nvim"]
   }
 )
 
@@ -56,7 +52,6 @@ use(
     config = function()
       require("plugin.config.others.neoscroll")
     end,
-    disable = disabled["neoscroll.nvim"]
   }
 )
 
@@ -68,7 +63,6 @@ use(
       require("plugin.config.others.scrollbar")
     end,
     module = "scrollbar",
-    disable = disabled["scrollbar.nvim"]
   }
 )
 

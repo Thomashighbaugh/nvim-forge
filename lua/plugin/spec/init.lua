@@ -2,7 +2,7 @@ local exists = require("utils").exists
 local nv = require("utils.neovim")
 local fn = vim.fn
 
-local PACKER_BOOTSTRAP = false
+local PACKER_BOOTSTRAP = true
 local PACKER_INSTALL_PATH = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 local PACKER_COMPILE_PATH = fn.stdpath("config") .. "/lua/plugin/compiledSpec.lua"
 
@@ -43,7 +43,7 @@ require("plugin.spec.treesitter")
 require("plugin.spec.ui")
 require("plugin.spec.others")
 require("plugin.spec.cmp")
-require("plugin.spec.wellbeing")
+
 
 if PACKER_BOOTSTRAP then
   packer.on_compile_done = function()

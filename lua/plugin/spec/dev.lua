@@ -5,8 +5,7 @@ local disabled = require("control.disabled")
 
 use({
   "tjdevries/tree-sitter-lua",
-  module = "docgen",
-  disable = disabled["tree-sitter-lua"],
+  module = "docgen"
 })
 
 use({
@@ -14,8 +13,7 @@ use({
   event = "CmdlineEnter",
   setup = function()
     require("plugin.config.dev.betterlua")
-  end,
-  disable = disabled["BetterLua.vim"],
+  end
 })
 
 use({
@@ -26,14 +24,13 @@ use({
     "LuadevRun",
     "LuadevRunWord",
     "LuadevComplete",
-  },
-  disable = disabled["nvim-luadev"],
+  }
 })
 
-use({ "rafcamlet/nvim-luapad", cmd = { "Luapad", "LuaRun" }, disable = disabled["nvim-luapad"] })
-use({ "milisims/nvim-luaref", event = "CmdlineEnter", disable = disabled["nvim-luaref"] })
-use({ "nanotee/luv-vimdocs", event = "CmdlineEnter", disable = disabled["luv-vimdocs"] })
-use({ "nanotee/nvim-lua-guide", event = "CmdlineEnter", disable = disabled["nvim-lua-guide"] })
+use({ "rafcamlet/nvim-luapad", cmd = { "Luapad", "LuaRun" } })
+use({ "milisims/nvim-luaref", event = "CmdlineEnter" })
+use({ "nanotee/luv-vimdocs", event = "CmdlineEnter" })
+use({ "nanotee/nvim-lua-guide", event = "CmdlineEnter" })
 
 use({
   "shift-d/scratch.nvim",
@@ -44,8 +41,7 @@ use({
   cmd = {
     "ScratchNew",
     "ScratchEval",
-  },
-  disable = disabled["scratch.nvim"],
+  }
 })
 
 -- vim:ft=lua

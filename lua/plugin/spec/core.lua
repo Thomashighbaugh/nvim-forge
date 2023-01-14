@@ -9,15 +9,28 @@ use(
     module = "packer",
     config = function()
       require("plugin.spec")
-    end,
-    disable = disabled["packer.nvim"]
+    end
   }
 )
 
-use({"nvim-lua/plenary.nvim", disable = disabled["plenary.nvim"]})
+use({"nvim-lua/plenary.nvim"})
 
-use({"lewis6991/impatient.nvim", disable = disabled["impatient.nvim"]})
+use({"lewis6991/impatient.nvim"})
 
-use({"dharmx/nvim-colo"})
-
+--[[ use({
+  "dharmx/nvim-colo",
+  config = function()
+    require("colo").setup()
+  end,
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",    ---optional
+    "nvim-lua/plenary.nvim",            ---optional
+    "nvim-telescope/telescope.nvim",    ---optional
+    "feline-nvim/feline.nvim",          ---optional
+    "akinsho/bufferline.nvim",          ---optional
+    "lewis6991/gitsigns.nvim",          ---optional
+    "kyazdani42/nvim-web-devicons",     ---optional
+  }
+}) ]]
 -- vim:ft=lua

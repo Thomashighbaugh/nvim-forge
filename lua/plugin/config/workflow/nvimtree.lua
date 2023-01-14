@@ -8,7 +8,6 @@ end
 local config = { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   update_cwd = true,
-  create_in_closed_folder = true,
   disable_netrw = true,
   hijack_cursor = false,
   hijack_netrw = true,

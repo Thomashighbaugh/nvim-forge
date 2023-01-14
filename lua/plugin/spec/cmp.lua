@@ -12,7 +12,6 @@ use({
     "InsertEnter",
     "CmdlineEnter",
   },
-  disable = disabled["nvim-cmp"],
 })
 
 use({
@@ -21,7 +20,6 @@ use({
   config = function()
     require("plugin.config.cmp.zsh")
   end,
-  disable = disabled["cmp-zsh"],
 })
 
 use({
@@ -38,7 +36,6 @@ use({
   config = function()
     require("plugin.config.cmp.dictionary")
   end,
-  disable = disabled["cmp-dictionary"],
 })
 
 use({
@@ -47,7 +44,6 @@ use({
   config = function()
     require("plugin.config.cmp.luasnip")
   end,
-  disable = disabled["LuaSnip"],
 })
 
 use({
@@ -56,7 +52,6 @@ use({
     require("plugin.config.cmp.autopairs")
   end,
   event = "InsertEnter",
-  disable = disabled["nvim-autopairs"],
 })
 
 use({
@@ -66,7 +61,6 @@ use({
     require("plugin.config.cmp.git")
   end,
   opt = true,
-  disable = disabled["cmp-git"],
 })
 
 use({
@@ -75,7 +69,6 @@ use({
     "nvim-cmp",
     "nvim-lspconfig",
   },
-  disable = disabled["cmp-nvim-lsp-document-symbol"],
 })
 
 use({
@@ -84,14 +77,12 @@ use({
     "nvim-cmp",
     "nvim-lspconfig",
   },
-  disable = disabled["cmp-nvim-lsp-signature-help"],
 })
 
 use({
   "dmitmel/cmp-cmdline-history",
   after = "nvim-cmp",
   event = "CmdlineEnter",
-  disable = disabled["cmp-cmdline-history"],
 })
 
 use({
@@ -108,21 +99,18 @@ use({
     "typescript",
     "tsx",
   },
-  disable = disabled["cmp-nvim-tags"],
 })
 
 use({
   "David-Kunz/cmp-npm",
   wants = "nvim-cmp",
   ft = "package.json",
-  disable = disabled["cmp-npm"],
 })
 
 use({
   "andersevenrud/cmp-tmux",
   wants = "nvim-cmp",
   ft = "tmux",
-  disable = disabled["cmp-tmux"],
 })
 
 use({
@@ -135,7 +123,6 @@ use({
     "plaintext",
     "plaintex",
   },
-  disable = disabled["cmp-emoji"],
 })
 
 use({
@@ -144,37 +131,31 @@ use({
     require("plugin.config.cmp.lsp")
   end,
   opt = true,
-  disable = disabled["cmp-nvim-lsp"],
 })
 
 use({
   "hrsh7th/cmp-calc",
   after = "nvim-cmp",
-  disable = disabled["cmp-calc"],
 })
 
 use({
   "octaltree/cmp-look",
   after = "nvim-cmp",
-  disable = disabled["cmp-look"],
 })
 
 use({
   "f3fora/cmp-spell",
   after = "nvim-cmp",
-  disable = disabled["cmp-spell"],
 })
 
 use({
   "hrsh7th/cmp-omni",
   after = "nvim-cmp",
-  disable = disabled["cmp-omni"],
 })
 
 use({
   "lukas-reineke/cmp-rg",
   after = "nvim-cmp",
-  disable = disabled["cmp-rg"],
 })
 
 use({
@@ -183,20 +164,17 @@ use({
     "nvim-treesitter",
     "nvim-cmp",
   },
-  disable = disabled["cmp-treesitter"],
 })
 
 use({
   "hrsh7th/cmp-nvim-lua",
   after = "nvim-cmp",
-  disable = disabled["cmp-nvim-lua"],
 })
 
 use({
   "kdheepak/cmp-latex-symbols",
   wants = "nvim-cmp",
   ft = "tex",
-  disable = disabled["cmp-latex-symbols"],
 })
 
 use({
@@ -205,53 +183,45 @@ use({
     "LuaSnip",
     "nvim-cmp",
   },
-  disable = disabled["cmp_luasnip"],
 })
 
 use({
   "hrsh7th/cmp-cmdline",
   wants = "nvim-cmp",
   event = "CmdlineEnter",
-  disable = disabled["cmp-cmdline"],
 })
 
 use({
   "hrsh7th/cmp-buffer",
   wants = "nvim-cmp",
   event = "InsertEnter",
-  disable = disabled["cmp-buffer"],
 })
 
 use({
   "hrsh7th/cmp-path",
   wants = "cmp-buffer",
   keys = { { "i", "/" } },
-  disable = disabled["cmp-path"],
 })
 
 use({
   "dmitmel/cmp-digraphs",
   after = "nvim-cmp",
-  disable = disabled["cmp-digraphs"],
 })
 
 use({
   "davidsierradz/cmp-conventionalcommits",
   after = "cmp-buffer",
-  disable = disabled["cmp-conventionalcommits"],
 })
 
 use({
   "max397574/cmp-greek",
   after = "nvim-cmp",
-  disable = disabled["cmp-greek"],
 })
 
 use({
   "jc-doyle/cmp-pandoc-references",
   ft = "markdown",
   wants = "nvim-cmp",
-  disable = disabled["cmp-pandoc-references"],
 })
 
 -- vim:ft=lua

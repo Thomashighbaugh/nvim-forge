@@ -4,7 +4,7 @@ local use = require("packer").use
 
 local disabled = require("control.disabled")
 
-use({ "tweekmonster/haunted.vim", cmd = "Haunt", disable = disabled["haunted.vim"] })
+use({ "tweekmonster/haunted.vim", cmd = "Haunt"})
 
 use({
   "MattesGroeger/vim-bookmarks",
@@ -17,7 +17,6 @@ use({
     "CmdlineEnter",
     "CursorMoved",
   },
-  disable = disabled["vim-bookmarks"],
 })
 
 use({
@@ -27,7 +26,6 @@ use({
     "TrainWord",
     "TrainTextObj",
   },
-  disable = disabled["train.nvim"],
 })
 
 use({
@@ -38,8 +36,7 @@ use({
   },
   setup = function()
     require("plugin.config.workflow.rnvimr")
-  end,
-  disable = disabled["rnvimr"],
+  end
 })
 
 use({
@@ -47,8 +44,7 @@ use({
   cmd = { "NvimTreeToggle", "NvimTreeRefresh", "NvimTreeFocus" },
   config = function()
     require("plugin.config.workflow.nvimtree")
-  end,
-  disable = disabled["nvim-tree.lua"],
+  end
 })
 
 use({
@@ -56,8 +52,7 @@ use({
   cmd = { "HopWord", "HopLine", "HopChar1", "HopChar2", "HopPattern" },
   config = function()
     require("plugin.config.workflow.hop")
-  end,
-  disable = disabled["hop.nvim"],
+  end
 })
 
 use({
@@ -65,15 +60,13 @@ use({
   cmd = { "ASOn", "ASOff", "ASToggle" },
   config = function()
     require("plugin.config.workflow.autosave")
-  end,
-  disable = disabled["AutoSave.nvim"],
+  end
 })
 
-use({ "Shatur/neovim-session-manager", cmd = "SessionManager", disable = disabled["neovim-session-manager"] })
+use({ "Shatur/neovim-session-manager", cmd = "SessionManager" })
 
 use({
   "mbbill/undotree",
-  disable = disabled["undotree"],
   cmd = "UndotreeToggle",
   config = function()
     require("plugin.config.workflow.undotree")
@@ -85,38 +78,35 @@ use({
   config = function()
     require("plugin.config.workflow.escape")
   end,
-  event = "InsertLeave",
-  disable = disabled["better-escape.nvim"],
+  event = "InsertLeave"
+
 })
 
-use({ "abecodes/tabout.nvim", opt = true, disable = disabled["tabout.nvim"] })
+use({ "abecodes/tabout.nvim", opt = true  })
 
 use({
   "akinsho/toggleterm.nvim",
-  disable = disabled["toggleterm.nvim"],
   config = function()
     require("plugin.config.workflow.toggleterm")
   end,
   module = { "toggleterm" },
-  cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+  cmd = { "ToggleTerm", "ToggleTermToggleAll" }
 })
 
 use({
   "folke/which-key.nvim",
   event = "UIEnter",
-  disable = disabled["which-key.nvim"],
   config = function()
     require("plugin.config.workflow.whichkey")
-  end,
+  end
 })
 
 use({
   "ggandor/lightspeed.nvim",
-  opt = true,
-  disable = disabled["lightspeed.nvim"],
+  opt = true
 })
 
-use({ "ggandor/leap.nvim", opt = true, disable = disabled["leap.nvim"] })
+use({ "ggandor/leap.nvim", opt = true  })
 
 use({
   "bennypowers/nvim-regexplainer",
@@ -125,13 +115,11 @@ use({
   end,
   wants = "nui.nvim",
   after = "nvim-treesitter",
-  disable = disabled["nvim-regexplainer"],
 })
 
 use({
   "winston0410/cmd-parser.nvim",
   event = "CmdlineEnter",
-  disable = disabled["cmd-parser.nvim"],
 })
 
 use({
@@ -140,7 +128,6 @@ use({
   config = function()
     require("plugin.config.workflow.hlslens")
   end,
-  disable = disabled["nvim-hlslens"]
 })
 
 -- vim:ft=lua
