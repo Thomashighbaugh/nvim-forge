@@ -1,19 +1,16 @@
--- setup vim options, auto-commands, user commands, etc.
-require("setting")
+if not vim.g.vscode then
+	require("core")
 
-local stdpath = vim.fn.stdpath
-local exists = require("utils").exists
+	-- Release note
+	vim.schedule(function()
+		vim.notify_once(
+			[[
+This is the new, lazy-loading neovim configuration I will be crafting code and pulling my hair out using. 
 
-local pk_install = exists(stdpath("data") .. "/site/pack/packer/opt/packer.nvim")
-local pk_compile = exists(stdpath("config") .. "/lua/plugin/compiledSpec.lua")
 
--- bootstrap
-if not pk_install or not pk_compile then
-  require("plugin.spec")
+To silence this message, remove it from `init.lua` at ~/.config/nvim
+]],
+			vim.log.levels.WARN
+		)
+	end)
 end
-
---pcall(require, "plugin.config.core.impatient")
-require("plugin.config.core.impatient")
-require("stline").setup()
-
--- vim:filetype=lua
