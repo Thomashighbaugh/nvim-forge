@@ -64,5 +64,8 @@ ui["edluffy/specs.nvim"] = {
 	event = "CursorMoved",
 	config = require("ui.specs"),
 }
+ui["nekonako/xresources-nvim"] = {
+	lazy = true
+}
 
 return ui

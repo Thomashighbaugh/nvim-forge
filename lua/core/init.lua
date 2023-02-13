@@ -36,10 +36,10 @@ local disable_distribution_plugins = function()
 	vim.g.loaded_spellfile_plugin = 1
 
 	-- Whether to load netrw by default
-	-- vim.g.loaded_netrw = 1
-	-- vim.g.loaded_netrwFileHandlers = 1
-	-- vim.g.loaded_netrwPlugin = 1
-	-- vim.g.loaded_netrwSettings = 1
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwFileHandlers = 1
+	vim.g.loaded_netrwPlugin = 1
+	vim.g.loaded_netrwSettings = 1
 	-- newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
 	vim.g.netrw_liststyle = 3
 
@@ -61,7 +61,7 @@ local disable_distribution_plugins = function()
 	vim.g.loaded_matchparen = 1
 
 	-- Disable sql omni completion.
-	vim.g.loaded_sql_completion = 1
+	-- vim.g.loaded_sql_completion = 1
 
 	-- Disable remote plugins
 	-- NOTE: Disabling rplugin.vim will show error for `wilder.nvim` in :checkhealth,
@@ -76,7 +76,7 @@ local leader_map = function()
 end
 
 local neovide_config = function()
-	vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font:h15", {})
+	-- vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font:h15", {})
 	vim.g.neovide_refresh_rate = 120
 	vim.g.neovide_cursor_vfx_mode = "railgun"
 	vim.g.neovide_no_idle = true
@@ -118,8 +118,8 @@ local load_core = function()
 	disable_distribution_plugins()
 	leader_map()
 
-	neovide_config()
-	clipboard_config()
+	-- neovide_config()
+	-- clipboard_config()
 
 	require("core.options")
 	require("core.mapping")

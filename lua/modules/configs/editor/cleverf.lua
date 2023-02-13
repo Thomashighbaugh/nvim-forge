@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return function()
 	vim.api.nvim_set_hl(
 		0,

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local rhs_options = {}
 
 function rhs_options:new()

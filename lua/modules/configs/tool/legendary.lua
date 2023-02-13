@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return function()
 	require("legendary").setup({
 		which_key = {
@@ -14,13 +15,14 @@ return function()
 			most_recent_first = true,
 			-- sort user-defined items before built-in items
 			user_items_first = true,
-			frecency = {
-				-- the directory to store the database in
-				db_root = string.format("%s/legendary/", vim.fn.stdpath("data")),
-				-- the maximum number of timestamps for a single item
-				-- to store in the database
-				max_timestamps = 10,
-			},
+			-- frecency = {
+			-- 	-- the directory to store the database in
+			-- 	db_root = string.format("%s/legendary/", vim.fn.stdpath("data")),
+			-- 	-- the maximum number of timestamps for a single item
+			-- 	-- to store in the database
+			-- 	max_timestamps = 10,
+			-- },
+			frecency = false
 		},
 		-- Directory used for caches
 		cache_path = string.format("%s/legendary/", vim.fn.stdpath("cache")),

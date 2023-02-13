@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local global = require("core.global")
 local function switch_source_header_splitcmd(bufnr, splitcmd)
 	bufnr = require("lspconfig").util.validate_bufnr(bufnr)

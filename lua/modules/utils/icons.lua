@@ -160,8 +160,6 @@ local data = {
 		Vim = "",
 	},
 	cmp = {
-		Copilot = "",
-		Copilot_alt = "",
 		nvim_lsp = "",
 		nvim_lua = "",
 		path = "",

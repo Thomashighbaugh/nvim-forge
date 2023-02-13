@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return function()
 	local use_ssh = require("core.settings").use_ssh
 

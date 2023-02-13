@@ -167,10 +167,6 @@ local plug_map = {
 	end):with_expr(),
 	-- Plugin MarkdownPreview
 	["n|<F12>"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent(),
-	-- Plugin auto_session
-	["n|<leader>ss"] = map_cu("SaveSession"):with_noremap():with_silent(),
-	["n|<leader>sr"] = map_cu("RestoreSession"):with_noremap():with_silent(),
-	["n|<leader>sd"] = map_cu("DeleteSession"):with_noremap():with_silent(),
 	-- Plugin SnipRun
 	["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent(),
 	["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent(),

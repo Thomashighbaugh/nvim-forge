@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return function()
 	local icons = {
 		diagnostics = require("modules.utils.icons").get("diagnostics", true),

@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/sumneko_lua.lua
 return {
 	settings = {

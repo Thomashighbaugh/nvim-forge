@@ -9,7 +9,7 @@ tool["mrjones2014/legendary.nvim"] = {
 	cmd = "Legendary",
 	config = require("tool.legendary"),
 	dependencies = {
-		{ "kkharji/sqlite.lua" },
+		-- { "kkharji/sqlite.lua" },
 		{
 			"stevearc/dressing.nvim",
 			event = "VeryLazy",

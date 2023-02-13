@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return function()
 	local alpha = require("alpha")
 	local dashboard = require("alpha.themes.dashboard")
@@ -54,7 +55,6 @@ return function()
 		opts.keymap = { "n", sc_after, keybind, keybind_opts }
 
 		local function on_press()
-			-- local key = vim.api.nvim_replace_termcodes(keybind .. '<Ignore>', true, false, true)
 			local key = vim.api.nvim_replace_termcodes(sc_after .. "<Ignore>", true, false, true)
 			vim.api.nvim_feedkeys(key, "t", false)
 		end
