@@ -1,134 +1,53 @@
-local global = require("core.global")
+local options = {
+  backup = false, -- creates a backup file
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  conceallevel = 0, -- so that `` is visible in markdown files
+  fileencoding = "utf-8", -- the encoding written to a file
+  hidden = true, -- required to keep multiple buffers and open multiple buffers
+  ignorecase = true, -- ignore case in search patterns
+  mouse = "a", -- allow the mouse to be used in neovim
+  pumheight = 8, -- pop up menu height
+  pumblend = 10, -- transparency of pop-up menu
+  showmode = false, -- we don't need to see things like -- INSERT -- anymore
+  smartcase = true, -- smart case
+  smartindent = true, -- make indenting smarter again
+  splitbelow = true, -- force all horizontal splits to go below current window
+  splitright = true, -- force all vertical splits to go to the right of current window
+  swapfile = true, -- creates a swapfile
+  timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
+  undofile = true, -- enable persistent undo
+  updatetime = 100, -- faster completion (4000ms default)
+  writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  expandtab = true, -- convert tabs to spaces
+  shiftwidth = 2, -- the number of spaces inserted for each indentation
+  tabstop = 2, -- insert 2 spaces for a tab
+  cursorline = true, -- highlight the current line
+  number = true, -- set numbered lines
+  relativenumber = false, -- set relative numbered lines
+  numberwidth = 4, -- set number column width to 4 {default 4}
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
+  wrap = true, -- display lines as one long line
+  scrolloff = 8, -- minimal number of columns to scroll horizontally.
+  sidescrolloff = 8, -- minimal number of screen columns
+  lazyredraw = true, -- Won't be redrawn while executing macros, register and other commands.
+  termguicolors = true, -- Enables 24-bit RGB color in the TUI
+  fillchars = { eob = " " }, -- make EndOfBuffer invisible
+  -- shell = vim.fn.executable "pwsh" and "pwsh" or "powershell",
+  -- shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+  -- shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+  -- shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+  -- shellquote = "",
+  -- shellxquote = "",
+}
 
-local function load_options()
-  local global_local = {
-    termguicolors = true,
-    errorbells = true,
-    visualbell = true,
-    hidden = true,
-    fileformats = "unix,mac,dos",
-    magic = true,
-    virtualedit = "block",
-    encoding = "utf-8",
-    viewoptions = "folds,cursor,curdir,slash,unix",
-    sessionoptions = "curdir,help,tabpages,winsize",
-    clipboard = "unnamedplus",
-    wildignorecase = true,
-    wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
-    backup = false,
-    writebackup = false,
-    swapfile = false,
-    undodir = global.cache_dir .. "undo/",
-    spell = true,
-    spelllang = "en_us,en_gb",
-    spellfile = "$HOME/.config/nvim/spell/en.uft-8.add",
-    spellsuggest = "best,9",
-    history = 2000,
-    shada = "!,'300,<50,@100,s10,h",
-    backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
-    smarttab = true,
-    shiftround = true,
-    timeout = true,
-    ttimeout = true,
-    -- You will feel delay when you input <Space> at lazygit interface if you set it a positive value like 300(ms).
-    timeoutlen = 300,
-    ttimeoutlen = 0,
-    updatetime = 100,
-    redrawtime = 1500,
-    ignorecase = true,
-    smartcase = true,
-    infercase = true,
-    incsearch = true,
-    wrapscan = true,
-    complete = ".,w,b,k",
-    inccommand = "nosplit",
-    grepformat = "%f:%l:%c:%m",
-    grepprg = "rg --hidden --vimgrep --smart-case --",
-    breakat = [[\ \	;:,!?]],
-    startofline = false,
-    whichwrap = "h,l,<,>,[,],~",
-    splitbelow = true,
-    splitright = true,
-    switchbuf = "usetab,uselast",
-    backspace = "indent,eol,start",
-    diffopt = "filler,iwhite,internal,algorithm:patience",
-    completeopt = "menuone,noselect",
-    jumpoptions = "stack",
-    showmode = false,
-    shortmess = "aoOTIcF",
-    scrolloff = 2,
-    sidescrolloff = 5,
-    mouse = "a",
-    mousescroll = "ver:3,hor:6",
-    foldlevelstart = 99,
-    ruler = true,
-    cursorline = true,
-    cursorcolumn = true,
-    list = true,
-    showtabline = 2,
-    winwidth = 30,
-    winminwidth = 10,
-    pumheight = 15,
-    helpheight = 12,
-    previewheight = 12,
-    showcmd = false,
-    cmdheight = 2, -- 0, 1, 2
-    cmdwinheight = 5,
-    equalalways = false,
-    laststatus = 2,
-    display = "lastline",
-    showbreak = "↳  ",
-    listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
-    -- pumblend = 10,
-    -- winblend = 10,
-    autoread = true,
-    autowrite = true,
+local global = {
+  mkdp_auto_close = false, -- Don't Exit Preview When Switching Buffers
+  mapleader = " ", -- Set mapleader to space
+}
 
-    undofile = true,
-    synmaxcol = 2500,
-    formatoptions = "1jcroql",
-    expandtab = true,
-    autoindent = true,
-    tabstop = 4,
-    shiftwidth = 4,
-    softtabstop = 4,
-    breakindentopt = "shift:2,min:20",
-    wrap = true,
-    linebreak = true,
-    number = true,
-    relativenumber = false,
-    foldenable = true,
-    signcolumn = "yes",
-    conceallevel = 0,
-    concealcursor = "niv"
-  }
-  local function isempty(s)
-    return s == nil or s == ""
-  end
+vim.opt.shortmess:append "Ac" -- Disable asking when editing file with swapfile.
+vim.opt.whichwrap:append "<,>,[,],h,l"
+vim.opt.iskeyword:append "-"
 
-  -- custom python provider
-  local conda_prefix = os.getenv("CONDA_PREFIX")
-  if not isempty(conda_prefix) then
-    vim.g.python_host_prog = conda_prefix .. "/bin/python"
-    vim.g.python3_host_prog = conda_prefix .. "/bin/python"
-  elseif global.is_mac then
-    vim.g.python_host_prog = "/usr/bin/python"
-    vim.g.python3_host_prog = "/usr/local/bin/python3"
-  else
-    vim.g.python_host_prog = "/usr/bin/python"
-    vim.g.python3_host_prog = "/usr/bin/python3"
-  end
-
-  for name, value in pairs(global_local) do
-    vim.o[name] = value
-  end
-
-  -- Fix sqlite3 missing-lib issue on Windows
-  if global.is_windows then
-    -- Download the DLLs form https://www.sqlite.org/download.html
-    vim.g.sqlite_clib_path = global.home ..
-                                 "/Documents/sqlite-dll-win64-x64-3400100/sqlite3.dll"
-  end
-end
-
-load_options()
+set_option(options)
+set_global(global)

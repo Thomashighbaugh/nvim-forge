@@ -6,8 +6,9 @@ My [Winchester Mysterey](https://en.wikipedia.org/wiki/Winchester_Mystery_House)
 
 # Inspiration
 
+- [Alexis12119's nvim-config](https://github.com/Alexis12119/nvim-config) 
 - [glepnir's nvim](https://github.com/glepnir/nvim)
 - [ayamir's nvimdots](https://github.com/ayamir/nvimdots)
 - [CharlesChiuGit's nvimdots](https://github.com/CharlesChiuGit/nvimdots.lua)
 - [dragove's nvim](https://github.com/dragove/nvim)
-- [KrakenNvim](https://github.com/dharmx/nvim)
+- [KrakenNvim](https://github.com/dharmx/nvim):a
