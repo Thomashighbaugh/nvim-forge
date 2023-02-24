@@ -1,54 +1,62 @@
-return {
+local M = {
   "nvim-treesitter/nvim-treesitter",
-  module = true,
-  event = { "BufReadPost", "BufNewFile" },
-  cmd = {
-    "TSInstall",
-    "TSInstallInfo",
-    "TSUpdate",
-    "TSBufEnable",
-    "TSBufDisable",
-    "TSEnable",
-    "TSDisable",
-    "TSModuleInfo",
-  },
-  dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    {
-      "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        local indent_blankline = require "indent_blankline"
-
-        indent_blankline.setup {
-          show_current_context = true,
-          indent_blankline_char = "▏",
-          indent_blankline_show_trailing_blankline_indent = false,
-          indent_blankline_show_first_indent_level = true,
-          indent_blankline_use_treesitter = true,
-          indent_blankline_show_current_context = true,
-          indent_blankline_buftype_exclude = { "terminal", "nofile" },
-          indent_blankline_filetype_exclude = {
-            "help",
-            "NvimTree",
-          },
-        }
-      end,
-    },
-  },
   build = ":TSUpdate",
+  event = "BufReadPost",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "RRethy/nvim-treesitter-endwise",
+    "mfussenegger/nvim-ts-hint-textobject",
+    "windwp/nvim-ts-autotag",
+    "nvim-treesitter/playground",
+  },
   config = function()
-    local configs = require "nvim-treesitter.configs"
-
-    configs.setup {
-      ensure_installed = "all", -- one of "all" or a list of languages
+    local settings = require("core.settings")
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = settings.treesitter_ensure_installed,
+      ignore_install = {}, -- List of parsers to ignore installing
       highlight = {
         enable = true, -- false will disable the whole extension
-        disable = "", -- list of language that will be disabled
+        disable = {}, -- list of language that will be disabled
+        additional_vim_regex_highlighting = false,
       },
-      autopairs = {
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          scope_incremental = "<CR>",
+          node_incremental = "<TAB>",
+          node_decremental = "<S-TAB>",
+        },
+      },
+      endwise = {
         enable = true,
       },
-      indent = { enable = false, disable = {} },
-    }
+      indent = { enable = true },
+      autopairs = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+            ["ib"] = "@block.inner",
+            ["ab"] = "@block.outer",
+            ["ir"] = "@parameter.inner",
+            ["ar"] = "@parameter.outer",
+          },
+        },
+      },
+    })
+
+    require("nvim-ts-autotag").setup()
   end,
 }
+
+return M
