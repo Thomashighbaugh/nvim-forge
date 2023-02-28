@@ -107,6 +107,21 @@ wk.register({
     l = { "<cmd>source ~/.config/nvim/snippets/*<cr>", "Reload snippets" },
     p = { "<cmd>Lazy check<cr>", "Lazy check" },
   },
+  M = {
+    name = "Mind",
+    c = {
+      "<cmd> lua require('mind').wrap_smart_project_tree_fn(function(args) require'mind.commands'.create_node_index(args.get_tree(), require'mind.node'.MoveDir.INSIDE_END,args.save_tree, args.opts) end)<cr>", "Create Project Index"  },
+    C = {"<cmd> lua  require('mind').wrap_main_tree_fn(function(args) require'mind.commands'.create_node_index(args.get_tree(), require'mind.node'.MoveDir.INSIDE_END,args.save_tree, args.opts)end) <cr>", "Create Main Index"},
+    i = {"<cmd> lua vim.notify('initializing project tree')require('mind').wrap_smart_project_tree_fn(function(a)local b=a.get_tree()local c=require'mind.node'local d,e=c.get_node_by_path(b,'/Tasks',true)e.icon='陼'local d,f=c.get_node_by_path(b,'/Tasks/Backlog',true)f.icon=' 'local d,g=c.get_node_by_path(b,'/Tasks/On-going',true)g.icon=' 'local d,h=c.get_node_by_path(b,'/Tasks/Done',true)h.icon=' 'local d,i=c.get_node_by_path(b,'/Tasks/Cancelled',true)i.icon=' 'local d,j=c.get_node_by_path(b,'/Notes',true)j.icon=' 'a.save_tree()end) <cr>", "Initialize Mind Directories"},
+    l = {"<cmd> lua require('mind').wrap_smart_project_tree_fn(function(a)require'mind.commands'.copy_node_link_index(a.get_tree(),nil,a.opts)end) <cr>", "Copy Node Link to Project Index"},
+    L = {"<cmd> lua require('mind').wrap_main_tree_fn(function(a)require'mind.commands'.copy_node_link_index(a.get_tree(),nil,a.opts)end) <cr>", "Copy Node Link to Main Index"},
+    j = {"<cmd> lua require('mind').wrap_main_tree_fn(function(a)local b=a.get_tree()local c=vim.fn.strftime('/Journal/%Y/%b/%d')local d,e=require'mind.node'.get_node_by_path(b,c,true)if e==nil then vim.notify('cannot open journal 🙁',vim.log.levels.WARN)return end;require'mind.commands'.open_data(b,e,a.data_dir,a.save_tree,a.opts)a.save_tree()end) <cr>", "Open Journal"},
+    M = {"<cmd> MindOpenMain <cr>", "Open Main Node Index"},
+    m = {"<cmd> MindOpenSmartProject <cr>", "Open Project Index"},
+    s = {"<cmd> lua require('mind').wrap_smart_project_tree_fn(function(a)require'mind.commands'.open_data_index(a.get_tree(),a.data_dir,a.save_tree,a.opts)end) <cr>", "Open Data Index for Project"},
+    S = {"<cmd> lua require('mind').wrap_main_tree_fn(function(a)require'mind.commands'.open_data_index(a.get_tree(),a.data_dir,a.save_tree,a.opts)end) <cr>", "Open Data Index for Main"}
+
+  },
   q = {
     name = "Quickfix",
     j = { "<cmd>cnext<cr>", "Next Quickfix Item" },
