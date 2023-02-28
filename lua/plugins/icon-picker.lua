@@ -1,5 +1,7 @@
-return {
+local M = {
   "ziontee113/icon-picker.nvim",
   dependencies = "stevearc/dressing.nvim",
-  opts = { disable_legacy_commands = true },
+  opts = { disable_legacy_commands = false},
 }
+
+return M

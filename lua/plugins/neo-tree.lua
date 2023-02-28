@@ -206,7 +206,7 @@ local M = {
     window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
       -- possible options. These can also be functions that return these options.
       position = "left", -- left, right, top, bottom, float, current
-      width = 40, -- applies to left and right positions
+      width = 30, -- applies to left and right positions
       height = 15, -- applies to top and bottom positions
       popup = { -- settings that apply to float position only
         size = {
@@ -244,7 +244,7 @@ local M = {
           "add",
           -- some commands may take optional config options, see `:h neo-tree-mappings` for details
           config = {
-            show_path = "none", -- "none", "relative", "absolute"
+            show_path = "relative", -- "none", "relative", "absolute"
           },
         },
         ["A"] = "add_directory", -- also accepts the config.show_path option.
@@ -309,12 +309,12 @@ local M = {
       --         The first field in each component is the name of the function to call.
       --         The rest of the fields are passed to the function as the "config" argument.
       filtered_items = {
-        visible = false, -- when true, they will just be displayed differently than normal items
+        visible = true, -- when true, they will just be displayed differently than normal items
         force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
         show_hidden_count = true, -- when true, the number of hidden items in each folder will be shown as the last entry
-        hide_dotfiles = true,
-        hide_gitignored = true,
-        hide_hidden = true, -- only works on Windows for hidden files/directories
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        hide_hidden = false, -- only works on Windows for hidden files/directories
         hide_by_name = {
           ".DS_Store",
           "thumbs.db",
