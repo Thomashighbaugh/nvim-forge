@@ -1,4 +1,4 @@
-return {
+local M = {
   "numToStr/Comment.nvim",
   event = { "BufReadPost", "BufNewFile" },
   config = function()
@@ -66,3 +66,5 @@ return {
     }
   end,
 }
+
+return M

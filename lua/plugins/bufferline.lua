@@ -1,4 +1,4 @@
-return {
+local M = {
   "akinsho/bufferline.nvim",
   event = { "BufReadPost", "BufNewFile" },
   config = function()
@@ -38,3 +38,5 @@ return {
     }
   end,
 }
+
+return M

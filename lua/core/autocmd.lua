@@ -7,9 +7,6 @@ api.nvim_create_autocmd("BufWritePre", {
   group = TrimWhiteSpaceGrp,
 })
 
--- don't auto comment new line
-api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
-
 -- wrap words "softly" (no carriage return) in mail buffer
 api.nvim_create_autocmd("Filetype", {
   pattern = "mail",
@@ -23,13 +20,6 @@ api.nvim_create_autocmd("Filetype", {
   end,
 })
 
--- wrap words "softly" (no carriage return) in mail buffer
-api.nvim_create_autocmd("Filetype", {
-  pattern = "terraform-vars",
-  callback = function()
-    vim.api.nvim_command("set filetype=hcl")
-  end,
-})
 
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {

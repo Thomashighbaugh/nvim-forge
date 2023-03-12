@@ -6,7 +6,7 @@ local M = {}
 M.notify = function(message, level, title)
   local notify_options = {
     title = title,
-    timeout = 2000,
+    timeout = 1500,
   }
   vim.api.nvim_notify(message, level, notify_options)
 end
@@ -104,11 +104,5 @@ function M.map(mode, l, r, opts)
   vim.keymap.set(mode, l, r, opts)
 end
 
--- returns the require for use in `config` parameter of packer's `use`
--- expects the name of the config file
--- prefixes with `core.config.`
-M.get_config = function(name)
-  return string.format('require("core.config.%s")', name)
-end
 
 return M

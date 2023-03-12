@@ -3,6 +3,7 @@ local M = {
   dependencies = {
     "saadparwaiz1/cmp_luasnip",
   },
+
   config = function()
     local ls = require("luasnip")
     local vsc = require("luasnip.loaders.from_vscode")
@@ -36,6 +37,8 @@ local M = {
 
     -- load friendly-snippets
     vsc.lazy_load()
+
+    vsc.lazy_load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/" })
     -- load lua snippets
     lua.load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/" })
 

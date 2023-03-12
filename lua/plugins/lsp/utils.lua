@@ -92,10 +92,10 @@ function M.custom_lsp_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
   end
   -- TODO: this workaround is not sufficient and bugyy
-  -- handle_helm_templates(bufnr)
-  -- handle_kustomization(bufnr)
-  -- handle_docker_compose(bufnr)
-  -- handle_helm_releases(bufnr)
+   handle_helm_templates(bufnr)
+   handle_kustomization(bufnr)
+   handle_docker_compose(bufnr)
+   handle_helm_releases(bufnr)
   local wk = require("which-key")
   local default_options = { silent = true }
   wk.register({
@@ -110,7 +110,7 @@ function M.custom_lsp_attach(client, bufnr)
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
       d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition" },
       e = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
-      -- f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+      f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
       i = { "<cmd>LspInfo<cr>", "Connected Language Servers" },
       k = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Commands" },
       l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },

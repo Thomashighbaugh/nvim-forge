@@ -11,8 +11,8 @@ local opts = {
   },
   completion = { enable = true, callSnippet = "Replace" },
   diagnostics = {
-    -- enable = true,
-    -- globals = { "vim", "describe" },
+    enable = true,
+   -- globals = { "vim", "describe" },
     globals = {
       "vim",
       "nnoremap",
@@ -30,7 +30,7 @@ local opts = {
     },
     -- adjust these two values if your performance is not optimal
     maxPreload = 2000,
-    preloadFileSize = 1000,
+    preloadFileSize = 2000,
   },
   telemetry = { enable = false },
 }
