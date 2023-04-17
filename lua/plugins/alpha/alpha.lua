@@ -156,7 +156,6 @@ local buttons = {
     dashboard.button("p", "  Search Projects", ":Telescope projects<CR>"),
     dashboard.button("r", "  Recent Files", ":Telescope oldfiles <CR>"),
     dashboard.button("e", "  New File", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("g", "  NeoGit", ":Neogit <CR>"),
     dashboard.button("l", "  Lazy", ":Lazy check<CR>"),
     dashboard.button("q", "  Quit", ":qa<CR>"),
   },

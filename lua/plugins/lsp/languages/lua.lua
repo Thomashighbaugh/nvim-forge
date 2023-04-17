@@ -12,7 +12,6 @@ local opts = {
   completion = { enable = true, callSnippet = "Replace" },
   diagnostics = {
     enable = true,
-   -- globals = { "vim", "describe" },
     globals = {
       "vim",
       "nnoremap",

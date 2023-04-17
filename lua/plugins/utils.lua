@@ -16,6 +16,7 @@ return {
   {
     "moll/vim-bbye",
   },
+{ "tpope/vim-eunuch", event = "VeryLazy" }, -- Adds things like :Move, :Rename, :SudoWrite, etc.
   {
      "rcarriga/nvim-notify",
      config = function()
