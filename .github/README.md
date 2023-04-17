@@ -6,7 +6,7 @@ My [Winchester Mysterey](https://en.wikipedia.org/wiki/Winchester_Mystery_House)
 
 ---
 
-> Why don't you use `someone's config that is will be trendy for the next 5 minutes` since they use similar plugins and deal with the configuration woes for you?
+> Common Question: Why don't you use `someone's config that is will be trendy for the next 5 minutes` since they use similar plugins and deal with the configuration woes for you?
 
 <div style="display:inline-block" display="inline-block">
 <img src="./assets/jack-nicholson-laugh.gif" width="29%" alt="Laughing Jack" />
