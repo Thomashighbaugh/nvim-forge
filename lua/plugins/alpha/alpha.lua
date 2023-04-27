@@ -151,9 +151,7 @@ local buttons = {
   type = "group",
   val = {
     { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
-    dashboard.button("f", "  Find File", ":" .. require("utils.functions").project_files() .. "<CR>"),
     dashboard.button("b", "  File Browser", ":Telescope file_browser grouped=true <CR>"),
-    dashboard.button("p", "  Search Projects", ":Telescope projects<CR>"),
     dashboard.button("r", "  Recent Files", ":Telescope oldfiles <CR>"),
     dashboard.button("e", "  New File", ":ene <BAR> startinsert <CR>"),
     dashboard.button("l", "  Lazy", ":Lazy check<CR>"),
@@ -173,12 +171,27 @@ local header = {
   },
 }
 -- -------------------------------------------------------------------------- --
+
+local footer = {
+  type = "text",
+  val = "ॐ Har Har Mahadev ॐ",
+  opts = {
+    position = "center",
+    hl = "DashboardFooter",
+  },
+}
+
+
+
+-- -------------------------------------------------------------------------- --
 local layout = {}
 layout[0] = header
 layout[1] = { type = "padding", val = 2 }
 layout[2] = section_mru
 layout[3] = { type = "padding", val = 2 }
 layout[4] = buttons
+layout[5] = { type = "padding", val = 2 }
+layout[6] = footer
 -- -------------------------------------------------------------------------- --
 if settings.dashboard_recent_files == 0 then
   layout[1] = nil

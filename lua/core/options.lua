@@ -26,6 +26,7 @@ o.dir = fn.stdpath("data") .. "/swp" -- swap file directory
 o.expandtab = true -- use spaces instead of tabs
 o.formatoptions = "jcroqlnt" -- tcqj
 o.hidden = true -- Enable modified buffers in background
+o.hlsearch = true
 o.history = 500 -- Use the 'history' option to set the number of lines from command mode that are remembered.
 o.ignorecase = true -- ignore case in search patterns
 o.inccommand = "nosplit" -- preview incremental substitute

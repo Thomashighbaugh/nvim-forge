@@ -1,108 +1,189 @@
-local api = vim.api
+local M = {}
+local Log = require "core.log"
 
---- Remove all trailing whitespace on save
-local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
-api.nvim_create_autocmd("BufWritePre", {
-  command = [[:%s/\s\+$//e]],
-  group = TrimWhiteSpaceGrp,
-})
+--- Load the default set of autogroups and autocommands.
+function M.load_defaults()
+  
 
--- wrap words "softly" (no carriage return) in mail buffer
-api.nvim_create_autocmd("Filetype", {
-  pattern = "mail",
-  callback = function()
-    vim.opt.textwidth = 0
-    vim.opt.wrapmargin = 0
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.opt.columns = 80
-    vim.opt.colorcolumn = "80"
-  end,
-})
+  local definitions = {
+    {
+      "TextYankPost",
+      {
+        group = "_general_settings",
+        pattern = "*",
+        desc = "Highlight text on yank",
+        callback = function()
+          require("vim.highlight").on_yank { higroup = "Search", timeout = 200 }
+        end,
+      },
+    },
+    {
+      "BufWritePost",
+      {
+        group = "_general_settings",
+        pattern = user_config_file,
+        desc = "Trigger Reload on saving " .. vim.fn.expand "%:~",
+        callback = function()
+          require("config"):reload()
+        end,
+      },
+    },
+    {
+      "FileType",
+      {
+        group = "_filetype_settings",
+        pattern = "qf",
+        command = "set nobuflisted",
+      },
+    },
+    {
+      "FileType",
+      {
+        group = "_filetype_settings",
+        pattern = { "gitcommit", "markdown" },
+        command = "setlocal wrap spell",
+      },
+    },
+    {
+      "FileType",
+      {
+        group = "_buffer_mappings",
+        pattern = { "qf", "help", "man", "floaterm", "lspinfo", "lir", "spectre_panel", "lsp-installer", "null-ls-info",  "dap-float",
+        "fugitive",
+        "help",
+        "man",
+        "notify",
+        "null-ls-info",
+        "qf",
+        "PlenaryTestPopup",
+        "startuptime",
+        "tsplayground" },
+        command = "nnoremap <silent> <buffer> q :close<CR>",
+      },
+    },
+    {
+      { "BufWinEnter", "BufRead", "BufNewFile" },
+      {
+        group = "_format_options",
+        pattern = "*",
+        command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+      },
+    },
+    {
+      "VimResized",
+      {
+        group = "_auto_resize",
+        pattern = "*",
+        command = "tabdo wincmd =",
+      },
+    },
 
-
--- Highlight on yank
-api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
--- go to last loc when opening a buffer
-api.nvim_create_autocmd("BufReadPost", {
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
-  end,
-})
-
--- windows to close with "q"
-api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "dap-float",
-    "fugitive",
-    "help",
-    "man",
-    "notify",
-    "null-ls-info",
-    "qf",
-    "PlenaryTestPopup",
-    "startuptime",
-    "tsplayground",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-})
-api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
-
--- disable list option in certain filetypes
-api.nvim_create_autocmd("FileType", { pattern = { "NeoGitStatus" }, command = [[setlocal list!]] })
-
--- show cursor line only in active window
-local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
-api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  pattern = "*",
-  command = "set cursorline",
-  group = cursorGrp,
-})
-api.nvim_create_autocmd(
-  { "InsertEnter", "WinLeave" },
-  { pattern = "*", command = "set nocursorline", group = cursorGrp }
-)
-
--- when there is no buffer left show Alpha dashboard
--- requires "famiu/bufdelete.nvim" and "goolord/alpha-nvim"
-local alpha_on_empty = api.nvim_create_augroup("alpha_on_empty", { clear = true })
-api.nvim_create_autocmd("User", {
-  pattern = "BDeletePost*",
-  group = alpha_on_empty,
-  callback = function(event)
-    local fallback_name = vim.api.nvim_buf_get_name(event.buf)
-    local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
-    local fallback_on_empty = fallback_name == "" and fallback_ft == ""
-
-    if fallback_on_empty then
-      -- require("neo-tree").close_all()
-      vim.api.nvim_command("Alpha")
-      vim.api.nvim_command(event.buf .. "bwipeout")
-    end
-  end,
-})
-
--- Enable spell checking for certain file types
-api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
-  {
-    pattern = { "*.txt", "*.md", "*.tex" },
-    callback = function()
-      vim.opt.spell = true
-      vim.opt.spelllang = "en,de"
-    end,
+    {
+      "BufEnter",
+      {
+        pattern = "*",
+        command = "set fo-=c fo-=r fo-=o",
+      },
+    },
+    {{ "BufRead", "BufNewFile" },
+    {
+      pattern = { "*.txt", "*.md", "*.tex" },
+      callback = function()
+        vim.opt.spell = true
+        vim.opt.spelllang = "en,de"
+      end,
+    }}
   }
-)
+
+  M.define_autocmds(definitions)
+end
+
+local get_format_on_save_opts = function()
+  local defaults =  {
+    ---@usage pattern string pattern used for the autocommand (Default: '*')
+    pattern = "*",
+    ---@usage timeout number timeout in ms for the format request (Default: 1000)
+    timeout = 1000,
+    ---@usage filter func to select client
+    filter = require("lsp.utils").format_filter,
+  }
+  -- accept a basic boolean `lsp.format_on_save=true`
+  if type(lsp.format_on_save) ~= "table" then
+    return defaults
+  end
+
+  return {
+    pattern = lsp.format_on_save.pattern or defaults.pattern,
+    timeout = lsp.format_on_save.timeout or defaults.timeout,
+  }
+end
+
+function M.enable_format_on_save()
+  local opts = get_format_on_save_opts()
+  vim.api.nvim_create_augroup("lsp_format_on_save", {})
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = "lsp_format_on_save",
+    pattern = opts.pattern,
+    callback = function()
+      require("lsp.utils").format { timeout_ms = opts.timeout, filter = opts.filter }
+    end,
+  })
+  Log:debug "enabled format-on-save"
+end
+
+function M.disable_format_on_save()
+  M.clear_augroup "lsp_format_on_save"
+  Log:debug "disabled format-on-save"
+end
+
+function M.configure_format_on_save()
+  if lsp.format_on_save then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
+end
+
+function M.toggle_format_on_save()
+  local exists, autocmds = pcall(vim.api.nvim_get_autocmds, {
+    group = "lsp_format_on_save",
+    event = "BufWritePre",
+  })
+  if not exists or #autocmds == 0 then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
+end
+
+--- Clean autocommand in a group if it exists
+--- This is safer than trying to delete the augroup itself
+---@param name string the augroup name
+function M.clear_augroup(name)
+  -- defer the function in case the autocommand is still in-use
+  Log:debug("request to clear autocmds  " .. name)
+  vim.schedule(function()
+    pcall(function()
+      vim.api.nvim_clear_autocmds { group = name }
+    end)
+  end)
+end
+
+--- Create autocommand groups based on the passed definitions
+--- Also creates the augroup automatically if it doesn't exist
+---@param definitions table contains a tuple of event, opts, see `:h nvim_create_autocmd`
+function M.define_autocmds(definitions)
+  for _, entry in ipairs(definitions) do
+    local event = entry[1]
+    local opts = entry[2]
+    if type(opts.group) == "string" and opts.group ~= "" then
+      local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = opts.group })
+      if not exists then
+        vim.api.nvim_create_augroup(opts.group, {})
+      end
+    end
+    vim.api.nvim_create_autocmd(event, opts)
+  end
+end
+
+return M
