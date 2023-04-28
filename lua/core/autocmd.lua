@@ -24,7 +24,7 @@ function M.load_defaults()
         pattern = user_config_file,
         desc = "Trigger Reload on saving " .. vim.fn.expand "%:~",
         callback = function()
-          require("config"):reload()
+          require("utils"):reload()
         end,
       },
     },

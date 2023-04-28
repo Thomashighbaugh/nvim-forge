@@ -87,6 +87,21 @@ end
 
 M.join_paths = _G.join_paths
 
+--- Reloads the buffer of the file, used in autocmds
+local cfg = vim.fn.stdpath('config')
+M.Flush = function()
+    local s = vim.api.nvim_buf_get_name(0)
+    if string.match(s, '^' .. cfg .. '*') == nil then
+        return
+    end
+    s = string.sub(s, 6 + string.len(cfg), -5)
+    local val = string.gsub(s, '%/', '.')
+    package.loaded[val] = nil
+end
+
+
+
+
 ---Write data to a file
 ---@param path string can be full or relative to `cwd`
 ---@param txt string|table text to be written, uses `vim.inspect` internally for tables
