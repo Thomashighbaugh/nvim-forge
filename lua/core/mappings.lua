@@ -63,6 +63,38 @@ map(
 )
 map("n", "<leader>tS", "<cmd>SymbolsOutline<cr>", { desc = "Toggle SymbolsOutline" })
 
+-- Comment Box
+map({"n","v"},
+  "<leader>bb",
+  "<cmd>CBllbox<cr>",
+  {desc = "left aligned fixed size box with left aligned text"}
+)
+
+map({"n","v"},
+  "<leader>br",
+  "<cmd>CBrrbox<cr>",
+  {desc = "left aligned fixed size box with left aligned text"}
+)
+
+map({"n","v"},
+  "<leader>bc",
+   "<cmd>CBaccbox<cr>",
+  {desc = " center aligned fixed size box with center aligned text"}
+)
+
+map("n",
+  "<leader>bl",
+  "<cmd>CBcline<cr>",
+  {desc = "centered line"}
+)
+
+map("i",
+  "<M-l>",
+   "<cmd>CBcline<cr>",
+  {desc = "centered line"}
+)
+
+
 local wk = require("which-key")
 
 -- register non leader based mappings
@@ -79,9 +111,35 @@ wk.register({
 })
 
 -- Register leader based mappings
+-- Auto create dir when saving a file, in case some intermediate directory does not exist
 wk.register({
   ["<tab>"] = { "<cmd>e#<cr>", "Prev buffer" },
   b = {
+    name = "Comment Box",
+    b = {
+      "<cmd>CBllbox<cr>",
+      "left aligned fixed size box with left aligned text"
+    },
+
+    c = {
+      "<cmd>CBaccbox<cr>",
+      "center aligned fixed size box with center aligned text"
+       },
+
+  
+    r = {
+      "<cmd>CBrrbox<cr>",
+      "right aligned fixed size box with right aligned text"
+       },
+
+    l = {
+      "<cmd>CBcline<cr>",
+      "centered line"
+    },
+
+  },
+
+  B = {
     name = "Buffers",
     b = {
       "<cmd>Telescope buffers<cr>",
@@ -104,7 +162,7 @@ wk.register({
   m = {
     name = "Misc",
     C = { "<cmd>:CBcatalog<cr>", "Commentbox Catalog" },
-    l = { "<cmd>source ~/.config/nvim/snippets/*<cr>", "Reload snippets" },
+    l = { "<cmd>LuaSnipListAvailable <cr>", "List available snippets" },
     p = { "<cmd>Lazy check<cr>", "Lazy check" },
   },
   q = {

@@ -33,6 +33,7 @@ local M = {
       ---LHS of toggle mappings in NORMAL mode
       toggler = {
         ---Line-comment toggle keymap
+
         line = "gcc",
         ---Block-comment toggle keymap
         block = "gbc",
@@ -53,7 +54,7 @@ local M = {
         ---Add comment at the end of line
         eol = "gcA",
       },
-      ---Enable keybindings
+      ---Enable keybindings 
       ---NOTE: If given `false` then the plugin won't create any mappings
       mappings = {
         ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`

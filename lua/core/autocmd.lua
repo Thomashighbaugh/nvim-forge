@@ -7,6 +7,21 @@ function M.load_defaults()
 
   local definitions = {
     {
+      "BufWritePre",
+      {
+  group = "auto_create_dir",
+        pattern = "*",
+        desc="Automatically create directory if none exists.",
+  callback = function(event)
+    if event.match:match("^%w%w+://") then
+      return
+    end
+    local file = vim.loop.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+      },
+    },
+    {
       "TextYankPost",
       {
         group = "_general_settings",
@@ -24,7 +39,7 @@ function M.load_defaults()
         pattern = user_config_file,
         desc = "Trigger Reload on saving " .. vim.fn.expand "%:~",
         callback = function()
-          require("utils"):reload()
+          require("utils").Flush()
         end,
       },
     },
@@ -155,7 +170,6 @@ function M.toggle_format_on_save()
     M.disable_format_on_save()
   end
 end
-
 --- Clean autocommand in a group if it exists
 --- This is safer than trying to delete the augroup itself
 ---@param name string the augroup name

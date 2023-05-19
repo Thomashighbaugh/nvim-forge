@@ -52,7 +52,6 @@ local function handle_helm_templates(bufnr)
   local bufferData = vim.api.nvim_buf_get_text(bufnr, 0, 0, -1, -1, {})
   local bufferString = table.concat(bufferData, "\n")
   -- usually Helm files are in a template folder
-  -- TODO: more robust and elegant check
   if string.find(bufferString, "kind: HelmRelease") then
     disable_diagnostics(bufnr, "Disabling diagnostics for HelmRelease files")
   end
@@ -60,7 +59,6 @@ end
 
 local function handle_docker_compose(bufnr)
   local bufName = vim.api.nvim_buf_get_name(bufnr)
-  -- TODO: more robust and elegant check
   -- search dor docker-compose.yaml does not work!
   if string.find(bufName, "compose.yaml") then
     disable_diagnostics(bufnr, "Disabling diagnostics for docker-compose files")
@@ -69,7 +67,6 @@ end
 
 local function handle_helm_releases(bufnr)
   local bufName = vim.api.nvim_buf_get_name(bufnr)
-  -- TODO: more robust and elegant check
   if string.find(bufName, "templates") then
     disable_diagnostics(bufnr, "Disabling diagnostics for Helm template files")
   end
@@ -77,7 +74,6 @@ end
 
 local function handle_kustomization(bufnr)
   local bufName = vim.api.nvim_buf_get_name(bufnr)
-  -- TODO: more robust and elegant check
   if string.find(bufName, "kustomization.yaml") then
     disable_diagnostics(bufnr, "Disabling diagnostics for kustomization.yaml")
   end
@@ -91,7 +87,6 @@ function M.custom_lsp_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
-  -- TODO: this workaround is not sufficient and bugyy
    handle_helm_templates(bufnr)
    handle_kustomization(bufnr)
    handle_docker_compose(bufnr)

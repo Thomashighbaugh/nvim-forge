@@ -39,7 +39,6 @@ local M = {
         },
       }, { prefix = "<leader>", mode = "n", default_options })
 
-      -- TODO: with german qwertz this bindings are awful
       map("n", "]c", function()
         if vim.wo.diff then
           return "]c"

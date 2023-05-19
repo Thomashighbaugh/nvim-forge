@@ -34,7 +34,7 @@ for _, lsp in ipairs(servers) do
     flags = { debounce_text_changes = 150 },
     settings = {
       json = languages.json,
-      Lua = languages.lua,
+      lua = languages.lua,
       ltex = languages.ltx,
       redhat = { telemetry = { enabled = false } },
       texlab = languages.tex,
