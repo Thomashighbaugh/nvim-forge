@@ -36,7 +36,7 @@ map("n", "<leader>th", function()
 end, { desc = "Toggle hidden chars" })
 map("n", "<leader>tl", function()
   vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
-end, { desc = "Toggle sgincolumn" })
+end, { desc = "Toggle signcolumn" })
 map("n", "<leader>tv", function()
   vim.o.virtualedit = vim.o.virtualedit == "all" and "block" or "all"
 end, { desc = "Toggle virtualedit" })
@@ -64,38 +64,35 @@ map(
 map("n", "<leader>tS", "<cmd>SymbolsOutline<cr>", { desc = "Toggle SymbolsOutline" })
 
 -- Comment Box
-map({"n","v"},
+map("v",
   "<leader>bb",
-  "<cmd>CBllbox<cr>",
+  "<cmd>CBllbox5<cr>",
   {desc = "left aligned fixed size box with left aligned text"}
 )
 
-map({"n","v"},
+map("v",
   "<leader>br",
-  "<cmd>CBrrbox<cr>",
+  "<cmd>CBrrbox5<cr>",
   {desc = "left aligned fixed size box with left aligned text"}
 )
 
-map({"n","v"},
+map("v",
   "<leader>bc",
-   "<cmd>CBaccbox<cr>",
+   "<cmd>CBccbox5<cr>",
   {desc = " center aligned fixed size box with center aligned text"}
 )
 
-map("n",
-  "<leader>bl",
-  "<cmd>CBcline<cr>",
-  {desc = "centered line"}
-)
 
 map("i",
   "<M-l>",
-   "<cmd>CBcline<cr>",
+   "<cmd>CBcline10<cr>",
   {desc = "centered line"}
 )
 
 
 local wk = require("which-key")
+
+--  +-------------------------------------------------------------------------+
 
 -- register non leader based mappings
 wk.register({
@@ -110,34 +107,37 @@ wk.register({
   st = { "<cmd>lua require('tsht').nodes()<cr>", "TS hint textobject" },
 })
 
+--  +-------------------------------------------------------------------------+
+
 -- Register leader based mappings
--- Auto create dir when saving a file, in case some intermediate directory does not exist
 wk.register({
   ["<tab>"] = { "<cmd>e#<cr>", "Prev buffer" },
   b = {
     name = "Comment Box",
     b = {
-      "<cmd>CBllbox<cr>",
+      "<cmd>CBllbox5<cr>",
       "left aligned fixed size box with left aligned text"
     },
 
     c = {
-      "<cmd>CBaccbox<cr>",
+      "<cmd>CBccbox5<cr>",
       "center aligned fixed size box with center aligned text"
        },
 
   
     r = {
-      "<cmd>CBrrbox<cr>",
+      "<cmd>CBrrbox5<cr>",
       "right aligned fixed size box with right aligned text"
        },
 
     l = {
-      "<cmd>CBcline<cr>",
+      "<cmd>CBcline10<cr>",
       "centered line"
     },
 
   },
+
+--  +-------------------------------------------------------------------------+
 
   B = {
     name = "Buffers",
@@ -151,6 +151,9 @@ wk.register({
     },
     d = { "<cmd>Bdelete<cr>", "Close buffer" },
   },
+
+--  +-------------------------------------------------------------------------+
+
   f = {
     name = "Files",
     b = { "<cmd>Telescope file_browser grouped=true<cr>", "File browser" },
@@ -159,12 +162,18 @@ wk.register({
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     s = { "<cmd>w<cr>", "Save Buffer" },
   },
+
+--  +-------------------------------------------------------------------------+
+
   m = {
     name = "Misc",
     C = { "<cmd>:CBcatalog<cr>", "Commentbox Catalog" },
     l = { "<cmd>LuaSnipListAvailable <cr>", "List available snippets" },
     p = { "<cmd>Lazy check<cr>", "Lazy check" },
   },
+
+--  +-------------------------------------------------------------------------+
+
   q = {
     name = "Quickfix",
     j = { "<cmd>cnext<cr>", "Next Quickfix Item" },
@@ -172,9 +181,12 @@ wk.register({
     q = { "<cmd>lua require('utils.functions').toggle_qf()<cr>", "Toggle quickfix list" },
     t = { "<cmd>TodoQuickFix<cr>", "Show TODOs" },
   },
+
+--  +-------------------------------------------------------------------------+
+
   t = { name = "Toggles" },
   -- hydra heads
   s = { "Search" },
   w = { "Windows" },
   z = { "Spelling" },
-}, { prefix = "<leader>", mode = "n", default_options })
+}, { prefix = "<leader>", mode = {"n", "v"}, default_options })

@@ -3,7 +3,15 @@ local Log = require "core.log"
 
 --- Load the default set of autogroups and autocommands.
 function M.load_defaults()
-  
+ vim.cmd([[
+if has("autocmd")
+    " Have Vim jump to the last position when reopening a file
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
+    " Disable relative line numbers in insert mode
+    autocmd InsertLeave * set relativenumber
+    autocmd InsertEnter * set norelativenumber
+endif
+]]) 
 
   local definitions = {
     {
