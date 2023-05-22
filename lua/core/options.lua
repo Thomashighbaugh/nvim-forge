@@ -4,16 +4,16 @@ local o = vim.opt
 local fn = vim.fn
 
 if not settings.disable_winbar then
-  o.winbar = "%{%v:lua.require'utils.winbar'.get_winbar()%}"
+	o.winbar = "%{%v:lua.require'utils.winbar'.get_winbar()%}"
 end
 if settings.global_statusline then
-  o.laststatus = 3
+	o.laststatus = 3
 else
-  o.laststatus = 2
+	o.laststatus = 2
 end
 
 if utils.isNotEmpty(settings.grepprg) then
-  o.grepprg = settings.grepprg
+	o.grepprg = settings.grepprg
 end
 
 o.backup = false -- creates a backup file

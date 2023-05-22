@@ -1,3 +1,3 @@
-local M = {"rafamadriz/friendly-snippets"}
+local M = { "rafamadriz/friendly-snippets" }
 
 return M

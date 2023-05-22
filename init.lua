@@ -9,9 +9,8 @@ require("core.mappings")
 -- All non-plugin related (vim) options
 require("core.options")
 -- Vim autocommands/autogroups
-local autocmds = require "core.autocmd"
+local autocmds = require("core.autocmd")
 autocmds.load_defaults()
 
-
--- Let's get these things working finally 
+-- Let's get these things working finally
 require("lsp")
