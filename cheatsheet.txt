@@ -1,0 +1,67 @@
+
+Move Cursor Up One Line | k or <Up> 
+Move Cursor Down One Line | j or <Down>
+Move Cursor One Space Left | h or <Left>
+Move Cursor One Space Right | l or <Right>
+Visual Mode Indent Increase | >
+Visual Mode Indent Decrease | <
+Visual Mode Paste Over Selected Text Without Yanking It | p or P 
+
+Switch To Next Buffer | <Tab>
+Switch To Previous Buffer | <Shift> + <Tab>
+
+Clear Highlights and Escape Mode | <ESC>
+Move Over Closing Element in Insert Mode | <Ctrl> + l
+
+Search Buffer | <CTRL> + f
+Save File | <Ctrl> + s or :w
+
+Toggle Hidden Characters | <Leader> + th 
+Toggle Sign Column | <Leader> + tl  
+Toggle Virtual Edit |  <Leader> + tv
+Toggle Wrap |  <Leader> + tw 
+Toggle Cursorline |  <Leader> + tc 
+Toggle Colorcolumn |  <Leader> + to 
+Toggle VirtualText |  <Leader> + tt 
+Toggle SymbolOutline |  <Leader> + tS 
+
+Normal or Visual Mode Draw Left Aligned Comment Box | <Leader> + bb
+Normal or Visual Mode Draw Center Aligned Comment Box | <Leader> + bc 
+Normal or Visual Mode Draw Right Aligned Comment Box | <Leader> + br
+Normal or Insert Mode Draw Centered Comment Line | <Alt> + l or <Leader> + bl  
+
+Add surrounding | <Leader> + sa
+Delete surrounding | <Leader> + sd  
+Highlight surrounding | <Leader> + sh
+Surround update n lines |  <Leader> + sn
+Replace surrounding | <Leader> + sr
+Find left surrounding | <Leader> + sF
+Replace right surrounding | <Leader> + sf
+Jump to character | <Leader> + ss
+TS hint textobject | <Lesader> + st
+
+Buffer Command Prefix | <leader + >B
+Telescope Buffer | <leader> + Bb
+Close all but Current Buffer | <Leader> + BD
+Close Buffer | <Leader> + Bd
+
+File Command Prefix | <Leader> + f
+File Browser | <Leader> + fb
+Find File | <Leader> + ff
+Toggle File Tree | <Leader> + fp
+Open Recent File | <Leader> + fr
+Save Buffer | <Leader> + fs
+
+
+Other Command Prefixes | <Leader> + m
+Comment Box Catalogue | <Leader>+mC
+List Available Snippets | <Leader>+ml
+Lazy Check | <Leader+mp
+Update Pa=f| <Leader>+mu 
+
+Quickfix Command Prefixes | <Leader>+q
+Next Quickfix Item | <Leader>+qj
+Previous Quickfix Item | <Leader>+qk
+Toggle Quickfix List | <Leader>+qq
+Show TODO items | <Leader>+qt
+

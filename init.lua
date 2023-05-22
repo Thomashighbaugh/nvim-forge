@@ -13,5 +13,5 @@ local autocmds = require "core.autocmd"
 autocmds.load_defaults()
 
 
--- Let's get these things working 
+-- Let's get these things working finally 
 require("lsp")

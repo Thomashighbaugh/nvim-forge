@@ -168,8 +168,10 @@ wk.register({
   m = {
     name = "Misc",
     C = { "<cmd>:CBcatalog<cr>", "Commentbox Catalog" },
+    S = { "<cmd>:Cheatsheet <cr>", "Open Cheatsheet" },
     l = { "<cmd>LuaSnipListAvailable <cr>", "List available snippets" },
     p = { "<cmd>Lazy check<cr>", "Lazy check" },
+    u = {"<cmf>Lazy sync", "Update Packages"}
   },
 
 --  +-------------------------------------------------------------------------+

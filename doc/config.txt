@@ -152,19 +152,20 @@ Themes                *config-themes*
 |     Available Themes     |
 ----------------------------
 
-* xresources.nvim (Default)^1 
-* nightly.nvim 
+Unlike most other NeoVim configurations, I am not very interested
+at present in colorschemes in my code editor. My overall environment 
+is monochromatic at present and were syntax highlighting not extremely 
+helpful, I would probably have moved to the same here. Nonetheless,
+included in this configuration are a few themes that can easily be
+utilized at the user's pleasure: 
+
+* nightfly 
 * vscode.nvim
 * onedark.nvim
 * onenord.nvim
 * dracula.nvim
 * vim-nightfly-colors
 
-^1: development of this theme has stopped and the repository is archived,
-nonetheless it works well enough for my purposes and I continue to use it. If
-it ever becomes unusable, there are others that are available already, as you
-can see, with `nightly.nvim` being my likely go-to until I have time to
-develop my own. 
 
 Add colorscheme:
 
@@ -286,7 +287,8 @@ responsible with `:FormatOnSaveToggle`
 |  Restoring Builtin Plugins  |
 -------------------------------
 
-If you want to enable the disabled builtin plugins. Comment them out with "--" as in the example below.
+If you want to enable the disabled builtin plugins. Comment them out in Lua's 
+comment syntax with "--" as in the example below.
 
 Example:
 >
@@ -309,7 +311,7 @@ out.
 |  Clipboard  |
 ---------------
 
-Read `:h clipboard` for help regarding issues with the clipboard.
+Read `:help clipboard` for help regarding issues with the clipboard.
 
 -------------------------------
 |  Statusline Personalization | 
@@ -325,7 +327,7 @@ https://github.com/nanotee/nvim-lua-guide (It's now archived but still helpful)
 
 or
 
-`:h lua-guide`
+`:help lua-guide`
 
 -------------------
 | Vim Cheatsheet  |
