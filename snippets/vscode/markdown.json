@@ -284,5 +284,39 @@
       "${0}"
     ],
     "description": "Insert table with 5 rows and 3 columns. First row is heading."
+  },
+  "Insert Prompt Tag": {
+    "prefix": "prompt",
+    "body": [
+      "<details>",
+      "<summary> ${1:PromptName}</summary>",
+      "<blockquote> ${2:PromptBody}</blockquote>",
+      "</details>"
+    ]
+  },
+  "Insert Prompt With Example": {
+    "prefix": "example-prompt",
+    "body": [
+      "<details>",
+      "<summary> ${1:PromptName}</summary>",
+      "<hr/>",
+      "<blockquote> ${2:PromptBody}</blockquote>",
+      "<hr/>",
+      "<b>Example</b>",
+      "<blockquote> ${3:PromptExample}</blockquote>",
+      "</details>"
+    ]
+  },
+  "Insert Prompt With Warning": {
+    "prefix": "warning-prompt",
+    "body": [
+      "<details>",
+      "<summary> ${1:PromptName}</summary>",
+      "<hr/>",
+      "<blockquote> ${2:PromptBody}</blockquote>",
+      "<hr/>",
+      "<p><b>${3:WarningType} Warning:</b> ${4:WhateverWarning}</p>",
+      "</details>"
+    ]
   }
 }

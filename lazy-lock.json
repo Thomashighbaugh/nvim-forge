@@ -87,6 +87,7 @@
   "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-eunuch": { "branch": "master", "commit": "291ef1f8c8996ca7715df1032a35a27b12d7b5cf" },
   "vim-fugitive": { "branch": "master", "commit": "5f0d280b517cacb16f59316659966c7ca5e2bea2" },
+  "vim-markdown-toc": { "branch": "master", "commit": "7ec05df27b4922830ace2246de36ac7e53bea1db" },
   "vim-startuptime": { "branch": "master", "commit": "5ddaf24df23f4d151970987c1322eaa247f08e69" },
   "vimtex": { "branch": "master", "commit": "e9ad2be22855523f95f564302e72e2ef3d1f2386" },
   "which-key.nvim": { "branch": "main", "commit": "5a6c954a5a46023c19acc03a8b6d7c3e57964fc5" },

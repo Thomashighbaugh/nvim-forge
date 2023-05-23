@@ -38,7 +38,7 @@ local M = {
 		-- load friendly-snippets
 		vsc.lazy_load()
 
-		vsc.lazy_load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/" })
+		vsc.lazy_load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/vscode/" })
 		-- load lua snippets
 		lua.load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/" })
 

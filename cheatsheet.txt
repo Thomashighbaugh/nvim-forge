@@ -65,3 +65,6 @@ Previous Quickfix Item | <Leader>+qk
 Toggle Quickfix List | <Leader>+qq
 Show TODO items | <Leader>+qt
 
+Snippet Expand or Jump to Next | <C-j>
+Snippet Previous Item | <C-k>
+Snippet Selecting within Options | <C-h>
