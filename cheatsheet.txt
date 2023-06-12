@@ -1,4 +1,3 @@
-
 Move Cursor Up One Line | k or <Up> 
 Move Cursor Down One Line | j or <Down>
 Move Cursor One Space Left | h or <Left>
@@ -59,16 +58,15 @@ List Available Snippets | <Leader>+ml
 Lazy Check | <Leader+mp
 Update Pa=f| <Leader>+mu 
 
-Quickfix Command Prefixes | <Leader>+q
-Next Quickfix Item | <Leader>+qj
-Previous Quickfix Item | <Leader>+qk
-Toggle Quickfix List | <Leader>+qq
+Quick Fix Command Prefixes | <Leader>+q
+Next Quick Fix Item | <Leader>+qj
+Previous Quick Fix Item | <Leader>+qk
+Toggle Quick Fix List | <Leader>+qq
 Show TODO items | <Leader>+qt
 
 Snippet Expand or Jump to Next | <C-j>
 Snippet Previous Item | <C-k>
 Snippet Selecting within Options | <C-h>
-
 
 Codeium Accept | <C-g>
 Codeium Completions Next | <C-;>
