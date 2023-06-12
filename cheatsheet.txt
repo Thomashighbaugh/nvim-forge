@@ -68,3 +68,9 @@ Show TODO items | <Leader>+qt
 Snippet Expand or Jump to Next | <C-j>
 Snippet Previous Item | <C-k>
 Snippet Selecting within Options | <C-h>
+
+
+Codeium Accept | <C-g>
+Codeium Completions Next | <C-;>
+Codeium Completions Previous | <C-,>
+Codeium Clear | <C-x>

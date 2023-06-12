@@ -1,3 +1,11 @@
+
+--       ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--       ╏                                                               ╏
+--       ╏                             Alpha                             ╏
+--       ╏                                                               ╏
+--       ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-- dashboard that opens when entering neovim without selecting a file with "$1"
+--
 local M = {
 	"goolord/alpha-nvim",
 	dependencies = {

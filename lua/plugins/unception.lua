@@ -1,4 +1,4 @@
-return {
+local M = {
 	"samjwill/nvim-unception",
 	init = function()
 		unception_delete_replaced_buffer = true
@@ -14,3 +14,4 @@ return {
 		})
 	end,
 }
+return M

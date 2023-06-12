@@ -1,7 +1,15 @@
+
+--       ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--       ╏                                                               ╏
+--       ╏                           Autopairs                           ╏
+--       ╏                                                               ╏
+--       ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
+-- types closing bracket when you type the opening one
 local M = {
 	"windwp/nvim-autopairs",
 	opts = {
-		enable_check_bracket_line = false, -- Don't add pairs if it already has a close pair in the same line
+		enable_check_bracket_line = false, -- Don't add pairs if it already has a close pair in the same line, don't check next line
 		ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
 		check_ts = true, -- use treesitter to check for a pair.
 		ts_config = {

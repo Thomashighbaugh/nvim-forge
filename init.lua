@@ -1,16 +1,27 @@
--- References to ./lua/
+
+--       ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--       ╏                                                               ╏
+--       ╏                           the Forge                           ╏
+--       ╏                                                               ╏
+--       ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-- Entry point of my neovim configuration
+--
 
 -- Load global functions
 require("core.globals")
--- Plugin management via lazy
+
+-- Load the plugin manager "lazy"
 require("core.lazy")
--- "Global" Keymappings
+
+-- Load global key maps
 require("core.mappings")
--- All non-plugin related (vim) options
+
+-- Load all non-plugin related (vim) options
 require("core.options")
--- Vim autocommands/autogroups
+
+-- Load vim autocommands/autogroups
 local autocmds = require("core.autocmd")
 autocmds.load_defaults()
 
--- Let's get these things working finally
+-- Load LSP configuration
 require("lsp")
