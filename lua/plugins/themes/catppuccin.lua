@@ -1,3 +1,10 @@
+
+--  ╭───────────────────────────────────────────────────────────────╮
+--  │                                                               │
+--  │                          catppuccin                           │
+--  │                                                               │
+--  ╰───────────────────────────────────────────────────────────────╯
+-- that horrid, kitsch thing the kids like 
 local catppuccin = require("catppuccin")
 
 catppuccin.setup({

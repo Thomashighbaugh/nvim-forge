@@ -1,3 +1,10 @@
+
+--  ╭───────────────────────────────────────────────────────────────╮
+--  │                                                               │
+--  │                             Alpha                             │
+--  │                                                               │
+--  ╰───────────────────────────────────────────────────────────────╯
+
 -- adopted from https://github.com/AdamWhittingham/vim-config/blob/nvim/lua/config/startup_screen.lua
 
 local settings = require("core.settings")

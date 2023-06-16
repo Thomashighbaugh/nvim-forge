@@ -1,3 +1,10 @@
+
+--  ╭───────────────────────────────────────────────────────────────╮
+--  │                                                               │
+--  │                         LSP Languages                         │
+--  │                                                               │
+--  ╰───────────────────────────────────────────────────────────────╯
+
 local nvim_lsp = require("lspconfig")
 local utils = require("plugins.lsp.utils")
 local languages = require("plugins.lsp.languages")

@@ -2,7 +2,7 @@ local M = {}
 
 -- theme: nightfox, tundra, kanagawa
 -- refer to the themes settings file for different styles
-M.theme = "nightfox"
+M.theme = "vscode"
 -- Toggle global status line
 M.global_statusline = true
 -- use rg instead of grep

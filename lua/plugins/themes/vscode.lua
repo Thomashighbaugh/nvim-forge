@@ -1,3 +1,10 @@
+
+--  ╭───────────────────────────────────────────────────────────────╮
+--  │                                                               │
+--  │                            VSCode                             │
+--  │                                                               │
+--  ╰───────────────────────────────────────────────────────────────╯
+-- aka GOOD ENOUGH I GUESS 
 -- Default options
 -- For dark theme (neovim's default)
 vim.o.background = "dark"
@@ -22,7 +29,7 @@ require("vscode").setup({
 			variables = "NONE",
 		},
 		inverse = { -- Inverse highlight for different types
-			match_paren = false,
+			match_paren = true,
 			visual = false,
 			search = false,
 		},
@@ -36,4 +43,4 @@ require("vscode").setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme nightfly")
+vim.cmd("colorscheme vscode")
