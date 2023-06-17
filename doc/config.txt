@@ -25,81 +25,20 @@ Keymaps                *config-keymaps*
 
 - Press `<Space>` to enable and run which-key and a keymap menu will pop up on
 the screen that is helpful in learning the keymaps within the editor window.
-- Add or Modify keymaps in `lua/core/keymaps.lua` 
-  - Additional keymaps can be found in `lua/plugins/which-key.lua`
--------------------------------
-|	Normal Mode                 |
--------------------------------
+- Add or Modify keymaps in `lua/core/mappings.lua 
+- `:Cheatsheet` will bring up a list of mappings and the functions they are
+tied to for a complete reference to specific bindings and hte range of
+available options
 
-`<C-j>` - Go to upper window 
-`<C-k>` -  Go to lower window
-`<C-h>` - Go to left window
-`<C-l>` - Go to right window
-`<C-w>` - Go to next window
-
-`;` - Close window
-
-`<C-Up>` - Add size at the top
-`<C-Down>` - Add size at the bottom
-`<C-Left>` - Add size at the left
-`<C-Right>` - Add size at the right
-
-`H` - Go to previous buffer
-`L` - Go to next buffer
-
-
-`<` - Indent backward
-`>` - Indent forward
-
-`A-j` - Move the line up
-`A-k` - Move the line down
-
--------------------------------
-|	Insert Mode                 |
--------------------------------
-
-`A-j` - Move the line up
-`A-k` - Move the line down
-
--------------------------------
-|	Terminal Mode               |
--------------------------------
-
-`<Esc>` - Enter insert mode
-
--------------------------------
-|	Visual Mode                 |
--------------------------------
-`p` - Better Paste
-
-`<` - Indent backward
-`>` - Indent forward
-
-`A-j` - Move the selected text up
-`A-k` - Move the selected text down
-
--------------------------------
-|	Visual-Block Mode           |
--------------------------------
-
-`A-j` - Move the selected text up
-`A-k` - Move the selected text down
-
--------------------------------
-|	Command Mode                |
--------------------------------
-
-`<Tab>` - Word Search Increment
-`<S-Tab>` - Word Search Decrement
 
 ==========================================================================================
 
-Options              *config-options*
+ Options              *config-options*
+
 
 The leader key is `<Space>`.
 
-Default Options:
->
+ Default Options:
   backup = false
   completeopt = { "menuone", "noselect" }
   conceallevel = 0
@@ -138,11 +77,17 @@ These options can be found and modified within the file located at `lua/core/opt
 
 ==========================================================================================
 
-Snippets              *config-snippets*
+ Snippets              *config-snippets*
+
+------------------------------
+|     Available Snippets     |
+------------------------------
 
 - Read `:h luasnip-snippets` for guides
-
-To edit the snippet for the current filetype, run `:LuaSnipEdit`
+- Included snippets in several formats can be found in the `snippets`
+directory. 
+- To see snippets available for the present file use `<Space> + m + l `
+- To edit the snippets for the current filetype, run `:LuaSnipEdit`
 
 ==========================================================================================
 
@@ -152,19 +97,13 @@ Themes                *config-themes*
 |     Available Themes     |
 ----------------------------
 
-Unlike most other NeoVim configurations, I am not very interested
-at present in colorschemes in my code editor. My overall environment 
-is monochromatic at present and were syntax highlighting not extremely 
-helpful, I would probably have moved to the same here. Nonetheless,
-included in this configuration are a few themes that can easily be
-utilized at the user's pleasure: 
-
+* catppuccin
+* kanagawa
 * nightfly 
-* vscode.nvim
-* onedark.nvim
-* onenord.nvim
-* dracula.nvim
-* vim-nightfly-colors
+* nightfox
+* tokyonight
+* tundra
+* vscode
 
 
 Add colorscheme:
@@ -266,23 +205,6 @@ Tips        *config-tips*
  or related to an expected but absent external package (such as python's
  pynvim package or the ruby gem for neovim, etc).
 
-------------
-|  Reload  |
-------------
-
-Running `:Reload` will do precisely that, it will reload the core files of
-this configuration to account for changes in those files exclusively. This is
-helpful if changing options settings and seeing the changes reflected in the
-same session as they were changed. 
-
----------------------------
-|  Toggling FormatOnSave  |
----------------------------
-
-If upon saving a file, you are mortified by the file becoming scrambled by the
-default formatter for that filetype, you can easily toggle the feature
-responsible with `:FormatOnSaveToggle`
-
 -------------------------------
 |  Restoring Builtin Plugins  |
 -------------------------------
@@ -312,12 +234,6 @@ out.
 ---------------
 
 Read `:help clipboard` for help regarding issues with the clipboard.
-
--------------------------------
-|  Statusline Personalization | 
--------------------------------
-
-You can change the statusline components by editing `lua/plugins/lualine/default.lua`.
 
 ---------------
 |  Lua-Guide  |

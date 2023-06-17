@@ -15,6 +15,15 @@ Move Over Closing Element in Insert Mode | <Ctrl> + l
 Search Buffer | <CTRL> + f
 Save File | <Ctrl> + s or :w
 
+Visual Mode Sort Alphabetically | <C-p>
+
+Visual Mode Increase Indent | >
+Visual Mode Decrease Indent | <
+
+Move Line Up | <Alt> + j
+Move Line Down | <Alt> + k
+
+
 Toggle Hidden Characters | <Leader> + th 
 Toggle Sign Column | <Leader> + tl  
 Toggle Virtual Edit |  <Leader> + tv

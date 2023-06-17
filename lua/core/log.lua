@@ -16,7 +16,7 @@ function Log:set_level(level)
 		local log_level = Log.levels[level:upper()]
 		local structlog = require("structlog")
 		if structlog then
-			local logger = structlog.get_logger("nvoid")
+			local logger = structlog.get_logger("nvim")
 			for _, s in ipairs(logger.sinks) do
 				s.level = log_level
 			end
@@ -42,8 +42,8 @@ function Log:init()
 	end
 
 	local log_level = Log.levels[(log.level):upper() or "WARN"]
-	local nvoid_log = {
-		nvoid = {
+	local nvim_log = {
+		nvim = {
 			sinks = {
 				structlog.sinks.Console(log_level, {
 					async = true,
@@ -73,8 +73,8 @@ function Log:init()
 		},
 	}
 
-	structlog.configure(nvoid_log)
-	local logger = structlog.get_logger("nvoid")
+	structlog.configure(nvim_log)
+	local logger = structlog.get_logger("nvim")
 
 	-- Overwrite `vim.notify` to use the logger
 	if log.override_notify then
@@ -87,7 +87,6 @@ function Log:init()
 			elseif type(vim_log_level) == "string" then
 				vim_log_level = Log.levels[(vim_log_level):upper()] or Log.levels["INFO"]
 			else
-				-- https://github.com/neovim/neovim/blob/685cf398130c61c158401b992a1893c2405cd7d2/runtime/lua/vim/lsp/log.lua#L5
 				vim_log_level = vim_log_level + 1
 			end
 
@@ -174,7 +173,7 @@ end
 ---Retrieves the path of the logfile
 ---@return string path of the logfile
 function Log:get_path()
-	return string.format("%s/%s.log", get_cache_dir(), "nvoid")
+	return string.format("%s/%s.log", get_cache_dir(), "nvim")
 end
 
 ---Add a log entry at TRACE level
