@@ -1,6 +1,5 @@
-
 local M = {
-'mzlogin/vim-markdown-toc',
+	"mzlogin/vim-markdown-toc",
 }
 
 return M

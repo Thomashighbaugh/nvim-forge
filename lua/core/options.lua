@@ -31,7 +31,6 @@ o.history = 500 -- Use the 'history' option to set the number of lines from comm
 o.ignorecase = true -- ignore case in search patterns
 o.inccommand = "nosplit" -- preview incremental substitute
 o.list = settings.list
-o.listchars = settings.listchars
 o.mouse = settings.mouse
 o.number = settings.number
 o.pumblend = 10 -- Popup blend

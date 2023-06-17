@@ -161,7 +161,16 @@ wk.register({
 		q = { "<cmd>lua require('utils.functions').toggle_qf()<cr>", "Toggle quickfix list" },
 		t = { "<cmd>TodoQuickFix<cr>", "Show TODOs" },
 	},
-
+	--   +---------------------------------------------------------------+
+	x = {
+		name = "Trouble",
+		x = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
+		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble Workspace Diagnostics" },
+		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Trouble Document Diagnostics" },
+		l = { "<cmd>TroubleToggle loclist<cr>", "Trouble Loc List" },
+		q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble Quick Fix" },
+		s = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble LSP References" },
+	},
 	--  +-------------------------------------------------------------------------+
 
 	t = { name = "Toggles" },

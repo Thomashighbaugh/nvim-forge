@@ -5,8 +5,8 @@ local M = {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"RRethy/nvim-treesitter-endwise",
-    'nvim-treesitter/nvim-treesitter-context',
-    'nvim-treesitter/nvim-treesitter-refactor',
+		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/nvim-treesitter-refactor",
 		"mfussenegger/nvim-ts-hint-textobject",
 		"windwp/nvim-ts-autotag",
 		"nvim-treesitter/playground",

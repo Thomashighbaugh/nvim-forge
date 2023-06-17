@@ -1,10 +1,9 @@
-
 --  ╭───────────────────────────────────────────────────────────────╮
 --  │                                                               │
 --  │                            VSCode                             │
 --  │                                                               │
 --  ╰───────────────────────────────────────────────────────────────╯
--- aka GOOD ENOUGH I GUESS 
+-- aka GOOD ENOUGH I GUESS
 -- Default options
 -- For dark theme (neovim's default)
 vim.o.background = "dark"
