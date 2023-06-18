@@ -64,10 +64,6 @@ local M = {
 			map({ "o", "x" }, "gH", "<cmd><C-U>Gitsigns select_hunk<cr>", { desc = "Select hunk" })
 		end
 		require("gitsigns").setup({
-			keymaps = {
-				-- Default keymap options
-				noremap = false,
-			},
 			signs = {
 				add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 				change = {
