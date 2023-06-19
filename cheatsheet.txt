@@ -81,3 +81,13 @@ Codeium Accept | <C-g>
 Codeium Completions Next | <C-;>
 Codeium Completions Previous | <C-,>
 Codeium Clear | <C-x>
+
+LSP Show Hover | K
+LSP Go To Definition | gd
+LSP Go To Declaration | gD
+LSP Go To References | gr
+LSP Go To Implementation | gi 
+LSP Show Signature Help | gs
+LSP Peek Definition | gp
+LSP Show Line Diagnostics | gl 
+

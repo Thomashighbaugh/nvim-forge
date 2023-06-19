@@ -15,6 +15,9 @@ require("core.lazy")
 -- Load global key maps
 require("core.mappings")
 
+-- Load LSP configuration
+require("lsp")
+
 -- Load all non-plugin related (vim) options
 require("core.options")
 
@@ -22,5 +25,5 @@ require("core.options")
 local autocmds = require("core.autocmd")
 autocmds.load_defaults()
 
--- Load LSP configuration
-require("lsp")
+
+
