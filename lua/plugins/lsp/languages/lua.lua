@@ -8,7 +8,7 @@
 local opts = {
 	cmd = { "lua-language-server" },
 	format = {
-		enable = true, -- let null-ls handle the formatting
+		enable = false, -- let null-ls handle the formatting
 	},
 	filetypes = { "lua" },
 	runtime = {

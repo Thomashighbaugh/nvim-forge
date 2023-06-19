@@ -7,7 +7,6 @@ local M = {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",
 	},
-	enabled = settings.enable_noice,
 }
 
 function M.config()

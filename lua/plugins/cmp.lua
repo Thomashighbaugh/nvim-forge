@@ -80,12 +80,12 @@ local M = {
 				{ name = "luasnip" },
 				{ name = "calc" },
 				{ name = "path" },
-				{name = "luasnip-choice"},
-				{ name = "treesitter"},
-				{ name = "cmdline"},
-				{name = "cmdline-history"},
-				{ name = "zsh"},
-				{name = "nvim_lsp_document_symbol"}
+				{ name = "luasnip-choice" },
+				{ name = "treesitter" },
+				{ name = "cmdline" },
+				{ name = "cmdline-history" },
+				{ name = "zsh" },
+				{ name = "nvim_lsp_document_symbol" },
 			},
 		})
 
