@@ -3,6 +3,8 @@ local M = {
 	cmd = "Telescope",
 	dependencies = {
 		"crispgm/telescope-heading.nvim",
+		'nvim-lua/plenary.nvim',
+		'nvim-lua/popup.nvim',
 		"nvim-telescope/telescope-symbols.nvim",
 		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",

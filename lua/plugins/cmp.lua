@@ -12,7 +12,7 @@ local M = {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/cmp-calc",
-		-- "lukas-reineke/cmp-rg",
+		"lukas-reineke/cmp-rg",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 	},
 	config = function()
