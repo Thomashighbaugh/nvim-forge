@@ -21,6 +21,3 @@ require("core.options")
 -- Load vim autocommands/autogroups
 local autocmds = require("core.autocmd")
 autocmds.load_defaults()
-
-
-

@@ -77,17 +77,9 @@ Snippet Expand or Jump to Next | <C-j>
 Snippet Previous Item | <C-k>
 Snippet Selecting within Options | <C-h>
 
-Codeium Accept | <C-g>
-Codeium Completions Next | <C-;>
-Codeium Completions Previous | <C-,>
-Codeium Clear | <C-x>
+Scroll Down | <C-d>
+Scroll Up | <C-u>
 
-LSP Show Hover | K
-LSP Go To Definition | gd
-LSP Go To Declaration | gD
-LSP Go To References | gr
-LSP Go To Implementation | gi 
-LSP Show Signature Help | gs
-LSP Peek Definition | gp
-LSP Show Line Diagnostics | gl 
+Window Control Menu | <C-w>
+
 

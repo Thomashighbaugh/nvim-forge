@@ -12,7 +12,6 @@ map("v", ">", ">gv")
 map("n", "<A-j>", "<cmd>move +1 <cr>")
 map("n", "<A-k>", "<cmd>move -2 <cr>")
 
-
 -- paste over currently selected text without yanking it
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')

@@ -8,12 +8,23 @@ local M = {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lsp-document-symbol",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"petertriho/cmp-git",
+		"davidsierradz/cmp-conventionalcommits",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
+		"dmitmel/cmp-cmdline-history",
+		"garyhurtz/cmp_kitty",
+		"tamago324/cmp-zsh",
+		"David-Kunz/cmp-npm",
+		"ray-x/cmp-treesitter",
 		"hrsh7th/cmp-calc",
-		"lukas-reineke/cmp-rg",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
+		"doxnit/cmp-luasnip-choice",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -69,8 +80,12 @@ local M = {
 				{ name = "luasnip" },
 				{ name = "calc" },
 				{ name = "path" },
-				{ name = "rg", keyword_length = 5 },
-				-- { omni = true }, -- completion for vimtex - is this necessary?
+				{name = "luasnip-choice"},
+				{ name = "treesitter"},
+				{ name = "cmdline"},
+				{name = "cmdline-history"},
+				{ name = "zsh"},
+				{name = "nvim_lsp_document_symbol"}
 			},
 		})
 
