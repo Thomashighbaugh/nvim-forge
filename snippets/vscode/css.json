@@ -647,5 +647,49 @@
   "!important (alt)": {
     "prefix": "i",
     "body": "!important"
+  },
+  "css-grid": {
+    "prefix": "css-grid",
+    "body": ".css-grid {  --min: 15ch;  --gap: 1rem;  display: grid;  grid-gap: var(--gap);  /* min() with 100% prevents overflow  in extra narrow spaces */  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));}"
+  },
+  "flexbox-grid": {
+    "prefix": "flexbox-grid",
+    "body": ".flexbox-grid {  --min: 10ch;  --gap: 1rem;  display: flex;  flex-wrap: wrap;  gap: var(--gap);b .smol-flexbox-grid > * {  flex: 1 1 var(--min);}"
+  },
+  "centered": {
+    "prefix": "centered",
+    "body": ".centered {  display: grid;  place-content: center;}"
+  },
+  "responsive-padding": {
+    "prefix": "rpad",
+    "body": ".responsive-padding {  padding: 1.5rem clamp(1rem, 5%, 3rem);}"
+  },
+  "responsive-sidebar": {
+    "prefix": "rsidebar",
+    "body": ".responsive-sidebar {  display: grid;  grid-template-columns: fit-content(20ch) minmax(min(50vw, 30ch), 1fr);}"
+  },
+  "scrollsnap": {
+    "prefix": "scrollsnap",
+    "body": ".scrollsnap {  /* Set up container positioning */  display: grid;  grid-auto-flow: column;  grid-gap: 1.5rem;  /* Enable overflow along our scroll axis */  overflow-x: auto;  /* Define axis and scroll type, where  `mandatory` means any scroll attempt will  cause a scroll to the next item */  scroll-snap-type: x mandatory;  padding: 0 0 1.5rem;  -webkit-overflow-scrolling: touch;}.scrollsnap > * {  width: min(45ch, 60vw);  /* Choose how to align children on scroll */  scroll-snap-align: center;  /* Prevents scrolling past more than one child */  scroll-snap-stop: always;}"
+  },
+  "rise-effect": {
+    "prefix": "rise-effect",
+    "body": ".rise:hover > * {  transform: translateY(-25%);}"
+  },
+  "rotate-effect": {
+    "prefix": "rotate-effect",
+    "body": ".rotate:hover > * { transform: rotate(15deg);}"
+  },
+  "zoom-effect": {
+    "prefix": "rotate-effect",
+    "body": ".zoom:hover > * {  transform: scale(1.1);}"
+  },
+  "fade-effect": {
+    "prefix": "fade-effect",
+    "body": ".fade > * {  --transition-property: opacity;  --transition-duration: 500ms;a} .fade:hover > * {  opacity: 0;}"
+  },
+  "ubreakable-boxes": {
+    "prefix": "unbreakable",
+    "body": ".unbreakable-box {  --color-light: #E0D4F6;  --color-dark: #675883;  margin: 2rem auto;  color: var(--color-dark);  background-color: var(--color-light);  font-size: 1.15rem;  /* Smol Responsive Padding FTW! */  padding: clamp(.75rem, 3%, 2rem);  /* Provide a max-width and prevent overflow */  width: min(50ch, 90%);  /* Help prevent overflow of long words/names/URLs */  word-break: break-word;  /* Optional, not supported for all languages */  hyphens: auto;} .unbreakable-box footer {  padding: 0.25em 0.5em;  margin-top: 1rem;  color: var(--color-light);  background-color: var(--color-dark);  font-size: 0.9rem;  /* Creates a visual box shrunk to `max-content` */  width: fit-content;}"
   }
 }
