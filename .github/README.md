@@ -6,6 +6,12 @@ My [Winchester Mysterey](https://en.wikipedia.org/wiki/Winchester_Mystery_House)
 
 With this in mind, **feel free to take from it as you please**, use pieces of it or the whole thing as a basis for your own and you are more than welcome to **submit pull requests** if it so pleases you, that's why its on Github/Gitlab ;]
 
+### Now Featuring my Vice Base16 Scheme
+
+## Gallery
+
+**Coming Soon**
+
 ---
 
 # Inspiration
