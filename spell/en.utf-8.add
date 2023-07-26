@@ -53,3 +53,4 @@ config
 CNF
 statusline
 tabline
+AwesomeWM
