@@ -6,6 +6,8 @@ Visual Mode Indent Increase | >
 Visual Mode Indent Decrease | <
 Visual Mode Paste Over Selected Text Without Yanking It | p or P 
 
+Toggle Value in Normal Mode | <Leader> + tg
+
 Switch To Next Buffer | <Tab>
 Switch To Previous Buffer | <Shift> + <Tab>
 
