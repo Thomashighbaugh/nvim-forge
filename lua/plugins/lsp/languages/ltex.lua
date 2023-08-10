@@ -5,7 +5,7 @@
 --  ╰───────────────────────────────────────────────────────────────╯
 
 local opts = {
-	language = "en-US",
+    language = "en-US",
 }
 
 return opts

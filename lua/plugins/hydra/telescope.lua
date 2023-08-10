@@ -7,7 +7,7 @@
 local Hydra = require("hydra")
 
 local function cmd(command)
-	return table.concat({ "<Cmd>", command, "<CR>" })
+    return table.concat({ "<Cmd>", command, "<CR>" })
 end
 
 local hint = [[
@@ -26,36 +26,48 @@ local hint = [[
 ]]
 
 Hydra({
-	name = "Telescope",
-	hint = hint,
-	config = {
-		invoke_on_body = true,
-		hint = {
-			position = "middle",
-			border = "rounded",
-		},
-	},
-	mode = "n",
-	body = "<Leader>s",
-	heads = {
-		{ "c", cmd("Telescope commands"), { desc = "execute command" } },
-		{ "f", cmd("Telescope find_files") },
-		{ "t", cmd("Telescope live_grep") },
-		{ "h", cmd("Telescope help_tags"), { desc = "vim help" } },
-		{ "H", cmd("Telescope heading") },
-		{ "k", cmd("Telescope keymaps") },
-		{ "O", cmd("Telescope vim_options") },
-		{ "m", cmd("Telescope make") },
-		{ "p", cmd("Telescope projects"), { desc = "projects" } },
-		{ "P", cmd("Telescope packer") },
-		{ "r", cmd("Telescope oldfiles"), { desc = "recently opened files" } },
-		{ "R", cmd("Telescope registers") },
-		{ "s", cmd("Telescope grep_string"), { desc = "Text under cursor" } },
-		{ "S", cmd("Telescope symbols") },
-		{ "/", cmd("Telescope current_buffer_fuzzy_find"), { desc = "search in file" } },
-		{ "?", cmd("Telescope search_history"), { desc = "search history" } },
-		{ ";", cmd("Telescope command_history"), { desc = "command-line history" } },
-		{ "<Enter>", cmd("Telescope"), { exit = true, desc = "list all pickers" } },
-		{ "q", nil, { exit = true, nowait = true } },
-	},
+    name = "Telescope",
+    hint = hint,
+    config = {
+        invoke_on_body = true,
+        hint = {
+            position = "middle",
+            border = "rounded",
+        },
+    },
+    mode = "n",
+    body = "<Leader>s",
+    heads = {
+        { "c", cmd("Telescope commands"), { desc = "execute command" } },
+        { "f", cmd("Telescope find_files") },
+        { "t", cmd("Telescope live_grep") },
+        { "h", cmd("Telescope help_tags"), { desc = "vim help" } },
+        { "H", cmd("Telescope heading") },
+        { "k", cmd("Telescope keymaps") },
+        { "O", cmd("Telescope vim_options") },
+        { "m", cmd("Telescope make") },
+        { "p", cmd("Telescope projects"), { desc = "projects" } },
+        { "P", cmd("Telescope packer") },
+        { "r", cmd("Telescope oldfiles"), { desc = "recently opened files" } },
+        { "R", cmd("Telescope registers") },
+        { "s", cmd("Telescope grep_string"), { desc = "Text under cursor" } },
+        { "S", cmd("Telescope symbols") },
+        {
+            "/",
+            cmd("Telescope current_buffer_fuzzy_find"),
+            { desc = "search in file" },
+        },
+        { "?", cmd("Telescope search_history"), { desc = "search history" } },
+        {
+            ";",
+            cmd("Telescope command_history"),
+            { desc = "command-line history" },
+        },
+        {
+            "<Enter>",
+            cmd("Telescope"),
+            { exit = true, desc = "list all pickers" },
+        },
+        { "q", nil, { exit = true, nowait = true } },
+    },
 })
