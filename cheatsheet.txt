@@ -8,6 +8,8 @@ Visual Mode Paste Over Selected Text Without Yanking It | p or P
 
 Toggle Value in Normal Mode | <Leader> + tg
 
+Open Per Repository Notepad | <Leader> + p
+
 Switch To Next Buffer | <Tab>
 Switch To Previous Buffer | <Shift> + <Tab>
 
