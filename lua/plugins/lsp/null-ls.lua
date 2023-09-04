@@ -22,8 +22,8 @@ nls.setup({
                 "AutoPreferDouble",
             },
         }),
-        nls.builtins.diagnostics.eslint_d,
-        nls.builtins.code_actions.eslint_d,
+        --        nls.builtins.diagnostics.eslint_d,
+        --        nls.builtins.code_actions.eslint_d,
 
         nls.builtins.formatting.prettier.with({
             extra_args = { "--single-quote", "false" },
