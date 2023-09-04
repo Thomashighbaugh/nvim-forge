@@ -30,4 +30,4 @@ Github/Gitlab :wink:
 - [ayamir's nvimdots](https://github.com/ayamir/nvimdots)
 - [CharlesChiuGit's nvimdots](https://github.com/CharlesChiuGit/nvimdots.lua)
 - [dragove's nvim](https://github.com/dragove/nvim)
-- [KrakenNvim](https://github.com/dharmx/nvim):a
+- [Dharmx's Nvim](https://github.com/dharmx/nvim)
