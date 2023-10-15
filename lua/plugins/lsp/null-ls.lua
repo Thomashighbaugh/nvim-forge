@@ -43,8 +43,13 @@ nls.setup({
             extra_args = { "-g", "/dev/null" }, -- https://github.com/cmhughes/latexindent.pl/releases/tag/V3.9.3
         }),
         nls.builtins.code_actions.shellcheck,
-        --        nls.builtins.diagnostics.cspell,
-        --      nls.builtins.code_actions.cspell,
+
+        nls.builtins.code_actions.refactoring,
+        nls.builtins.code_actions.statix,
+        nls.builtins.code_actions.ts_node_action,
+        nls.builtins.formatting.alejandra,
+        nls.builtins.formatting.trim_newlines,
+        nls.builtins.formatting.trim_whitespace,
         nls.builtins.code_actions.gitsigns,
         nls.builtins.formatting.shfmt,
     },
