@@ -17,7 +17,7 @@ M.config = {
         file_name = function(cwd) -- Function to generate the name of the note file for the current directory
             local base_name = vim.fs.basename(cwd)
             local parent_base_name = vim.fs.basename(vim.fs.dirname(cwd))
-            return ".notes/" .. base_name .. "-todos.md"
+            return parent_base_name .. "/.notes/" .. base_name .. "-todos.md"
         end,
     },
 }

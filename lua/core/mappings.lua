@@ -190,7 +190,7 @@ wk.register({
         S = { "<cmd>:Cheatsheet <cr>", "Open Cheatsheet" },
         l = { "<cmd>LuaSnipListAvailable <cr>", "List available snippets" },
         p = { "<cmd>Lazy check<cr>", "Lazy check" },
-        u = { "<cmf>Lazy sync", "Update Packages" },
+        u = { "<cmd>Lazy sync", "Lazy Sync" },
     },
 
     --  +-------------------------------------------------------------------------+
