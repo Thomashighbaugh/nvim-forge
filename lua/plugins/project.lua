@@ -13,7 +13,7 @@ local M = {
                 "pyproject.toml",
             },
             -- detection_methods = { "lsp", "pattern" },
-            detection_methods = { "pattern" },
+            detection_methods = { "lsp", "pattern" },
         })
     end,
 }

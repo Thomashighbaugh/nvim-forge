@@ -1,20 +1,21 @@
 M = {
-    "elentok/togglr.nvim",
-    opts = {
-        -- Specify key map (set to false or nil to disable)
-        key = "<Leader>tg",
+  "elentok/togglr.nvim",
+  opts = {
+    -- Specify key map (set to false or nil to disable)
+    key = "<Leader>tg",
 
-        -- Specify which register to use (to avoid overriding the default register)
-        register = "t",
+    -- Specify which register to use (to avoid overriding the default register)
+    register = "t",
 
-        -- Enable debugging mode
-        debug = true,
+    -- Enable debugging mode
+    debug = true,
 
-        -- Add custom sets to values to toggle between
-        values = {
-            ["value"] = "opposite-value",
-        },
+    -- Add custom sets to values to toggle between
+    values = {
+      ["value"] = "opposite-value",
     },
+  },
 }
+
 
 return M

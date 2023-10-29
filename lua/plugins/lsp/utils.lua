@@ -133,7 +133,7 @@ function M.custom_lsp_attach(client, bufnr)
                 "<cmd>Telescope diagnostics bufnr=0<cr>",
                 "Document Diagnostics",
             },
-            f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+            f = { "<cmd>vim.lsp.buf.formatting()<cr>", "Format" },
             i = { "<cmd>LspInfo<cr>", "Connected Language Servers" },
             k = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Commands" },
             l = {

@@ -1,10 +1,12 @@
-Move Cursor Up One Line | k or <Up> 
+Move Cursor Up One Line | k or <Up>
 Move Cursor Down One Line | j or <Down>
 Move Cursor One Space Left | h or <Left>
 Move Cursor One Space Right | l or <Right>
 Visual Mode Indent Increase | >
 Visual Mode Indent Decrease | <
-Visual Mode Paste Over Selected Text Without Yanking It | p or P 
+Visual Mode Paste Over Selected Text Without Yanking It | p or P
+
+Code Actions | <Alt> + <Enter>
 
 Toggle Value in Normal Mode | <Leader> + tg
 
@@ -28,22 +30,23 @@ Move Line Up | <Alt> + j
 Move Line Down | <Alt> + k
 
 
-Toggle Hidden Characters | <Leader> + th 
-Toggle Sign Column | <Leader> + tl  
+
+Toggle Hidden Characters | <Leader> + th
+Toggle Sign Column | <Leader> + tl
 Toggle Virtual Edit |  <Leader> + tv
-Toggle Wrap |  <Leader> + tw 
-Toggle Cursorline |  <Leader> + tc 
-Toggle Colorcolumn |  <Leader> + to 
-Toggle VirtualText |  <Leader> + tt 
-Toggle SymbolOutline |  <Leader> + tS 
+Toggle Wrap |  <Leader> + tw
+Toggle Cursorline |  <Leader> + tc
+Toggle Colorcolumn |  <Leader> + to
+Toggle VirtualText |  <Leader> + tt
+Toggle SymbolOutline |  <Leader> + tS
 
 Normal or Visual Mode Draw Left Aligned Comment Box | <Leader> + bb
-Normal or Visual Mode Draw Center Aligned Comment Box | <Leader> + bc 
+Normal or Visual Mode Draw Center Aligned Comment Box | <Leader> + bc
 Normal or Visual Mode Draw Right Aligned Comment Box | <Leader> + br
-Normal or Insert Mode Draw Centered Comment Line | <Alt> + l or <Leader> + bl  
+Normal or Insert Mode Draw Centered Comment Line | <Alt> + l or <Leader> + bl
 
 Add surrounding | <Leader> + sa
-Delete surrounding | <Leader> + sd  
+Delete surrounding | <Leader> + sd
 Highlight surrounding | <Leader> + sh
 Surround update n lines |  <Leader> + sn
 Replace surrounding | <Leader> + sr
@@ -69,7 +72,7 @@ Other Command Prefixes | <Leader> + m
 Comment Box Catalogue | <Leader>+mC
 List Available Snippets | <Leader>+ml
 Lazy Check | <Leader+mp
-Update Pa=f| <Leader>+mu 
+Update Pa=f| <Leader>+mu
 
 Quick Fix Command Prefixes | <Leader>+q
 Next Quick Fix Item | <Leader>+qj
@@ -85,5 +88,3 @@ Scroll Down | <C-d>
 Scroll Up | <C-u>
 
 Window Control Menu | <C-w>
-
-
