@@ -1,23 +1,2 @@
---       ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---       ╏                                                               ╏
---       ╏                           the Forge                           ╏
---       ╏                                                               ╏
---       ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
--- Entry point of my neovim configuration
---
-
--- Load global functions
-require("core.globals")
-
--- Load the plugin manager "lazy"
+---@diagnostic disable-next-line: different-requires
 require("core.lazy")
-
--- Load global key maps
-require("core.mappings")
-
--- Load all non-plugin related (vim) options
-require("core.options")
-
--- Load vim autocommands/autogroups
-local autocmds = require("core.autocmd")
-autocmds.load_defaults()
