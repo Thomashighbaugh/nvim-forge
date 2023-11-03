@@ -157,6 +157,9 @@ return {
       local root_has_file = plugin.root_has_file
       local null_ls = require("null-ls")
       local formatting = null_ls.builtins.formatting
+      local completion = null_ls.builtins.completion
+      local diagnostics = null_ls.builtins.diagnostics
+      local code_actions = null_ls.builtins.code_actions
       local stylua_root_files = { "stylua.toml", ".stylua.toml" }
       local modifier = {
         stylua_formatting = {
@@ -171,6 +174,47 @@ return {
           formatting.stylua.with(modifier.stylua_formatting),
           formatting.markdownlint,
           formatting.beautysh.with({ extra_args = { "--indent-size", "2" } }),
+          formatting.prettierd.with({
+            extra_args = { "--single-quote", "false" },
+            filetypes = { "html", "json", "yaml", "markdown" },
+          }),
+
+          completion.luasnip,
+          completion.tags,
+          formatting.rubyfmt,
+          formatting.rustfmt,
+          formatting.rustywind,
+          formatting.yamlfix,
+          diagnostics.actionlint,
+          diagnostics.statix,
+          diagnostics.trail_space,
+          diagnostics.deadnix,
+          diagnostics.statix,
+          diagnostics.todo_comments,
+          diagnostics.tsc,
+          diagnostics.zsh,
+          formatting.terraform_fmt,
+          formatting.black,
+          formatting.cbfmt,
+          formatting.goimports,
+          formatting.gofumpt,
+          formatting.latexindent.with({
+            extra_args = { "-g", "/dev/null" }, -- https://github.com/cmhughes/latexindent.pl/releases/tag/V3.9.3
+          }),
+          code_actions.shellcheck,
+          code_actions.refactoring.with({
+            filetypes = { "go", "javascript", "lua", "python", "typescript" },
+          }),
+          code_actions.statix,
+          code_actions.ts_node_action,
+          formatting.alejandra,
+          formatting.fixjson,
+          formatting.markdownlint,
+          formatting.markdown_toc,
+          formatting.trim_newlines,
+          formatting.trim_whitespace,
+          code_actions.gitsigns,
+          formatting.shfmt,
         },
       }
     end,

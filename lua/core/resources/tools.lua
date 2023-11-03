@@ -38,7 +38,7 @@ return {
     build = "cd app && yarn install",
     keys = {
       {
-        "<leader>p",
+        "<leader>P",
         function()
           vim.cmd([[MarkdownPreviewToggle]])
         end,

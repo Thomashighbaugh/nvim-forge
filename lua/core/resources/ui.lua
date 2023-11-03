@@ -321,7 +321,7 @@ return {
         AARRGGBB = false, -- 0xAARRGGBB hex codes
         rgb_fn = true, -- CSS rgb() and rgba() functions
         hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes: foreground, background
         -- Available modes for `mode`: foreground, background,  virtualtext
@@ -396,8 +396,8 @@ return {
       },
       lsp = {
         progress = { enabled = true },
-        hover = { enabled = false },
-        signature = { enabled = false },
+        hover = { enabled = true },
+        signature = { enabled = true },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -415,20 +415,19 @@ return {
       },
     },
   },
-      {
-        "folke/neodev.nvim",
-        lazy = true,
-    },
-    {
-        "mfussenegger/nvim-jdtls",
-        ft = "java",
-    },
+  {
+    "folke/neodev.nvim",
+    lazy = true,
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+  },
 
-    {
-        "nvim-lua/plenary.nvim",
-        lazy = true,
-    },
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
 
-    { "tpope/vim-eunuch", event = "VeryLazy" }, -- Adds things like :Move, :Rename, :SudoWrite, etc.
-
+  { "tpope/vim-eunuch", event = "VeryLazy" }, -- Adds things like :Move, :Rename, :SudoWrite, etc.
 }

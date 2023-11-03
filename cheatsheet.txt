@@ -1,90 +1,137 @@
-Move Cursor Up One Line | k or <Up>
-Move Cursor Down One Line | j or <Down>
-Move Cursor One Space Left | h or <Left>
-Move Cursor One Space Right | l or <Right>
-Visual Mode Indent Increase | >
-Visual Mode Indent Decrease | <
-Visual Mode Paste Over Selected Text Without Yanking It | p or P
+CODE ACTION  | <leader>la 
+DOCUMENT  DIAGNOSTICS  |  <leader>ld
+WORKSPACE DIAGNOSTICS | <leader>lw
+LSP INFO | <leader>li
+INSTALLER INFO | <leader>lI
+NEXT DIAGNOSTIC | <leader>lj
+PREVIOUS DIAGNOSTIC | <leader>lk
+CODE LENS ACTION | <leader>ll 
+QUICK FIX | <leader>lq 
+RENAME | <leader>lr 
+DOCUMENT SYMBOLS | <leader>ls 
+WORKSPACE SYMBOLS | <leader>lS 
 
-Code Actions | <Alt> + <Enter>
+GO TO DEFINTION | gd 
+GO TO REFERENCES | gr 
+GO TO IMPLEMENTATION | gi 
+HOVER | K 
+SHOW DIAGNOSTICS FLOATING WINDOW | gl
+PREVIOUS DIAGNOSTIC IN FLOATING WINDOW | ]d 
+NEXT DIAGNOSTIC IN FLOATING WINDOW | [d 
+QUICKFIX DIAGNOSTIC WINDOW | <leader>lq
 
-Toggle Value in Normal Mode | <Leader> + tg
-
-Open Per Repository Notepad | <Leader> + p
-
-Switch To Next Buffer | <Tab>
-Switch To Previous Buffer | <Shift> + <Tab>
-
-Clear Highlights and Escape Mode | <ESC>
-Move Over Closing Element in Insert Mode | <Ctrl> + l
-
-Search Buffer | <CTRL> + f
-Save File | <Ctrl> + s or :w
-
-Visual Mode Sort Alphabetically | <C-p>
-
-Visual Mode Increase Indent | >
-Visual Mode Decrease Indent | <
-
-Move Line Up | <Alt> + j
-Move Line Down | <Alt> + k
-
-
-
-Toggle Hidden Characters | <Leader> + th
-Toggle Sign Column | <Leader> + tl
-Toggle Virtual Edit |  <Leader> + tv
-Toggle Wrap |  <Leader> + tw
-Toggle Cursorline |  <Leader> + tc
-Toggle Colorcolumn |  <Leader> + to
-Toggle VirtualText |  <Leader> + tt
-Toggle SymbolOutline |  <Leader> + tS
-
-Normal or Visual Mode Draw Left Aligned Comment Box | <Leader> + bb
-Normal or Visual Mode Draw Center Aligned Comment Box | <Leader> + bc
-Normal or Visual Mode Draw Right Aligned Comment Box | <Leader> + br
-Normal or Insert Mode Draw Centered Comment Line | <Alt> + l or <Leader> + bl
-
-Add surrounding | <Leader> + sa
-Delete surrounding | <Leader> + sd
-Highlight surrounding | <Leader> + sh
-Surround update n lines |  <Leader> + sn
-Replace surrounding | <Leader> + sr
-Find left surrounding | <Leader> + sF
-Replace right surrounding | <Leader> + sf
-Jump to character | <Leader> + ss
-TS hint textobject | <Lesader> + st
-
-Buffer Command Prefix | <leader + >B
-Telescope Buffer | <leader> + Bb
-Close all but Current Buffer | <Leader> + BD
-Close Buffer | <Leader> + Bd
-
-File Command Prefix | <Leader> + f
-File Browser | <Leader> + fb
-Find File | <Leader> + ff
-Toggle File Tree | <Leader> + fp
-Open Recent File | <Leader> + fr
-Save Buffer | <Leader> + fs
+NEOTREE OPEN | Left Mouse or l 
+NEOTREE NAVIGATE UP | H 
+NEOTREE TOGGLE HIDDEN | <C-h>
+NEOTREE SET ROOT | . 
+NEOTREE FUZZY FINDER | / 
+NEOTREE FILTER ON SUBMIT | f 
+NEOTREE CLEAR FILTER | <C-x> 
+NEOTREE ADD FILE | a
 
 
-Other Command Prefixes | <Leader> + m
-Comment Box Catalogue | <Leader>+mC
-List Available Snippets | <Leader>+ml
-Lazy Check | <Leader+mp
-Update Pa=f| <Leader>+mu
+WINDOW NAVIGATE UP | <C-h>
+WINDOW NAVIGATE DOWN | <C-l>
+WINDOW NAVIGATE LEFT | <C-j>
+WINDOW NAVIGATE RIGHT | <C-k>
 
-Quick Fix Command Prefixes | <Leader>+q
-Next Quick Fix Item | <Leader>+qj
-Previous Quick Fix Item | <Leader>+qk
-Toggle Quick Fix List | <Leader>+qq
-Show TODO items | <Leader>+qt
+VISUAL MODE INDENT | > 
+VISUAL MODE UNINDENT | <
+VISUAL MODE PASTE OVER | p 
 
-Snippet Expand or Jump to Next | <C-j>
-Snippet Previous Item | <C-k>
-Snippet Selecting within Options | <C-h>
+RESIZE WINDOW +1 | <A-C-j>
+RESIZE WINDOW -1 | <A-C-k>
+VERTICAL RESIZE WINDOW +1 | <A-C-h>
+VERTICAL RESIZE WINDOW -1 | <A-C-l>
 
-Scroll Down | <C-d>
-Scroll Up | <C-u>
+VISUAL MODE LINE UP | <A-j> 
+VISUAL MODE LINE DOWN | <A-k> 
+BLOCK MODE LINE UP | <A-j>
+BLOCK MODE LINE DOWN | <A-k>
+NORMAL MODE LINE UP | <A-J> 
+NORMAL MODE LINE DOWN | <A-K> 
+INSERT MODE LINE UP | <A-J> 
+INSERT MODE LINE DOWN | <A-K> 
 
-Window Control Menu | <C-w>
+NO HIGHLIGHT | ; 
+VERTICAL SPLIT | <leader>\
+SPLIT | <leader>/ 
+COMPILE | <C-m-n>
+INSPECT | <F2> 
+
+BUFFER FORWARD | <Tab>
+PREVIOUS BUFFER | <S-Tab> 
+
+VISUAL MODE SORT SELECTED LINES | <C-p>
+
+SEARCH | / 
+
+INSERT MODE SAVE | <C-s> 
+VISUAL MODE SAVE | <C-s> 
+NORMAL MODE SAVE | <C-s> 
+BLOCK MODE SAVE | <C-s>
+
+CHEATSHEET SELECT | <CR>
+CHEATSHEET SELECT/EXECUTE  | <A-CR>
+CHEATSHEET COPY CHEAT VALUE | <C-Y>
+CHEATSHEET EDIT USER CHEATSHEET | <C-E> 
+
+CHANGE TO BUFFERS 1-9 | <C-1/9>
+NEXT BUFFER | <S-l>
+PREVIOUS BUFFER | <S-h> 
+MOVE BUFFER LEFT | <A-S-l>
+MOVE BUFFER RIGHT | <A-S-h>
+
+TOGGLE TERM | <C-\>
+
+DASHBOARD | <C-0>
+
+ZOOM WINDOW | <leader>m
+
+RNVIMR | <leader>r 
+
+MARKDOWN PREVIEW | <leader>P
+
+CLOSE BUFFER | <leader>d or <C-w>
+
+RESTORE SESSION | <leader>ss
+RESTORE LAST SESSION | <leader>sl 
+DON'T SAVE SESSION | <leader>sd 
+
+
+OPEN NEOTREE | <leader>e 
+OPEN FLOATING NEOTREE | <leader>E 
+
+TELESCOPE GO TO DEFINITION | gd
+TELESCOPE GO TO REFERENCES | gr
+TELESCOPE GO TO IMPLEMENTATIONS | gi
+
+TELESCOPE CHECKOUT BRANCH | sb
+TELESCOPE COLORSCHEME | sc
+TELESCOPE FIND HELP | sh
+TELESCOPE MAN PAGES | sM
+TELESCOPE OPEN RECENT FILE | sr
+TELESCOPE REGISTERS | sR
+TELESCOPE KEYMAPS | sk
+TELESCOPE COMMANDS | sC
+TELESCOPE HIGHLIGHT GROUPS | sH
+TELESCOPE OPEN CHANGED FILE | <leader>go
+TELESCOPE CHECKOUT BRANCH | <leader>gb
+TELESCOPE CHECKOUT COMMIT | <leader>gc
+TELESCOPE FIND FILES | <leader>f
+TELESCOPE FIND TEXT | <leader>F
+TELESCOPE FIND BUFFEER| <leader>b
+
+SAVE | <leader>w
+
+QUIT | <leader>q
+QUIT ALL | <leader>Q
+NO HIGHLIGHT | <leader>h
+NAVIGATE PREVIOUS BUFFER | <leader><Tab>
+GIT | <leader>g
+LSP | <leader>l
++SESSION | <leader>s
+FOLD | f
+GOTO | g 
+SEARCH | s 
+
