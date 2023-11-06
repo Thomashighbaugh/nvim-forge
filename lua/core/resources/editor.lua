@@ -140,15 +140,15 @@ return {
       { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references" },
       { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementations" },
       -- search
-      { "sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-      { "sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
-      { "sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
-      { "sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-      { "sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
-      { "sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
-      { "sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-      { "sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "sH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
+      { "Sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+      { "Sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+      { "Sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+      { "SM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+      { "Sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+      { "SR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+      { "Sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "SC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+      { "SH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
       -- Git
       { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
       { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
@@ -166,17 +166,34 @@ return {
     event = "VeryLazy",
     opts = {
       plugins = {
-        presets = { motions = false, g = false }, -- This fix mapping for fold when press f and nothing show up
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        spelling = {
+          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+          suggestions = 10, -- how many suggestions should be shown in the list?
+        },
+
+        presets = {
+          operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+          motions = true, -- adds help for motions
+          text_objects = true, -- help for text objects triggered after entering an operator
+          windows = true, -- default bindings on <c-w>
+          nav = true, -- misc bindings to work with windows
+          z = true, -- bindings for folds, spelling and others prefixed with z
+          g = true, -- bindings for prefixed with g
+        }, -- This fix mapping for fold when press f and nothing show up
       },
       window = {
         margin = { 1, 0, 2, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 1, 0, 1, 2 }, -- extra window padding [top, right, bottom, left]
         winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        border = "shadow",
+        position = "bottom",
       },
       layout = {
         height = { min = 3, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 100 }, -- min and max width of the columns
-        spacing = 5, -- spacing between columns
+        width = { min = 5, max = 50 }, -- min and max width of the columns
+        spacing = 10, -- spacing between columns
         align = "center", -- align columns left, center or right
       },
     },
@@ -189,14 +206,58 @@ return {
         ["<leader>Q"] = { "<cmd>qa<CR>", "Quit All" },
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
-        ["<leader>g"] = { name = "Git" },
-        ["<leader>l"] = { name = "LSP" },
-        ["<leader>s"] = { name = "+Session" },
+        ["<leader>l"] = { name = "+LSP" },
         ["f"] = { name = "Fold" },
         ["g"] = { name = "Goto" },
         ["s"] = { name = "Search" },
       }
       wk.register(keymaps)
+      wk.register({
+        sa = "Add surrounding",
+        sd = "Delete surrounding",
+        sh = "Highlight surrounding",
+        sn = "Surround update n lines",
+        sr = "Replace surrounding",
+        sF = "Find left surrounding",
+        sf = "Replace right surrounding",
+      })
+      wk.register({
+        l = {
+          name = "+LSP",
+          a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+          d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
+          w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+          h = { "<cmd>vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
+          i = { "<cmd>LspInfo<cr>", "Info" },
+          I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+          j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+          k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+          l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+          q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
+          r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+          s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+          S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
+        },
+        a = {
+          name = "Git",
+          g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+          j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+          k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "prev hunk" },
+          l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "blame" },
+          p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "preview hunk" },
+          r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "reset hunk" },
+          R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "reset buffer" },
+          s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "stage hunk" },
+          u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "undo stage hunk" },
+          d = { "<cmd>gitsigns diffthis head<cr>", "diff" },
+        },
+        s = {
+          name = "+Session",
+          s = { "<cmd>lua require('persistence').load()<cr>", "Restore Session" },
+          l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore Last Session" },
+          d = { "<cmd>lua require('persistence;).stop()<cr>", "Don't Save Current Session" },
+        },
+      }, { prefix = "<leader>", mode = { "n", "v" }, opts })
     end,
   },
 
@@ -221,18 +282,7 @@ return {
         border = Util.generate_borderchars("thick", "tl-t-tr-r-bl-b-br-l"), -- [ top top top - right - bottom bottom bottom - left ]
       },
     },
-    keys = {
-      { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit" },
-      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk" },
-      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk" },
-      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame" },
-      { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },
-      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", desc = "Reset Hunk" },
-      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", desc = "Reset Buffer" },
-      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", desc = "Stage Hunk" },
-      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk" },
-      { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff" },
-    },
+    keys = {},
   },
 
   -- references
@@ -285,90 +335,6 @@ return {
     keys = {
       { "]]", desc = "Next Reference" },
       { "[[", desc = "Prev Reference" },
-    },
-  },
-
-  {
-    "kevinhwang91/nvim-ufo",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "kevinhwang91/promise-async", event = "BufReadPost" },
-    opts = {
-      fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
-        local newVirtText = {}
-        local suffix = ("  … %d "):format(endLnum - lnum)
-        local sufWidth = vim.fn.strdisplaywidth(suffix)
-        local targetWidth = width - sufWidth
-        local curWidth = 0
-        for _, chunk in ipairs(virtText) do
-          local chunkText = chunk[1]
-          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-          if targetWidth > curWidth + chunkWidth then
-            table.insert(newVirtText, chunk)
-          else
-            chunkText = truncate(chunkText, targetWidth - curWidth)
-            local hlGroup = chunk[2]
-            table.insert(newVirtText, { chunkText, hlGroup })
-            chunkWidth = vim.fn.strdisplaywidth(chunkText)
-            -- str width returned from truncate() may less than 2nd argument, need padding
-            if curWidth + chunkWidth < targetWidth then
-              suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-            end
-            break
-          end
-          curWidth = curWidth + chunkWidth
-        end
-        table.insert(newVirtText, { suffix, "MoreMsg" })
-        return newVirtText
-      end,
-      open_fold_hl_timeout = 0,
-    },
-    keys = {
-      { "fd", "zd", desc = "Delete fold under cursor" },
-      { "fo", "zo", desc = "Open fold under cursor" },
-      { "fO", "zO", desc = "Open all folds under cursor" },
-      { "fc", "zC", desc = "Close all folds under cursor" },
-      { "fa", "za", desc = "Toggle fold under cursor" },
-      { "fA", "zA", desc = "Toggle all folds under cursor" },
-      { "fv", "zv", desc = "Show cursor line" },
-      {
-        "fM",
-        function()
-          require("ufo").closeAllFolds()
-        end,
-        desc = "Close all folds",
-      },
-      {
-        "fR",
-        function()
-          require("ufo").openAllFolds()
-        end,
-        desc = "Open all folds",
-      },
-      {
-        "fm",
-        function()
-          require("ufo").closeFoldsWith()
-        end,
-        desc = "Fold more",
-      },
-      {
-        "fr",
-        function()
-          require("ufo").openFoldsExceptKinds()
-        end,
-        desc = "Fold less",
-      },
-      { "fx", "zx", desc = "Update folds" },
-      { "fz", "zz", desc = "Center this line" },
-      { "ft", "zt", desc = "Top this line" },
-      { "fb", "zb", desc = "Bottom this line" },
-      { "fg", "zg", desc = "Add word to spell list" },
-      { "fw", "zw", desc = "Mark word as bad/misspelling" },
-      { "fe", "ze", desc = "Right this line" },
-      { "fE", "zE", desc = "Delete all folds in current buffer" },
-      { "fs", "zs", desc = "Left this line" },
-      { "fH", "zH", desc = "Half screen to the left" },
-      { "fL", "zL", desc = "Half screen to the right" },
     },
   },
 

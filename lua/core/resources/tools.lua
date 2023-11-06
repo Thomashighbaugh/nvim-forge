@@ -12,7 +12,7 @@ return {
       vim.g.rnvimr_border_attr = { fg = 3, bg = -1 }
 
       -- Draw border with both
-       vim.g.rnvimr_ranger_cmd = { "ranger", "--cmd=set draw_borders both" }
+      vim.g.rnvimr_ranger_cmd = { "ranger", "--cmd=set draw_borders both" }
 
       -- Add a shadow window, value is equal to 100 will disable shadow
       vim.g.rnvimr_shadow_winblend = 90
@@ -33,30 +33,11 @@ return {
   },
 
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
-    keys = {
-      {
-        "<leader>P",
-        function()
-          vim.cmd([[MarkdownPreviewToggle]])
-        end,
-        desc = "Peek (Markdown Preview)",
-      },
-    },
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
-
-  {
     "moll/vim-bbye",
     event = { "BufRead" },
     keys = {
       { "<leader>d", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
-      { "<C-w>", "<cmd>Bdelete!<cr>", desc = "Close Buffer" }
+      { "<C-w>", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
     },
   },
 
@@ -66,29 +47,7 @@ return {
     opts = {
       options = { "buffers", "curdir", "tabpages", "winsize", "help", "blank", "terminal", "folds", "tabpages" },
     },
-    keys = {
-      {
-        "<leader>ss",
-        function()
-          require("persistence").load()
-        end,
-        desc = "Restore Session",
-      },
-      {
-        "<leader>sl",
-        function()
-          require("persistence").load({ last = true })
-        end,
-        desc = "Restore Last Session",
-      },
-      {
-        "<leader>sd",
-        function()
-          require("persistence").stop()
-        end,
-        desc = "Don't Save Current Session",
-      },
-    },
+    keys = {},
   },
 
   -- Easily switch virtual environment in python

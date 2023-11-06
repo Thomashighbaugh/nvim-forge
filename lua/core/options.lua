@@ -55,7 +55,7 @@ local options = {
   linespace = 8,
   mousemoveevent = true,
   syntax = "off",
-  spelllang = { "en", "vi" },
+  spelllang = { "en", "de", "es" },
   -- use fold
   foldlevelstart = 99,
   foldlevel = 99,
