@@ -72,11 +72,18 @@ map("v", "<C-p>", "<cmd>Sort <cr>", { desc = "Sort Lines Alphabetically" })
 -- search like you are used to
 map("n", "<C-f>", "/", { desc = "Search buffer" })
 
+-- terminal
+map("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true }) -- back to normal mode in Terminal
+map("t", "<C-h>", [[<C-\><C-n><C-W>h]], { noremap = true })
+map("t", "<C-j>", [[<C-\><C-n><C-W>j]], { noremap = true })
+map("t", "<C-k>", [[<C-\><C-n><C-W>k]], { noremap = true })
+map("t", "<C-l>", [[<C-\><C-n><C-W>l]], { noremap = true })
+
 -- save like your are used to
-map( "v" , "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
-map( "i" , "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
-map( "n" , "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
-map( "x" , "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save file" })
+map("v", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
+map("i", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
+map("n", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
+map("x", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
 -------------------- Fuzzy Search --------------------------------
 vim.keymap.set("n", "<C-f>", function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.

@@ -40,7 +40,21 @@ return {
       end
     end,
   },
-
+  {
+    "RutaTang/quicknote.nvim",
+    config = function()
+      -- you must call setup to let quicknote.nvim works correctly
+      require("quicknote").setup({
+        mode = "portable", -- "portable" | "resident", default to "portable"
+        sign = " ", -- This is used for the signs on the left side (refer to ShowNoteSigns() api).
+        -- You can change it to whatever you want (eg. some nerd fonts icon), 'N' is default
+        filetype = "md",
+        git_branch_recognizable = false, -- If true, quicknote will separate notes by git branch
+        -- But it should only be used with residen
+      })
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
@@ -149,10 +163,8 @@ return {
       { "Sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       { "SC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "SH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
-      -- Git
-      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
-      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+      { "<leader>ld", "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
+      { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
       -- Find
       { "<leader>f", Util.telescope("find_files"), desc = "Find files" },
       { "<leader>F", Util.telescope("live_grep"), desc = "Find Text" },
@@ -164,6 +176,11 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+    },
     opts = {
       plugins = {
         marks = true, -- shows a list of your marks on ' and `
@@ -202,8 +219,6 @@ return {
       wk.setup(opts)
       local keymaps = {
         ["<leader>w"] = { "<cmd>w!<CR>", "Save" },
-        ["<leader>q"] = { "<cmd>q<CR>", "Quit" },
-        ["<leader>Q"] = { "<cmd>qa<CR>", "Quit All" },
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
         ["<leader>l"] = { name = "+LSP" },
@@ -213,20 +228,9 @@ return {
       }
       wk.register(keymaps)
       wk.register({
-        sa = "Add surrounding",
-        sd = "Delete surrounding",
-        sh = "Highlight surrounding",
-        sn = "Surround update n lines",
-        sr = "Replace surrounding",
-        sF = "Find left surrounding",
-        sf = "Replace right surrounding",
-      })
-      wk.register({
         l = {
           name = "+LSP",
           a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-          d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
-          w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
           h = { "<cmd>vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
           i = { "<cmd>LspInfo<cr>", "Info" },
           I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
@@ -256,6 +260,113 @@ return {
           s = { "<cmd>lua require('persistence').load()<cr>", "Restore Session" },
           l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore Last Session" },
           d = { "<cmd>lua require('persistence;).stop()<cr>", "Don't Save Current Session" },
+        },
+        q = {
+          name = "Quick Notes",
+          c = {
+            name = "Create Notes",
+            c = {
+              "<cmd>:lua require('quicknote').NewNoteAtCurrentLine()<cr>",
+              "Create a New Note For the Current Line",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').NewNoteAtCWD()<cr>",
+              "Create a New Note For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').NewNoteAtGlobal()<cr>", "Create a New Globally Scoped Note" },
+          },
+          o = {
+            name = "Open Notes",
+            c = { "<cmd>:lua require('quicknote').OpenNoteAtCurrentLine()<cr>", "Open a New Globally Scoped Note" },
+            d = {
+              "<cmd>:lua require('quicknote').OpenNoteAtCWD()<cr>",
+              "Open a New Note For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').OpenNoteAtGlobal()<cr>", "Open a New Globally Scoped Note" },
+          },
+          d = {
+            name = "Delete Notes",
+            c = {
+              "<cmd>:lua require('quicknote').DeleteNoteAtCurrentLine()<cr>",
+              "Delete the Note Specific to the Current Line",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').DeleteNoteAtCWD()<cr>",
+              "Delete the Note For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').DeleteNoteAtGlobal()<cr>", "Delete a Globally Scoped Note" },
+          },
+          l = {
+            name = "List Notes",
+            c = {
+              "<cmd>:lua require('quicknote').ListNotesForCurrentBuffer()<cr>",
+              "List the Notes Specific to the Current Buffer",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').ListNotesForCWD()<cr>",
+              "List the Notes For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').ListNotesForGlobal()<cr>", "List the Globally Scoped Notes" },
+          },
+          j = {
+            name = "Jump to Notes",
+            j = {
+              "<cmd>:lua require('quicknote').JumpToPreviousNote()<cr>",
+              "jump to previous avaiable note in current buffer",
+            },
+            k = {
+              "<cmd>:lua require('quicknote').JumpToNextNote()<cr>",
+              "jump to next avaiable note in current buffer",
+            },
+          },
+          g = {
+            name = "Get Notes",
+            c = {
+              "<cmd>:lua require('quicknote').GetNotesForCurrentBuffer()<cr>",
+              "Get the Notes Specific to the Current Buffer",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').GetNotesForCWD()<cr>",
+              "Get the Notes For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').GetNotesForGlobal()<cr>", "Get the Globally Scoped Notes" },
+          },
+          s = {
+            name = "Note Signs",
+            s = { "<cmd>:lua require('quicknote').ShowNoteSigns()", "Show Note Signs" },
+            h = { "<cmd>:lua require('quicknote').HideNoteSigns()", "Hide Note Signs" },
+            t = { "<cmd>:lua require('quicknote').ToggleNoteSigns()", "Toggle Note Signs" },
+          },
+          e = {
+            name = "Export Notes",
+            c = {
+              "<cmd>:lua require('quicknote').ExportNotesForCurrentBuffer()<cr>",
+              "Export the Notes Specific to the Current Buffer",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').ExportNotesForCWD()<cr>",
+              "Export the Notes For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').ExportNotesForGlobal()<cr>", "Export the Globally Scoped Notes" },
+          },
+          i = {
+            name = "Import Notes",
+            c = {
+              "<cmd>:lua require('quicknote').ImportNotesForCurrentBuffer()<cr>",
+              "Import the Notes Specific to the Current Buffer",
+            },
+            d = {
+              "<cmd>:lua require('quicknote').ImportNotesForCWD()<cr>",
+              "Import the Notes For the Current Working Directory",
+            },
+            g = { "<cmd>:lua require('quicknote').ImportNotesForGlobal()<cr>", "Import the Globally Scoped Notes" },
+          },
+          m = {
+            name = "Switch Quicknote Mode",
+            t = { "<cmd>:lua require('quicknote').ToggleMode()", "Toggle Mode" },
+            p = { "<cmd>:lua require('quicknote').SwitchToPortableMode()", "Switch to Portable Mode" },
+            r = { "<cmd>:lua require('quicknote').SwitchToResidentMode()", "Switch to Resident Mode" },
+          },
         },
       }, { prefix = "<leader>", mode = { "n", "v" }, opts })
     end,

@@ -229,20 +229,30 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       open_mapping = [[<C-\>]],
+      hide_numbers = true,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = "1",
       start_in_insert = true,
       direction = "float",
+      insert_mappings = true,
+      persist_size = true,
+      close_on_exit = false,
+      shell = "/bin/sh",
       autochdir = false,
       float_opts = {
-        border = Util.generate_borderchars("thick", "tl-t-tr-r-bl-b-br-l"),
-        winblend = 0,
-      },
-      highlights = {
-        FloatBorder = { link = "ToggleTermBorder" },
-        Normal = { link = "ToggleTerm" },
-        NormalFloat = { link = "ToggleTerm" },
+        --        border = Util.generate_borderchars("thick", "tl-t-tr-r-bl-b-br-l"),
+        border = "single",
+        winblend = 3,
+        width = 85,
+        height = 55,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
       },
       winbar = {
-        enabled = true,
+        enabled = false,
         name_formatter = function(term)
           return term.name
         end,
