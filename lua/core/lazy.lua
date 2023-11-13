@@ -1,31 +1,48 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--single-branch",
-        "https://github.com/folke/lazy.nvim.git",
-        lazypath,
-    })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
-vim.opt.runtimepath:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 
--- Remap space as leader key
--- Must be before lazy
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-
-require("lazy").setup("plugins", {
-    -- defaults = { lazy = true },
-    install = {
-        -- install missing plugins on startup. This doesn't increase startup time.
-        missing = true,
+-- load lazy
+require("lazy").setup({
+  spec = {
+    { import = "core.resources" },
+    { import = "core.resources.lang.python", enabled = true },
+    { import = "core.resources.lang.typescript", enabled = true },
+    { import = "core.resources.lang.json", enabled = false },
+    { import = "core.resources.lang.java", enabled = false },
+    { import = "core.resources.lang.docker", enabled = false },
+    { import = "core.resources.lang.docker", enabled = false },
+    { import = "core.resources.lang.clangd", enabled = false },
+  },
+  defaults = {
+    lazy = false,
+    -- version = false, -- always use the latest git commit
+    version = "*", -- try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "base16-vice", "monokai-pro", "habamax" } },
+  checker = { enabled = false, notify = false },
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
     },
-    change_detection = {
-        -- automatically check for config file changes and reload the ui
-        enabled = true,
-        notify = false, -- get a notification when changes are found
-    },
-    debug = false,
+  },
 })

@@ -1,4 +1,2 @@
-plugin/
-packer_compiled.lua
-.envrc
 .luarc.json
+install_neovim.sh
