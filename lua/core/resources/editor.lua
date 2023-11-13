@@ -163,8 +163,7 @@ return {
       { "Sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       { "SC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "SH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
-      { "<leader>ld", "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
-      { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+
       -- Find
       { "<leader>f", Util.telescope("find_files"), desc = "Find files" },
       { "<leader>F", Util.telescope("live_grep"), desc = "Find Text" },
@@ -221,7 +220,6 @@ return {
         ["<leader>w"] = { "<cmd>w!<CR>", "Save" },
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
-        ["<leader>l"] = { name = "+LSP" },
         ["f"] = { name = "Fold" },
         ["g"] = { name = "Goto" },
         ["s"] = { name = "Search" },
@@ -230,12 +228,14 @@ return {
       wk.register({
         l = {
           name = "+LSP",
+          d = { "<cmd>lua vim.diagnostic.get <cr>", "Document Diagnostics" },
+          w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
           a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
           h = { "<cmd>vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
           i = { "<cmd>LspInfo<cr>", "Info" },
           I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-          j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
-          k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+          j = { "<cmd>lua vim.lsp.diagnostic.get_next()<CR>", "Next Diagnostic" },
+          k = { "<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Prev Diagnostic" },
           l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
           q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
           r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
@@ -477,4 +477,6 @@ return {
       })
     end,
   },
+
+
 }

@@ -6,7 +6,7 @@ return {
     "rcarriga/nvim-notify",
     keys = {
       {
-        "<leader>n",
+        "<leader>N",
         function()
           require("notify").dismiss({ silent = true, pending = true })
         end,
@@ -182,7 +182,7 @@ return {
     enabled = true,
     -- lazy = true,
     version = false, -- wait till new 0.7.0 release to put it back on semver
-    -- event = "BufReadPre",
+    event = "BufReadPre",
     opts = {
       symbol = "▏",
       -- symbol = "│",
@@ -241,7 +241,6 @@ return {
       shell = "/bin/sh",
       autochdir = false,
       float_opts = {
-        --        border = Util.generate_borderchars("thick", "tl-t-tr-r-bl-b-br-l"),
         border = "single",
         winblend = 3,
         width = 85,
