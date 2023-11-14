@@ -13,13 +13,36 @@ return {
         lua_ls = {
           settings = {
             Lua = {
+              runtime = {
+                version = "LuaJIT",
+                path = vim.split(package.path, ";"),
+              },
+
               hint = { enable = true },
               diagnostics = {
-                globals = { "vim" },
+                enable = true,
+                globals = {
+                  "vim",
+                  "nnoremap",
+                  "vnoremap",
+                  "inoremap",
+                  "tnoremap",
+                  "use",
+                },
               },
               workspace = {
                 checkThirdParty = false,
+                library = {
+                  vim.api.nvim_get_runtime_file("", true),
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                },
+                -- adjust these two values if your performance is not optimal
+                maxPreload = 2000,
+                preloadFileSize = 2000,
               },
+              telemetry = { enable = false },
+
               completion = {
                 callSnippet = "Replace",
               },
@@ -48,6 +71,7 @@ return {
         },
       },
     },
+
     config = function(_, opts)
       local Util = require("util")
       -- special attach lsp
@@ -146,7 +170,6 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     -- event = { "BufReadPre", "BufNewFile" },
-    lazy = true,
     dependencies = { "mason.nvim" },
     root_has_file = function(files)
       return function(utils)
@@ -176,7 +199,19 @@ return {
           formatting.beautysh.with({ extra_args = { "--indent-size", "2" } }),
           formatting.prettierd.with({
             extra_args = { "--single-quote", "false" },
-            filetypes = { "html", "json", "yaml", "markdown" },
+            filetypes = {
+              "html",
+              "tsx",
+              "javascript",
+              "typescript",
+              "css",
+              "scss",
+              "less",
+              "jsx",
+              "json",
+              "yaml",
+              "markdown",
+            },
           }),
 
           completion.luasnip,
@@ -205,8 +240,6 @@ return {
           code_actions.refactoring.with({
             filetypes = { "go", "javascript", "lua", "python", "typescript" },
           }),
-          code_actions.statix,
-          code_actions.ts_node_action,
           formatting.alejandra,
           formatting.fixjson,
           formatting.markdownlint,

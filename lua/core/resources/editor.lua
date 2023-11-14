@@ -41,6 +41,16 @@ return {
     end,
   },
   {
+    "Exafunction/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({})
+    end,
+  },
+  {
     "RutaTang/quicknote.nvim",
     config = function()
       -- you must call setup to let quicknote.nvim works correctly
@@ -58,7 +68,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    version = false, -- telescope did only one release, so use HEAD for now
+    version = "0.1.4", -- telescope did only one release, so use HEAD for now
     opts = {
       defaults = {
         prompt_prefix = "   ",
@@ -228,19 +238,6 @@ return {
       wk.register({
         l = {
           name = "+LSP",
-          d = { "<cmd>lua vim.diagnostic.get <cr>", "Document Diagnostics" },
-          w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
-          a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-          h = { "<cmd>vim.lsp.inlay_hint(0, nil)<cr>", "Toggle inlay hints" },
-          i = { "<cmd>LspInfo<cr>", "Info" },
-          I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-          j = { "<cmd>lua vim.lsp.diagnostic.get_next()<CR>", "Next Diagnostic" },
-          k = { "<cmd>lua vim.lsp.diagnostic.get_prev()<cr>", "Prev Diagnostic" },
-          l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-          q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-          r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-          s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-          S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
         },
         a = {
           name = "Git",
@@ -477,6 +474,4 @@ return {
       })
     end,
   },
-
-
 }

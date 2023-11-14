@@ -10,11 +10,11 @@
         "path": "./global.json"
       },
       {
-        "language":  "markdown",
+        "language": "markdown",
         "path": "./global.json"
       },
       {
-        "language":"tex",
+        "language": "tex",
         "path": "./global.json"
       },
       {
@@ -30,7 +30,7 @@
         "path": "./cpp.json"
       },
       {
-        "language":"cs",
+        "language": "cs",
         "path": "./csharp.json"
       },
       {
@@ -42,7 +42,7 @@
         "path": "./gitcommit.json"
       },
       {
-        "language":  "NeogitCommitMessage",
+        "language": "NeogitCommitMessage",
         "path": "./gitcommit.json"
       },
       {
@@ -126,11 +126,11 @@
         "path": "./sql.json"
       },
       {
-        "language": "shellscript", 
+        "language": "shellscript",
         "path": "./shell.json"
       },
       {
-        "language": "shell", 
+        "language": "shell",
         "path": "./shell.json"
       },
       {
@@ -146,20 +146,19 @@
         "path": "./markdown.json"
       },
       {
-        "language":  "rmd",
+        "language": "rmd",
         "path": "./markdown.json"
       },
       {
-        "language":  "mdx",
+        "language": "mdx",
         "path": "./markdown.json"
       },
       {
-        "language":"tex",
+        "language": "tex",
         "path": "./latex.json"
       },
-
       {
-        "language":"plaintex",
+        "language": "plaintex",
         "path": "./latex.json"
       },
       {
@@ -170,15 +169,15 @@
         "language": "html",
         "path": "./html.json"
       },
-            {
+      {
         "language": "jade",
         "path": "./html.json"
       },
-            {
-        "language":"pug",
+      {
+        "language": "pug",
         "path": "./html.json"
       },
-            {
+      {
         "language": "eruby",
         "path": "./html.json"
       },
@@ -187,15 +186,15 @@
         "path": "./css.json"
       },
       {
-        "language": "scss", 
+        "language": "scss",
         "path": "./css.json"
       },
       {
-        "language":  "sass", 
+        "language": "sass",
         "path": "./css.json"
       },
       {
-        "language":  "less",
+        "language": "less",
         "path": "./css.json"
       },
       {
@@ -211,7 +210,7 @@
         "path": "./javascript/javascript.json"
       },
       {
-        "language":"vue",
+        "language": "vue",
         "path": "./javascript/javascript.json"
       },
       {
@@ -315,7 +314,10 @@
         "path": "./kotlin.json"
       },
       {
-        "language": ["plaintex", "tex"],
+        "language": [
+          "plaintex",
+          "tex"
+        ],
         "path": "./latex/latex-snippets.json"
       },
       {

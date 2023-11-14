@@ -46,18 +46,52 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "yaml", "python", "html" } },
-      context_commentstring = { enable = true },
-      rainbow = {
+      incremental_selection = {
         enable = true,
-        query = "rainbow-parens",
-        disable = { "jsx", "html" },
+        keymaps = {
+          init_selection = "<CR>",
+          scope_incremental = "<CR>",
+          node_incremental = "<TAB>",
+          node_decremental = "<S-TAB>",
+        },
       },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
+      endwise = {
+        enable = true,
+      },
+      autopairs = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          -- Automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+            ["ib"] = "@block.inner",
+            ["ab"] = "@block.outer",
+            ["ir"] = "@parameter.inner",
+            ["ar"] = "@parameter.outer",
+          },
+        },
 
+        context_commentstring = { enable = true },
+        rainbow = {
+          enable = true,
+          query = "rainbow-parens",
+          disable = { "jsx", "html" },
+        },
+      },
+      config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
+        require("nvim-ts-autotag").setup()
+      end,
+    },
+  },
   {
     "HiPhish/rainbow-delimiters.nvim",
     init = function()

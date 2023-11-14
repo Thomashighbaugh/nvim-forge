@@ -79,11 +79,41 @@ map("t", "<C-j>", [[<C-\><C-n><C-W>j]], { noremap = true })
 map("t", "<C-k>", [[<C-\><C-n><C-W>k]], { noremap = true })
 map("t", "<C-l>", [[<C-\><C-n><C-W>l]], { noremap = true })
 
--- save like your are used to
+
+--  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--  ╏                                                               ╏
+--  ╏ Save Function                                                 ╏
+--  ╏                                                               ╏
+--  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
 map("v", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
 map("i", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
 map("n", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
 map("x", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
+
+
+--  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--  ╏                                                               ╏
+--  ╏  Comment Box                                                  ╏
+--  ╏                                                               ╏
+--  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+map("v", "<leader>Cb", "<cmd>CBllbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
+
+map("v", "<leader>Cr", "<cmd>CBrrbox5<cr>", { desc = "right aligned fixed size box with left aligned text" })
+
+map("v", "<leader>Cc", "<cmd>CBccbox5<cr>", { desc = " center aligned fixed size box with center aligned text" })
+
+map("i", "<M-l>", "<cmd>CBcline10<cr>", { desc = "centered line" })
+
+
+map("n", "<leader>Cb", "<cmd>CBllbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
+
+map("n", "<leader>Cr", "<cmd>CBrrbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
+
+map("n", "<leader>Cc", "<cmd>CBccbox5<cr>", { desc = " center aligned fixed size box with center aligned text" })
+
+map("n", "<M-l>", "<cmd>CBcline10<cr>", { desc = "centered line" })
+
 -------------------- Fuzzy Search --------------------------------
 vim.keymap.set("n", "<C-f>", function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.

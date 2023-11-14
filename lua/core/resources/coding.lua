@@ -69,11 +69,23 @@ return {
     dependencies = {
       "mfussenegger/nvim-jdtls",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-document-symbol",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "petertriho/cmp-git",
+      "davidsierradz/cmp-conventionalcommits",
+      "dmitmel/cmp-cmdline-history",
+      "garyhurtz/cmp_kitty",
+      "tamago324/cmp-zsh",
+      "David-Kunz/cmp-npm",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-calc",
+      "L3MON4D3/LuaSnip",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/cmp-luasnip-choice",
+      "uga-rosa/cmp-dictionary",
     },
     opts = function()
       local cmp = require("cmp")
@@ -108,18 +120,30 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          -- ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          -- ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<Esc>"] = cmp.mapping(function(fallback)
             require("luasnip").unlink_current()
             fallback()
           end),
         }),
         sources = cmp.config.sources({
+          {
+            name = "dictionary",
+            keyword_length = 2,
+          },
           { name = "codeium" },
+          { name = "nvim_lsp_signature_help" },
+          { name = "calc" },
+          { name = "luasnip-choice" },
+          { name = "treesitter" },
+          { name = "cmdline" },
+          { name = "cmdline-history" },
+          { name = "zsh" },
+          { name = "nvim_lsp_document_symbol" },
           { name = "nvim_lsp", keyword_length = 2 },
           { name = "luasnip" },
-          { name = "buffer", keyword_length = 3 },
+          { name = "buffer", keyword_length = 5 },
           { name = "path" },
         }),
         formatting = {
@@ -304,9 +328,10 @@ return {
       },
     },
   },
-  {    "sQVe/sort.nvim",
+  {
+    "sQVe/sort.nvim",
     config = function()
-        require("sort").setup()
+      require("sort").setup()
     end,
-},
+  },
 }
