@@ -3,8 +3,8 @@ local M = {}
 function M.get()
   return {
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-    { "<leader>ld", "<cmd>Telescope lsp_document_diagnostics<cr>", desc = "Document Diagnostics" },
-    { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
+    { "<leader>ld", "<cmd>Telescope  diagnostics bufnr=0s<cr>", desc = "Document Diagnostics" },
+    { "<leader>lw", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
     {
       "<leader>lh",
       function()

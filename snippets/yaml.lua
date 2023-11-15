@@ -2,6 +2,7 @@
 -- luasnip will bring some globals into scope for executing these files.
 -- defined by snip_env in setup
 require("luasnip.loaders.from_lua").lazy_load()
+---@diagnostic disable-next-line: undefined-global
 local env = snip_env
 
 return {
