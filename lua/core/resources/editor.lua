@@ -51,6 +51,38 @@ return {
     end,
   },
   {
+    "serenevoid/kiwi.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      {
+        name = "Tech",
+        path = "/home/tlh/Dropbox/Wiki",
+      },
+      {
+        name = "SanatanaDharma",
+        path = "/home/tlh/Dropbox/HinduismWiki",
+      },
+    },
+    keys = {
+      { "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open Wiki index" },
+      {
+        "<leader>wp",
+        ':lua require("kiwi").open_wiki_index("Tech")<cr>',
+        desc = "Open index of personal wiki",
+      },
+      {
+        "<leader>wh",
+        ':lua require("kiwi").open_wiki_index("SanatanaDharma")<cr>',
+        desc = "Open Sanatana Dharma Wiki index page",
+      },
+      { "<leader>t", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle Markdown Task" },
+    },
+    lazy = true,
+  },
+
+  {
     "RutaTang/quicknote.nvim",
     config = function()
       -- you must call setup to let quicknote.nvim works correctly
@@ -238,6 +270,21 @@ return {
       wk.register({
         l = {
           name = "+LSP",
+        },
+        x = {
+          name = "Trouble",
+          x = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
+          w = {
+            "<cmd>TroubleToggle workspace_diagnostics <cr>",
+            "Trouble Workspace Diagnostics",
+          },
+          d = {
+            "<cmd>TroubleToggle document_diagnostics<cr>",
+            "Trouble Document Diagnostics",
+          },
+          q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble Quickfix" },
+          l = { "<cmd>TroubleToggle loclist<cr>", "Trouble LOC List" },
+          L = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble LSP References" },
         },
         a = {
           name = "Git",
