@@ -37,14 +37,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Set wrap and spell in markdown and gitcommit
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = Util.augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   group = Util.augroup("wrap_spell"),
+--   pattern = { "gitcommit", "markdown" },
+--   callback = function()
+--    -- vim.opt_local.wrap = true  -- set globally, so I don't need this on to throw errors. I already got enough of that, thanks
+--     vim.opt_local.spell = true
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
   pattern = "?*",

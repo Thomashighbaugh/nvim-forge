@@ -259,17 +259,20 @@ return {
       local wk = require("which-key")
       wk.setup(opts)
       local keymaps = {
-        ["<leader>w"] = { "<cmd>w!<CR>", "Save" },
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
         ["f"] = { name = "Fold" },
         ["g"] = { name = "Goto" },
         ["s"] = { name = "Search" },
+        ["<leader>s"] = {name = "+LSP"}
       }
       wk.register(keymaps)
       wk.register({
-        l = {
-          name = "+LSP",
+        C = {
+          name = "Comment Box",
+b = {"<cmd>Bllbox5<cr>", "left aligned fixed size box"},
+r = { "<cmd>CBrrbox5<cr>", "right aligned fixed size box with left aligned text" },
+c ={ "<cmd>CBccbox5<cr>","center aligned fixed size box with center aligned text" },
         },
         x = {
           name = "Trouble",

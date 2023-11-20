@@ -238,7 +238,7 @@ return {
       insert_mappings = true,
       persist_size = true,
       close_on_exit = false,
-      shell = "/bin/sh",
+      shell = "./usr/bin/env zsh",
       autochdir = false,
       float_opts = {
         border = "single",
@@ -406,7 +406,7 @@ return {
       lsp = {
         progress = { enabled = true },
         hover = { enabled = true },
-        signature = { enabled = true },
+        signature = { enabled = false },
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

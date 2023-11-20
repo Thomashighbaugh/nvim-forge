@@ -18,7 +18,6 @@ dict.switcher({
     en = "/home/tlh/.config/nvim/spell/en.dict",
     hi ="/home/tlh/.config/nvim/spell/hi.dict",
     es = "/home/tlh/.config/nvim/spell/es.dict",
-
   },
 })
 return M

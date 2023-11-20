@@ -16,19 +16,19 @@ require("lazy").setup({
   spec = {
     { import = "core.resources" },
     { import = "core.resources.lang.python", enabled = true },
+    { import = "core.resources.lang.php", enabled = true },
     { import = "core.resources.lang.typescript", enabled = true },
-    { import = "core.resources.lang.json", enabled = false },
-    { import = "core.resources.lang.java", enabled = false },
-    { import = "core.resources.lang.docker", enabled = false },
-    { import = "core.resources.lang.docker", enabled = false },
-    { import = "core.resources.lang.clangd", enabled = false },
+    { import = "core.resources.lang.json", enabled = true },
+    { import = "core.resources.lang.java", enabled = true },
+    { import = "core.resources.lang.docker", enabled = true },
+    { import = "core.resources.lang.clangd", enabled = true },
   },
   defaults = {
     lazy = false,
     -- version = false, -- always use the latest git commit
     version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "base16-vice", "monokai-pro", "habamax" } },
+  install = { colorscheme = {  "monokai-pro", "habamax" } },
   checker = { enabled = false, notify = false },
   performance = {
     rtp = {
@@ -37,7 +37,7 @@ require("lazy").setup({
         "gzip",
         -- "matchit",
         -- "matchparen",
-        -- "netrwPlugin",
+       "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

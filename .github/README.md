@@ -12,15 +12,20 @@ configuration language. My _Personal Development Environment_ (PDE).
 With this in mind, **feel free to take from it as you please**, use pieces of
 it or the whole thing as a basis for your own and you are more than welcome
 to **submit pull requests** if it so pleases you, that's why its on
-Github/Gitlab :wink:
-
-`Now Featuring my Vice Base16 Scheme`
+GitHub :wink:
 
 ## Gallery
 
-**Coming Soon**
+<img src="assets/NeoVimForge.png" alt="NeoVim Forge">
 
----
+<img src="assets/screenshots/1.png" alt="Markdown+HTML">
+
+<img src="assets/screenshots/2.png" alt="Javascript+Neotree">
+
+<img src="assets/screenshots/3.png" alt="Telescope">
+
+
+
 
 # Inspiration
 

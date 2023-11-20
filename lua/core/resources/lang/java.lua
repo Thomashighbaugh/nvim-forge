@@ -264,12 +264,4 @@ return {
       },
     },
   },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
-        "google_java_format",
-      })
-    end,
-  },
 }
