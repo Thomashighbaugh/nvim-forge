@@ -58,15 +58,14 @@ return {
     opts = {
       {
         name = "Tech",
-        path = "/home/tlh/Dropbox/Wiki",
+        path = "/home/tlh/DB/Wiki/",
       },
       {
         name = "SanatanaDharma",
-        path = "/home/tlh/Dropbox/HinduismWiki",
+        path = "/home/tlh/DB/HinduismWiki",
       },
     },
     keys = {
-      { "<leader>ww", ':lua require("kiwi").open_wiki_index()<cr>', desc = "Open Wiki index" },
       {
         "<leader>wp",
         ':lua require("kiwi").open_wiki_index("Tech")<cr>',
@@ -264,15 +263,15 @@ return {
         ["f"] = { name = "Fold" },
         ["g"] = { name = "Goto" },
         ["s"] = { name = "Search" },
-        ["<leader>s"] = {name = "+LSP"}
+        ["<leader>s"] = { name = "+LSP" },
       }
       wk.register(keymaps)
       wk.register({
         C = {
           name = "Comment Box",
-b = {"<cmd>Bllbox5<cr>", "left aligned fixed size box"},
-r = { "<cmd>CBrrbox5<cr>", "right aligned fixed size box with left aligned text" },
-c ={ "<cmd>CBccbox5<cr>","center aligned fixed size box with center aligned text" },
+          b = { "<cmd>Bllbox5<cr>", "left aligned fixed size box" },
+          r = { "<cmd>CBrrbox5<cr>", "right aligned fixed size box with left aligned text" },
+          c = { "<cmd>CBccbox5<cr>", "center aligned fixed size box with center aligned text" },
         },
         x = {
           name = "Trouble",

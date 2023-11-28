@@ -144,7 +144,27 @@ return {
     cmd = "Mason",
     opts = {
       ensure_installed = {
+        -- LSPs
+        "bash-language-server",
+        "dockerfile-language-server",
+        "json-lsp",
+        "marksman",
+        "typescript-language-server",
+        "texlab",
+        "ltex-ls",
+        "lua-language-server",
+        "pyright",
+        "terraform-ls",
+        "yaml-language-server",
+        -- Formatter
+        "black",
+        "prettier",
         "stylua",
+        "shfmt",
+        -- Linter
+        "shellcheck",
+        "tflint",
+        "yamllint",
       },
     },
     config = function(_, opts)
@@ -256,7 +276,7 @@ return {
           formatting.stylua.with(modifier.stylua_formatting),
           formatting.markdownlint,
           formatting.beautysh.with({ extra_args = { "--indent-size", "2" } }),
-          formatting.prettierd.with({
+          formatting.prettier.with({
             extra_args = { "--single-quote", "false" },
             filetypes = {
               "html",

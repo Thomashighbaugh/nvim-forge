@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "core.resources" },
+    { import = "core.resources.lang.nix", enabled = true },
     { import = "core.resources.lang.python", enabled = true },
     { import = "core.resources.lang.php", enabled = true },
     { import = "core.resources.lang.typescript", enabled = true },
@@ -28,16 +29,14 @@ require("lazy").setup({
     -- version = false, -- always use the latest git commit
     version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = {  "monokai-pro", "habamax" } },
-  checker = { enabled = false, notify = false },
+  install = { colorscheme = { "monokai-pro" } },
+  checker = { enabled = true, notify = false },
   performance = {
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
-       "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
