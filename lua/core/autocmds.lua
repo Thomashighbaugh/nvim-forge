@@ -137,14 +137,28 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 --   +---------------------------------------------------------------+
 -- Return to last place in a file
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd("BufReadPost", {
   group = Util.augroup("jump_to_location"),
-  pattern = { "*" },
+  pattern = "*", -- This pattern matches all files
   callback = function()
-    vim.cmd([[
-    " Have Vim jump to the last position when reopening a file
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
-]])
+    if vim.bo.buftype == "nofile" or vim.bo.buftype == "quickfix" then
+      return
+    end
+
+    -- Get the last cursor position from register "/"
+    local last_position = vim.fn.getreg("/")
+    if not last_position then
+      return
+    end
+
+    -- Extract the line and column from the position
+    local line, col = unpack(vim.fn.getpos(last_position))
+
+    -- Check if both line and column are valid
+    if line > 0 and col > 0 then
+      -- Set the cursor position to the last saved location
+      vim.api.nvim_win_set_cursor(0, { line, col })
+    end
   end,
 })
 
