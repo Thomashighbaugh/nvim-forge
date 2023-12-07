@@ -1,13 +1,13 @@
 local Util = require("util")
-
+--   +---------------------------------------------------------------+
 -- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = Util.augroup("highlight_yank"),
   callback = function()
-    vim.highlight.on_yank({ higroup = "Visual" })
+    vim.highlight.on_yank({ higroup = "Search", timeout = 200 })
   end,
 })
-
+--   +---------------------------------------------------------------+
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = Util.augroup("resize_splits"),
@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     vim.cmd("tabdo wincmd =")
   end,
 })
-
+--   +---------------------------------------------------------------+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   group = Util.augroup("close_with_q"),
@@ -45,7 +45,8 @@ vim.api.nvim_create_autocmd("FileType", {
 --     vim.opt_local.spell = true
 --   end,
 -- })
-
+--   +---------------------------------------------------------------+
+-- remember folds
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
   pattern = "?*",
   group = Util.augroup("remember_folds"),
@@ -60,17 +61,28 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     vim.cmd([[silent! loadview 1]])
   end,
 })
-
+--   +---------------------------------------------------------------+
+-- set shell for NixOS quirkiness
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufNewFile" }, {
+  pattern = "*",
+  group = Util.augroup("set_shell"),
+  callback = function()
+    vim.cmd([[set shell=/run/current-system/sw/bin/zsh]])
+  end,
+})
+--   +---------------------------------------------------------------+
 -- fix comment
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufNewFile" }, {
   group = Util.augroup("comment_newline"),
   pattern = { "*" },
   callback = function()
     vim.cmd([[set formatoptions-=cro]])
   end,
 })
-
+--   +---------------------------------------------------------------+
+-- determine project root
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = Util.augroup("project_root"),
   pattern = { "" },
   callback = function()
     local get_project_dir = function()
@@ -83,7 +95,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     vim.opt.titlestring = get_project_dir()
   end,
 })
-
+--   +---------------------------------------------------------------+
 -- clear cmd output
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   group = Util.augroup("clear_term"),
@@ -91,15 +103,19 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     vim.cmd([[echon '']])
   end,
 })
-
+--   +---------------------------------------------------------------+
+-- placement of the help window
 vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = Util.augroup("help_placement"),
   pattern = { "help" },
   callback = function()
     vim.cmd([[wincmd L]])
   end,
 })
-
+--   +---------------------------------------------------------------+
+-- terminal settings
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = Util.augroup("terminal_settings"),
   pattern = { "*" },
   callback = function()
     vim.opt_local["number"] = false
@@ -107,14 +123,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   end,
 })
 
--- fix comment on new line
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-  pattern = { "*" },
-  callback = function()
-    vim.cmd([[set formatoptions-=cro]])
-  end,
-})
-
+--   +---------------------------------------------------------------+
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = Util.augroup("auto_create_dir"),
@@ -124,5 +133,26 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end
     local file = vim.loop.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})
+--   +---------------------------------------------------------------+
+-- Return to last place in a file
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = Util.augroup("jump_to_location"),
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[
+    " Have Vim jump to the last position when reopening a file
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
+]])
+  end,
+})
+
+--   +---------------------------------------------------------------+
+-- Update file when there are changes to it
+vim.api.nvim_create_autocmd({ "FocusGained" }, {
+  group = Util.augroup("update_file_when_changed"),
+  callback = function()
+    vim.cmd("checktime")
   end,
 })

@@ -3,7 +3,7 @@ local M = {}
 M.root_patterns = { ".git", "lua", "package.json", "mvnw", "gradlew", "pom.xml", "build.gradle", "release", ".project" }
 
 M.augroup = function(name)
-  return vim.api.nvim_create_augroup("tvl_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("tlh_" .. name, { clear = true })
 end
 
 M.has = function(plugin)

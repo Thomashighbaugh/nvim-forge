@@ -220,6 +220,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
+      "kdheepak/lazygit.nvim",
     },
     opts = {
       plugins = {
@@ -227,7 +228,7 @@ return {
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = {
           enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-          suggestions = 10, -- how many suggestions should be shown in the list?
+          suggestions = 20, -- how many suggestions should be shown in the list?
         },
 
         presets = {
@@ -243,14 +244,18 @@ return {
       window = {
         margin = { 1, 0, 2, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 1, 0, 1, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-        border = "shadow",
+        winblend = 15, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        border = "double",
         position = "bottom",
+      },
+      popup_mappings = {
+        scroll_down = "<c-d>", -- binding to scroll down inside the popup
+        scroll_up = "<c-u>", -- binding to scroll up inside the popup
       },
       layout = {
         height = { min = 3, max = 25 }, -- min and max height of the columns
         width = { min = 5, max = 50 }, -- min and max width of the columns
-        spacing = 10, -- spacing between columns
+        spacing = 5, -- spacing between columns
         align = "center", -- align columns left, center or right
       },
     },
@@ -260,9 +265,7 @@ return {
       local keymaps = {
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
-        ["f"] = { name = "Fold" },
         ["g"] = { name = "Goto" },
-        ["s"] = { name = "Search" },
         ["<leader>s"] = { name = "+LSP" },
       }
       wk.register(keymaps)
@@ -287,25 +290,6 @@ return {
           q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble Quickfix" },
           l = { "<cmd>TroubleToggle loclist<cr>", "Trouble LOC List" },
           L = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble LSP References" },
-        },
-        a = {
-          name = "Git",
-          g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-          j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-          k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "prev hunk" },
-          l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "blame" },
-          p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "preview hunk" },
-          r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "reset hunk" },
-          R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "reset buffer" },
-          s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "stage hunk" },
-          u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "undo stage hunk" },
-          d = { "<cmd>gitsigns diffthis head<cr>", "diff" },
-        },
-        s = {
-          name = "+Session",
-          s = { "<cmd>lua require('persistence').load()<cr>", "Restore Session" },
-          l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore Last Session" },
-          d = { "<cmd>lua require('persistence;).stop()<cr>", "Don't Save Current Session" },
         },
         q = {
           name = "Quick Notes",

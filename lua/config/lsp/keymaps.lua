@@ -26,10 +26,8 @@ function M.get()
     { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references" },
     { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementations" },
     { "K", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover" },
-    { "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Show diagnostics" },
     { "]d", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", desc = "Prev Diagnostic" },
     { "[d", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", desc = "Next Diagnostic" },
-    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Quickfix" },
   }
 end
 

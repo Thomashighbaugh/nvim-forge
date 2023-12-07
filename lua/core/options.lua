@@ -1,61 +1,65 @@
 local options = {
+  background = "dark",
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 0, -- more space in the neovim command line for displaying messages
-  confirm = true, -- Confirm to save changes before exiting modified buffer
   completeopt = { "preview", "menu", "menuone" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
+  confirm = true, -- Confirm before exiting a modified buffer
+  cursorline = true, -- highlight the current line
+  expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
-  incsearch = true,
-  hlsearch = true, -- highlight all matches on previous search pattern
-  inccommand = "nosplit",
-  ignorecase = true, -- ignore case in search patterns
   grepformat = "%f:%l:%c:%m",
-  grepprg = "rg --vimgrep",
+  grepprg = "rg --hidden --vimgrep --smart-case",
+  hidden = true, -- Enable modified buffers in background
+  history = 500, -- Use the 'history' option to set the number of lines from command mode that are remembered.
+  hlsearch = true, -- highlight all matches on previous search pattern
+  ignorecase = true, -- ignore case in search patterns
+  inccommand = "nosplit",
+  incsearch = true, -- incremental search
+  laststatus = 3,
+  linespace = 8,
+  list = true, -- Show some invisible characters (tabs...
+  listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<",
   mouse = "a", -- allow the mouse to be used in neovim
+  mousemoveevent = true, -- allow mapping mouse movement
+  number = true, -- set numbered lines
+  numberwidth = 2, -- set number column width to 2 {default 4}
+  pumblend = 10, -- popup blend
   pumheight = 10, -- pop up menu height
+  relativenumber = false, -- no relative numbered lines
+  scrolloff = 3, -- Minimal number of screen lines to keep above and below the cursor
+  selection = "inclusive", -- "inclusive", "exclusive" or "old"
+  shiftround = true, -- Round indent
+  shiftwidth = 2, -- the number of spaces inserted for each indentation
+  showcmd = false,
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2, -- always show tabs
+  sidescrolloff = 5,
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
+  spelllang = { "en" },
   splitbelow = true, -- force all horizontal splits to go below current window
   splitright = true, -- force all vertical splits to go to the right of current window
   swapfile = false, -- creates a swapfile
+  syntax = "off",
+  tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
   timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
+  title = true,
+  titlestring = "%<%F%=%l/%L - nvim",
   undofile = true, -- enable persistent undo
   undolevels = 10000,
   updatetime = 500, -- faster completion (4000ms default)
-  wildmode = "longest:full,full", -- Command-line completion mode
-  wildignorecase = true,
-  writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  expandtab = true, -- convert tabs to spaces
-  hidden = true,
-  history = 500, -- Use the 'history' option to set the number of lines from command mode that are remembered.
-  shiftwidth = 2, -- the number of spaces inserted for each indentation
-  tabstop = 2, -- insert 2 spaces for a tab
-  cursorline = true, -- highlight the current line
-  number = true, -- set numbered lines
-  relativenumber = false, -- set relative numbered lines
-  numberwidth = 4, -- set number column width to 2 {default 4}
-  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-  wrap = true, -- scrolling sideways sucks
-  -- scrolloff = 6, -- is one of my fav
-  -- sidescrolloff = 8,
-  laststatus = 3,
-  list = true, -- Show some invisible characters (tabs...
-  guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20",
-  -- guicursor = "a:xxx",
-  background = "dark",
-  selection = "inclusive",
   virtualedit = "onemore",
-  showcmd = false,
-  title = true,
-  titlestring = "%<%F%=%l/%L - nvim",
-  linespace = 8,
-  mousemoveevent = true,
-  syntax = "off",
-  spelllang = { "en" },
+  winminwidth = 5, -- minimum window width
+  wrap = true, -- scrolling sideways sucks
+  writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  -- Default splitting will cause your main splits to jump when opening an edgebar.
+  -- To prevent this, set `splitkeep` to either `screen` or `topline`.
+  splitkeep = "screen",
+
   -- use fold
   foldlevelstart = 99,
   foldlevel = 99,
@@ -69,6 +73,9 @@ local options = {
     diff = "╱",
     eob = " ",
   },
+  -- Command Line COmpletion
+  wildmode = "longest:full,full", -- Command-line completion mode
+  wildignorecase = true,
   wildignore = [[
 .git,.hg,.svn
 *.aux,*.out,*.toc

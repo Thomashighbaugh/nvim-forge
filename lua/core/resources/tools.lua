@@ -5,6 +5,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "loctvl842/compile-nvim",
     lazy = true,
@@ -12,7 +13,7 @@ return {
       require("config.compile")
     end,
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "moll/vim-bbye",
     event = { "BufRead" },
@@ -21,16 +22,7 @@ return {
       { "<C-w>", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
     },
   },
-
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {
-      options = { "buffers", "curdir", "tabpages", "winsize", "help", "blank", "terminal", "folds", "tabpages" },
-    },
-    keys = {},
-  },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   -- Easily switch virtual environment in python
   {
     "AckslD/swenv.nvim",

@@ -238,7 +238,7 @@ return {
       insert_mappings = true,
       persist_size = true,
       close_on_exit = false,
-      shell = "./usr/bin/env zsh",
+      shell = "/run/current-system/sw/bin/zsh",
       autochdir = false,
       float_opts = {
         border = "single",

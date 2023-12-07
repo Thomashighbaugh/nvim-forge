@@ -119,14 +119,6 @@ map("v", "<C-p>", "<cmd>Sort <cr>", { desc = "Sort Lines Alphabetically" })
 
 --  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
 --  ╏                                                               ╏
---  ╏  Normalized Search                                            ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("n", "<C-f>", "/", { desc = "Search buffer" })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
 --  ╏  Terminal                                                     ╏
 --  ╏                                                               ╏
 --  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
@@ -153,21 +145,19 @@ map("x", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
 --  ╏  Comment Box                                                  ╏
 --  ╏                                                               ╏
 --  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-map("v", "<leader>Cb", "<cmd>CBllbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
-
-map("v", "<leader>Cr", "<cmd>CBrrbox5<cr>", { desc = "right aligned fixed size box with left aligned text" })
-
-map("v", "<leader>Cc", "<cmd>CBccbox5<cr>", { desc = " center aligned fixed size box with center aligned text" })
-
-map("i", "<M-l>", "<cmd>CBcline10<cr>", { desc = "centered line" })
-
-map("n", "<leader>Cb", "<cmd>CBllbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
-
-map("n", "<leader>Cr", "<cmd>CBrrbox5<cr>", { desc = "left aligned fixed size box with left aligned text" })
-
-map("n", "<leader>Cc", "<cmd>CBccbox5<cr>", { desc = " center aligned fixed size box with center aligned text" })
-
-map("n", "<M-l>", "<cmd>CBcline10<cr>", { desc = "centered line" })
+map("v", "<leader>Cn", "<cmd>CBlcbox13<cr>", { desc = "Comment Box Multi-Line Notation" })
+map("v", "<leader>Cs", "<cmd>CBlrbox19<cr>", { desc = "Sub-Heading Comment Box" })
+map("v", "<leader>Ch", "<cmd>CBlcbox8<cr>", { desc = "Heading Comment Box" })
+map("v", "<M-l>", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("i", "<M-l>", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("n", "<M-l>", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("v", "<C-M-l>", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
+map("i", "<C-M-l>", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
+map("n", "<C-M-l>", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
+map("n", "<leader>C?", "<cmd>CBcatalog<cr>", { desc = "Comment Box Style Catalog" })
+map("n", "<leader>Cn", "<cmd>CBlcbox13<cr>", { desc = "Comment Box Multi-Line Notation" })
+map("n", "<leader>Cs", "<cmd>CBlrbox19<cr>", { desc = "Sub-Heading Comment Box" })
+map("n", "<leader>Ch", "<cmd>CBlcbox5<cr>", { desc = "Heading Comment Box" })
 
 --  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
 --  ╏                                                               ╏
