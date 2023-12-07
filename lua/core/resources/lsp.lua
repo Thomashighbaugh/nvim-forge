@@ -159,6 +159,7 @@ return {
         -- Formatter
         "black",
         "prettier",
+        "prettierd",
         "stylua",
         "shfmt",
         -- Linter
@@ -276,7 +277,7 @@ return {
           formatting.stylua.with(modifier.stylua_formatting),
           formatting.markdownlint,
           formatting.beautysh.with({ extra_args = { "--indent-size", "2" } }),
-          formatting.prettier.with({
+          formatting.prettierd.with({
             extra_args = { "--single-quote", "false" },
             filetypes = {
               "html",

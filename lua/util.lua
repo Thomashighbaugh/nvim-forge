@@ -176,7 +176,7 @@ M.notify = function(msg, level, opts)
   if type(msg) == "table" then
     msg = table.concat(msg, "\n")
   end
-  local nopts = { title = "Nvim" }
+  local nopts = { title = "NeoVim" }
   if opts.once then
     return vim.schedule(function()
       vim.notify_once(msg, level, nopts)
