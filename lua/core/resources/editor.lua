@@ -40,6 +40,59 @@ return {
       end
     end,
   },
+  --╞═══════════════════════════════════════════════════════════════╡
+  -- {"github/copilot.vim"},
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    lazy = true,
+
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = false,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+          layout = {
+            position = "top", -- | top | left | right
+            ratio = 0.4,
+          },
+        },
+        suggestion = {
+          enabled = false,
+          auto_trigger = false,
+          debounce = 75,
+          keymap = {
+            accept = "<C-M-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        filetypes = {
+          yaml = true,
+          markdown = true,
+          help = true,
+          gitcommit = true,
+          gitrebase = true,
+          svn = true,
+          hgcommit = true,
+          cvs = true,
+          ["."] = true,
+          ["*"] = true,
+        },
+      })
+    end,
+  },
   -- {
   --   "Exafunction/codeium.nvim",
   --   dependencies = {
@@ -266,7 +319,8 @@ return {
         ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
         ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
         ["g"] = { name = "Goto" },
-        ["<leader>s"] = { name = "+LSP" },
+        ["<leader>l"] = { name = "+LSP" },
+        ["<leader>w"] = { name = "Wiki" },
       }
       wk.register(keymaps)
       wk.register({

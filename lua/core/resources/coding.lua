@@ -1,3 +1,9 @@
+--  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
+--  ╏                                                               ╏
+--  ╏                       Coding Resources                        ╏
+--  ╏                                                               ╏
+--  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+
 return {
   {
     "huggingface/llm.nvim",
@@ -8,21 +14,79 @@ return {
       dismiss_keymap = "<S-Tab>",
     },
   },
+  --╞═══════════════════════════════════════════════════════════════╡
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_snipmate").lazy_load()
-      end,
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/cmp-luasnip-choice",
     },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-    },
-  },
 
+    config = function()
+      local ls = require("luasnip")
+      local vsc = require("luasnip.loaders.from_vscode")
+      local lua = require("luasnip.loaders.from_lua")
+
+      snip_env = {
+        s = require("luasnip.nodes.snippet").S,
+        sn = require("luasnip.nodes.snippet").SN,
+        t = require("luasnip.nodes.textNode").T,
+        f = require("luasnip.nodes.functionNode").F,
+        i = require("luasnip.nodes.insertNode").I,
+        c = require("luasnip.nodes.choiceNode").C,
+        d = require("luasnip.nodes.dynamicNode").D,
+        r = require("luasnip.nodes.restoreNode").R,
+        l = require("luasnip.extras").lambda,
+        rep = require("luasnip.extras").rep,
+        p = require("luasnip.extras").partial,
+        m = require("luasnip.extras").match,
+        n = require("luasnip.extras").nonempty,
+        dl = require("luasnip.extras").dynamic_lambda,
+        fmt = require("luasnip.extras.fmt").fmt,
+        fmta = require("luasnip.extras.fmt").fmta,
+        conds = require("luasnip.extras.expand_conditions"),
+        types = require("luasnip.util.types"),
+        events = require("luasnip.util.events"),
+        parse = require("luasnip.util.parser").parse_snippet,
+        ai = require("luasnip.nodes.absolute_indexer"),
+      }
+
+      ls.config.set_config({ history = true, updateevents = "TextChanged" })
+
+      -- load friendly-snippets
+      vsc.lazy_load()
+
+      vsc.lazy_load({
+        paths = os.getenv("HOME") .. "/.config/nvim/snippets/vscode/",
+      })
+      -- load lua snippets
+      lua.load({ paths = os.getenv("HOME") .. "/.config/nvim/snippets/" })
+
+      -- expansion key
+      -- this will expand the current item or jump to the next item within the snippet.
+      vim.keymap.set({ "i", "s" }, "<c-j>", function()
+        if ls.expand_or_jumpable() then
+          ls.expand_or_jump()
+        end
+      end, { silent = true })
+
+      -- jump backwards key.
+      -- this always moves to the previous item within the snippet
+      vim.keymap.set({ "i", "s" }, "<c-k>", function()
+        if ls.jumpable(-1) then
+          ls.jump(-1)
+        end
+      end, { silent = true })
+
+      -- selecting within a list of options.
+      vim.keymap.set("i", "<c-h>", function()
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end)
+    end,
+  },
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "mattn/emmet-vim",
     event = { "BufRead", "BufNewFile" },
@@ -60,7 +124,14 @@ return {
       }
     end,
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
+  --╞═══════════════════════════════════════════════════════════════╡
   {
     "hrsh7th/nvim-cmp",
     version = false,
@@ -86,6 +157,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/cmp-luasnip-choice",
       "uga-rosa/cmp-dictionary",
+      "zbirenbaum/copilot-cmp",
     },
     opts = function()
       local cmp = require("cmp")
@@ -105,7 +177,7 @@ return {
       })
       return {
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          completeopt = "menu,menuone,preview",
         },
         snippet = {
           expand = function(args)
@@ -120,22 +192,34 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_prev_item()
+            end
+          end, { "i", "s" }),
+
           ["<Esc>"] = cmp.mapping(function(fallback)
             require("luasnip").unlink_current()
             fallback()
           end),
         }),
         sources = cmp.config.sources({
+          { name = "copilot" },
           {
             name = "dictionary",
             keyword_length = 2,
           },
+          { name = "luasnip-choice" },
           { name = "codeium" },
           { name = "nvim_lsp_signature_help" },
           { name = "calc" },
-          { name = "luasnip-choice" },
           { name = "treesitter" },
           { name = "cmdline" },
           { name = "cmdline-history" },
@@ -160,7 +244,7 @@ return {
             if icons.kinds[item.kind] then
               item.kind = icons.kinds[item.kind]
             end
-            if entry.source.name == "codeium" then
+            if entry.source.name == "codeium" or entry.source.name == "copilot" then
               item.kind = icons.misc.codeium
               item.kind_hl_group = "CmpItemKindVariable"
             end
@@ -172,7 +256,7 @@ return {
       }
     end,
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
@@ -180,7 +264,7 @@ return {
       require("mini.pairs").setup(opts)
     end,
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   -- comments
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
@@ -194,7 +278,7 @@ return {
       },
     },
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "ray-x/lsp_signature.nvim",
     event = { "InsertEnter" },
@@ -204,7 +288,7 @@ return {
       hint_scheme = "Comment", -- highlight group for the virtual text
     },
   },
-
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "LudoPinelli/comment-box.nvim",
     config = function()
@@ -234,6 +318,7 @@ return {
       })
     end,
   },
+  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "numToStr/Comment.nvim",
     dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
@@ -249,6 +334,7 @@ return {
       })
     end,
   },
+  --╞═══════════════════════════════════════════════════════════════╡
   {
     "glepnir/lspsaga.nvim",
     lazy = true,
@@ -256,6 +342,7 @@ return {
       require("lspsaga").setup({})
     end,
   },
+  --╞═══════════════════════════════════════════════════════════════╡
   {
     "folke/todo-comments.nvim",
     dependencies = {
@@ -328,6 +415,7 @@ return {
       },
     },
   },
+  --╞═══════════════════════════════════════════════════════════════╡
   {
     "sQVe/sort.nvim",
     config = function()
