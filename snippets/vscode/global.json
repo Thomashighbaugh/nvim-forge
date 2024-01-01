@@ -1,10 +1,10 @@
 {
-  "Author":{
+  "Author": {
     "prefix": "$me",
     "body": "Thomas Leon Highbaugh ©${CURRENT_YEAR}",
     "description": "A quick way of signing a document with the current year and copyright symbol already pasted with it."
   },
-  "Letter Signature":{
+  "Letter Signature": {
     "prefix": "$me",
     "body": [
       "Thank you for your time and consideration,",
@@ -14,7 +14,9 @@
   },
   "diso": {
     "prefix": "diso",
-    "body": ["${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"],
+    "body": [
+      "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"
+    ],
     "description": "ISO date time stamp"
   },
   "Lorem Ipsum Sentence": {
@@ -28,7 +30,7 @@
     "description": "Lorem Ipsum Paragraph"
   },
   "MIT": {
-    "prefix": "mitl" ,
+    "prefix": "mitl",
     "description": "MIT License",
     "body": [
       "The MIT License (MIT)",

@@ -46,7 +46,7 @@
     "description": "Clause function"
   },
   "fn_guarded": {
-    "prefix": ["fng" ,"guarded function"],
+    "prefix": ["fng", "guarded function"],
     "body": [
       "${1:f} :: ${2:a} ${3:-> ${4:b}}",
       "$1 ${5:x}",
@@ -56,7 +56,7 @@
     "description": "Guarded function"
   },
   "fn_where": {
-    "prefix": ["fnw" ,"where function"],
+    "prefix": ["fnw", "where function"],
     "body": [
       "${1:f} :: ${2:a} ${3:-> ${4:b}}",
       "$1 ${5:x} = ${6:undefined}$0",
@@ -72,9 +72,7 @@
   },
   "if_inline": {
     "prefix": ["if inline"],
-    "body": [
-      "if ${1:condition} then ${2:undefined} else ${3:undefined}$0,"
-    ],
+    "body": ["if ${1:condition} then ${2:undefined} else ${3:undefined}$0,"],
     "description": "If inline"
   },
   "if": {
@@ -149,7 +147,9 @@
   },
   "newtype": {
     "prefix": ["new"],
-    "body": ["newtype ${1:Type} ${2:a} = $1 { un$1 :: ${3:a} } ${4:deriving (${5:Show, Eq})}$0"],
+    "body": [
+      "newtype ${1:Type} ${2:a} = $1 { un$1 :: ${3:a} } ${4:deriving (${5:Show, Eq})}$0"
+    ],
     "description": "Newtype definition"
   },
   "opt pragma": {

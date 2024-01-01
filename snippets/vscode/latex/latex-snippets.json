@@ -1,11 +1,7 @@
 {
   "Align(ed)": {
     "prefix": "ali",
-    "body": [
-        "\\begin{align}",
-        "\t$0",
-        "\\end{align}"
-    ],
+    "body": ["\\begin{align}", "\t$0", "\\end{align}"],
     "description": "Align(ed)"
   },
   "Cases": {
@@ -39,22 +35,12 @@
   },
   "Math": {
     "prefix": "math",
-    "body": [
-      "\\begin{math}",
-      "\t$1",
-      "\\end{math}",
-      "$0"
-    ],
+    "body": ["\\begin{math}", "\t$1", "\\end{math}", "$0"],
     "description": "Add a Math"
   },
   "DisplayMath": {
     "prefix": "displaymath",
-    "body": [
-      "\\begin{displaymath}",
-      "\t$1",
-      "\\end{displaymath}",
-      "$0"
-    ],
+    "body": ["\\begin{displaymath}", "\t$1", "\\end{displaymath}", "$0"],
     "description": "Display Math"
   },
   "Equation": {
@@ -69,11 +55,7 @@
   },
   "Display Math — \\[ … \\]": {
     "prefix": "$$",
-    "body": [
-      "\\[",
-      "\t$TM_SELECTED_TEXT$1",
-      "\\]"
-    ],
+    "body": ["\\[", "\t$TM_SELECTED_TEXT$1", "\\]"],
     "description": "Display Math"
   },
   "Theorem": {
@@ -141,76 +123,47 @@
   },
   "Algorithm:State": {
     "prefix": "state",
-    "body": [
-      "\\State $1"
-    ],
+    "body": ["\\State $1"],
     "desciption": "Add an statement of algorithm"
   },
   "Algorithm:If": {
     "prefix": "if",
-    "body": [
-      "\\If{$1}",
-      "\\ElsIf{$2}",
-      "\\Else",
-      "\\EndIf"
-    ],
+    "body": ["\\If{$1}", "\\ElsIf{$2}", "\\Else", "\\EndIf"],
     "desciption": "Add an if statement of algorithm"
   },
   "Algorithm:For": {
     "prefix": "for",
-    "body": [
-      "\\For{i=0:$1}",
-      "\t\\State $0",
-      "\\EndFor"
-    ],
+    "body": ["\\For{i=0:$1}", "\t\\State $0", "\\EndFor"],
     "desciption": "Add an for statement of algorithm"
   },
   "Algorithm:While": {
     "prefix": "while",
-    "body": [
-      "\\While{$1}",
-      "\t\\State $0",
-      "\\EndWhile"
-    ],
+    "body": ["\\While{$1}", "\t\\State $0", "\\EndWhile"],
     "desciption": "Add an for statement of algorithm"
   },
   "Algorithm:Ref": {
     "prefix": "algo:ref",
-    "body": [
-      "${1:Algorithm}~\\ref{algo:$2}$0"
-    ],
+    "body": ["${1:Algorithm}~\\ref{algo:$2}$0"],
     "desciption": "Ref for Algorithm"
   },
   "Figure:Ref": {
     "prefix": "figure:ref",
-    "body": [
-      "${1:Figure}~\\ref{fig:$2}$0"
-    ],
+    "body": ["${1:Figure}~\\ref{fig:$2}$0"],
     "description": "Ref for Figure"
   },
   "Gather(ed)": {
     "prefix": "gat",
-    "body": [
-      "\\begin{gather}",
-      "\t$0",
-      "\\end{gather}"
-    ],
+    "body": ["\\begin{gather}", "\t$0", "\\end{gather}"],
     "description": "Gather(ed)"
   },
   "Itemize": {
     "prefix": "item",
-    "body": [
-      "\\\\begin{itemize}",
-      "\t\\item $0",
-      "\\\\end{itemize}"
-    ],
+    "body": ["\\\\begin{itemize}", "\t\\item $0", "\\\\end{itemize}"],
     "description": "Itemize"
   },
   "Listing:Ref": {
     "prefix": "listing:ref",
-    "body": [
-      "${1:Listing}~\\ref{lst:$2}$0"
-    ],
+    "body": ["${1:Listing}~\\ref{lst:$2}$0"],
     "description": "Listing"
   },
   "Matrix": {
@@ -224,9 +177,7 @@
   },
   "Page": {
     "prefix": "page",
-    "body": [
-      "${1:page}~\\pageref{$2}$0"
-    ],
+    "body": ["${1:page}~\\pageref{$2}$0"],
     "description": "Page"
   },
   "Paragraph": {
@@ -251,32 +202,22 @@
   },
   "Region Start": {
     "prefix": "#region",
-    "body": [
-      "%#Region $0"
-    ],
+    "body": ["%#Region $0"],
     "description": "Folding Region Start"
   },
   "Region End": {
     "prefix": "#endregion",
-    "body": [
-      "%#Endregion"
-    ],
+    "body": ["%#Endregion"],
     "description": "Folding Region End"
   },
   "Section:Ref": {
     "prefix": "section:ref",
-    "body": [
-      "${1:Section}~\\ref{sec:$2}$0"
-    ],
+    "body": ["${1:Section}~\\ref{sec:$2}$0"],
     "description": "Section Reference"
   },
   "Split": {
     "prefix": "spl",
-    "body": [
-      "\\begin{split}",
-      "\t$0",
-      "\\end{split}"
-    ],
+    "body": ["\\begin{split}", "\t$0", "\\end{split}"],
     "description": "Split"
   },
   "Section": {
@@ -288,7 +229,7 @@
       "% section $2 (end)"
     ],
     "description": "Section"
-  }, 
+  },
   "Sub Paragraph": {
     "prefix": "subp",
     "body": [
@@ -321,9 +262,7 @@
   },
   "Table:Ref": {
     "prefix": "table:ref",
-    "body": [
-      "${1:Table}~\\ref{tab:$2}$0"
-    ],
+    "body": ["${1:Table}~\\ref{tab:$2}$0"],
     "description": "Table Reference"
   },
   "Tabular": {
@@ -445,37 +384,22 @@
   },
   "Enumerate": {
     "prefix": "enumerate",
-    "body": [
-      "\\\\begin{enumerate}",
-      "\t\\item $0",
-      "\\\\end{enumerate}"
-    ],
+    "body": ["\\\\begin{enumerate}", "\t\\item $0", "\\\\end{enumerate}"],
     "description": "Add a enumerate"
   },
   "Compactitem": {
     "prefix": "compactitem",
-    "body": [
-      "\\begin{compactitem}",
-      "\t\\item $1",
-      "\\end{compactitem}",
-      "$0"
-    ],
+    "body": ["\\begin{compactitem}", "\t\\item $1", "\\end{compactitem}", "$0"],
     "description": "Add a compactitem (from package paralist)"
   },
   "Cite": {
     "prefix": "cite",
-    "body": [
-      "~\\cite{$1}$0"
-    ],
+    "body": ["~\\cite{$1}$0"],
     "description": "Add a cite"
   },
   "EmptyPage": {
     "prefix": "empty",
-    "body": [
-      "\\null\\thispagestyle{empty}",
-      "\\newpage",
-      "$0"
-    ],
+    "body": ["\\null\\thispagestyle{empty}", "\\newpage", "$0"],
     "description": "Add a empty page"
   }
 }

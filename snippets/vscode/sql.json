@@ -6,7 +6,8 @@
   },
   "createti": {
     "prefix": "createti",
-    "body": ["CREATE TABLE IF NOT EXISTS ${1:tableName} (",
+    "body": [
+      "CREATE TABLE IF NOT EXISTS ${1:tableName} (",
       "\t${2:attribute(s)}",
       ");"
     ],
@@ -24,8 +25,10 @@
   },
   "insert": {
     "prefix": "insert",
-    "body": ["INSERT INTO ${1:tableName} (",
-      "\t${2:attribute(s)}", ") VALUES ( ${3:values} )"
+    "body": [
+      "INSERT INTO ${1:tableName} (",
+      "\t${2:attribute(s)}",
+      ") VALUES ( ${3:values} )"
     ],
     "description": "Insert value(s)"
   },
@@ -71,21 +74,27 @@
   },
   "selectw": {
     "prefix": "selectw",
-    "body": ["SELECT ${1:attribute(s)}","\tFROM ${2:tableName}",
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
       "\tWHERE ${3:condition};"
     ],
     "description": "Select with condition"
   },
   "selector": {
     "prefix": "selector",
-    "body": ["SELECT ${1:attribute(s)}","\tFROM ${2:tableName}",
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
       "\tORDER BY ${3:attribute(s)} ${4:ASC|DESC};"
     ],
     "description": "Select with order"
   },
   "updatet": {
     "prefix": "updatet",
-    "body": ["UPDATE ${1:tableName}","\tSET ${2:attribute(s)}",
+    "body": [
+      "UPDATE ${1:tableName}",
+      "\tSET ${2:attribute(s)}",
       "\tWHERE ${3:condition};"
     ],
     "description": "Update table"
@@ -107,64 +116,86 @@
   },
   "alteraf": {
     "prefix": "alteraf",
-    "body": ["ALTER TABLE ${1:tableName}", "\tADD COLUMN ${2:col_name}",
+    "body": [
+      "ALTER TABLE ${1:tableName}",
+      "\tADD COLUMN ${2:col_name}",
       "\tAFTER ${5:col_name};"
     ],
     "description": "Alter table - Add column after"
   },
   "alterdb": {
     "prefix": "alterdb",
-    "body": ["ALTER DATABASE ${1:dbName}", "\tCHARACTER SET ${2:charset}",
+    "body": [
+      "ALTER DATABASE ${1:dbName}",
+      "\tCHARACTER SET ${2:charset}",
       "\tCOLLATE ${3:utf8_unicode_ci};"
     ],
     "description": "Alter database"
   },
   "ijoin": {
     "prefix": "ijoin",
-    "body": ["SELECT ${1:attribute(s)}", "\tFROM ${2:tableName}",
-      "\tINNER JOIN ${3:tableName2}", "\tON ${4:match};"
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
+      "\tINNER JOIN ${3:tableName2}",
+      "\tON ${4:match};"
     ],
     "description": "Inner Join"
   },
   "rjoin": {
     "prefix": "rjoin",
-    "body": ["SELECT ${1:attribute(s)}", "\tFROM ${2:tableName}",
-      "\tRIGHT JOIN ${3:tableName2}", "\tON ${4:match};"
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
+      "\tRIGHT JOIN ${3:tableName2}",
+      "\tON ${4:match};"
     ],
     "description": "Right Join"
   },
   "ljoin": {
     "prefix": "ljoin",
-    "body": ["SELECT ${1:attribute(s)}", "\tFROM ${2:tableName}",
-      "\tLEFT JOIN ${3:tableName2}", "\tON ${4:match};"
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
+      "\tLEFT JOIN ${3:tableName2}",
+      "\tON ${4:match};"
     ],
     "description": "Left Join"
   },
   "fjoin": {
     "prefix": "fjoin",
-    "body": ["SELECT ${1:attribute(s)}", "\tFROM ${2:tableName}",
-      "\tFULL JOIN OUTER ${3:tableName2}", "\tON ${4:match}",
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
+      "\tFULL JOIN OUTER ${3:tableName2}",
+      "\tON ${4:match}",
       "\tWHERE ${5:condition};"
     ],
     "description": "Full Join"
   },
   "union": {
     "prefix": "union",
-    "body": ["SELECT ${1:attribute(s)} FROM ${2:tableName}", "UNION",
+    "body": [
+      "SELECT ${1:attribute(s)} FROM ${2:tableName}",
+      "UNION",
       "SELECT ${3:attribute(s)} FROM ${4:tableName2};"
     ],
     "description": "Regular union"
   },
   "uniona": {
     "prefix": "uniona",
-    "body": ["SELECT ${1:attribute(s)} FROM ${2:tableName}", "UNION ALL",
+    "body": [
+      "SELECT ${1:attribute(s)} FROM ${2:tableName}",
+      "UNION ALL",
       "SELECT ${3:attribute(s)} FROM ${4:tableName2};"
     ],
     "description": "All union"
   },
   "groupb": {
     "prefix": "groupb",
-    "body": ["SELECT ${1:attribute(s)}", "\tFROM ${2:tableName}",
+    "body": [
+      "SELECT ${1:attribute(s)}",
+      "\tFROM ${2:tableName}",
       "\tORDER BY ${3:attribute(s)};"
     ],
     "description": "Group by"
@@ -176,7 +207,9 @@
   },
   "bakupdw": {
     "prefix": "bakupdw",
-    "body": ["BACKUP DATABASE ${1:dbName}", "\tTO DISK ${2:filepath}",
+    "body": [
+      "BACKUP DATABASE ${1:dbName}",
+      "\tTO DISK ${2:filepath}",
       "\tWITH ${3:DIFERENTIAL};"
     ],
     "description": "Diferencial backup database"
@@ -193,12 +226,15 @@
   },
   "foreingk": {
     "prefix": "foreingk",
-    "body": ["FOREIGN KEY(${1:attribute}) REFERENCES ${2:tableName}(${3:attribute})"],
+    "body": [
+      "FOREIGN KEY(${1:attribute}) REFERENCES ${2:tableName}(${3:attribute})"
+    ],
     "description": "Foreing Key"
   },
   "foreingkc": {
     "prefix": "foreingkc",
-    "body": ["CONSTRAINT ${1:attribute} FOREING KEY (${2:attribute(s)})",
+    "body": [
+      "CONSTRAINT ${1:attribute} FOREING KEY (${2:attribute(s)})",
       "\tREFERENCES ${3:tableName}(${4:attribute})"
     ],
     "description": "Constraint foreing Key"
@@ -218,7 +254,7 @@
     "body": "DELETE FROM mysql.user WHERE user = '${1:userName}';",
     "description": "Delete user"
   },
-  "grantuser":{
+  "grantuser": {
     "prefix": "grantuser",
     "body": "GRANT ALL PRIVILEGES ON ${1:db}.${2:tb} TO '${3:user_name}'@'${4:localhost}';",
     "description": "Grant privileges"

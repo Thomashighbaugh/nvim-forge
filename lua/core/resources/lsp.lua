@@ -293,7 +293,7 @@ return {
               "yaml",
             },
           }),
-          diagnostics.markdownlint,
+          --          diagnostics.markdownlint,
           formatting.markdown_toc, -- use `<!-- toc -->` before headers in your markdown file.`
           formatting.mdformat,
           completion.luasnip,
@@ -330,7 +330,6 @@ return {
           code_actions.gitsigns,
           formatting.shfmt,
           formatting.leptosfmt,
-          formatting.rustfmt,
           formatting.rustfmt.with({
             extra_args = function(params)
               local Path = require("plenary.path")

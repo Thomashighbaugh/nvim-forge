@@ -29,7 +29,12 @@
   },
   "foreach": {
     "prefix": "foreach",
-    "body": ["for(${1:auto} ${2:var} : ${3:collection_to_loop})", "{", "\t$0", "}"],
+    "body": [
+      "for(${1:auto} ${2:var} : ${3:collection_to_loop})",
+      "{",
+      "\t$0",
+      "}"
+    ],
     "description": "Code snippet for range-based for loop (c++11) statement"
   },
   "if": {
@@ -134,7 +139,13 @@
   },
   "switch": {
     "prefix": "switch",
-    "body": ["switch (${1:switch_on}) {", "\tdefault:", "\t\t$0", "\t\tbreak;", "}"],
+    "body": [
+      "switch (${1:switch_on}) {",
+      "\tdefault:",
+      "\t\t$0",
+      "\t\tbreak;",
+      "}"
+    ],
     "description": "Code snippet for switch statement"
   },
   "try": {

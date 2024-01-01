@@ -10,11 +10,11 @@
         "path": "./snippets/vscode/global.json"
       },
       {
-        "language":  "markdown",
+        "language": "markdown",
         "path": "./snippets/vscode/global.json"
       },
       {
-        "language":"tex",
+        "language": "tex",
         "path": "./snippets/vscode/global.json"
       },
       {
@@ -30,7 +30,7 @@
         "path": "./snippets/vscode/cpp.json"
       },
       {
-        "language":"cs",
+        "language": "cs",
         "path": "./snippets/vscode/csharp.json"
       },
       {
@@ -42,7 +42,7 @@
         "path": "./snippets/vscode/gitcommit.json"
       },
       {
-        "language":  "NeogitCommitMessage",
+        "language": "NeogitCommitMessage",
         "path": "./snippets/vscode/gitcommit.json"
       },
       {
@@ -146,20 +146,19 @@
         "path": "./snippets/vscode/markdown.json"
       },
       {
-        "language":  "rmd",
+        "language": "rmd",
         "path": "./snippets/vscode/markdown.json"
       },
       {
-        "language":  "mdx",
+        "language": "mdx",
         "path": "./snippets/vscode/markdown.json"
       },
       {
-        "language":"tex",
+        "language": "tex",
         "path": "./snippets/vscode/latex.json"
       },
-
       {
-        "language":"plaintex",
+        "language": "plaintex",
         "path": "./snippets/vscode/latex.json"
       },
       {
@@ -170,15 +169,15 @@
         "language": "html",
         "path": "./snippets/vscode/html.json"
       },
-            {
+      {
         "language": "jade",
         "path": "./snippets/vscode/html.json"
       },
-            {
-        "language":"pug",
+      {
+        "language": "pug",
         "path": "./snippets/vscode/html.json"
       },
-            {
+      {
         "language": "eruby",
         "path": "./snippets/vscode/html.json"
       },
@@ -191,11 +190,11 @@
         "path": "./snippets/vscode/css.json"
       },
       {
-        "language":  "sass",
+        "language": "sass",
         "path": "./snippets/vscode/css.json"
       },
       {
-        "language":  "less",
+        "language": "less",
         "path": "./snippets/vscode/css.json"
       },
       {
@@ -211,7 +210,7 @@
         "path": "./snippets/vscode/javascript/javascript.json"
       },
       {
-        "language":"vue",
+        "language": "vue",
         "path": "./snippets/vscode/javascript/javascript.json"
       },
       {
@@ -315,7 +314,10 @@
         "path": "./snippets/vscode/kotlin.json"
       },
       {
-        "language": ["plaintex", "tex"],
+        "language": [
+          "plaintex",
+          "tex"
+        ],
         "path": "./snippets/vscode/latex/latex-snippets.json"
       },
       {

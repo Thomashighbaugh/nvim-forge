@@ -2,83 +2,47 @@
   "center block": {
     "description": "#+BEGIN_CENTER block",
     "prefix": "<C",
-    "body": [
-      "#+BEGIN_CENTER",
-      "$0",
-      "#+END_CENTER"
-    ]
+    "body": ["#+BEGIN_CENTER", "$0", "#+END_CENTER"]
   },
   "comment block": {
     "description": "#+BEGIN_COMMENT block",
     "prefix": "<c",
-    "body": [
-      "#+BEGIN_COMMENT",
-      "$0",
-      "#+END_COMMENT"
-    ]
+    "body": ["#+BEGIN_COMMENT", "$0", "#+END_COMMENT"]
   },
   "example block": {
     "description": "#+BEGIN_EXAMPLE block",
     "prefix": "<e",
-    "body": [
-      "#+BEGIN_EXAMPLE",
-      "$0",
-      "#+END_EXAMPLE"
-    ]
+    "body": ["#+BEGIN_EXAMPLE", "$0", "#+END_EXAMPLE"]
   },
   "src block": {
     "description": "#+BEGIN_SRC ... block",
     "prefix": "<s",
-    "body": [
-      "#+BEGIN_SRC ${1:lang}",
-      "$0",
-      "#+END_SRC"
-    ]
+    "body": ["#+BEGIN_SRC ${1:lang}", "$0", "#+END_SRC"]
   },
   "verse": {
     "description": "verse",
     "prefix": "<v",
-    "body": [
-      "#+BEGIN_VERSE",
-      "$0",
-      "#+END_VERSE"
-    ]
+    "body": ["#+BEGIN_VERSE", "$0", "#+END_VERSE"]
   },
   "export ascii": {
     "description": "#+BEGIN_EXPORT ascii",
     "prefix": "<a",
-    "body": [
-      "#+BEGIN_EXPORT ascii",
-      "$0",
-      "#+END_EXPORT"
-    ]
+    "body": ["#+BEGIN_EXPORT ascii", "$0", "#+END_EXPORT"]
   },
   "export html": {
     "description": "#+BEGIN_EXPORT html block",
     "prefix": "<h",
-    "body": [
-      "#+BEGIN_EXPORT html",
-      "$0",
-      "#+END_EXPORT"
-    ]
+    "body": ["#+BEGIN_EXPORT html", "$0", "#+END_EXPORT"]
   },
   "export latex": {
     "description": "#+BEGIN_EXPORT latex block",
     "prefix": "<l",
-    "body": [
-      "#+BEGIN_EXPORT latex",
-      "$0",
-      "#+END_EXPORT"
-    ]
+    "body": ["#+BEGIN_EXPORT latex", "$0", "#+END_EXPORT"]
   },
   "quote block": {
     "description": "#+BEGIN_QUOTE block",
     "prefix": "<q",
-    "body": [
-      "#+BEGIN_QUOTE",
-      "$0",
-      "#+END_QUOTE"
-    ]
+    "body": ["#+BEGIN_QUOTE", "$0", "#+END_QUOTE"]
   },
   "blog": {
     "description": "blog",
@@ -98,11 +62,7 @@
   "code": {
     "description": "code",
     "prefix": "code",
-    "body": [
-      "#+BEGIN_${1:LANG} ${2:options}",
-      "$0",
-      "#+END_$1"
-    ]
+    "body": ["#+BEGIN_${1:LANG} ${2:options}", "$0", "#+END_$1"]
   },
   "dot": {
     "description": "dot",
@@ -118,18 +78,12 @@
   "elisp": {
     "description": "elisp",
     "prefix": "elisp",
-    "body": [
-      "#+BEGIN_SRC emacs-lisp :tangle yes",
-      "$0",
-      "#+END_SRC"
-    ]
+    "body": ["#+BEGIN_SRC emacs-lisp :tangle yes", "$0", "#+END_SRC"]
   },
   "embedded": {
     "description": "embedded",
     "prefix": "emb",
-    "body": [
-      "src_${1:lang}${2:[${3:where}]}{${4:code}}"
-    ]
+    "body": ["src_${1:lang}${2:[${3:where}]}{${4:code}}"]
   },
   "entry": {
     "description": "entry",
@@ -147,11 +101,7 @@
   "export": {
     "description": "export",
     "prefix": "export",
-    "body": [
-      "#+BEGIN_EXPORT ${1:type}",
-      "$0",
-      "#+END_EXPORT"
-    ]
+    "body": ["#+BEGIN_EXPORT ${1:type}", "$0", "#+END_EXPORT"]
   },
   "figure": {
     "description": "figure",
@@ -183,11 +133,7 @@
   "latex": {
     "description": "latex",
     "prefix": "latex",
-    "body": [
-      "#+BEGIN_LATEX",
-      "$0",
-      "#+END_LATEX"
-    ]
+    "body": ["#+BEGIN_LATEX", "$0", "#+END_LATEX"]
   },
   "latex matrix": {
     "description": "matrix",
@@ -204,14 +150,10 @@
   "todo": {
     "description": "TODO item",
     "prefix": "todo",
-    "body": [
-      "TODO ${1:task description}"
-    ]
+    "body": ["TODO ${1:task description}"]
   },
   "html width": {
     "description": "#+attr_html: :width ...",
-    "body": [
-      "#+ATTR_HTML: :width ${1:500px}"
-    ]
+    "body": ["#+ATTR_HTML: :width ${1:500px}"]
   }
 }
