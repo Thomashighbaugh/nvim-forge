@@ -1,4 +1,4 @@
-local M ={}
+local M = {}
 local dict = require("cmp_dictionary")
 
 dict.setup({
@@ -16,7 +16,7 @@ dict.setup({
 dict.switcher({
   spelllang = {
     en = "/home/tlh/.config/nvim/spell/en.dict",
-    hi ="/home/tlh/.config/nvim/spell/hi.dict",
+    hi = "/home/tlh/.config/nvim/spell/hi.dict",
     es = "/home/tlh/.config/nvim/spell/es.dict",
   },
 })
