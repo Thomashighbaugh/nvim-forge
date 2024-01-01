@@ -73,7 +73,7 @@ local options = {
     diff = "╱",
     eob = " ",
   },
-  -- Command Line COmpletion
+  -- Command Line Completion
   wildmode = "longest:full,full", -- Command-line completion mode
   wildignorecase = true,
   wildignore = [[
@@ -114,6 +114,9 @@ vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set foldopen-=hor]])
 
 if vim.g.neovide then
-  vim.opt.guifont = "Cascadia Code:h10" -- the font used in graphical neovim applications
+  vim.opt.guifont = "Rounded Mplus 1c ExtraBold:h10" -- the font used in graphical neovim applications
   vim.g.neovide_scale_factor = 1
 end
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0

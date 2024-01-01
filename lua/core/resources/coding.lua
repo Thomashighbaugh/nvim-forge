@@ -158,6 +158,11 @@ return {
       "L3MON4D3/cmp-luasnip-choice",
       "uga-rosa/cmp-dictionary",
       "zbirenbaum/copilot-cmp",
+      {
+        "Saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        opts = {},
+      },
     },
     opts = function()
       local cmp = require("cmp")
@@ -229,6 +234,7 @@ return {
           { name = "luasnip" },
           { name = "buffer", keyword_length = 5 },
           { name = "path" },
+          { name = "crates" },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },

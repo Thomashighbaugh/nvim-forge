@@ -135,32 +135,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
---   +---------------------------------------------------------------+
--- Return to last place in a file
-vim.api.nvim_create_autocmd("BufReadPost", {
-  group = Util.augroup("jump_to_location"),
-  pattern = "*", -- This pattern matches all files
-  callback = function()
-    if vim.bo.buftype == "nofile" or vim.bo.buftype == "quickfix" then
-      return
-    end
-
-    -- Get the last cursor position from register "/"
-    local last_position = vim.fn.getreg("/")
-    if not last_position then
-      return
-    end
-
-    -- Extract the line and column from the position
-    local line, col = unpack(vim.fn.getpos(last_position))
-
-    -- Check if both line and column are valid
-    if line > 0 and col > 0 then
-      -- Set the cursor position to the last saved location
-      vim.api.nvim_win_set_cursor(0, { line, col })
-    end
-  end,
-})
 
 --   +---------------------------------------------------------------+
 -- Update file when there are changes to it
@@ -168,5 +142,23 @@ vim.api.nvim_create_autocmd({ "FocusGained" }, {
   group = Util.augroup("update_file_when_changed"),
   callback = function()
     vim.cmd("checktime")
+  end,
+})
+-- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+-- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = Util.augroup("last_loc"),
+  callback = function(event)
+    local exclude = { "gitcommit" }
+    local buf = event.buf
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+      return
+    end
+    vim.b[buf].lazyvim_last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
   end,
 })
