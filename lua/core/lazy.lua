@@ -15,7 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "core.resources" },
+    { import = "core.resources.lang.markdown", enabled = true },
     { import = "core.resources.lang.nix", enabled = true },
+    { import = "core.resources.lang.rust", enabled = true },
     { import = "core.resources.lang.python", enabled = true },
     { import = "core.resources.lang.php", enabled = true },
     { import = "core.resources.lang.typescript", enabled = true },

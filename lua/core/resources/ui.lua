@@ -383,7 +383,7 @@ return {
         -- see :help autocmd-pattern
         pattern = { "*" },
         -- see :help autocmd-events
-        events = { "CursorHold", "CursorHoldI", "LspAttach" },
+        events = { "LspAttach" },
       },
     },
   },

@@ -34,6 +34,7 @@ return {
                 checkThirdParty = false,
                 library = {
                   vim.api.nvim_get_runtime_file("", true),
+                  ["$HOME/awesome-code-doc"] = true,
                   [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                   [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                 },
@@ -248,7 +249,7 @@ return {
   },
   -- formatters
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     -- event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
     root_has_file = function(files)
@@ -290,14 +291,14 @@ return {
               "jsx",
               "json",
               "yaml",
-              "markdown",
             },
           }),
-
+          diagnostics.markdownlint,
+          formatting.markdown_toc, -- use `<!-- toc -->` before headers in your markdown file.`
+          formatting.mdformat,
           completion.luasnip,
           completion.tags,
           formatting.rubyfmt,
-          formatting.rustfmt,
           formatting.rustywind,
           formatting.yamlfix,
           diagnostics.actionlint,
@@ -328,6 +329,25 @@ return {
           formatting.trim_whitespace,
           code_actions.gitsigns,
           formatting.shfmt,
+          formatting.leptosfmt,
+          formatting.rustfmt,
+          formatting.rustfmt.with({
+            extra_args = function(params)
+              local Path = require("plenary.path")
+              local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
+
+              if cargo_toml:exists() and cargo_toml:is_file() then
+                for _, line in ipairs(cargo_toml:readlines()) do
+                  local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
+                  if edition then
+                    return { "--edition=" .. edition }
+                  end
+                end
+              end
+              -- default edition when we don't find `Cargo.toml` or the `edition` in it.
+              return { "--edition=2021" }
+            end,
+          }),
         },
       }
     end,
