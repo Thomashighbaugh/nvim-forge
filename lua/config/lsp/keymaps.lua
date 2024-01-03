@@ -5,15 +5,7 @@ function M.get()
     { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
     { "<leader>ld", "<cmd>Telescope  diagnostics bufnr=0s<cr>", desc = "Document Diagnostics" },
     { "<leader>lw", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-    {
-      "<leader>lh",
-      function()
-        vim.lsp.inlay_hint(0, nil)
-      end,
-      desc = "Toggle inlay hints",
-    },
-    { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
-    { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info" },
+    { "<leader>li", "<cmd>Telescope LspInfo<cr>", desc = "Info" },
     { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "Next Diagnostic" },
     { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Prev Diagnostic" },
     { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },

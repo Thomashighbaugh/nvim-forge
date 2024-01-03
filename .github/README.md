@@ -161,3 +161,4 @@ The following projects were instrumental in the crafting of this environment:
 - [dragove's nvim](https://github.com/dragove/nvim)
 - [Dharmx's Nvim](https://github.com/dharmx/nvim)
 - [loctvl842's nvim'](https://github.com/loctvl842/nvim)
+
