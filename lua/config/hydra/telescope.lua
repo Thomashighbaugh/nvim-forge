@@ -30,7 +30,7 @@ Hydra({
         },
     },
     mode = "n",
-    body = "<Leader>s",
+    body = "<Leader>Hs",
     heads = {
         { "c", cmd("Telescope commands"), { desc = "execute command" } },
         { "f", cmd("Telescope find_files"), { desc = "Find a File" } },

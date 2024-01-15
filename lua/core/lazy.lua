@@ -14,22 +14,22 @@ vim.opt.rtp:prepend(lazypath)
 -- load lazy
 require("lazy").setup({
   spec = {
-    { import = "core.resources" },
-    { import = "core.resources.lang.markdown", enabled = true },
-    { import = "core.resources.lang.nix", enabled = true },
-    { import = "core.resources.lang.rust", enabled = true },
-    { import = "core.resources.lang.python", enabled = true },
-    { import = "core.resources.lang.php", enabled = true },
-    { import = "core.resources.lang.typescript", enabled = true },
-    { import = "core.resources.lang.json", enabled = true },
-    { import = "core.resources.lang.java", enabled = true },
-    { import = "core.resources.lang.docker", enabled = true },
-    { import = "core.resources.lang.clangd", enabled = true },
+    { import = "resources" },
+    { import = "resources.lang.markdown", enabled = true },
+    { import = "resources.lang.nix", enabled = true },
+    { import = "resources.lang.rust", enabled = true },
+    { import = "resources.lang.python", enabled = true },
+    { import = "resources.lang.php", enabled = true },
+    { import = "resources.lang.typescript", enabled = true },
+    { import = "resources.lang.json", enabled = true },
+    { import = "resources.lang.java", enabled = true },
+    { import = "resources.lang.docker", enabled = true },
+    { import = "resources.lang.clangd", enabled = true },
   },
   defaults = {
     lazy = false,
     version = false, -- always use the latest git commit
-   -- version = "*", -- try installing the latest stable version for plugins that support semver
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "monokai-pro" } },
   checker = { enabled = true, notify = false },

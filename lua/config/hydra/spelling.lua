@@ -24,7 +24,7 @@ Hydra({
     },
   },
   mode = "n",
-  body = "<Leader>z",
+  body = "<Leader>Hz",
   heads = {
     { "J", "]s" },
     { "K", "[s" },

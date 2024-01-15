@@ -41,69 +41,6 @@ return {
     end,
   },
   --╞═══════════════════════════════════════════════════════════════╡
-  -- {"github/copilot.vim"},
-
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    lazy = true,
-
-    config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = false,
-          auto_refresh = false,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<M-CR>",
-          },
-          layout = {
-            position = "top", -- | top | left | right
-            ratio = 0.4,
-          },
-        },
-        suggestion = {
-          enabled = false,
-          auto_trigger = false,
-          debounce = 75,
-          keymap = {
-            accept = "<C-M-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-        filetypes = {
-          yaml = true,
-          markdown = true,
-          help = true,
-          gitcommit = true,
-          gitrebase = true,
-          svn = true,
-          hgcommit = true,
-          cvs = true,
-          ["."] = true,
-          ["*"] = true,
-        },
-      })
-    end,
-  },
-  -- {
-  --   "Exafunction/codeium.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --   },
-  --   config = function()
-  --     require("codeium").setup({})
-  --   end,
-  -- },
   {
     "serenevoid/kiwi.nvim",
     dependencies = {
@@ -266,7 +203,7 @@ return {
     },
     -- config = function() require("config.telescope") end,
   },
-
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -456,7 +393,7 @@ return {
       }, { prefix = "<leader>", mode = { "n", "v" }, opts })
     end,
   },
-
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -480,7 +417,7 @@ return {
     },
     keys = {},
   },
-
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   -- references
   {
     "RRethy/vim-illuminate",
@@ -533,7 +470,7 @@ return {
       { "[[", desc = "Prev Reference" },
     },
   },
-
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   {
     "luukvbaal/statuscol.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -561,5 +498,15 @@ return {
         end,
       })
     end,
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    build = false,
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+  -- stylua: ignore
+  keys = {
+    { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+  },
   },
 }

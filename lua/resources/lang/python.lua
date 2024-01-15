@@ -52,7 +52,6 @@ return {
             },
           },
         },
-        ruff_lsp = {},
       },
       attach_handlers = {
         pyright = function(client, _)
