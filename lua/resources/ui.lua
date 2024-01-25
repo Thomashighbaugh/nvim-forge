@@ -59,8 +59,8 @@ return {
       return {
         options = {
           diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
-          separator_style = "", -- | "thick" | "thin" | "slope" | { 'any', 'any' },
-          -- separator_style = { "thick", "thick" }, -- | "thick" | "thin" | { 'any', 'any' },
+     --     separator_style = "", -- | "thick" | "thin" | "slope" | { 'any', 'any' },
+           separator_style = { "thick", "thick" }, -- | "thick" | "thin" | { 'any', 'any' },
           -- separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
           indicator = {
             -- icon = " ",

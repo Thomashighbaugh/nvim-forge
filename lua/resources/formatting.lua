@@ -17,7 +17,7 @@ return {
       function()
         local cf = require("conform")
         cf.format({ async = false, lsp_fallback = true })
-        vim.cmd([[w!]])
+        vim.cmd([[wa!]])
       end,
       desc = "Format and save",
     },
