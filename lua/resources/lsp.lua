@@ -77,7 +77,6 @@ return {
       local Util = require("util")
       -- special attach lsp
       Util.on_attach(function(client, buffer)
-        require("config.lsp.navic").attach(client, buffer)
         require("config.lsp.keymaps").attach(client, buffer)
         require("config.lsp.gitsigns").attach(client, buffer)
       end)
@@ -160,7 +159,6 @@ return {
         -- Formatter
         "black",
         "prettier",
-        "prettierd",
         "stylua",
         "shfmt",
         -- Linter
@@ -276,7 +274,6 @@ return {
         -- using `with()`, which modifies a subset of the source's default options
         sources = {
           formatting.stylua.with(modifier.stylua_formatting),
-          formatting.beautysh.with({ extra_args = { "--indent-size", "2" } }),
           formatting.prettier.with({
             extra_args = { "--single-quote", "false" },
             filetypes = {
@@ -315,11 +312,10 @@ return {
           formatting.terraform_fmt,
           formatting.black,
           formatting.cbfmt,
+          code_actions.statix,
+          code_actions.ts_node_action,
           formatting.goimports,
           formatting.gofumpt,
-          formatting.latexindent.with({
-            extra_args = { "-g", "/dev/null" }, -- https://github.com/cmhughes/latexindent.pl/releases/tag/V3.9.3
-          }),
           code_actions.shellcheck,
           code_actions.refactoring.with({
             filetypes = { "go", "javascript", "lua", "python", "typescript" },
@@ -331,23 +327,6 @@ return {
           code_actions.gitsigns,
           formatting.shfmt,
           formatting.leptosfmt,
-          formatting.rustfmt.with({
-            extra_args = function(params)
-              local Path = require("plenary.path")
-              local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
-
-              if cargo_toml:exists() and cargo_toml:is_file() then
-                for _, line in ipairs(cargo_toml:readlines()) do
-                  local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
-                  if edition then
-                    return { "--edition=" .. edition }
-                  end
-                end
-              end
-              -- default edition when we don't find `Cargo.toml` or the `edition` in it.
-              return { "--edition=2021" }
-            end,
-          }),
         },
       }
     end,
