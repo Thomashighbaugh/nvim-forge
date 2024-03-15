@@ -22,9 +22,9 @@ require("lazy").setup({
     { import = "resources.lang.php", enabled = true },
     { import = "resources.lang.typescript", enabled = true },
     { import = "resources.lang.json", enabled = true },
-    { import = "resources.lang.java", enabled = true },
+    { import = "resources.lang.java", enabled = false },
     { import = "resources.lang.docker", enabled = true },
-    { import = "resources.lang.clangd", enabled = true },
+    { import = "resources.lang.clangd", enabled = false },
   },
   defaults = {
     lazy = false,

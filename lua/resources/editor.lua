@@ -49,11 +49,11 @@ return {
     opts = {
       {
         name = "Tech",
-        path = "/home/tlh/DB/Wiki/",
+        path = "/home/tlh/Wiki/",
       },
       {
         name = "SanatanaDharma",
-        path = "/home/tlh/DB/HinduismWiki",
+        path = "/home/tlh/HinduismWiki",
       },
     },
     keys = {
@@ -82,7 +82,7 @@ return {
         -- You can change it to whatever you want (eg. some nerd fonts icon), 'N' is default
         filetype = "md",
         git_branch_recognizable = false, -- If true, quicknote will separate notes by git branch
-        -- But it should only be used with residen
+        -- But it should only be used with resident mode 
       })
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -268,6 +268,7 @@ return {
           r = { "<cmd>CBrrbox5<cr>", "right aligned fixed size box with left aligned text" },
           c = { "<cmd>CBccbox5<cr>", "center aligned fixed size box with center aligned text" },
         },
+
         x = {
           name = "Trouble",
           x = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },

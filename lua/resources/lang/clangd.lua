@@ -61,9 +61,6 @@ return {
               fname
             ) or require("lspconfig.util").find_git_ancestor(fname)
           end,
-          capabilities = {
-            offsetEncoding = { "utf-16" },
-          },
           cmd = {
             "clangd",
             "--background-index",

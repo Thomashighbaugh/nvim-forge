@@ -2,6 +2,8 @@ local Util = require("util")
 local Icon = require("core.icons")
 
 return {
+  -- ─────────────────────────────────────────────────────────────────
+  -- Notifications styler with useful notifications clear command
   {
     "rcarriga/nvim-notify",
     keys = {
@@ -35,7 +37,8 @@ return {
       end
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- buffers listed as tabs above editor window interface
   {
     "akinsho/bufferline.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -59,8 +62,8 @@ return {
       return {
         options = {
           diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
-     --     separator_style = "", -- | "thick" | "thin" | "slope" | { 'any', 'any' },
-           separator_style = { "thick", "thick" }, -- | "thick" | "thin" | { 'any', 'any' },
+          --     separator_style = "", -- | "thick" | "thin" | "slope" | { 'any', 'any' },
+          separator_style = { "thick", "thick" }, -- | "thick" | "thin" | { 'any', 'any' },
           -- separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
           indicator = {
             -- icon = " ",
@@ -97,7 +100,8 @@ return {
       }
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- Status bar below editor window with some useful information I never look at
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -116,7 +120,8 @@ return {
       lualine_config.load()
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- provides identation guides
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -175,7 +180,8 @@ return {
     end,
     main = "ibl",
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- provides indentation support using pipe symbol
   {
     "echasnovski/mini.indentscope",
     lazy = true,
@@ -206,6 +212,7 @@ return {
       require("mini.indentscope").setup(opts)
     end,
   },
+  -- ─────────────────────────────────────────────────────────────────
 
   {
     "utilyre/barbecue.nvim",
@@ -223,7 +230,8 @@ return {
       kinds = Icon.kinds,
     },
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- my finally functional terminal popup that works with NixOS
   {
     "akinsho/toggleterm.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -258,7 +266,8 @@ return {
       },
     },
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- a dashboard for that rare situation I open nvim without any particular file in mind
   {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
@@ -268,12 +277,14 @@ return {
       require("config.dashboard")
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- icons for nvim-tree
   {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- scrollbars for nvim
   {
     "petertriho/nvim-scrollbar",
     event = { "BufReadPost", "BufNewFile" },
@@ -296,7 +307,8 @@ return {
       },
     },
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- window animations are fun
   {
     "anuvyklack/windows.nvim",
     event = "WinNew",
@@ -315,31 +327,16 @@ return {
       vim.o.equalalways = true
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- because I am still not able to translate hex codes to colors in my head
   {
-    "NvChad/nvim-colorizer.lua",
+    "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
-    opts = {
-      filetypes = { "*", "!lazy", "!neo-tree" },
-      buftype = { "*", "!prompt", "!nofile" },
-      user_default_options = {
-        RGB = true, -- #RGB hex codes
-        RRGGBB = true, -- #RRGGBB hex codes
-        names = false, -- "Name" codes like Blue
-        RRGGBBAA = true, -- #RRGGBBAA hex codes
-        AARRGGBB = false, -- 0xAARRGGBB hex codes
-        rgb_fn = true, -- CSS rgb() and rgba() functions
-        hsl_fn = true, -- CSS hsl() and hsla() functions
-        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        -- Available modes: foreground, background
-        -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "background", -- Set the display mode.
-        virtualtext = "■",
-      },
-    },
+    init = function()
+      require("colorizer").setup()
+    end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
   -- better vim.ui
   {
     "stevearc/dressing.nvim",
@@ -362,7 +359,7 @@ return {
       end
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
   -- noicer ui
   {
     "folke/noice.nvim",
@@ -399,22 +396,29 @@ return {
       },
     },
   },
+  --─────────────────────────────────────────────────────────────────
+  -- ease neovim development somehow I don't remember
   {
     "folke/neodev.nvim",
     lazy = true,
   },
+  -- ─────────────────────────────────────────────────────────────────
+  -- TODO:Move this to coding or lang/java
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- dependency of many other things, probably not needed here but mitigates issues because it is
   {
     "nvim-lua/plenary.nvim",
     lazy = true,
   },
-
-  { "tpope/vim-eunuch", event = "VeryLazy" }, -- Adds things like :Move, :Rename, :SudoWrite, etc.
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- Adds things like :Move, :Rename, :SudoWrite, etc.
+  { "tpope/vim-eunuch", event = "VeryLazy" },
+  -- ─────────────────────────────────────────────────────────────────
+  -- useful popup windows
   {
     "anuvyklack/hydra.nvim",
     dependencies = {
@@ -424,7 +428,8 @@ return {
       require("config.hydra.hydra")
     end,
   },
-
+  -- ─────────────────────────────────────────────────────────────────
+  -- window picking when opening a buffer with splits open
   {
     "s1n7ax/nvim-window-picker",
     lazy = false,

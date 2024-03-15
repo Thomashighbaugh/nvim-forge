@@ -146,6 +146,8 @@ return {
       ensure_installed = {
         -- LSPs
         "bash-language-server",
+        "clangd",
+        "jdtls",
         "dockerfile-language-server",
         "json-lsp",
         "marksman",
@@ -248,8 +250,8 @@ return {
   -- formatters
   {
     "nvimtools/none-ls.nvim",
-    -- event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "mason.nvim", "jay-babu/mason-null-ls.nvim" },
     root_has_file = function(files)
       return function(utils)
         return utils.root_has_file(files)
@@ -332,6 +334,17 @@ return {
     end,
     config = function(_, opts)
       local null_ls = require("null-ls")
+      local mason_null_ls = require("mason-null-ls")
+
+      mason_null_ls.setup({
+        ensure_installed = {
+          "prettier", -- prettier formatter
+          "stylua", -- lua formatter
+          "black", -- python formatter
+          "pylint", -- python linter
+          "eslint", -- js linter
+        },
+      })
       null_ls.setup(opts)
     end,
   },
