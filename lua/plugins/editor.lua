@@ -27,7 +27,7 @@ return {
         desc = "Explorer Float (root dir)",
       },
     },
-    opts = require("config.neo-tree"),
+    opts = require("plugins.config.neo-tree"),
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
       if vim.fn.argc() == 1 then
@@ -201,7 +201,7 @@ return {
       { "<leader>F", Util.telescope("live_grep"), desc = "Find Text" },
       { "<leader>b", Util.telescope("buffers"), desc = "Find buffer" },
     },
-    -- config = function() require("config.telescope") end,
+    -- config = function() require("plugins.config.telescope") end,
   },
   -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   {
@@ -500,6 +500,7 @@ return {
       })
     end,
   },
+--─────────────────────────────────────────────────────────────────
   {
     "nvim-pack/nvim-spectre",
     build = false,
@@ -510,4 +511,5 @@ return {
     { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
   },
   },
+-- ─────────────────────────────────────────────────────────────────
 }

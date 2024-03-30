@@ -1,11 +1,14 @@
 local options = {
+  autochdir = true, -- Use current file dir as working dir (See project.nvim).
   background = "dark",
   backup = false, -- creates a backup file
+  breakindent = true, -- Wrap indent to match  line start.
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 0, -- more space in the neovim command line for displaying messages
   completeopt = { "preview", "menu", "menuone" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   confirm = true, -- Confirm before exiting a modified buffer
+  copyindent = true, -- Copy the previous indentation on autoindenting
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
@@ -31,6 +34,7 @@ local options = {
   scrolloff = 3, -- Minimal number of screen lines to keep above and below the cursor
   selection = "inclusive", -- "inclusive", "exclusive" or "old"
   shiftround = true, -- Round indent
+  shada = "!,'1000,<50,s10,h", -- Remember the last 1000 opened files
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   showcmd = false,
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
@@ -51,7 +55,7 @@ local options = {
   titlestring = "%<%F%=%l/%L - nvim",
   undofile = true, -- enable persistent undo
   undolevels = 10000,
-  updatetime = 500, -- faster completion (4000ms default)
+  updatetime = 300, -- faster completion (4000ms default)
   virtualedit = "onemore",
   winminwidth = 5, -- minimum window width
   wrap = true, -- scrolling sideways sucks
@@ -97,8 +101,12 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
+
 vim.opt.shortmess:append("c")
 vim.opt.viewoptions:remove("curdir") -- disable saving current directory with views
+
+
 
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
@@ -120,3 +128,17 @@ end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+vim.g.cmp_enabled = true -- Enable completion at start.
+vim.g.codelens_enabled = true -- Enable automatic codelens refreshing for lsp that support it.
+vim.g.diagnostics_mode = 3 -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).
+vim.g.icons_enabled = true -- Enable icons in the UI (disable if no nerd font is available).
+vim.g.inlay_hints_enabled = false -- Enable always show function parameter names.
+vim.g.lsp_round_borders_enabled = true -- Enable round borders for lsp hover and signatureHelp.
+vim.g.lsp_signature_enabled = true -- Enable automatically showing lsp help as you write function parameters.
+vim.g.notifications_enabled = true -- Enable notifications.
+vim.g.semantic_tokens_enabled = true -- Enable lsp semantic tokens at start.
+vim.g.url_effect_enabled = true -- Highlight URLs with an underline effect.
+
+vim.g.autoformat_enabled = true -- Enable auto formatting at start.
+vim.g.autopairs_enabled = true -- Enable autopairs at start.

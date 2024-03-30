@@ -14,17 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 -- load lazy
 require("lazy").setup({
   spec = {
-    { import = "resources" },
-    { import = "resources.lang.markdown", enabled = true },
-    { import = "resources.lang.nix", enabled = true },
-    { import = "resources.lang.rust", enabled = true },
-    { import = "resources.lang.python", enabled = true },
-    { import = "resources.lang.php", enabled = true },
-    { import = "resources.lang.typescript", enabled = true },
-    { import = "resources.lang.json", enabled = true },
-    { import = "resources.lang.java", enabled = false },
-    { import = "resources.lang.docker", enabled = true },
-    { import = "resources.lang.clangd", enabled = false },
+    { import = "plugins" },
+    { import = "plugins.lang.markdown", enabled = true },
+    { import = "plugins.lang.nix", enabled = true },
+    { import = "plugins.lang.rust", enabled = true },
+    { import = "plugins.lang.python", enabled = true },
+    { import = "plugins.lang.php", enabled = true },
+    { import = "plugins.lang.typescript", enabled = true },
+    { import = "plugins.lang.json", enabled = true },
+    { import = "plugins.lang.java", enabled = false },
+    { import = "plugins.lang.docker", enabled = true },
+    { import = "plugins.lang.clangd", enabled = false },
   },
   defaults = {
     lazy = false,

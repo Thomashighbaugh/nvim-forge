@@ -5,16 +5,16 @@ M.root_patterns = { ".git", "lua", "package.json", "mvnw", "gradlew", "pom.xml",
 M.augroup = function(name)
   return vim.api.nvim_create_augroup("tlh_" .. name, { clear = true })
 end
-
+-- ─────────────────────────────────────────────────────────────────
 M.has = function(plugin)
   return require("lazy.core.config").plugins[plugin] ~= nil
 end
-
+-- ─────────────────────────────────────────────────────────────────
 function M.get_clients(...)
   local fn = vim.lsp.get_clients or vim.lsp.get_active_clients
   return fn(...)
 end
-
+-- ─────────────────────────────────────────────────────────────────
 --- @param on_attach fun(client, buffer)
 M.on_attach = function(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
@@ -25,7 +25,7 @@ M.on_attach = function(on_attach)
     end,
   })
 end
-
+-- ─────────────────────────────────────────────────────────────────
 M.get_highlight_value = function(group)
   local found, hl = pcall(vim.api.nvim_get_hl_by_name, group, true)
   if not found then
@@ -37,7 +37,7 @@ M.get_highlight_value = function(group)
   end
   return hl_config
 end
-
+-- ─────────────────────────────────────────────────────────────────
 -- return plugin opts
 ---@param name string
 function M.opts(name)
@@ -113,7 +113,7 @@ M.telescope_theme = function(type)
     borderchars = M.generate_borderchars("thick", nil, { top = "█", top_left = "█", top_right = "█" }),
   })
 end
-
+-- ─────────────────────────────────────────────────────────────────
 ---@param builtin "find_files" | "live_grep" | "buffers"
 ---@param type "ivy" | "dropdown" | "cursor" | nil
 M.telescope = function(builtin, type, opts)
@@ -132,7 +132,7 @@ M.telescope = function(builtin, type, opts)
     require("telescope.builtin")[builtin](theme)
   end
 end
-
+-- ─────────────────────────────────────────────────────────────────
 ---@param name "autocmds" | "options" | "keymaps"
 M.load = function(name)
   local Util = require("lazy.core.util")
@@ -150,7 +150,7 @@ M.load = function(name)
     end,
   })
 end
-
+-- ─────────────────────────────────────────────────────────────────
 M.on_very_lazy = function(fn)
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
@@ -159,7 +159,7 @@ M.on_very_lazy = function(fn)
     end,
   })
 end
-
+-- ─────────────────────────────────────────────────────────────────
 M.capabilities = function(ext)
   return vim.tbl_deep_extend(
     "force",
@@ -169,7 +169,7 @@ M.capabilities = function(ext)
     { textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } } }
   )
 end
-
+-- ─────────────────────────────────────────────────────────────────
 M.notify = function(msg, level, opts)
   opts = opts or {}
   level = vim.log.levels[level:upper()]
@@ -186,7 +186,7 @@ M.notify = function(msg, level, opts)
     vim.notify(msg, level, nopts)
   end)
 end
-
+-- ─────────────────────────────────────────────────────────────────
 --- @param type "thin" | "thick" | "empty" | nil
 --- @param order "t-r-b-l-tl-tr-br-bl" | "tl-t-tr-r-bl-b-br-l" | nil
 --- @param opts BorderIcons | nil

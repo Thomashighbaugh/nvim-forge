@@ -10,7 +10,7 @@ return {
     "loctvl842/compile-nvim",
     lazy = true,
     config = function()
-      require("config.compile")
+      require("plugins.config.compile")
     end,
   },
   --  ╞═══════════════════════════════════════════════════════════════╡

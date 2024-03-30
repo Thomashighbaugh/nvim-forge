@@ -21,7 +21,6 @@ return {
         "http",
         "javascript",
         "json",
-        "latex",
         "lua",
         "markdown",
         "markdown_inline",
@@ -92,6 +91,7 @@ return {
       end,
     },
   },
+--─────────────────────────────────────────────────────────────────
   {
     "HiPhish/rainbow-delimiters.nvim",
     init = function()
@@ -118,6 +118,7 @@ return {
       }
     end,
   },
+--─────────────────────────────────────────────────────────────────
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
@@ -143,6 +144,7 @@ return {
       end
     end,
   },
+--─────────────────────────────────────────────────────────────────
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufRead",

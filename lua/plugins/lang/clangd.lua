@@ -53,7 +53,7 @@ return {
               "Makefile",
               "configure.ac",
               "configure.in",
-              "config.h.in",
+              "plugins.config.h.in",
               "meson.build",
               "meson_options.txt",
               "build.ninja"

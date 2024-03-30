@@ -1,10 +1,10 @@
-local config = require("config.lualine.config")
+local config = require("plugins.config.lualine.config")
 
 local M = {}
 
 local function setup()
-  local cpn = require("config.lualine.components")
-  local theme = require("config.lualine.highlights").custom(config.options)
+  local cpn = require("plugins.config.lualine.components")
+  local theme = require("plugins.config.lualine.highlights").custom(config.options)
 
   require("lualine").setup({
     options = {

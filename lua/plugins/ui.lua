@@ -115,7 +115,7 @@ return {
       }
     end,
     config = function(_, opts)
-      local lualine_config = require("config.lualine")
+      local lualine_config = require("plugins.config.lualine")
       lualine_config.setup(opts)
       lualine_config.load()
     end,
@@ -274,7 +274,7 @@ return {
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
     keys = { { "<leader>0", "<cmd>Dashboard<CR>", desc = "Dashboard" } },
     config = function()
-      require("config.dashboard")
+      require("plugins.config.dashboard")
     end,
   },
   -- ─────────────────────────────────────────────────────────────────
@@ -425,7 +425,7 @@ return {
       "anuvyklack/keymap-layer.nvim",
     },
     config = function()
-      require("config.hydra.hydra")
+      require("plugins.config.hydra.hydra")
     end,
   },
   -- ─────────────────────────────────────────────────────────────────

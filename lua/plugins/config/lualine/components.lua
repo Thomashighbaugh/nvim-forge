@@ -1,4 +1,4 @@
-local config = require("config.lualine.config").options
+local config = require("plugins.config.lualine.config").options
 local icons = require("core.icons")
 
 local M = {}

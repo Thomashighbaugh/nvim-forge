@@ -77,12 +77,12 @@ return {
       local Util = require("util")
       -- special attach lsp
       Util.on_attach(function(client, buffer)
-        require("config.lsp.keymaps").attach(client, buffer)
-        require("config.lsp.gitsigns").attach(client, buffer)
+        require("plugins.config.lsp.keymaps").attach(client, buffer)
+        require("plugins.config.lsp.gitsigns").attach(client, buffer)
       end)
 
       -- diagnostics
-      vim.diagnostic.config(require("config.lsp.diagnostics")["on"])
+      vim.diagnostic.config(require("plugins.config.lsp.diagnostics")["on"])
 
       local servers = opts.servers
       local ext_capabilites = vim.lsp.protocol.make_client_capabilities()
@@ -138,11 +138,20 @@ return {
       require("mason-lspconfig").setup_handlers({ setup })
     end,
   },
+  -- ─────────────────────────────────────────────────────────────────
+  --  Schema Store [lsp schema manager]
+  --  https://github.com/b0o/SchemaStore.nvim
+  "b0o/SchemaStore.nvim",
+  --─────────────────────────────────────────────────────────────────
 
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
     opts = {
+      registries = {
+        "github:nvim-java/mason-registry",
+        "github:mason-org/mason-registry",
+      },
       ensure_installed = {
         -- LSPs
         "bash-language-server",
@@ -247,7 +256,23 @@ return {
       use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
     },
   },
-  -- formatters
+  -- ─────────────────────────────────────────────────────────────────
+  {
+    "zeioth/garbage-day.nvim",
+    event = "User BaseFile",
+    opts = {
+      aggressive_mode = false,
+      excluded_lsp_clients = {
+        "null-ls",
+        "jdtls",
+      },
+      grace_period = (60 * 15),
+      wakeup_delay = 3000,
+      notifications = false,
+      retries = 3,
+      timeout = 1000,
+    },
+  },
   {
     "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
