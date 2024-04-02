@@ -1,4 +1,29 @@
-return {
+---@alias BorderStyle "rounded" | "double" | "thin" | "empty" | "thick"
+---@alias BorderOrder "t-r-b-l-tl-tr-br-bl" | "tl-t-tr-r-br-b-bl-l"
+
+---@class BorderIcons
+---@field top? string
+---@field right? string
+---@field bottom? string
+---@field left? string
+---@field top_left? string
+---@field top_right? string
+---@field bottom_right? string
+---@field bottom_left? string
+
+---@class core.icons
+local M = {
+  mason = {
+    pending = " ",
+    installed = "󰄳 ",
+    uninstalled = "󰚌 ",
+  },
+  lazy = {
+    ft = "",
+    lazy = "󰂠 ",
+    loaded = " ",
+    not_loaded = " ",
+  },
   diagnostics = {
     error = "",
     warn = "",
@@ -18,12 +43,12 @@ return {
     deleted = "",
   },
   gitsigns = {
-    add = "┃",
-    change = "┋",
-    delete = "",
-    topdelhfe = "",
-    changedelete = "┃",
-    untracked = "┃",
+    add = "│",
+    change = "┊",
+    delete = "󰍵",
+    topdelete = "‾",
+    changedelete = "~",
+    untracked = "│",
   },
   kinds = {
     Array = "",
@@ -63,8 +88,28 @@ return {
     Variable = "",
     Macro = "", -- Macro
   },
+  ---@type table<BorderStyle, BorderIcons>
   borders = {
-    --- @class BorderIcons
+    rounded = {
+      top = "─",
+      right = "│",
+      bottom = "─",
+      left = "│",
+      top_left = "╭",
+      top_right = "╮",
+      bottom_right = "╯",
+      bottom_left = "╰",
+    },
+    double = {
+      top = "═",
+      right = "║",
+      bottom = "═",
+      left = "║",
+      top_left = "╔",
+      top_right = "╗",
+      bottom_right = "╝",
+      bottom_left = "╚",
+    },
     thin = {
       top = "▔",
       right = "▕",
@@ -75,7 +120,6 @@ return {
       bottom_right = "🭿",
       bottom_left = "🭼",
     },
-    ---@type BorderIcons
     empty = {
       top = " ",
       right = " ",
@@ -86,7 +130,6 @@ return {
       bottom_right = " ",
       bottom_left = " ",
     },
-    ---@type BorderIcons
     thick = {
       top = "▄",
       right = "█",
@@ -98,7 +141,17 @@ return {
       bottom_left = "▀",
     },
   },
-  misc = {
+  brain = {
     codeium = "󰘦 ",
+    copilot = " ",
   },
 }
+
+M.colors = {
+  brain = {
+    codeium = "#09B6A2",
+    copilot = "#FEFFFF",
+  },
+}
+
+return M

@@ -127,3 +127,11 @@ LSP | <leader>l
 FOLD | f
 GOTO | g
 SEARCH | s
+
+ADD SURROUNDING MARKERS | Ga  
+REMOVE SURROUNDING MARKERS | Gd
+Find surrounding (to the right) | Gf
+Find surrounding (to the left) | GF
+Highlight surrounding | Gh
+Replace surrounding | Gr
+Update `n_lines` | Gn

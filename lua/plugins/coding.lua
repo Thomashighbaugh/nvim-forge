@@ -1,20 +1,7 @@
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏                       Coding Resources                        ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+local Utils = require("utils")
+local Icons = require("core").icons
 
 return {
-  {
-    "huggingface/llm.nvim",
-    lazy = true,
-    opts = {
-      model = "bigcode/starcoder", -- can be a model ID or an http(s) endpoint
-      accept_keymap = "<Tab>",
-      dismiss_keymap = "<S-Tab>",
-    },
-  },
-  --╞═══════════════════════════════════════════════════════════════╡
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
@@ -86,239 +73,157 @@ return {
       end)
     end,
   },
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+
   {
     "rafamadriz/friendly-snippets",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
   },
-
-  --  ╞═══════════════════════════════════════════════════════════════╡
-  {
-    "mattn/emmet-vim",
-    event = { "BufRead", "BufNewFile" },
-    init = function()
-      vim.g.user_emmet_leader_key = "f"
-      vim.g.user_emmet_mode = "n"
-      vim.g.user_emmet_settings = {
-        variables = { lang = "ja" },
-        javascript = {
-          extends = "jsx",
-        },
-        html = {
-          default_attributes = {
-            option = { value = vim.null },
-            textarea = {
-              id = vim.null,
-              name = vim.null,
-              cols = 10,
-              rows = 10,
-            },
-          },
-          snippets = {
-            ["!"] = "<!DOCTYPE html>\n"
-              .. '<html lang="en">\n'
-              .. "<head>\n"
-              .. '\t<meta charset="${charset}">\n'
-              .. '\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-              .. '\t<meta http-equiv="X-UA-Compatible" content="ie=edge">\n'
-              .. "\t<title></title>\n"
-              .. "</head>\n"
-              .. "<body>\n\t${child}|\n</body>\n"
-              .. "</html>",
-          },
-        },
-      }
-    end,
-  },
-  --  ╞═══════════════════════════════════════════════════════════════╡
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    opts = {
-      suggestion = { enabled = true },
-      panel = { enabled = true },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
-  },
-
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+  -- ─────────────────────────────────────────────────────────────────
   {
     "hrsh7th/nvim-cmp",
+    version = false,
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      "David-Kunz/cmp-npm",
-      "L3MON4D3/LuaSnip",
-      "L3MON4D3/cmp-luasnip-choice",
-      "davidsierradz/cmp-conventionalcommits",
-      "dmitmel/cmp-cmdline-history",
-      "doxnit/cmp-luasnip-choice",
-      "garyhurtz/cmp_kitty",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-path",
       "mfussenegger/nvim-jdtls",
-      "petertriho/cmp-git",
-      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "tamago324/cmp-zsh",
-      "onsails/lspkind-nvim",
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {},
-      },
-      {
-        "Exafunction/codeium.nvim",
-        cmd = "Codeium",
-        build = ":Codeium Auth",
-        opts = {},
-      },
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = "copilot.lua",
-        opts = {},
-        config = function(_, opts)
-          local copilot_cmp = require("copilot_cmp")
-          copilot_cmp.setup(opts)
-          -- attach cmp source whenever copilot attaches
-          -- fixes lazy-loading issues with the copilot cmp source
-          require("util").on_attach(function(client)
-            if client.name == "copilot" then
-              copilot_cmp._on_insert_enter({})
-            end
-          end)
-        end,
-      },
+      "hrsh7th/cmp-nvim-lsp",
     },
-    config = function()
+    opts = function()
       local cmp = require("cmp")
-      local lspkind = require("lspkind")
+      local defaults = require("cmp.config.default")()
+      local monokai_opts = Utils.plugin.opts("monokai-pro.nvim")
 
-      cmp.setup({
-        formatting = {
-          format = lspkind.cmp_format({
-            with_text = false,
-            maxwidth = 50,
-            mode = "symbol",
-            menu = {
-              buffer = "BUF",
-              rg = "RG",
-              nvim_lsp = "LSP",
-              path = "PATH",
-              luasnip = "SNIP",
-              calc = "CALC",
-            },
-          }),
-        },
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = { { name = "buffer" } },
+      })
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+      })
+      cmp.setup.filetype("java", { completion = { keyword_length = 2 } })
+      return {
+        window = vim.tbl_contains(monokai_opts.background_clear or {}, "float_win") and {
+          completion = cmp.config.window.bordered({ border = "rounded" }),
+          documentation = cmp.config.window.bordered({ border = "rounded" }),
+        } or nil,
+        completion = { completeopt = "menu,menuone,noinsert" },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-u>"] = cmp.mapping.scroll_docs(4),
+          ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
+          ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.close(),
-          ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_prev_item()
-            end
-          end, { "i", "s" }),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          -- ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          -- ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<Esc>"] = cmp.mapping(function(fallback)
+            require("luasnip").unlink_current()
+            fallback()
+          end),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "nvim_lua" },
+          { name = "codeium" },
+          { name = "copilot" },
+          { name = "nvim_lsp", keyword_length = 2 },
           { name = "luasnip" },
-          { name = "buffer" },
+          { name = "buffer", keyword_length = 3 },
           { name = "path" },
-          { name = "calc" },
-          { name = "crates" },
-          { name = "treesitter" },
-          { name = "cmdline" },
-          { name = "cmdline-history" },
-          { name = "zsh" },
-          {
-            name = "copilot",
-            group_index = 1,
-            priority = 100,
-          },
-          {
-            name = "dictionary",
-            keyword_length = 2,
-          },
-          { name = "luasnip-choice" },
-          {
-            name = "codeium",
-            group_index = 1,
-            priority = 100,
-          },
-          { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lsp" },
-
-          { name = "luasnip" },
-          { name = "calc" },
-          { name = "path" },
-          { name = "buffer", keyword_length = 5 },
-          { name = "treesitter" },
-          { name = "cmdline" },
-          { name = "cmdline-history" },
-          { name = "zsh" },
-          { name = "crates" },
         }),
-      })
-
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, item)
+            item.menu = ({
+              codeium = "Codeium",
+              copilot = "Copilot",
+              nvim_lsp = item.kind,
+              luasnip = "Snippet",
+              buffer = "Buffer",
+              path = "Path",
+            })[entry.source.name]
+            if Icons.kinds[item.kind] then
+              item.kind = Icons.kinds[item.kind]
+            end
+            local brain_kind = Icons.brain[entry.source.name]
+            if brain_kind then
+              local hl_gr = Utils.string.capitalize("CmpItemKind" .. Utils.string.capitalize(entry.source.name))
+              item.kind = brain_kind
+              item.kind_hl_group = hl_gr
+              vim.api.nvim_set_hl(0, hl_gr, { fg = Icons.colors.brain[entry.source.name] })
+            end
+            return item
+          end,
         },
+        experimental = { ghost_text = true },
+        sorting = defaults.sorting,
+      }
+    end,
+  },
+  {
+    "LudoPinelli/comment-box.nvim",
+    config = function()
+      require("comment-box").setup({
+        doc_width = 80, -- width of the document
+        box_width = 65, -- width of the boxes
+        borders = { -- symbols used to draw a box
+          top = "─",
+          bottom = "─",
+          left = "│",
+          right = "│",
+          top_left = "╭",
+          top_right = "╮",
+          bottom_left = "╰",
+          bottom_right = "╯",
+        },
+        line_width = 65, -- width of the lines
+        line = { -- symbols used to draw a line
+          line = "─",
+          line_start = "─",
+          line_end = "─",
+        },
+        outer_blank_lines = true, -- insert a blank line above and below the box
+        inner_blank_lines = true, -- insert a blank line above and below the text
+        line_blank_line_above = false, -- insert a blank line above the line
+        line_blank_line_below = false, -- insert a blank line below the line
       })
+    end,
+  },
+  -- ─────────────────────────────────────────────────────────────────
+  {
+    "numToStr/Comment.nvim",
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      local status_ok, comment = pcall(require, "Comment")
+      if not status_ok then
+        vim.notify("Comment not found!")
+        return
+      end
 
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
+      comment.setup({
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       })
     end,
   },
 
-  --  ╞═══════════════════════════════════════════════════════════════╡
+  -- ─────────────────────────────────────────────────────────────────
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.pairs").setup(opts)
-    end,
+    opts = {},
   },
-  --  ╞═══════════════════════════════════════════════════════════════╡
-  -- comments
+  -- ─────────────────────────────────────────────────────────────────
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "echasnovski/mini.comment",
@@ -331,7 +236,7 @@ return {
       },
     },
   },
-  --  ╞═══════════════════════════════════════════════════════════════╡
+  -- ─────────────────────────────────────────────────────────────────
   {
     "ray-x/lsp_signature.nvim",
     event = { "InsertEnter" },
@@ -341,7 +246,6 @@ return {
       hint_scheme = "Comment", -- highlight group for the virtual text
     },
   },
-  --  ╞═══════════════════════════════════════════════════════════════╡
   {
     "LudoPinelli/comment-box.nvim",
     config = function()
@@ -387,29 +291,19 @@ return {
       })
     end,
   },
-  --╞═══════════════════════════════════════════════════════════════╡
-  {
-    "glepnir/lspsaga.nvim",
-    lazy = true,
-    config = function()
-      require("lspsaga").setup({})
-    end,
-  },
-  --╞═══════════════════════════════════════════════════════════════╡
-  -- Highlight, list and search todo comments in your projects
   {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufEnter" },
     dependencies = "nvim-telescope/telescope.nvim",
-		-- stylua: ignore
-		keys = {
-			{ ']t', function() require('todo-comments').jump_next() end, desc = 'Next todo comment' },
-			{ '[t', function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment' },
-			{ '<leader>Tt', '<cmd>TodoTrouble<CR>', desc = 'Todo (Trouble)' },
-			{ '<leader>TT', '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
-			{ '<leader>Tt', '<cmd>TodoTelescope<cr>', desc = 'Todo' },
-			{ '<leader>TT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme' },
-		},
+ 	-- stylua: ignore
+ 	keys = {
+ 		{ ']t', function() require('todo-comments').jump_next() end, desc = 'Next todo comment' },
+ 		{ '[t', function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment' },
+ 		{ '<leader>Tt', '<cmd>TodoTrouble<CR>', desc = 'Todo (Trouble)' },
+ 		{ '<leader>TT', '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
+ 		{ '<leader>Tt', '<cmd>TodoTelescope<cr>', desc = 'Todo' },
+ 		{ '<leader>TT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme' },
+ 	},
     opts = { signs = false },
   },
 
@@ -443,13 +337,13 @@ return {
     end,
     opts = {
       mappings = {
-        add = "gsa", -- Add surrounding in Normal and Visual modes
-        delete = "gsd", -- Delete surrounding
-        find = "gsf", -- Find surrounding (to the right)
-        find_left = "gsF", -- Find surrounding (to the left)
-        highlight = "gsh", -- Highlight surrounding
-        replace = "gsr", -- Replace surrounding
-        update_n_lines = "gsn", -- Update `n_lines`
+        add = "Ga", -- Add surrounding in Normal and Visual modes
+        delete = "Gd", -- Delete surrounding
+        find = "Gf", -- Find surrounding (to the right)
+        find_left = "GF", -- Find surrounding (to the left)
+        highlight = "Gh", -- Highlight surrounding
+        replace = "Gr", -- Replace surrounding
+        update_n_lines = "Gn", -- Update `n_lines`
       },
     },
   },

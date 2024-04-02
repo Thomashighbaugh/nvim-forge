@@ -1,3 +1,5 @@
+local Icons = require("core").icons
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -7,43 +9,27 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
+    ---@type LspOptions
     opts = {
       servers = {
         html = {},
         lua_ls = {
           settings = {
             Lua = {
-              runtime = {
-                version = "LuaJIT",
-                path = vim.split(package.path, ";"),
-              },
-
               hint = { enable = true },
               diagnostics = {
-                enable = true,
-                globals = {
-                  "vim",
-                  "nnoremap",
-                  "vnoremap",
-                  "inoremap",
-                  "tnoremap",
-                  "use",
-                },
+                globals = { "vim" },
               },
               workspace = {
                 checkThirdParty = false,
                 library = {
-                  vim.api.nvim_get_runtime_file("", true),
-                  ["$HOME/awesome-code-doc"] = true,
                   [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                   [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                  [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
                 },
-                -- adjust these two values if your performance is not optimal
-                maxPreload = 2000,
-                preloadFileSize = 2000,
+                maxPreload = 100000,
+                preloadFileSize = 10000,
               },
-              telemetry = { enable = false },
-
               completion = {
                 callSnippet = "Replace",
               },
@@ -64,118 +50,50 @@ return {
           },
         },
       },
-      ---@type table<string, fun(client, buffer)>
-      attach_handlers = {},
       capabilities = {
         textDocument = {
           foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+          completion = {
+            completionItem = {
+              documentationFormat = { "markdown", "plaintext" },
+              snippetSupport = true,
+              preselectSupport = true,
+              insertReplaceSupport = true,
+              labelDetailsSupport = true,
+              deprecatedSupport = true,
+              commitCharactersSupport = true,
+              tagSupport = { valueSet = { 1 } },
+              resolveSupport = {
+                properties = {
+                  "documentation",
+                  "detail",
+                  "additionalTextEdits",
+                },
+              },
+            },
+          },
         },
       },
+      diagnostics = true,
     },
-
     config = function(_, opts)
-      local Util = require("util")
-      -- special attach lsp
-      Util.on_attach(function(client, buffer)
-        require("plugins.config.lsp.keymaps").attach(client, buffer)
-        require("plugins.config.lsp.gitsigns").attach(client, buffer)
-      end)
-
-      -- diagnostics
-      vim.diagnostic.config(require("plugins.config.lsp.diagnostics")["on"])
-
-      local servers = opts.servers
-      local ext_capabilites = vim.lsp.protocol.make_client_capabilities()
-
-      -- inlay hints
-      local inlay_hint = vim.lsp.buf.inlayhints or vim.lsp.inlayhints
-      if vim.fn.has("nvim-0.10.0") and inlay_hint then
-        Util.on_attach(function(client, buffer)
-          if client.supports_method("textDocument/inlayHint") then
-            inlay_hint(buffer, true)
-          end
-        end)
-      end
-
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        ext_capabilites,
-        require("cmp_nvim_lsp").default_capabilities(),
-        opts.capabilities
-      )
-
-      local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
-
-        if opts.attach_handlers[server] then
-          local callback = function(client, buffer)
-            if client.name == server then
-              opts.attach_handlers[server](client, buffer)
-            end
-          end
-          Util.on_attach(callback)
-        end
-        require("lspconfig")[server].setup(server_opts)
-      end
-
-      local available = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-
-      local ensure_installed = {}
-      for server, server_opts in pairs(servers) do
-        if server_opts then
-          if not vim.tbl_contains(available, server) then
-            setup(server)
-          else
-            ensure_installed[#ensure_installed + 1] = server
-          end
-        end
-      end
-
-      require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-      require("mason-lspconfig").setup_handlers({ setup })
+      require("features.lsp").setup(opts)
     end,
   },
-  -- ─────────────────────────────────────────────────────────────────
-  --  Schema Store [lsp schema manager]
-  --  https://github.com/b0o/SchemaStore.nvim
-  "b0o/SchemaStore.nvim",
-  --─────────────────────────────────────────────────────────────────
 
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
     opts = {
-      registries = {
-        "github:nvim-java/mason-registry",
-        "github:mason-org/mason-registry",
-      },
       ensure_installed = {
-        -- LSPs
-        "bash-language-server",
-        "clangd",
-        "jdtls",
-        "dockerfile-language-server",
-        "json-lsp",
-        "marksman",
-        "typescript-language-server",
-        "texlab",
-        "ltex-ls",
-        "lua-language-server",
-        "pyright",
-        "terraform-ls",
-        "yaml-language-server",
-        -- Formatter
-        "black",
-        "prettier",
         "stylua",
-        "shfmt",
-        -- Linter
-        "shellcheck",
-        "tflint",
-        "yamllint",
+      },
+      ui = {
+        icons = {
+          package_pending = Icons.mason.pending,
+          package_installed = Icons.mason.installed,
+          package_uninstalled = Icons.mason.uninstalled,
+        },
       },
     },
     config = function(_, opts)
@@ -196,7 +114,6 @@ return {
       end
     end,
   },
-
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -206,7 +123,7 @@ return {
       width = 50, -- width of the list when position is left or right
       icons = true, -- use devicons for filenames
       mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-      severity = nil, -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
+      severity = nil, -- nil (all) or vim.diagnostic.severity.error | warn | info | hint
       fold_open = "", -- icon used for open folds
       fold_closed = "", -- icon used for closed folds
       group = true, -- group results by file
@@ -225,20 +142,20 @@ return {
         jump_close = { "o" }, -- jump to the diagnostic and close the list
         toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
         switch_severity = "s", -- switch "diagnostics" severity filter level
-        toggle_preview = "P", -- toggle auto_preview
-        hover = "K", -- opens a small popup with the full multiline message
+        toggle_preview = "p", -- toggle auto_preview
+        hover = "k", -- opens a small popup with the full multiline message
         preview = "p", -- preview the diagnostic location
-        open_code_href = "c", -- if present, open a URI with more information about the diagnostic error
-        close_folds = { "zM", "zm" }, -- close all folds
-        open_folds = { "zR", "zr" }, -- open all folds
-        toggle_fold = { "zA", "za" }, -- toggle fold of current file
+        open_code_href = "c", -- if present, open a uri with more information about the diagnostic error
+        close_folds = { "zm", "zm" }, -- close all folds
+        open_folds = { "zr", "zr" }, -- open all folds
+        toggle_fold = { "za", "za" }, -- toggle fold of current file
         previous = "k", -- previous item
         next = "j", -- next item
         help = "?", -- help menu
       },
       multiline = true, -- render multi-line messages
       indent_lines = true, -- add an indent guide below the fold icons
-      win_config = { border = "single" }, -- window configuration for floating windows. See |nvim_open_win()|.
+      win_config = { border = "single" }, -- window configuration for floating windows. see |nvim_open_win()|.
       auto_open = false, -- automatically open the list when you have diagnostics
       auto_close = false, -- automatically close the list when you have no diagnostics
       auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
@@ -259,7 +176,7 @@ return {
   -- ─────────────────────────────────────────────────────────────────
   {
     "zeioth/garbage-day.nvim",
-    event = "User BaseFile",
+    event = "user basefile",
     opts = {
       aggressive_mode = false,
       excluded_lsp_clients = {
@@ -275,7 +192,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "bufreadpre", "bufnewfile" },
     dependencies = { "mason.nvim", "jay-babu/mason-null-ls.nvim" },
     root_has_file = function(files)
       return function(utils)
@@ -297,7 +214,7 @@ return {
       }
       return {
         debug = false,
-        -- You can then register sources by passing a sources list into your setup function:
+        -- you can then register sources by passing a sources list into your setup function:
         -- using `with()`, which modifies a subset of the source's default options
         sources = {
           formatting.stylua.with(modifier.stylua_formatting),

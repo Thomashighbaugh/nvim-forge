@@ -1,46 +1,7 @@
-local Util = require("util")
-local Icons = require("core.icons")
+local Utils = require("utils")
+local Icons = require("core").icons
 
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    dependencies = "mrbjarksen/neo-tree-diagnostics.nvim",
-    keys = {
-      {
-        "<leader>e",
-        function()
-          require("neo-tree.command").execute({ toggle = true, position = "left", dir = require("util").get_root() })
-        end,
-        desc = "Explorer (root dir)",
-        remap = true,
-      },
-      {
-        "<leader>E",
-        function()
-          require("neo-tree.command").execute({
-            toggle = true,
-            position = "float",
-            dir = Util.get_root(),
-          })
-        end,
-        desc = "Explorer Float (root dir)",
-      },
-    },
-    opts = require("plugins.config.neo-tree"),
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = 1
-      if vim.fn.argc() == 1 then
-        local stat = vim.loop.fs_stat(vim.fn.argv(0))
-        if stat and stat.type == "directory" then
-          ---@diagnostic disable-next-line: different-requires
-          require("neo-tree")
-          vim.cmd([[set showtabline=0]])
-        end
-      end
-    end,
-  },
-  --╞═══════════════════════════════════════════════════════════════╡
   {
     "serenevoid/kiwi.nvim",
     dependencies = {
@@ -82,185 +43,44 @@ return {
         -- You can change it to whatever you want (eg. some nerd fonts icon), 'N' is default
         filetype = "md",
         git_branch_recognizable = false, -- If true, quicknote will separate notes by git branch
-        -- But it should only be used with resident mode 
+        -- But it should only be used with resident mode
       })
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    version = "0.1.4", -- telescope did only one release, so use HEAD for now
-    opts = {
-      defaults = {
-        prompt_prefix = "   ",
-        selection_caret = "  ",
-        entry_prefix = "   ",
-        borderchars = {
-          prompt = Util.generate_borderchars(
-            "thick",
-            nil,
-            { top = "█", top_left = "█", left = "█", right = " ", top_right = " ", bottom_right = " " }
-          ),
-          results = Util.generate_borderchars(
-            "thick",
-            nil,
-            { top = "█", top_left = "█", right = " ", top_right = " ", bottom_right = " " }
-          ),
-          preview = Util.generate_borderchars("thick", nil, { top = "█", top_left = "█", top_right = "█" }),
-        },
-        dynamic_preview_title = true,
-        hl_result_eol = true,
-        sorting_strategy = "ascending",
-        file_ignore_patterns = {
-          ".git/",
-          "target/",
-          "docs/",
-          "vendor/*",
-          "%.lock",
-          "__pycache__/*",
-          "%.sqlite3",
-          "%.ipynb",
-          "node_modules/*",
-          -- "%.jpg",
-          -- "%.jpeg",
-          -- "%.png",
-          "%.svg",
-          "%.otf",
-          "%.ttf",
-          "%.webp",
-          ".dart_tool/",
-          ".github/",
-          ".gradle/",
-          ".idea/",
-          ".settings/",
-          ".vscode/",
-          "__pycache__/",
-          "build/",
-          "gradle/",
-          "node_modules/",
-          "%.pdb",
-          "%.dll",
-          "%.class",
-          "%.exe",
-          "%.cache",
-          "%.ico",
-          "%.pdf",
-          "%.dylib",
-          "%.jar",
-          "%.docx",
-          "%.met",
-          "smalljre_*/*",
-          ".vale/",
-          "%.burp",
-          "%.mp4",
-          "%.mkv",
-          "%.rar",
-          "%.zip",
-          "%.7z",
-          "%.tar",
-          "%.bz2",
-          "%.epub",
-          "%.flac",
-          "%.tar.gz",
-        },
-        results_title = "",
-        layout_config = {
-          horizontal = {
-            prompt_position = "top",
-            preview_width = 0.55,
-            results_width = 0.8,
-          },
-          vertical = {
-            mirror = false,
-          },
-          width = 0.87,
-          height = 0.80,
-          preview_cutoff = 120,
-        },
-      },
-    },
-    keys = {
-      -- goto
-      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Go to definition" },
-      { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references" },
-      { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementations" },
-      -- search
-      { "Sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-      { "Sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
-      { "Sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
-      { "SM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-      { "Sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
-      { "SR", "<cmd>Telescope registers<cr>", desc = "Registers" },
-      { "Sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-      { "SC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "SH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
 
-      -- Find
-      { "<leader>f", Util.telescope("find_files"), desc = "Find files" },
-      { "<leader>F", Util.telescope("live_grep"), desc = "Find Text" },
-      { "<leader>b", Util.telescope("buffers"), desc = "Find buffer" },
-    },
-    -- config = function() require("plugins.config.telescope") end,
-  },
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "kdheepak/lazygit.nvim",
-    },
     opts = {
-      plugins = {
-        marks = true, -- shows a list of your marks on ' and `
-        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-        spelling = {
-          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-          suggestions = 20, -- how many suggestions should be shown in the list?
-        },
-
-        presets = {
-          operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-          motions = true, -- adds help for motions
-          text_objects = true, -- help for text objects triggered after entering an operator
-          windows = true, -- default bindings on <c-w>
-          nav = true, -- misc bindings to work with windows
-          z = true, -- bindings for folds, spelling and others prefixed with z
-          g = true, -- bindings for prefixed with g
-        }, -- This fix mapping for fold when press f and nothing show up
-      },
+      plugins = { spelling = true },
       window = {
         margin = { 1, 0, 2, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 1, 0, 1, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 15, -- value between 0-100 0 for fully opaque and 100 for fully transparent
-        border = "double",
-        position = "bottom",
-      },
-      popup_mappings = {
-        scroll_down = "<c-d>", -- binding to scroll down inside the popup
-        scroll_up = "<c-u>", -- binding to scroll up inside the popup
+        winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
       },
       layout = {
         height = { min = 3, max = 25 }, -- min and max height of the columns
-        width = { min = 5, max = 50 }, -- min and max width of the columns
+        width = { min = 20, max = 100 }, -- min and max width of the columns
         spacing = 5, -- spacing between columns
         align = "center", -- align columns left, center or right
+      },
+      defaults = {
+        mode = { "n", "v" },
+        ["<leader>g"] = { name = "+Git" },
+        ["<leader>s"] = { name = "+Session" },
+        ["<leader>c"] = { name = "+ChatGPT" },
+        ["<leader>l"] = { name = "+LSP" },
+        ["<leader>h"] = { name = "+Hunk" },
+        ["<leader>w"] = { name = "Wiki" },
+        ["g"] = { name = "+Goto" },
+        ["s"] = { name = "+Search" },
       },
     },
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      local keymaps = {
-        ["<leader>h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-        ["<leader><Tab>"] = { "<c-6>", "Navigate previous buffer" },
-        ["g"] = { name = "Goto" },
-        ["<leader>l"] = { name = "+LSP" },
-        ["<leader>w"] = { name = "Wiki" },
-      }
-      wk.register(keymaps)
+      wk.register(opts.defaults)
       wk.register({
         C = {
           name = "Comment Box",
@@ -394,16 +214,56 @@ return {
       }, { prefix = "<leader>", mode = { "n", "v" }, opts })
     end,
   },
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
+    dependencies = "mrbjarksen/neo-tree-diagnostics.nvim",
+    keys = {
+      {
+        "<leader>e",
+        function()
+          require("neo-tree.command").execute({ toggle = true, position = "left", dir = Utils.root() })
+        end,
+        desc = "Explorer (root dir)",
+        remap = true,
+      },
+      {
+        "<leader>E",
+        function()
+          require("neo-tree.command").execute({
+            toggle = true,
+            position = "float",
+            dir = Utils.root(),
+          })
+        end,
+        desc = "Explorer Float (root dir)",
+      },
+    },
+    opts = require("features.neo-tree"),
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+      if vim.fn.argc() == 1 then
+        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        if stat and stat.type == "directory" then
+          ---@diagnostic disable-next-line: different-requires
+          require("neo-tree")
+          vim.cmd([[set showtabline=0]])
+        end
+      end
+    end,
+  },
+
   {
     "lewis6991/gitsigns.nvim",
+    ft = { "gitcommit", "diff" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
         add = { text = Icons.gitsigns.add },
         change = { text = Icons.gitsigns.change },
         delete = { text = Icons.gitsigns.delete },
-        topdelhfe = { text = Icons.gitsigns.topdelhfe },
+        topdelhfe = { text = Icons.gitsigns.topdelete },
         changedelete = { text = Icons.gitsigns.changedelete },
         untracked = { text = Icons.gitsigns.untracked },
       },
@@ -413,12 +273,146 @@ return {
       },
       current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
       preview_config = {
-        border = Util.generate_borderchars("thick", "tl-t-tr-r-bl-b-br-l"), -- [ top top top - right - bottom bottom bottom - left ]
+        border = Utils.telescope.borderchars("thick", "tl-t-tr-r-br-b-bl-l"), -- [ top top top - right - bottom bottom bottom - left ]
       },
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local map = Utils.safe_keymap_set
+
+        -- Navigation
+        map("n", "]c", function()
+          if vim.wo.diff then
+            return "]c"
+          end
+          vim.schedule(function()
+            gs.next_hunk()
+          end)
+          return "<Ignore>"
+        end, { buffer = bufnr, expr = true, desc = "Next git hunk" })
+        map("n", "[c", function()
+          if vim.wo.diff then
+            return "[c"
+          end
+          vim.schedule(function()
+            gs.prev_hunk()
+          end)
+          return "<Ignore>"
+        end, { buffer = bufnr, expr = true, desc = "Previous git hunk" })
+
+        -- Actions
+        map("n", "<leader>hs", gs.stage_hunk, { desc = "Stage current hunk" })
+        map("n", "<leader>hr", gs.reset_hunk, { desc = "Reset current hunk" })
+        map("v", "<leader>hs", function()
+          gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end, { desc = "Stage visual selection" })
+        map("v", "<leader>hr", function()
+          gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end, { desc = "Reset visual selection" })
+        map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage entire buffer" })
+        map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo last hunk staging" })
+        map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset entire buffer" })
+        map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview current hunk changes" })
+        map("n", "<leader>hb", function()
+          gs.blame_line({ full = true })
+        end, { desc = "Show blame for current line" })
+        map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle blame for current line" })
+        map("n", "<leader>hd", gs.diffthis, { desc = "Diff current hunk" })
+        map("n", "<leader>hD", function()
+          gs.diffthis("~")
+        end, { desc = "Diff all changes in the file" })
+      end,
     },
-    keys = {},
   },
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    version = false, -- telescope did only one release, so use HEAD for now
+    opts = function()
+      local monokai_opts = Utils.plugin.opts("monokai-pro.nvim")
+      local is_telescope_bg_clear = vim.tbl_contains(monokai_opts.background_clear or {}, "telescope")
+      local opts = {
+        defaults = {
+          prompt_prefix = "   ",
+          selection_caret = "  ",
+          entry_prefix = "   ",
+          borderchars = is_telescope_bg_clear and Utils.telescope.borderchars("rounded")
+            or {
+              prompt = Utils.telescope.borderchars("thick", nil, {
+                top = "▄",
+                top_left = "▄",
+                left = "█",
+                right = " ",
+                top_right = " ",
+                bottom_right = " ",
+              }),
+              results = Utils.telescope.borderchars(
+                "thick",
+                nil,
+                { top = "█", top_left = "█", right = " ", top_right = " ", bottom_right = " " }
+              ),
+              preview = Utils.telescope.borderchars("thick", nil, { top = "▄", top_left = "▄", top_right = "▄" }),
+            },
+          dynamic_preview_title = true,
+          hl_result_eol = true,
+          sorting_strategy = "ascending",
+          results_title = "", -- Remove `Results` title
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.8,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+          mappings = {
+            n = { ["q"] = require("telescope.actions").close },
+          },
+        },
+      }
+      return opts
+    end,
+    keys = {
+      -- goto
+      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Go to definition" },
+      { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references" },
+      { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementations" },
+      -- search
+      { "sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+      { "sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+      { "sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+      { "sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+      { "sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+      { "sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+      { "sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+      { "sH", "<cmd>Telescope highlights<cr>", desc = "Highlight Groups" },
+      -- Git
+      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+      -- Find
+      { "<leader>f", Utils.telescope("find_files"), desc = "Find files" },
+      { "<leader>F", Utils.telescope("live_grep"), desc = "Find Text" },
+      { "<leader>b", Utils.telescope("buffers"), desc = "Find buffer" },
+    },
+  },
+
+  {
+    "moll/vim-bbye",
+    event = { "BufRead" },
+    keys = {
+      { "<leader>d", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
+      { "<C-w>", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
+    },
+  },
+
+  -- TODO: Remove this when upgrading Neovim to version >= 0.10.0.
   -- references
   {
     "RRethy/vim-illuminate",
@@ -471,45 +465,4 @@ return {
       { "[[", desc = "Prev Reference" },
     },
   },
-  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-  {
-    "luukvbaal/statuscol.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        relculright = false,
-        ft_ignore = { "neo-tree" },
-        segments = {
-          {
-            -- line number
-            text = { " ", builtin.lnumfunc },
-            condition = { true, builtin.not_empty },
-            click = "v:lua.ScLa",
-          },
-          { text = { "%s" }, click = "v:lua.ScSa" }, -- Sign
-          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" }, -- Fold
-        },
-      })
-      vim.api.nvim_create_autocmd({ "BufEnter" }, {
-        callback = function()
-          if vim.bo.filetype == "neo-tree" then
-            vim.opt_local.statuscolumn = ""
-          end
-        end,
-      })
-    end,
-  },
---─────────────────────────────────────────────────────────────────
-  {
-    "nvim-pack/nvim-spectre",
-    build = false,
-    cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
-  -- stylua: ignore
-  keys = {
-    { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-  },
-  },
--- ─────────────────────────────────────────────────────────────────
 }

@@ -101,12 +101,8 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
-
 vim.opt.shortmess:append("c")
 vim.opt.viewoptions:remove("curdir") -- disable saving current directory with views
-
-
 
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"

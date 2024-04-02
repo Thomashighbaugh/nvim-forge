@@ -1,171 +1,77 @@
-local opts = { noremap = true, silent = true }
+local Utils = require("utils")
 
--- Shorten function name
-local map = vim.api.nvim_set_keymap
+local map = Utils.safe_keymap_set
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
---   +---------------------------------------------------------------+
+-------------------- General Mappings --------------------------
+map("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
+map("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
+map("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Quit all" })
+map("n", "<leader><Tab>", "<c-6>", { desc = "Switch buffer" })
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Window Navigation                                             ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-------------------- Better window navigation ------------------
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
-map("n", "<c-h>", "<c-w>h", opts)
-map("n", "<c-l>", "<c-w>l", opts)
-map("n", "<c-j>", "<c-w>j", opts)
-map("n", "<c-k>", "<c-w>k", opts)
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Indent                                                        ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-------------------- Stay in indent mode ------------------------
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
+map("v", "p", '"_dP')
 
-map("v", "<", "<gv", opts)
-map("v", ">", ">gv", opts)
-map("v", "p", '"_dP', opts)
+-------------------- Resize windows ----------------------------
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Resize Window                                                 ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("n", "<A-C-j>", ":resize +1<CR>", opts)
-map("n", "<A-C-k>", ":resize -1<CR>", opts)
-map("n", "<A-C-h>", ":vertical resize +1<CR>", opts)
-map("n", "<A-C-l>", ":vertical resize -1<CR>", opts)
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Move Lines                                                    ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
--- Visual --
-map("v", "<A-j>", ":m .+1<CR>==", opts)
-map("v", "<A-k>", ":m .-2<CR>==", opts)
--- Block --
-map("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-map("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+-------------------- Move text up/ down ------------------------
 -- Normal --
-map("n", "<A-j>", ":m .+1<CR>==", opts)
-map("n", "<A-k>", ":m .-2<CR>==", opts)
+map("n", "<A-S-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-S-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+-- Block --
+map("x", "<A-S-j>", ":move '>+1<CR>gv-gv", { desc = "Move down" })
+map("x", "<A-S-k>", ":move '<-2<CR>gv-gv", { desc = "Move up" })
 -- Insert --
-map("i", "<A-j>", "<ESC>:m .+1<CR>==gi", opts)
-map("i", "<A-k>", "<ESC>:m .-2<CR>==gi", opts)
+map("i", "<A-S-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-S-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+-- Visual --
+map("v", "<A-S-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-S-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏  No highlight                                                 ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-------------------- No highlight ------------------------------
+map("n", ";", ":noh<CR>", { desc = "Clear search" })
 
-map("n", ";", ":noh<CR>", opts)
+-------------------- Inspect --------------------------------
+map("n", "<F2>", "<cmd>Inspect<CR>", { desc = "Inspect highlight fallback" })
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Split Windows                                                 ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+-------------------- split window ------------------------------
+map("n", "<leader>\\", ":vsplit<CR>", { desc = "Split window vertically" })
+map("n", "<leader>/", ":split<CR>", { desc = "Split window horizontally" })
 
-map("n", "<leader>\\", ":vsplit<CR>", opts)
-map("n", "<leader>/", ":split<CR>", opts)
+-------------------- Switch two windows ------------------------
+map("n", "<A-o>", "<C-w>r", { desc = "Rotate window" })
 
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Compile                                                       ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
+------------------- Select all ----------------------------- 
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" }) 
 
-map("n", "<c-m-n>", "<cmd>only | Compile<CR>", opts)
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Inspect                                                       ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("n", "<F2>", "<cmd>Inspect<CR>", opts)
---   +---------------------------------------------------------------+
--- paste over currently selected text without yanking it
-map("v", "p", '"_dp', opts)
-map("v", "P", '"_dP', opts)
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏  switch buffer                                                ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏  Sort selected lines alphabetically                           ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("v", "<C-p>", "<cmd>Sort <cr>", { desc = "Sort Lines Alphabetically" })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏  Terminal                                                     ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true }) -- back to normal mode in Terminal
-map("t", "<C-h>", [[<C-\><C-n><C-W>h]], { noremap = true })
-map("t", "<C-j>", [[<C-\><C-n><C-W>j]], { noremap = true })
-map("t", "<C-k>", [[<C-\><C-n><C-W>k]], { noremap = true })
-map("t", "<C-l>", [[<C-\><C-n><C-W>l]], { noremap = true })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Save Function                                                 ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
-map("v", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
-map("i", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
-map("n", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
-map("x", "<C-s>", "<esc><cmd>wa<cr>", { desc = "Save file" })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏  Comment Box                                                  ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-map("v", "<leader>Cn", "<cmd>CBlcbox13<cr>", { desc = "Comment Box Multi-Line Notation" })
-map("v", "<leader>Cs", "<cmd>CBlrbox19<cr>", { desc = "Sub-Heading Comment Box" })
-map("v", "<leader>Ch", "<cmd>CBlcbox8<cr>", { desc = "Heading Comment Box" })
-map("v", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
-map("i", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
-map("n", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
-map("v", "<C-M-->", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
-map("i", "<C-M-->", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
-map("n", "<C-M-->", "<cmd>CBline6<cr>", { desc = "alternative comment line" })
-map("n", "<leader>C?", "<cmd>CBcatalog<cr>", { desc = "Comment Box Style Catalog" })
-map("n", "<leader>Cn", "<cmd>CBlcbox13<cr>", { desc = "Comment Box Multi-Line Notation" })
-map("n", "<leader>Cs", "<cmd>CBlrbox19<cr>", { desc = "Sub-Heading Comment Box" })
-map("n", "<leader>Ch", "<cmd>CBlcbox5<cr>", { desc = "Heading Comment Box" })
-
---  ┏╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┓
---  ╏                                                               ╏
---  ╏ Fuzzy Search                                                  ╏
---  ╏                                                               ╏
---  ┗╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍┛
-
+-------------------- Fuzzy Search --------------------------------
 vim.keymap.set("n", "<C-f>", function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes"))
 end, { desc = "[/] Fuzzily search in current buffer]" })
+
+-------------------Save Function---------------------------
+map("v", "<C-s>", "<esc><cmd>wa!<cr>", { desc = "Save file" })
+map("i", "<C-s>", "<esc><cmd>wa!<cr>", { desc = "Save file" })
+map("n", "<C-s>", "<esc><cmd>wa!<cr>", { desc = "Save file" })
+map("x", "<C-s>", "<esc><cmd>wa!<cr>", { desc = "Save file" })
+
+--------------------Comment Bars---------------------
+map("v", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("i", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("n", "<M-->", "<cmd>CBline7<cr>", { desc = "comment line" })
+map("v", "<C-M-->", "<cmd>CBline15<cr>", { desc = "alternative comment line" })
+map("i", "<C-M-->", "<cmd>CBline15<cr>", { desc = "alternative comment line" })
+map("n", "<C-M-->", "<cmd>CBline15<cr>", { desc = "alternative comment line" })

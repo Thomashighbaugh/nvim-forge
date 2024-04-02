@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  dependencies = { "mason.nvim" },
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   opts = {
@@ -17,7 +18,7 @@ return {
       function()
         local cf = require("conform")
         cf.format({ async = false, lsp_fallback = true })
-        vim.cmd([[wa!]])
+        vim.cmd([[w!]])
       end,
       desc = "Format and save",
     },

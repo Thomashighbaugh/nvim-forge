@@ -3,9 +3,21 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+    init = function(plugin)
+      --- Reference: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua#L10
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treeitter** module to be loaded in time.
+      -- Luckily, the only thins that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+    end,
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
       ensure_installed = {
+        "vimdoc",
         "bash",
         "c",
         "comment",
@@ -45,80 +57,32 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "yaml", "python", "html" } },
-      incremental_selection = {
+      rainbow = {
         enable = true,
-        keymaps = {
-          init_selection = "<CR>",
-          scope_incremental = "<CR>",
-          node_incremental = "<TAB>",
-          node_decremental = "<S-TAB>",
-        },
+        query = "rainbow-parens",
+        disable = { "jsx", "html" },
       },
-      endwise = {
-        enable = true,
-      },
-      autopairs = { enable = true },
-      textobjects = {
-        select = {
-          enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
-          lookahead = true,
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["ib"] = "@block.inner",
-            ["ab"] = "@block.outer",
-            ["ir"] = "@parameter.inner",
-            ["ar"] = "@parameter.outer",
-          },
-        },
-
-        context_commentstring = { enable = true },
-        rainbow = {
-          enable = true,
-          query = "rainbow-parens",
-          disable = { "jsx", "html" },
-        },
-      },
-      config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
-        require("nvim-ts-autotag").setup()
-      end,
     },
-  },
---─────────────────────────────────────────────────────────────────
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    init = function()
-      local rainbow_delimiters = require("rainbow-delimiters")
-
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
-        },
-        query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
-        },
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        },
-      }
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
---─────────────────────────────────────────────────────────────────
+
+  -- Show context of the current function
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    enabled = true,
+    opts = { mode = "cursor", max_lines = 3 },
+    keys = {
+      { "<leader>ut", "<cmd>TSContextToggle<cr>", desc = "Toggle Treesitter Context" },
+    },
+  },
+
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    lazy = true,
+  },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
@@ -144,11 +108,5 @@ return {
       end
     end,
   },
---─────────────────────────────────────────────────────────────────
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufRead",
-    enabled = true,
-    opts = { mode = "cursor", max_lines = 3 },
-  },
+
 }

@@ -1,5 +1,5 @@
- local  Icons = require("core").icons
-local Logos = require("core.logos")
+local Icons = require("core").icons
+local Logos = require("core")
 local Utils = require("utils")
 
 return {

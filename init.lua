@@ -1,3 +1,1 @@
----@diagnostic disable-next-line: different-requires
-require("core.lazy")
-
+require("init").bootstrap()

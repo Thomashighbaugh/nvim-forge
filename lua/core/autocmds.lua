@@ -1,4 +1,5 @@
-local Util = require("util")
+local Utils = require("utils")
+
 -- ─────────────────────────────────────────────────────────────────
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -6,26 +7,28 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
 })
 
---   +---------------------------------------------------------------+
+-- ─────────────────────────────────────────────────────────────────
 -- Highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = Util.augroup("highlight_yank"),
+  group = Utils.augroup("highlight_yank"),
   callback = function()
-    vim.highlight.on_yank({ higroup = "Search", timeout = 200 })
+    vim.highlight.on_yank({ higroup = "Visual" })
   end,
 })
---   +---------------------------------------------------------------+
+
+-- ─────────────────────────────────────────────────────────────────
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-  group = Util.augroup("resize_splits"),
+  group = Utils.augroup("resize_splits"),
   callback = function()
     vim.cmd("tabdo wincmd =")
   end,
 })
---   +---------------------------------------------------------------+
+
+-- ─────────────────────────────────────────────────────────────────
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
-  group = Util.augroup("close_with_q"),
+  group = Utils.augroup("close_with_q"),
   pattern = {
     "qf",
     "help",
@@ -43,53 +46,29 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Set wrap and spell in markdown and gitcommit
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   group = Util.augroup("wrap_spell"),
---   pattern = { "gitcommit", "markdown" },
---   callback = function()
---    -- vim.opt_local.wrap = true  -- set globally, so I don't need this on to throw errors. I already got enough of that, thanks
---     vim.opt_local.spell = true
---   end,
--- })
---   +---------------------------------------------------------------+
--- remember folds
-vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
-  pattern = "?*",
-  group = Util.augroup("remember_folds"),
-  callback = function()
-    vim.cmd([[silent! mkview 1]])
-  end,
-})
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  pattern = "?*",
-  group = Util.augroup("remember_folds"),
-  callback = function()
-    vim.cmd([[silent! loadview 1]])
-  end,
-})
---   +---------------------------------------------------------------+
--- set shell for NixOS quirkiness
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufNewFile" }, {
-  pattern = "*",
-  group = Util.augroup("set_shell"),
-  callback = function()
-    vim.cmd([[set shell=/run/current-system/sw/bin/zsh]])
-  end,
-})
---   +---------------------------------------------------------------+
+-- ─────────────────────────────────────────────────────────────────
 -- fix comment
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufNewFile" }, {
-  group = Util.augroup("comment_newline"),
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  group = Utils.augroup("comment_newline"),
   pattern = { "*" },
   callback = function()
     vim.cmd([[set formatoptions-=cro]])
   end,
 })
---   +---------------------------------------------------------------+
+
+-- ─────────────────────────────────────────────────────────────────
+-- set shell for NixOS quirkiness
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufNewFile" }, {
+  pattern = "*",
+  group = Utils.augroup("set_shell"),
+  callback = function()
+    vim.cmd([[set shell=/run/current-system/sw/bin/zsh]])
+  end,
+})
+
+-- ─────────────────────────────────────────────────────────────────
 -- determine project root
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = Util.augroup("project_root"),
   pattern = { "" },
   callback = function()
     local get_project_dir = function()
@@ -102,38 +81,44 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     vim.opt.titlestring = get_project_dir()
   end,
 })
---   +---------------------------------------------------------------+
+
 -- clear cmd output
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
-  group = Util.augroup("clear_term"),
+  group = Utils.augroup("clear_term"),
   callback = function()
     vim.cmd([[echon '']])
   end,
 })
---   +---------------------------------------------------------------+
--- placement of the help window
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = Util.augroup("help_placement"),
   pattern = { "help" },
   callback = function()
     vim.cmd([[wincmd L]])
   end,
 })
---   +---------------------------------------------------------------+
--- terminal settings
+
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = Util.augroup("terminal_settings"),
   pattern = { "*" },
   callback = function()
     vim.opt_local["number"] = false
     vim.opt_local["signcolumn"] = "no"
+    vim.opt_local["foldcolumn"] = "0"
   end,
 })
 
---   +---------------------------------------------------------------+
+-- ─────────────────────────────────────────────────────────────────
+-- fix comment on new line
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[set formatoptions-=cro]])
+  end,
+})
+
+-- ─────────────────────────────────────────────────────────────────
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = Util.augroup("auto_create_dir"),
+  group = Utils.augroup("auto_create_dir"),
   callback = function(event)
     if event.match:match("^%w%w+://") then
       return
@@ -143,29 +128,22 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
---   +---------------------------------------------------------------+
--- Update file when there are changes to it
-vim.api.nvim_create_autocmd({ "FocusGained" }, {
-  group = Util.augroup("update_file_when_changed"),
+-- ─────────────────────────────────────────────────────────────────
+-- placement of the help window
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = Utils.augroup("help_placement"),
+  pattern = { "help" },
   callback = function()
-    vim.cmd("checktime")
+    vim.cmd([[wincmd L]])
   end,
 })
--- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
--- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
-  group = Util.augroup("last_loc"),
-  callback = function(event)
-    local exclude = { "gitcommit" }
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
-      return
-    end
-    vim.b[buf].lazyvim_last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
+--   +---------------------------------------------------------------+
+-- terminal settings
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = Utils.augroup("terminal_settings"),
+  pattern = { "*" },
+  callback = function()
+    vim.opt_local["number"] = false
+    vim.opt_local["signcolumn"] = "no"
   end,
 })
