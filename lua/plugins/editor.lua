@@ -421,7 +421,7 @@ return {
     "moll/vim-bbye",
     event = { "BufRead" },
     keys = {
-      { "<leader>d", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
+      { "<leader>D", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
       { "<C-w>", "<cmd>Bdelete!<cr>", desc = "Close Buffer" },
     },
   },
