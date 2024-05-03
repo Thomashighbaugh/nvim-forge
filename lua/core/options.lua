@@ -122,9 +122,8 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 1
 end
 
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
 
+vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
 vim.g.cmp_enabled = true -- Enable completion at start.
 vim.g.codelens_enabled = true -- Enable automatic codelens refreshing for lsp that support it.
 vim.g.diagnostics_mode = 3 -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).

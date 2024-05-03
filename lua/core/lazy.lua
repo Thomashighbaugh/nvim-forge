@@ -36,7 +36,7 @@ require("lazy").setup({
     version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "monokai-pro" } },
-  checker = { enabled = false, notify = false },
+  checker = { enabled = true, notify = false },
   ui = {
     icons = {
       ft = Icons.lazy.ft,

@@ -1,30 +1,48 @@
 return {
-  "stevearc/conform.nvim",
-  dependencies = { "mason.nvim" },
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
-  opts = {
-    formatters_by_ft = {
-      lua = { "stylua" },
+  {
+    "stevearc/conform.nvim",
+    dependencies = { "mason.nvim", "sQVe/sort.nvim" },
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+      formatters = {
+        injected = { options = { ignore_errors = true } },
+      },
+      main = "conform",
     },
-    formatters = {
-      injected = { options = { ignore_errors = true } },
+    keys = {
+      {
+        "<leader>W",
+        function()
+          local cf = require("conform")
+          cf.format({ async = false, lsp_fallback = true })
+          vim.cmd([[w!]])
+        end,
+        desc = "Format and save",
+      },
     },
-    main = "conform",
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
-  keys = {
-    {
-      "<leader>W",
-      function()
-        local cf = require("conform")
-        cf.format({ async = false, lsp_fallback = true })
-        vim.cmd([[w!]])
-      end,
-      desc = "Format and save",
-    },
+  {
+    "sQVe/sort.nvim",
+    config = function()
+      require("sort").setup({
+         delimiters = {
+    ',',
+    '|',
+    ';',
+    ':',
+    's', -- Space
+    't'  -- Tab
+   }
+      })
+      
+    end,
   },
-  init = function()
-    -- If you want the formatexpr, here is the place to set it
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-  end,
 }

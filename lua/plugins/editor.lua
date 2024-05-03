@@ -1,5 +1,14 @@
+--       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+--       ┃                                                              ┃
+--       ┃                        Editor Plugins                        ┃
+--       ┃                                                              ┃
+--       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+-- NOTE: These are either additional features of the editor itself or somehow modify the editing experience
+
 local Utils = require("utils")
 local Icons = require("core").icons
+
+-- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
 return {
   {
@@ -9,19 +18,23 @@ return {
     },
     opts = {
       {
-        name = "Tech",
-        path = "/home/tlh/Wiki/",
+        name = "Work",
+        path="/Users/macdre/Desktop/Wiki"
+        -- TODO: Uncomment the below and comment out the above when using Linux again 
+        -- path = "/home/tlh/Wiki/",
       },
       {
         name = "SanatanaDharma",
-        path = "/home/tlh/HinduismWiki",
+        path="Users/macdre/Desktop/HinduismWiki"
+        -- TODO: Uncomment the below and comment out the above when using Linux again 
+        --  path = "/home/tlh/HinduismWiki",
       },
     },
     keys = {
       {
         "<leader>wp",
-        ':lua require("kiwi").open_wiki_index("Tech")<cr>',
-        desc = "Open index of personal wiki",
+        ':lua require("kiwi").open_wiki_index("Work")<cr>',
+        desc = "Open index of Work-Related Wiki",
       },
       {
         "<leader>wh",
@@ -32,6 +45,8 @@ return {
     },
     lazy = true,
   },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
   {
     "RutaTang/quicknote.nvim",
@@ -84,9 +99,8 @@ return {
       wk.register({
         C = {
           name = "Comment Box",
-          b = { "<cmd>Bllbox5<cr>", "left aligned fixed size box" },
-          r = { "<cmd>CBrrbox5<cr>", "right aligned fixed size box with left aligned text" },
-          c = { "<cmd>CBccbox5<cr>", "center aligned fixed size box with center aligned text" },
+          t = { "<cmd>lua require('comment-box').ccbox(3)<cr>", "Title Box" },
+          s = { "<cmd>lua require('comment-box').labox(17)<cr>", "Subtitle Box" },
         },
 
         x = {
