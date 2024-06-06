@@ -19,14 +19,14 @@ return {
     opts = {
       {
         name = "Work",
-        path="/Users/macdre/Desktop/Wiki"
-        -- TODO: Uncomment the below and comment out the above when using Linux again 
+        path = "/Users/tlh/Dropbox/Wiki",
+        -- TODO: Uncomment the below and comment out the above when using Linux again
         -- path = "/home/tlh/Wiki/",
       },
       {
         name = "SanatanaDharma",
-        path="Users/macdre/Desktop/HinduismWiki"
-        -- TODO: Uncomment the below and comment out the above when using Linux again 
+        path = "Users/tlh/Dropbox/HinduismWiki",
+        -- TODO: Uncomment the below and comment out the above when using Linux again
         --  path = "/home/tlh/HinduismWiki",
       },
     },
