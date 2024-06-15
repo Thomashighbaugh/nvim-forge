@@ -1,15 +1,5 @@
 local Profile = require("profile")
 
----@class Util
----@field root utils.root
----@field telescope utils.telescope
----@field theme utils.theme
----@field plugin utils.plugin
----@field lualine utils.lualine
----@field cmd utils.cmd
----@field lsp utils.lsp
----@field string utils.string
----@field table utils.table
 local M = {}
 
 setmetatable(M, {
