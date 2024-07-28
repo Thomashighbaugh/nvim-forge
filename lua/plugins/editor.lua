@@ -19,15 +19,11 @@ return {
     opts = {
       {
         name = "Work",
-        path = "/Users/tlh/Dropbox/Wiki",
-        -- TODO: Uncomment the below and comment out the above when using Linux again
-        -- path = "/home/tlh/Wiki/",
+        path = "/home/tlh/Dropbox/Wiki",
       },
       {
         name = "SanatanaDharma",
-        path = "Users/tlh/Dropbox/HinduismWiki",
-        -- TODO: Uncomment the below and comment out the above when using Linux again
-        --  path = "/home/tlh/HinduismWiki",
+        path = "/home/tlh/Dropbox/HinduismWiki",
       },
     },
     keys = {
@@ -64,15 +60,36 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+
+  { "echasnovski/mini.icons", version = false },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      plugins = { spelling = true },
-      window = {
-        margin = { 1, 0, 2, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 1, 0, 1, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 5, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+      plugins = {
+        spelling = { enabled = true },
+        marks = true,
+        registers = true,
+        presets = {
+          operators = true, -- adds help for operators like d, y, ...
+          motions = true, -- adds help for motions
+          text_objects = true, -- help for text objects triggered after entering an operator
+          windows = true, -- default bindings on <c-w>
+          nav = true, -- misc bindings to work with windows
+          z = true, -- bindings for folds, spelling and others prefixed with z
+          g = true, -- bindings for prefixed with g
+        },
+      },
+      delay = function(ctx)
+        return ctx.plugin and 0 or 100
+      end,
+      win = {
+        padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+        wo = { winblend = 5 },
       },
       layout = {
         height = { min = 3, max = 25 }, -- min and max height of the columns
@@ -80,154 +97,92 @@ return {
         spacing = 5, -- spacing between columns
         align = "center", -- align columns left, center or right
       },
-      defaults = {
+      sort = { "group", "alphanum" },
+      icons = {
+        mappings = true,
+        rules = {
+          { pattern = "Dashboard", icon = "🦁", color = "red" },
+          { pattern = "Find", icon = " ", color = "cyan" },
+          { pattern = "Close", icon = "󰅙", color = "red" },
+          { pattern = "Monokai", icon = "", color = "yellow" },
+          { pattern = "Explorer", icon = "󱏒", color = "green" },
+          { pattern = "Format and Save", icon = "󱣪", color = "green" },
+          { pattern = "Save", icon = "󰆓", color = "green" },
+          { pattern = "Zoom", icon = "", color = "gray" },
+          { pattern = "Split.*vertical", icon = "󰤼", color = "gray" },
+          { pattern = "Split.*horizontal", icon = "󰤻", color = "gray" },
+          { pattern = "Lsp", icon = "󰒋", color = "cyan" },
+          { pattern = "Chatgpt", icon = "󰚩", color = "azure" },
+          { pattern = "Markdown", icon = "", color = "green" },
+          { pattern = "Diagnostic", icon = "", color = "red" },
+          { pattern = "Definition", icon = "󰇀", color = "purple" },
+          { pattern = "Implement", icon = "󰳽", color = "purple" },
+          { pattern = "Reference", icon = "󰆽", color = "purple" },
+          -- Group [<leader>h]
+          { pattern = "Blame", icon = "", color = "yellow" },
+          { pattern = "Diff", icon = "", color = "green" },
+          { pattern = "Hunk change", icon = "", color = "yellow" },
+          { pattern = "Reset", icon = "", color = "gray" },
+          { pattern = "Stage", icon = "", color = "green" },
+          { pattern = "Undo", icon = "", color = "gray" },
+          { pattern = "Hunk", icon = "󰊢", color = "red" },
+          { pattern = "Branch", icon = "", color = "red" },
+          { pattern = "Commit", icon = "", color = "green" },
+          -- Group [g]
+          { pattern = "Word", icon = "", color = "gray" },
+          { pattern = "First line", icon = "", color = "gray" },
+          { pattern = "Comment", icon = "󰅺", color = "cyan" },
+          { pattern = "Cycle backwards", icon = "󰾹", color = "gray" },
+          { pattern = "Selection", icon = "󰒉", color = "gray" },
+        },
+      },
+      defaults = {},
+      spec = {
         mode = { "n", "v" },
-        ["<leader>g"] = { name = "+Git" },
-        ["<leader>s"] = { name = "+Session" },
-        ["<leader>c"] = { name = "+ChatGPT" },
-        ["<leader>l"] = { name = "+LSP" },
-        ["<leader>h"] = { name = "+Hunk" },
-        ["<leader>w"] = { name = "Wiki" },
-        ["g"] = { name = "+Goto" },
-        ["s"] = { name = "+Search" },
+        { "<leader>g", group = "+Git" },
+        { "<leader>s", group = "+Session" },
+        { "<leader>c", group = "+ChatGPT" },
+        { "<leader>l", group = "+LSP" },
+        { "<leader>h", group = "+Hunk" },
+        { "<leader>t", group = "+Toggle" },
+        { "<leader>m", group = "+Markdown" },
+        { "<leader>w", group = "+Wiki" },
+        { "<leader>C", group = "+CommentBox" },
+        { "<leader>x", group = "+Trouble" },
+        { "<leader>q", group = "+QuickNotes" },
+        { "<leader>qc", group = "Create Notes" },
+        { "<leader>qo", group = "Open Notes" },
+        { "<leader>qd", group = "Delete Notes" },
+        { "<leader>ql", group = "List Notes" },
+        { "<leader>qj", group = "Jump to Notes" },
+        { "<leader>qg", group = "Get Notes" },
+        { "<leader>qs", group = "Note Signs" },
+        { "<leader>qe", group = "Export Notes" },
+        { "<leader>qi", group = "Import Notes" },
+        { "<leader>qm", group = "Switch Quicknote Mode" },
+
+        { "]", group = "+Next" },
+        { "[", group = "+Prev" },
+        { "c", group = "+Comment" },
+        { "g", group = "+Goto" },
+        { "s", group = "+Search" },
+      },
+      triggers = {
+        { "<leader>", mode = { "n", "v" } },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "f", mode = { "n" } }, -- fold group
+        { "s", mode = { "n" } }, -- search group
+        { "g", mode = { "n", "v" } }, -- search group
       },
     },
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      wk.register(opts.defaults)
-      wk.register({
-        C = {
-          name = "Comment Box",
-          t = { "<cmd>lua require('comment-box').ccbox(3)<cr>", "Title Box" },
-          s = { "<cmd>lua require('comment-box').labox(17)<cr>", "Subtitle Box" },
-        },
-
-        x = {
-          name = "Trouble",
-          x = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
-          w = {
-            "<cmd>TroubleToggle workspace_diagnostics <cr>",
-            "Trouble Workspace Diagnostics",
-          },
-          d = {
-            "<cmd>TroubleToggle document_diagnostics<cr>",
-            "Trouble Document Diagnostics",
-          },
-          q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble Quickfix" },
-          l = { "<cmd>TroubleToggle loclist<cr>", "Trouble LOC List" },
-          L = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble LSP References" },
-        },
-        q = {
-          name = "Quick Notes",
-          c = {
-            name = "Create Notes",
-            c = {
-              "<cmd>:lua require('quicknote').NewNoteAtCurrentLine()<cr>",
-              "Create a New Note For the Current Line",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').NewNoteAtCWD()<cr>",
-              "Create a New Note For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').NewNoteAtGlobal()<cr>", "Create a New Globally Scoped Note" },
-          },
-          o = {
-            name = "Open Notes",
-            c = { "<cmd>:lua require('quicknote').OpenNoteAtCurrentLine()<cr>", "Open a New Globally Scoped Note" },
-            d = {
-              "<cmd>:lua require('quicknote').OpenNoteAtCWD()<cr>",
-              "Open a New Note For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').OpenNoteAtGlobal()<cr>", "Open a New Globally Scoped Note" },
-          },
-          d = {
-            name = "Delete Notes",
-            c = {
-              "<cmd>:lua require('quicknote').DeleteNoteAtCurrentLine()<cr>",
-              "Delete the Note Specific to the Current Line",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').DeleteNoteAtCWD()<cr>",
-              "Delete the Note For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').DeleteNoteAtGlobal()<cr>", "Delete a Globally Scoped Note" },
-          },
-          l = {
-            name = "List Notes",
-            c = {
-              "<cmd>:lua require('quicknote').ListNotesForCurrentBuffer()<cr>",
-              "List the Notes Specific to the Current Buffer",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').ListNotesForCWD()<cr>",
-              "List the Notes For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').ListNotesForGlobal()<cr>", "List the Globally Scoped Notes" },
-          },
-          j = {
-            name = "Jump to Notes",
-            j = {
-              "<cmd>:lua require('quicknote').JumpToPreviousNote()<cr>",
-              "jump to previous avaiable note in current buffer",
-            },
-            k = {
-              "<cmd>:lua require('quicknote').JumpToNextNote()<cr>",
-              "jump to next avaiable note in current buffer",
-            },
-          },
-          g = {
-            name = "Get Notes",
-            c = {
-              "<cmd>:lua require('quicknote').GetNotesForCurrentBuffer()<cr>",
-              "Get the Notes Specific to the Current Buffer",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').GetNotesForCWD()<cr>",
-              "Get the Notes For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').GetNotesForGlobal()<cr>", "Get the Globally Scoped Notes" },
-          },
-          s = {
-            name = "Note Signs",
-            s = { "<cmd>:lua require('quicknote').ShowNoteSigns()", "Show Note Signs" },
-            h = { "<cmd>:lua require('quicknote').HideNoteSigns()", "Hide Note Signs" },
-            t = { "<cmd>:lua require('quicknote').ToggleNoteSigns()", "Toggle Note Signs" },
-          },
-          e = {
-            name = "Export Notes",
-            c = {
-              "<cmd>:lua require('quicknote').ExportNotesForCurrentBuffer()<cr>",
-              "Export the Notes Specific to the Current Buffer",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').ExportNotesForCWD()<cr>",
-              "Export the Notes For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').ExportNotesForGlobal()<cr>", "Export the Globally Scoped Notes" },
-          },
-          i = {
-            name = "Import Notes",
-            c = {
-              "<cmd>:lua require('quicknote').ImportNotesForCurrentBuffer()<cr>",
-              "Import the Notes Specific to the Current Buffer",
-            },
-            d = {
-              "<cmd>:lua require('quicknote').ImportNotesForCWD()<cr>",
-              "Import the Notes For the Current Working Directory",
-            },
-            g = { "<cmd>:lua require('quicknote').ImportNotesForGlobal()<cr>", "Import the Globally Scoped Notes" },
-          },
-          m = {
-            name = "Switch Quicknote Mode",
-            t = { "<cmd>:lua require('quicknote').ToggleMode()", "Toggle Mode" },
-            p = { "<cmd>:lua require('quicknote').SwitchToPortableMode()", "Switch to Portable Mode" },
-            r = { "<cmd>:lua require('quicknote').SwitchToResidentMode()", "Switch to Resident Mode" },
-          },
-        },
-      }, { prefix = "<leader>", mode = { "n", "v" }, opts })
     end,
   },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -267,6 +222,8 @@ return {
       end
     end,
   },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
   {
     "lewis6991/gitsigns.nvim",
@@ -337,6 +294,8 @@ return {
       end,
     },
   },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
   {
     "nvim-telescope/telescope.nvim",
@@ -416,6 +375,8 @@ return {
       { "<leader>b", Utils.telescope("buffers"), desc = "Find buffer" },
     },
   },
+
+  -- ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 
   {
     "moll/vim-bbye",
