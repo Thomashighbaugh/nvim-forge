@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = Utils.augroup("close_with_q"),
   pattern = {
     "qf",
+    "muren",
     "help",
     "man",
     "notify",

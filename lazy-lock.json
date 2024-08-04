@@ -41,6 +41,7 @@
   "mini.pairs": { "branch": "main", "commit": "40261dfcec7623cd57be3c3beb50fa73f2650cdf" },
   "mini.surround": { "branch": "main", "commit": "3cb5b509ad34f2402df4b977be607a614c8c7524" },
   "monokai-pro.nvim": { "branch": "master", "commit": "2bad2a92fe0ff6c8581d33a853a1b17592b83239" },
+  "muren.nvim": { "branch": "main", "commit": "818c09097dba1322b2ca099e35f7471feccfef93" },
   "neo-tree-diagnostics.nvim": { "branch": "main", "commit": "e00434c3cf8637bcaf70f65c2b9d82b0cc9bd7dc" },
   "neo-tree.nvim": { "branch": "main", "commit": "8c75e8a2949cd6cd35525799200a8d34471ee9eb" },
   "nix-develop.nvim": { "branch": "main", "commit": "afea026f5c478c000a8af8de87f7b711676387ab" },
