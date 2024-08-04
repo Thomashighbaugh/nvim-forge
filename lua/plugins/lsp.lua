@@ -52,7 +52,7 @@ return {
       },
       capabilities = {
         textDocument = {
-          foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+          foldingRange = { dynamicRegistration = false, lineFoldingOnly = false },
           completion = {
             completionItem = {
               documentationFormat = { "markdown", "plaintext" },
@@ -124,8 +124,6 @@ return {
       icons = true, -- use devicons for filenames
       mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
       severity = nil, -- nil (all) or vim.diagnostic.severity.error | warn | info | hint
-      fold_open = "", -- icon used for open folds
-      fold_closed = "", -- icon used for closed folds
       group = true, -- group results by file
       padding = true, -- add an extra new line on top of the list
       cycle_results = true, -- cycle item list when reaching beginning or end of list
@@ -183,7 +181,7 @@ return {
         "null-ls",
         "jdtls",
       },
-      grace_period = (60 * 15),
+      grace_period = (60 * 5),
       wakeup_delay = 3000,
       notifications = false,
       retries = 3,
@@ -251,6 +249,7 @@ return {
           diagnostics.statix,
           diagnostics.todo_comments,
           diagnostics.zsh,
+          diagnostics.hadolint,
           formatting.terraform_fmt,
           formatting.black,
           formatting.cbfmt,

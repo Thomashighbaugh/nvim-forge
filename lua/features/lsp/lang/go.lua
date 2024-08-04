@@ -44,7 +44,6 @@ return {
                 functionTypeParameters = true,
                 parameterNames = true,
                 rangeVariableTypes = true,
-              },
               analyses = {
                 fieldalignment = true,
                 nilness = true,
