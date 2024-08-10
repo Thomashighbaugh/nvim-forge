@@ -36,8 +36,8 @@ local options = {
   shiftround = true, -- Round indent
   shada = "!,'1000,<50,s10,h", -- Remember the last 1000 opened files
   shiftwidth = 2, -- the number of spaces inserted for each indentation
-  showcmd = false,
-  showmode = false, -- we don't need to see things like -- INSERT -- anymore
+  showcmd = false, -- show editor command in the lower right corner
+  showmode = false, -- show editor mode
   showtabline = 2, -- always show tabs
   sidescrolloff = 5,
   signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
@@ -63,11 +63,10 @@ local options = {
   -- Default splitting will cause your main splits to jump when opening an edgebar.
   -- To prevent this, set `splitkeep` to either `screen` or `topline`.
   splitkeep = "screen",
-
   -- use fold
   foldlevelstart = 99,
   foldlevel = 99,
-  foldenable = true,
+  foldenable = false,
   foldcolumn = "1",
   fillchars = {
     foldopen = "",
@@ -105,7 +104,7 @@ vim.opt.shortmess:append("c")
 vim.opt.viewoptions:remove("curdir") -- disable saving current directory with views
 
 vim.opt.list = true
--- vim.opt.listchars:append "space:⋅"
+ vim.opt.listchars:append "space:⋅"
 -- vim.opt.listchars:append "eol:↴"
 
 for k, v in pairs(options) do
@@ -118,7 +117,7 @@ vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set foldopen-=hor]])
 
 if vim.g.neovide then
-  vim.opt.guifont = "Rounded Mplus 1c ExtraBold:h10" -- the font used in graphical neovim applications
+ -- vim.opt.guifont = "Rounded Mplus 1c ExtraBold:h10" -- the font used in graphical neovim applications
   vim.g.neovide_scale_factor = 1
 end
 
