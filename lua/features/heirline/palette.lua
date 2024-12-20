@@ -1,4 +1,4 @@
----@class DefaultLualinePalette
+---@class DefaultHeirlinePalette
 local palette = {
   yellow = "#ffff00",
   white = "#ffffff",
@@ -7,16 +7,17 @@ local palette = {
   blue = "#00ffff",
   magenta = "#ff00ff",
   green = "#00ff00",
+  float_bg = "#333333",
 }
 
----@class LualinePalette: DefaultLualinePalette
+---@class HeirlinePalette: DefaultHeirlinePalette
 local M = setmetatable({}, {
-  __index = function(_, k)
+  __index = function(m, k)
     return rawget(palette or {}, k)
   end,
   __newindex = function(t, k, v)
     if rawget(palette or {}, k) ~= nil then
-      error("Lualine: Attempt to change option " .. k .. " directly, use `setup` instead")
+      error("Heirline: Attempt to change option " .. k .. " directly, use `setup` instead")
     else
       rawset(t, k, v)
     end
@@ -26,7 +27,7 @@ local M = setmetatable({}, {
   end,
 })
 
----@param config LualineOptions
+---@param config HeirlineOptions
 function M.setup(config)
   local BAR_FG = Utils.theme.highlight("StatusLine").fg or "#aaaaaa"
   local colorful = config.colorful
@@ -41,6 +42,7 @@ function M.setup(config)
       blue = highlight("DiagnosticHint").fg,
       magenta = highlight("Statement").fg,
       green = highlight("healthSuccess").fg,
+      float_bg = highlight("Pmenu").bg,
     })
   else
     palette = vim.tbl_deep_extend("force", palette, {
@@ -54,6 +56,10 @@ function M.setup(config)
     })
   end
   return M
+end
+
+function M.get()
+  return palette
 end
 
 return M

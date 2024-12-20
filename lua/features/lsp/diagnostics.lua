@@ -1,71 +1,74 @@
-local Utils = require("utils")
-local Icons = require("core").icons
+---@diagnostic disable-next-line: different-requires
+local Icons = require("core.init").icons
 
----@class LspDiagnostics
+---@class LspDiagnosticsOptions
 ---@field enabled boolean
 
 ---@class features.lsp.diagnostics
 local M = {}
 
 setmetatable(M, {
-  __call = function(m, ...)
-    return m.setup(...)
-  end,
+	__call = function(m, ...)
+		return m.setup(...)
+	end,
 })
 
 local function on()
-  M.enabled = true
-  vim.diagnostic.config({
-    virtual_text = {
-      spacing = 4,
-      source = "if_many",
-      prefix = "●",
-    }, -- disable virtual text
-    virtual_lines = false,
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = Utils.telescope.borderchars("thick", "tl-t-tr-r-br-b-bl-l"),
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  })
+	M.enabled = true
+	vim.diagnostic.config({
+		virtual_text = {
+			spacing = 4,
+			source = "if_many",
+			prefix = "●",
+		}, -- disable virtual text
+		virtual_lines = false,
+		update_in_insert = true,
+		underline = true,
+		severity_sort = true,
+		float = {
+			style = "minimal",
+			source = true,
+			header = "",
+			prefix = "",
+		},
+	})
 end
 
 local function off()
-  M.enabled = false
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    signs = false,
-    update_in_insert = false,
-  })
+	M.enabled = false
+	vim.diagnostic.config({
+		underline = false,
+		virtual_text = false,
+		signs = false,
+		update_in_insert = false,
+	})
 end
 
----@param enabled boolean
-function M.setup(enabled)
-  for name, icon in pairs(Icons.diagnostics) do
-    name = "DiagnosticSign" .. Utils.string.capitalize(name)
-    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = name })
-  end
-  if enabled then
-    on()
-  else
-    off()
-  end
+---@param opts LspDiagnosticsOptions
+function M.setup(opts)
+	for name, icon in pairs(Icons.diagnostics) do
+		name = "DiagnosticSign" .. Utils.string.capitalize(name)
+		vim.fn.sign_define(name, { text = icon, texthl = name, numhl = name })
+	end
+	M.toggle(opts.enabled)
 
-  -- Setup command
-  vim.api.nvim_create_user_command("ToggleDiagnostic", function()
-    if M.enabled then
-      off()
-    else
-      on()
-    end
-  end, { nargs = 0 })
+	local map = Utils.safe_keymap_set
+	map("n", "<leader>td", function()
+		M.toggle()
+	end, { desc = "Toggle LSP diagnostics" })
+end
+
+function M.toggle(value)
+	if value == nil then
+		M.enabled = not M.enabled
+	else
+		M.enabled = value
+	end
+	if M.enabled then
+		on()
+	else
+		off()
+	end
 end
 
 return M

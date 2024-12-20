@@ -1,32 +1,43 @@
 return {
   {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "night" },
+  },
+
+  {
+    "catppuccin/nvim",
+    lazy = true,
+  },
+
+  {
     "loctvl842/monokai-pro.nvim",
     lazy = false,
     priority = 1000,
-    keys = { { "<leader>uc", "<cmd>MonokaiProSelect<cr>", desc = "Select Moonokai pro filter" } },
+    keys = { { "<leader>C", "<cmd>MonokaiProSelect<cr>", desc = "Select Monokai pro filter" } },
     opts = {
       transparent_background = false,
       devicons = true,
       filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
       day_night = {
-        enable = false,
+        enable = true,
         day_filter = "pro",
         night_filter = "spectrum",
       },
       inc_search = "background", -- underline | background
       background_clear = {
         "nvim-tree",
-        "neo-tree",
+        -- "neo-tree",
         "bufferline",
-        -- "telescope",
+        "telescope",
         "toggleterm",
       },
       plugins = {
         bufferline = {
           underline_selected = true,
-          underline_visible = true,
+          underline_visible = false,
           underline_fill = true,
-          bold = true,
+          bold = false,
         },
         indent_blankline = {
           context_highlight = "pro", -- default | pro
@@ -35,7 +46,7 @@ return {
       },
       override = function(c)
         return {
-          ColorColumn = { bg = c.editor.background },
+          -- ColorColumn = { bg = c.editor.background },
           -- Mine
           DashboardRecent = { fg = c.base.magenta },
           DashboardProject = { fg = c.base.blue },
@@ -45,11 +56,13 @@ return {
           DashboardServer = { fg = c.base.yellow },
           DashboardQuit = { fg = c.base.red },
           IndentBlanklineChar = { fg = c.base.dimmed4 },
+          NeoTreeStatusLine = { link = "StatusLine" },
           -- mini.hipatterns
           MiniHipatternsFixme = { fg = c.base.black, bg = c.base.red, bold = true }, -- FIXME
           MiniHipatternsTodo = { fg = c.base.black, bg = c.base.blue, bold = true }, -- TODO
           MiniHipatternsHack = { fg = c.base.black, bg = c.base.yellow, bold = true }, -- HACK
           MiniHipatternsNote = { fg = c.base.black, bg = c.base.green, bold = true }, -- NOTE
+          MiniHipatternsWip = { fg = c.base.black, bg = c.base.cyan, bold = true }, -- WIP
         }
       end,
       overridePalette = function(filter)
