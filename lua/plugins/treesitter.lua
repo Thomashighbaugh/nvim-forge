@@ -1,107 +1,115 @@
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-    init = function(plugin)
-      --- Reference: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua#L10
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treeitter** module to be loaded in time.
-      -- Luckily, the only thins that those plugins need are the custom queries, which we make available
-      -- during startup.
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    opts_extend = { "ensure_installed" },
-    opts = {
-      ensure_installed = {
-        "vimdoc",
-        "bash",
-        "c",
-        "comment",
-        "cpp",
-        "css",
-        "dockerfile",
-        "dot",
-        "go",
-        "graphql",
-        "html",
-        "http",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "nix",
-        "python",
-        "query",
-        "regex",
-        "ruby",
-        "rust",
-        "scss",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vue",
-        "yaml",
-      },
-      highlight = { enable = true },
-      indent = { enable = true, disable = { "yaml", "python", "html" } },
-      incremental_selection = { enable = true },
-      rainbow = {
-        enable = true,
-        query = "rainbow-parens",
-        disable = { "jsx", "html" },
-      },
+    -- ──────────────────────── TREESITTER ─────────────────────
+    {
+        'nvim-treesitter/nvim-treesitter',
+        event = { 'BufReadPre', 'BufNewFile' },
+        build = ':TSUpdate',
+        dependencies = {
+            -- ────────────────────── TS TEXTOBJECTS ───────────────────
+            { 'nvim-treesitter/nvim-treesitter-textobjects' },
+            -- ─────────────────────── TS TREEHOPPER ───────────────────────
+            { 'mfussenegger/nvim-treehopper' },
+            -- ──────────────────────── TS CONTEXT ─────────────────────
+            {
+                'nvim-treesitter/nvim-treesitter-context',
+                opts = {},
+            },
+        },
+        config = function()
+            require('nvim-treesitter.configs').setup({
+                ensure_installed = {
+                    'bash',
+                    'c',
+                    'comment',
+                    'cpp',
+                    'css',
+                    'go',
+                    'graphql',
+                    'html',
+                    'http',
+                    'java',
+                    'javascript',
+                    'jsdoc',
+                    'json',
+                    'json',
+                    'json5',
+                    'lua',
+                    'make',
+                    'markdown_inline',
+                    'markdown',
+                    'nix',
+                    'php',
+                    'python',
+                    'query',
+                    'rasi',
+                    'regex',
+                    'ruby',
+                    'rust',
+                    'scss',
+                    'sql',
+                    'toml',
+                    'typescript',
+                    'vim',
+                    'vimdoc',
+                    'vue',
+                    'yaml',
+                    'zig',
+                },
+                highlight = {
+                    enable = true,
+                },
+                -- Buildin
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = '<CR>',
+                        scope_incremental = '<CR>',
+                        node_incremental = '<TAB>',
+                        node_decremental = '<S-TAB>',
+                    },
+                },
+                -- Textobjects
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ['af'] = { query = '@function.outer', desc = 'outer function' },
+                            ['if'] = { query = '@function.inner', desc = 'inner function' },
+                            ['ac'] = { query = '@conditional.outer', desc = 'outer conditional' },
+                            ['ic'] = { query = '@conditional.inner', desc = 'inner conditional' },
+                            ['al'] = { query = '@loop.outer', desc = 'outer loop' },
+                            ['il'] = { query = '@loop.inner', desc = 'inner loop' },
+                            ['am'] = { query = '@statement.outer', desc = 'outer statement' },
+                            ['ix'] = { query = '@comment.outer', desc = 'comment' },
+                        },
+                        include_surrounding_whitespace = false,
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ['<space>s'] = { query = '@parameter.inner', desc = 'Swap next parameters' },
+                        },
+                        swap_previous = {
+                            ['<space>S'] = { query = '@parameter.inner', desc = 'Swap previous parameters' },
+                        },
+                    },
+                },
+            })
+        end,
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
-
-  -- Show context of the current function
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    enabled = true,
-    opts = { mode = "cursor", zindex = 20 },
-    keys = {
-      { "<leader>tt", "<cmd>TSContextToggle<cr>", desc = "Toggle Treesitter Context" },
+    -- ──────────────────────── TS AUTOTAG ─────────────────────
+    {
+        'windwp/nvim-ts-autotag',
+        event = { 'BufReadPre', 'BufNewFile' },
+        opts = {},
     },
-  },
-
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    lazy = true,
-    init = function()
-      local rainbow_delimiters = require("rainbow-delimiters")
-   
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
+    -- ────────────────────── TS NODE ACTION ───────────────────
+    {
+        'ckolkey/ts-node-action',
+        keys = {
+            { '+', '<cmd>NodeAction<cr>', desc = 'Trigger Node Action' },
         },
-        query = {
-          [""] = "rainbow-delimiters",
-          -- lua = "rainbow-blocks",
-          tsx = "rainbow-parens",
-          html = "rainbow-parens",
-          javascript = "rainbow-delimiters-react",
-        },
-        highlight = {
-          "RainbowDelimiterRed",
-          "RainbowDelimiterYellow",
-          "RainbowDelimiterBlue",
-          "RainbowDelimiterOrange",
-          "RainbowDelimiterGreen",
-          "RainbowDelimiterViolet",
-          "RainbowDelimiterCyan",
-        },
-      }
-    end,
-  },
+        opts = {},
+    },
 }

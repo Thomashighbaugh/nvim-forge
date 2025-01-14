@@ -1,0 +1,39 @@
+return {
+    'echasnovski/mini.indentscope',
+    enabled = true,
+    event = 'BufReadPre',
+    version = false,
+    init = function()
+        vim.api.nvim_create_autocmd('Filetype', {
+            pattern = {
+                'help',
+                'Trouble',
+                'lazy',
+                'mason',
+                'notify',
+                'NeogitStatus',
+                'NeogitPopup',
+                'lspinfo',
+                'NvimTree',
+                'glowpreview',
+                'oil',
+                'oil_preview',
+                'markdown',
+                'toggleterm',
+                'Outline',
+                'noice',
+                'neo-tree',
+                'fzf',
+                'checkhealth',
+                'grug-far-help',
+            },
+            callback = function()
+                vim.b.miniindentscope_disable = true
+            end,
+        })
+    end,
+    opts = {
+        options = { try_as_border = true },
+        symbol = '│',
+    },
+}
