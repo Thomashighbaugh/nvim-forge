@@ -9,7 +9,7 @@ return {
         { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' }, desc = 'GPut After (Yanky)' },
         { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' }, desc = 'GPut Before (Yanky)' },
         {
-            '<left>P',
+            '<C-left>P',
             '<Plug>(YankyPutIndentBeforeLinewise)',
             mode = { 'n', 'x' },
             desc = 'Put Indent Before Linewise (Yanky)',

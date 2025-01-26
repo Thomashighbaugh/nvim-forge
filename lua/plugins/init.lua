@@ -67,7 +67,7 @@ return {
     },
     {
         'chrisgrieser/nvim-alt-substitute',
-        enabled = false,
+        enabled = true,
         opts = true,
         -- lazy-loading with `cmd =` does not work well with incremental preview
         event = 'CmdlineEnter',
@@ -83,17 +83,18 @@ return {
                 border = 'rounded',
             },
             keyboard = {
-                layout = 'qwertz',
+                layout = 'qwerty',
             },
         },
     },
     {
         'ellisonleao/glow.nvim',
         cmd = 'Glow',
+        ft = 'markdown',
         config = true,
         opts = {
-            border = 'single',
-            style = 'dracula',
+            border = 'double',
+            style = 'dark',
             width = 120,
             width_ratio = 0.8,
         },
@@ -132,9 +133,50 @@ return {
         config = true,
     },
 
-    --  ╭──────────────────────────────────────────────────────────╮
-    --  │                         WRITING                          │
-    --  ╰──────────────────────────────────────────────────────────╯
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │                     Text Functions                      │
+    -- ╰─────────────────────────────────────────────────────────╯
+    {
+        'sQVe/sort.nvim',
+        config = function()
+            require('sort').setup()
+        end,
+    },
+    {
+        'echasnovski/mini.surround',
+        keys = function(_, keys)
+            -- Populate the keys based on the user's options
+            local plugin = require('lazy.core.config').spec.plugins['mini.surround']
+            local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
+            local mappings = {
+                { opts.mappings.add, desc = 'Add surrounding', mode = { 'n', 'v' } },
+                { opts.mappings.delete, desc = 'Delete surrounding' },
+                { opts.mappings.find, desc = 'Find right surrounding' },
+                { opts.mappings.find_left, desc = 'Find left surrounding' },
+                { opts.mappings.highlight, desc = 'Highlight surrounding' },
+                { opts.mappings.replace, desc = 'Replace surrounding' },
+                { opts.mappings.update_n_lines, desc = 'Update `MiniSurround.config.n_lines`' },
+            }
+            mappings = vim.tbl_filter(function(m)
+                return m[1] and #m[1] > 0
+            end, mappings)
+            return vim.list_extend(mappings, keys)
+        end,
+        opts = {
+            mappings = {
+                add = 'Ga', -- Add surrounding in Normal and Visual modes
+                delete = 'Gd', -- Delete surrounding
+                find = 'Gf', -- Find surrounding (to the right)
+                find_left = 'GF', -- Find surrounding (to the left)
+                highlight = 'Gh', -- Highlight surrounding
+                replace = 'Gr', -- Replace surrounding
+                update_n_lines = 'Gn', -- Update `n_lines`
+            },
+        },
+    },
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │                    Markdown Writing                     │
+    -- ╰─────────────────────────────────────────────────────────╯
     {
         'iamcco/markdown-preview.nvim',
         cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -152,54 +194,6 @@ return {
         'Kicamon/markdown-table-mode.nvim',
         ft = 'markdown',
         config = true,
-    },
-    {
-        'OXY2DEV/markview.nvim',
-        enabled = false,
-        ft = 'markdown',
-        opts = {},
-    },
-
-    --  ╭──────────────────────────────────────────────────────────╮
-    --  │                          MOTION                          │
-    --  ╰──────────────────────────────────────────────────────────╯
-    {
-        'smoka7/hop.nvim',
-        version = '*',
-        keys = {
-            { '<space><space>', '<cmd>HopWord<cr>', desc = 'Hop Word' },
-            { '<leader>ha', '<cmd>HopAnywhere<cr>', desc = 'Hop Anywhere' },
-            { '<leader>hc', '<cmd>HopCamelCase<cr>', desc = 'Hop CamelCase' },
-            { '<leader>hh', '<cmd>HopPattern<cr>', desc = 'Hop Pattern' },
-            { '<leader>hl', '<cmd>HopLine<cr>', desc = 'Hop Line' },
-            { '<leader>hn', '<cmd>HopNodes<cr>', desc = 'Hop Nodes' },
-            { '<leader>hp', '<cmd>HopPasteChar1<cr>', desc = 'Hop Paste' },
-            { '<leader>hv', '<cmd>HopVertical<cr>', desc = 'Hop Vertical' },
-            { '<leader>hy', '<cmd>HopYankChar1<cr>', desc = 'Hop Yank' },
-            { '<leader>h1', '<cmd>HopChar1<cr>', desc = 'Hop 1 Char' },
-            { '<leader>h2', '<cmd>HopChar2<cr>', desc = 'Hop 2 Chars' },
-        },
-        config = true,
-    },
-
-    {
-        'chrisgrieser/nvim-spider',
-        event = 'BufReadPost',
-        config = function()
-            -- Keymaps
-            vim.keymap.set({ 'n', 'o', 'x' }, 'w', function()
-                require('spider').motion('w')
-            end, { desc = 'Spider-w' })
-            vim.keymap.set({ 'n', 'o', 'x' }, 'e', function()
-                require('spider').motion('e')
-            end, { desc = 'Spider-e' })
-            vim.keymap.set({ 'n', 'o', 'x' }, 'b', function()
-                require('spider').motion('b')
-            end, { desc = 'Spider-b' })
-            vim.keymap.set({ 'n', 'o', 'x' }, 'ge', function()
-                require('spider').motion('ge')
-            end, { desc = 'Spider-ge' })
-        end,
     },
 
     --  ╭──────────────────────────────────────────────────────────╮

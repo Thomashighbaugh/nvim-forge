@@ -7,6 +7,7 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
+        'zbirenbaum/copilot-cmp',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-buffer',
         'saadparwaiz1/cmp_luasnip',
@@ -155,12 +156,13 @@ return {
                 end, { 'i', 's' }),
             }),
             sources = cmp.config.sources({
+                { name = 'codeium', keyword_length = 2 },
+                { name = 'copilot', keyword_length = 2 },
                 { name = 'nvim_lsp' },
                 { name = 'nvim_lsp_signature_help' },
                 { name = 'luasnip' },
                 { name = 'buffer' },
                 { name = 'path' },
-                -- { name = 'cmp_yanky' },
                 { name = 'nvim_lua' },
                 { name = 'treesitter' },
                 {
@@ -177,7 +179,7 @@ return {
                 fields = { 'abbr', 'kind', 'menu' },
                 format = function(entry, vim_item)
                     -- Kind icons
-                    -- This concatonates the icons with the name of the item kind
+                    -- This concatenates the icons with the name of the item kind
                     vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
                     -- Trim text function
                     function trim(text)
@@ -190,11 +192,12 @@ return {
                     vim_item.abbr = trim(vim_item.abbr)
                     -- Source
                     vim_item.menu = ({
+                        codeium = 'Codeium',
+                        copilot = 'Copilot',
                         nvim_lsp = '( LSP )',
                         nvim_lsp_signature_help = '( Signature )',
                         luasnip = '( LuaSnip )',
                         buffer = '( Buffer )',
-                        -- cmp_yanky = '( Yanky )',
                         path = '( Path )',
                         nvim_lua = '( Lua )',
                         treesitter = '( Treesitter )',
@@ -249,7 +252,6 @@ return {
             }),
             matching = { disallow_symbol_nonprefix_matching = false },
         })
-
 
         -- ╭────────────────╮
         -- │ NVIM-AUTOPAIRS │
