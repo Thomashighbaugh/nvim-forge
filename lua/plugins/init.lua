@@ -42,18 +42,6 @@ return {
     --  │                          UTILS                           │
     --  ╰──────────────────────────────────────────────────────────╯
     {
-        'smjonas/live-command.nvim',
-        enabled = false,
-        event = 'CmdlineEnter',
-        config = function()
-            require('live-command').setup({
-                commands = {
-                    Norm = { cmd = 'norm' },
-                },
-            })
-        end,
-    },
-    {
         'nguyenvukhang/nvim-toggler',
         keys = {
             { '<leader>w', desc = 'Toggle Word' },
@@ -62,7 +50,12 @@ return {
             require('nvim-toggler').setup({
                 remove_default_keybinds = true,
             })
-            vim.keymap.set({ 'n', 'v' }, '<leader>w', require('nvim-toggler').toggle, { desc = 'Toggle a Word' })
+            vim.keymap.set(
+                { 'n', 'v' },
+                '<leader>w',
+                require('nvim-toggler').toggle,
+                { desc = 'Toggle a Boolean Value' }
+            )
         end,
     },
     {
@@ -71,21 +64,6 @@ return {
         opts = true,
         -- lazy-loading with `cmd =` does not work well with incremental preview
         event = 'CmdlineEnter',
-    },
-    {
-        'jokajak/keyseer.nvim',
-        enabled = false,
-        version = false,
-        cmd = 'KeySeer',
-        opts = {
-            ui = {
-                winblend = 100,
-                border = 'rounded',
-            },
-            keyboard = {
-                layout = 'qwerty',
-            },
-        },
     },
     {
         'ellisonleao/glow.nvim',
@@ -178,14 +156,6 @@ return {
     -- │                    Markdown Writing                     │
     -- ╰─────────────────────────────────────────────────────────╯
     {
-        'iamcco/markdown-preview.nvim',
-        cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-        ft = 'markdown',
-        build = function()
-            vim.fn['mkdp#util#install']()
-        end,
-    },
-    {
         'Myzel394/easytables.nvim',
         ft = 'markdown',
         config = true,
@@ -237,14 +207,5 @@ return {
         dependencies = {
             'mfussenegger/nvim-dap',
         },
-    },
-
-    --  ╭──────────────────────────────────────────────────────────╮
-    --  │                        REST-HTML                         │
-    --  ╰──────────────────────────────────────────────────────────╯
-    {
-        'diepm/vim-rest-console',
-        enabled = false,
-        ft = 'rest',
     },
 }

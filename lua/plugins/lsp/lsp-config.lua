@@ -104,6 +104,7 @@ return {
                 -- Default lsp keymaps. Setting the keymaps again, only to change the description.
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts('Hover'))
                 vim.keymap.set({ 'n', 'v' }, 'gra', vim.lsp.buf.code_action, bufopts('LSP Code Action'))
+                vim.keymap.set({ 'n', 'v' }, '<M-CR>', vim.lsp.buf.code_action, bufopts('LSP Code Action'))
                 vim.keymap.set('n', 'grn', vim.lsp.buf.rename, bufopts('LSP Rename'))
                 vim.keymap.set('n', 'grr', vim.lsp.buf.references, bufopts('LSP References'))
                 -- Custom lsp keymaps.

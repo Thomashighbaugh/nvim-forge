@@ -6,16 +6,18 @@ return {
     enabled = true,
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'zbirenbaum/copilot-cmp',
-        'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-buffer',
-        'saadparwaiz1/cmp_luasnip',
-        'ray-x/cmp-treesitter',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
+        'mfussenegger/nvim-jdtls',
         'octaltree/cmp-look',
+        'ray-x/cmp-treesitter',
+        'saadparwaiz1/cmp_luasnip',
+        'zbirenbaum/copilot-cmp',
+
         -- 'chrisgrieser/cmp_yanky',
     },
     config = function()
@@ -192,8 +194,8 @@ return {
                     vim_item.abbr = trim(vim_item.abbr)
                     -- Source
                     vim_item.menu = ({
-                        codeium = 'Codeium',
-                        copilot = 'Copilot',
+                        codeium = '( Codeium )',
+                        copilot = '( Copilot )',
                         nvim_lsp = '( LSP )',
                         nvim_lsp_signature_help = '( Signature )',
                         luasnip = '( LuaSnip )',
@@ -240,12 +242,6 @@ return {
         -- ╰───────────────────╯
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
-            -- sources = cmp.config.sources({
-            --     { name = 'path' },
-            -- }, {
-            --     { name = 'cmdline' },
-            -- }),
-            -- Same as above
             sources = cmp.config.sources({
                 { name = 'path', group_index = 1 },
                 { name = 'cmdline', group_index = 2 },

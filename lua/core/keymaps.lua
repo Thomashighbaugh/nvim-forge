@@ -8,6 +8,13 @@ local Utils = require('core.utils')
 -- Exit from insert mode
 vim.keymap.set('i', 'kj', '<esc>', { desc = 'Exit insert mode' })
 
+-- Save
+vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'Save' })
+
+-- Create Splits
+vim.keymap.set('n', '<Space>\\', ':vsplit<CR>', { desc = 'Split Window Vertically' })
+vim.keymap.set('n', '<Space>/', ':split<CR>', { desc = 'Split Window Horizontally' })
+
 -- Better up/down
 vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -26,10 +33,7 @@ vim.keymap.set(
 vim.keymap.set('x', '<leader>r', [[:s/\%V]], { desc = 'Search and replace in visual selection' })
 
 -- Select all
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all' })
-
--- norm! command
-vim.keymap.set('x', '<leader>n', [[:norm! ]], { desc = 'norm!' })
+vim.keymap.set({ 'n', 'x' }, '<C-a>', 'gg<S-v>G', { desc = 'Select all' })
 
 -- For correcting a word in insert mode
 vim.keymap.set('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u')
@@ -37,11 +41,13 @@ vim.keymap.set('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u')
 -- Buffers
 vim.keymap.set('n', '<Space>bd', '<cmd>bd<cr>', { desc = 'Delete Buffer' })
 
--- Move to window (split) using <space> hlkj keys
-vim.keymap.set('n', '<Space>h', '<c-w>h', { desc = 'Split Left' })
-vim.keymap.set('n', '<Space>l', '<c-w>l', { desc = 'Split Right' })
-vim.keymap.set('n', '<Space>k', '<c-w>k', { desc = 'Split Up' })
-vim.keymap.set('n', '<Space>j', '<c-w>j', { desc = 'Split Down' })
+-- Move to split panes using <space> hlkj keys
+vim.keymap.set('n', '<Space>h', '<c-w>h', { desc = 'Move Split Pane Left' })
+vim.keymap.set('n', '<Space>l', '<c-w>l', { desc = 'Move Split Pane Right' })
+vim.keymap.set('n', '<Space>k', '<c-w>k', { desc = 'Move Split Pane Up' })
+vim.keymap.set('n', '<Space>j', '<c-w>j', { desc = 'Move Split Pane Down' })
+
+-- Equalize split panes
 vim.keymap.set('n', '<Space>m', function()
     Utils.max_or_equal()
 end, { desc = 'Max or Equal Split' })
@@ -74,7 +80,7 @@ vim.keymap.set({ 'n', 'v' }, 'c', '"_c')
 vim.keymap.set('n', 'C', '"_C')
 -- vim.keymap.set('n', 'x', '"_x')
 
--- Jump to BoL and EoL without living instert mode
+-- Jump to BoL and EoL without leaving insert mode
 vim.keymap.set('i', '<M-i>', '<Esc>I', { desc = 'Jump to Beginn of Line in insert mode' })
 vim.keymap.set('i', '<M-a>', '<Esc>A', { desc = 'Jump to End of Line in insert mode' })
 
@@ -92,24 +98,9 @@ vim.keymap.set({ 'o', 'x' }, 'a"', '2i"', { desc = 'Around Double Quotes' })
 vim.keymap.set({ 'o', 'x' }, 'ir', 'i[', { desc = 'Inner Brackets' })
 vim.keymap.set({ 'o', 'x' }, 'ar', 'a[', { desc = 'Inner Brackets' })
 
--- Add blank line without leaving normal mode
-vim.keymap.set(
-    'n',
-    '<Space><UP>',
-    "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>",
-    { desc = 'Add blank line below' }
-)
-vim.keymap.set(
-    'n',
-    '<Space><DOWN>',
-    "<cmd>call append(line('.'), repeat([''], v:count1))<cr>",
-    { desc = 'Add blank line below' }
-)
-
--- Add komma
+-- Add comma
 -- vim.keymap.set("n", ",,", [[f'a]])
-vim.keymap.set('i', '<C-,>', '<esc>la,', { silent = true, desc = 'Add komma after character' })
-vim.keymap.set('i', '<C-b>', '{},<esc>hha', { silent = true, desc = 'Add curly with komma {},' })
+vim.keymap.set('i', '<C-b>', '{},<esc>hha', { silent = true, desc = 'Add curly with comma {},' })
 
 -- Go to last change
 vim.keymap.set('n', 'g,', 'g;', { desc = 'Go to newest change' })
@@ -145,7 +136,7 @@ vim.keymap.set('n', 'z=', function()
 end, { desc = 'Spelling suggestions' })
 
 -- Messages
-vim.keymap.set('n', '<leader>mm', '<cmd>messages<cr>', { desc = 'Messages' })
+vim.keymap.set('n', '<leader>mm', '<cmd>messages<cr>', { desc = 'File Changes (Messages)' })
 
 -- Don't yank emty lines with dd
 vim.keymap.set('n', 'dd', function()
@@ -177,7 +168,6 @@ vim.keymap.set('n', '<space>b7', '<cmd>BufferLineGoToBuffer 7<cr>', { desc = 'Go
 vim.keymap.set('n', '<space>b8', '<cmd>BufferLineGoToBuffer 8<cr>', { desc = 'Go to Buffer 8' })
 vim.keymap.set('n', '<space>b9', '<cmd>BufferLineGoToBuffer 9<cr>', { desc = 'Go to Buffer 9' })
 
--- nvim-treehopper (vm<motion> or ym<motion>)
 vim.keymap.set('o', 'm', [[:<c-u>lua require 'tsht'.nodes()<cr>]], { silent = true, remap = true })
 vim.keymap.set('x', 'm', [[:<c-u>lua require 'tsht'.nodes()<cr>]], { silent = true })
 

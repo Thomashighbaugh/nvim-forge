@@ -1,7 +1,7 @@
-# NeoVim Forge
+# Neovim Forge
 
 My [Winchester Mystery](https://en.wikipedia.org/wiki/Winchester_Mystery_House)
-NeoVim Configuration, using `lazy.nvim` for plugin management and Lua as its
+Neovim Configuration, using `lazy.nvim` for plugin management and Lua as its
 configuration language. My _Personal Development Environment_ (PDE) and the core tool used in cultivating my Personal Knowledge Base (PKB).
 
 > **Warning**
@@ -11,24 +11,25 @@ configuration language. My _Personal Development Environment_ (PDE) and the core
 > to use as it is presented.
 
 With this in mind, **feel free to take from it as you please**, use pieces of
-it or the whole thing as a basis for your own and you are more than welcome
+it or the whole thing as a basis for your own, and you are more than welcome
 to **submit pull requests** if it so pleases you, that's why its on
-GitHub  |wink |
+GitHub |wink|
 
 ## Installation
 
-To use this configuration, clone it into your `~/.config/nvim` directory |
+To use this configuration, clone or copy it directly into your `~/.config/nvim` directory.
 
 ```sh
 
 # Back up your old configuration if present
 mv ~/.config/nim ~/.config/nvim.bak
+
 # Now clone this one
 git clone https://github.com/Thomashighbaugh/nvim-forge ~/.config/nvim
 
 ```
 
-And that should be it, if you have the prerequisites installed it should run through the lazy.nvim installation process and handle setting up everything in the process from Treesitter grammars to Mason dependencies, it might just take a few minutes so be patient.
+And that _should_ be it, if you have the prerequisites installed it should run through the lazy.nvim installation process and handle setting up everything in the process from Treesitter grammars to Mason dependencies, it might just take a few minutes so be patient.
 
 ## Configuration Structure
 
@@ -36,93 +37,87 @@ This configuration roughly follows that of LazyVim, with some minor changes that
 
 Unlike many other highly customized NeoVim configurations, as well as most major configuration frameworks, the configuration is not nested within a subdirectory of the Lua subdirectory named after the author, plugin or configuration, I find no need to brand this configuration in a way that makes using its parts elsewhere highly onerous and introduces a needless source of potential errors for me to deal with instead of working on code like I intend to be.
 
-Below is a representation of the structure of the configuration in tree format |
+Below is a representation of the structure of the configuration in tree format
+
  .
-├──  cheatsheet.txt
-├──  doc
-│ └──  nvim-forge.txt
 ├──  Dockerfile
+├──  ftplugin
+│ └──  java.lua
 ├──  init.lua
 ├──  lazy-lock.json
-├──  LICENSE
 ├──  lua
+│ ├──  code_action_utils.lua
 │ ├──  core
-│ │ ├──  autocmds.lua
-│ │ ├──  commands.lua
-│ │ ├──  icons.lua
-│ │ ├──  init.lua
+│ │ ├──  autocommands.lua
 │ │ ├──  keymaps.lua
-│ │ ├──  lazy.lua
-│ │ ├──  logos.lua
-│ │ └──  options.lua
-│ ├──  features
-│ │ ├──  lsp
-│ │ │ ├──  diagnostics.lua
-│ │ │ ├──  init.lua
-│ │ │ ├──  keymaps.lua
-│ │ │ ├──  lang
-│ │ │ │ ├──  docker.lua
-│ │ │ │ ├──  flutter.lua
-│ │ │ │ ├──  go.lua
-│ │ │ │ ├──  java.lua
-│ │ │ │ ├──  json.lua
-│ │ │ │ ├──  markdown.lua
-│ │ │ │ ├──  markup.lua
-│ │ │ │ ├──  nix.lua
-│ │ │ │ ├──  php.lua
-│ │ │ │ ├──  python.lua
-│ │ │ │ ├──  rust.lua
-│ │ │ │ ├──  typescript.lua
-│ │ │ │ └──  vue.lua
-│ │ │ └──  navic.lua
-│ │ ├──  lualine
-│ │ │ ├──  components.lua
-│ │ │ ├──  config.lua
-│ │ │ ├──  init.lua
-│ │ │ ├──  palette.lua
-│ │ │ └──  theme.lua
-│ │ └──  neo-tree
-│ │ ├──  init.lua
-│ │ └──  sources
-│ │ └──  filesystem
-│ │ └──  components.lua
+│ │ ├──  options.lua
+│ │ ├──  usercommands.lua
+│ │ └──  utils.lua
+│ └──  plugins
+│ ├──  aisync.lua
+│ ├──  bufferline.lua
+│ ├──  cmp.lua
+│ ├──  codesnap.lua
+│ ├──  comments.lua
+│ ├──  conform.lua
+│ ├──  dap
+│ │ └──  debug_adapter.lua
+│ ├──  dashboard.lua
+│ ├──  devdocs.lua
+│ ├──  dressing.lua
+│ ├──  flash.lua
+│ ├──  focus.lua
+│ ├──  git.lua
+│ ├──  image_preview.lua
+│ ├──  inc_rename.lua
+│ ├──  indent-blankline.lua
 │ ├──  init.lua
-│ ├──  plugins
-│ │ ├──  aisync.lua
-│ │ ├──  coding.lua
-│ │ ├──  colorscheme.lua
-│ │ ├──  editor.lua
-│ │ ├──  formatting.lua
-│ │ ├──  init.lua
-│ │ ├──  linting.lua
-│ │ ├──  lsp.lua
-│ │ ├──  shared.lua
-│ │ ├──  tools.lua
-│ │ ├──  treesitter.lua
-│ │ └──  ui.lua
-│ ├──  profile.lua
-│ └──  utils
-│ ├──  cmd.lua
-│ ├──  init.lua
-│ ├──  lsp.lua
+│ ├──  lsp
+│ │ ├──  aerial.lua
+│ │ ├──  glance.lua
+│ │ ├──  lazydev.lua
+│ │ ├──  lsp-config.lua
+│ │ ├──  mason.lua
+│ │ ├──  nvim-navic.lua
+│ │ ├──  outline.lua
+│ │ └──  trouble.lua
 │ ├──  lualine.lua
-│ ├──  plugin.lua
-│ ├──  root.lua
-│ ├──  string.lua
-│ ├──  table.lua
+│ ├──  luasnip.lua
+│ ├──  mini-align.lua
+│ ├──  mini-indentscope.lua
+│ ├──  neo-tree.lua
+│ ├──  noice.lua
+│ ├──  nvim-autopairs.lua
+│ ├──  nvim-lint.lua
+│ ├──  nvim-notify.lua
+│ ├──  nvim-surround.lua
+│ ├──  nvim-tree.lua
+│ ├──  oil.lua
+│ ├──  ollama.lua
+│ ├──  rainbow-delimiters.lua
+│ ├──  rest.lua
+│ ├──  snipe.lua
+│ ├──  ssr.lua
+│ ├──  statuscol.lua
+│ ├──  symbols.lua
 │ ├──  telescope.lua
-│ └──  theme.lua
-├──  README.md -> .github/README.md
+│ ├──  toggleterm.lua
+│ ├──  treesitter.lua
+│ ├──  web_devicons.lua
+│ ├──  which-key.lua
+│ └──  yanky.lua
+├── 󰂺 README.md → .github/README.md
 ├──  snippets
 │ ├──  all.lua
 │ ├──  java.snippets
+│ ├──  javascript.lua
+│ ├──  lua.lua
 │ ├──  markdown.lua
 │ ├──  package.json
 │ ├──  vscode
 │ │ ├──  c.json
 │ │ ├──  cpp.json
 │ │ ├──  css.json
-│ │ ├──  fennel.json
 │ │ ├──  frameworks
 │ │ │ ├──  ejs.json
 │ │ │ ├──  flutter.json
@@ -158,6 +153,7 @@ Below is a representation of the structure of the configuration in tree format |
 │ │ ├──  meson.json
 │ │ ├──  norg.json
 │ │ ├──  org.json
+│ │ ├──  package-lock.json
 │ │ ├──  package.json
 │ │ ├──  python
 │ │ │ ├──  base.json
@@ -170,84 +166,247 @@ Below is a representation of the structure of the configuration in tree format |
 │ │ ├──  shell.json
 │ │ └──  sql.json
 │ └──  yaml.lua
-├──  spell
-│ ├──  en.dict
-│ ├──  en.utf-8.add
-│ ├──  en.utf-8.add.spl
-│ ├──  es.dict
-│ ├──  hi.dict
-│ └──  README.md
-├──  stylua.toml
-└──  ui.lua
+└──  spell
+├──  en.dict
+├──  en.utf-8.add
+└──  en.utf-8.add.spl
 
-```
 ## Keybindings
 
 Below are the keybind mappings used in this configuration, they are subject to change and are not exhaustive, but they should give you a good idea of how the configuration is set up and how to use it.
 
+### General Keybindings
 
-### General Keybindings 
+> [!] Note:
+>
+> -     means press both keys at the same time
+>   → means first the key on the left then the key on the right
 
-| <kbd>\\</kbd> | Open a vertical split. | 
-| <kbd>/</kbd> | Open a horizontal split. | 
-| <kbd><C-m-n></kbd> | Compile the current file. | 
-| <kbd><F2></kbd> | Inspect the current file. |
-| <kbd>Tab</kbd> | Move to the next buffer. |
-| <kbd><S-Tab></kbd> | Move to the previous buffer. |
-| <kbd>/</kbd> | Search for text. |
-| <kbd><C-s></kbd> | Save the current file (works in various modes). |
-| <kbd><leader>w</kbd> | Save the current file. |
-| <kbd><leader>q</kbd> | Quit NeoVim. |
-| <kbd><leader>Q</kbd> | Quit all open buffers in NeoVim. |
-| <kbd><leader>h</kbd> | Clear highlighting. |
-| <kbd><leader><Tab></kbd> | Navigate to the previous buffer. |
-| <kbd><leader>g</kbd> | Access Git functionalities. |
-| <kbd><leader>l</kbd> | Access LSP functionalities. |
-| <kbd><leader>s</kbd> | Manage sessions. |
-| <kbd>f</kbd> | Fold code. |
-| <kbd>g</kbd> | Go to specific line or location. |
-| <kbd>s</kbd> | Search for text. |
+### Basic Navigation and Editing
 
-### Buffer Management 
+| Keys                              | Mode          | Description                 |
+| --------------------------------- | ------------- | --------------------------- |
+| <kbd>j/k</kbd>                    | Normal/Visual | _Better_ Up/Down            |
+| <kbd>/</kbd>                      | Normal        | Search                      |
+| <kbd>g,</kbd>                     | Normal        | Go to the newest change     |
+| <kbd>g;</kbd>                     | Normal        | Go to last change           |
+| <kbd>i</kbd>                      | Normal        | _Better_ Insert             |
+| <kbd>,</kbd> → <kbd>w</kbd>       | Normal        | Save                        |
+| <kbd>Alt</kbd> + <kbd>Enter</kbd> | Normal        | List suggested code actions |
 
-<kbd><C-1/9></kbd> | Change to buffers 1 through 9. |
-<kbd><S-l></kbd> | Move to the next buffer. |
-<kbd><S-h></kbd> | Move to the previous buffer. | 
-<kbd><A-S-l></kbd> | Move buffer to the right. |
-<kbd><A-S-h></kbd> | Move buffer to the left. |
-<kbd><leader>d</kbd> or <kbd><C-w></kbd> | Close the current buffer. |
+### Text Manipulation
 
-### Session Management 
+| Keys                               | Mode            | Description                        |
+| ---------------------------------- | --------------- | ---------------------------------- |
+| <kbd>Ctrl</kbd> + <kbd>k</kbd>     | Normal          | Move line up                       |
+| <kbd>Ctrl</kbd> + <kbd>j</kbd>     | Normal          | Move line down                     |
+| <kbd>Ctrl</kbd> + <kbd>k</kbd>     | Visual          | Move line up visual                |
+| <kbd>Ctrl</kbd> + <kbd>j</kbd>     | Visual          | Move line down visual              |
+| <kbd><</kbd>                       | Visual          | Unindent lines in visual selection |
+| <kbd>></kbd>                       | Visual          | Indent lines in visual selection   |
+| <kbd>p</kbd>                       | Visual          | Paste without yanking              |
+| <kbd>p</kbd>                       | Select(x)       | Paste without yanking              |
+| <kbd>c</kbd>                       | Normal/Visual   | Change without yanking             |
+| <kbd>C</kbd>                       | Normal          | Change line without yanking        |
+| <kbd>Space</kbd> + <kbd>Up</kbd>   | Normal          | Add blank line below               |
+| <kbd>Space</kbd> + <kbd>Down</kbd> | Normal          | Add blank line below               |
+| <kbd>Ctrl</kbd> + <kbd>,</kbd>     | Insert          | Add comma after character          |
+| <kbd>Ctrl</kbd> + <kbd>b</kbd>     | Insert          | Add curly with comma {},           |
+| <kbd>i</kbd> + <kbd>q</kbd>        | Operator/Visual | Inner Single Quotes                |
+| <kbd>i</kbd> + <kbd>Q</kbd>        | Operator/Visual | Inner Double Quotes                |
+| <kbd>a</kbd> + <kbd>q</kbd>        | Operator/Visual | Around Single Quotes               |
+| <kbd>a</kbd> + <kbd>Q</kbd>        | Operator/Visual | Around Double Quotes               |
+| <kbd>a</kbd> + <kbd>'</kbd>        | Operator/Visual | Around Single Quotes               |
+| <kbd>a</kbd> + <kbd>"</kbd>        | Operator/Visual | Around Double Quotes               |
+| <kbd>i</kbd> + <kbd>r</kbd>        | Operator/Visual | Inner Brackets                     |
+| <kbd>a</kbd> + <kbd>r</kbd>        | Operator/Visual | Inner Brackets                     |
 
-| <kbd><leader>ss</kbd> | Restore a saved session. |
-| <kbd><leader>sl</kbd> | Restore the last saved session.
-| <kbd><leader>sd</kbd> | Don't save the current session.
+### Buffer Management
 
-### NeoTree 
-| <kbd><leader>e</kbd> | Open NeoTree in the current window. |
-| <kbd><leader>E</kbd> | Open NeoTree in a floating window. |
+| Keys                                               | Mode   | Description          |
+| -------------------------------------------------- | ------ | -------------------- |
+| <kbd>,</kbd> → <kbd>b</kbd> → <kbd>d</kbd>         | Normal | Delete Buffer        |
+| <kbd>Leader</kbd> → <kbd>f</kbd> → <kbd>n</kbd>    | Normal | New File             |
+| <kbd>Shift</kbd> + <kbd>Left</kbd>                 | Normal | Buffer Previous      |
+| <kbd>Shift</kbd> + <kbd>Right</kbd>                | Normal | Buffer Next          |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>p</kbd>     | Normal | Pin Buffer           |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>k</kbd>     | Normal | Pick Buffer          |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>o</kbd>     | Normal | Close Other Buffers  |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>Left</kbd>  | Normal | Move Buffer to Left  |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>Right</kbd> | Normal | Move Buffer to Right |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>1</kbd>     | Normal | Go to Buffer 1       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>2</kbd>     | Normal | Go to Buffer 2       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>3</kbd>     | Normal | Go to Buffer 3       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>4</kbd>     | Normal | Go to Buffer 4       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>5</kbd>     | Normal | Go to Buffer 5       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>6</kbd>     | Normal | Go to Buffer 6       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>7</kbd>     | Normal | Go to Buffer 7       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>8</kbd>     | Normal | Go to Buffer 8       |
+| <kbd>Space</kbd> → <kbd>b</kbd> → <kbd>9</kbd>     | Normal | Go to Buffer 9       |
 
-### Telescope 
+### Window Management
 
-| <kbd>gd</kbd> | Go to definition. |
-| <kbd>gr</kbd> | Go to references. |
-| <kbd>gi</kbd> | Go to implementations. |
-| <kbd><leader>go</kbd> | Open a recently changed file. |
-| <kbd><leader>gb</kbd> | Checkout a Git branch. |
-| <kbd><leader>gc</kbd> | Checkout a Git commit. |
-| <kbd><leader>f</kbd> | Find files. |
-| <kbd><leader>F</kbd> | Find text. |
-| <kbd><leader>b</kbd> | Find buffers. |
+| Keys                                  | Mode   | Description                         |
+| ------------------------------------- | ------ | ----------------------------------- |
+| <kbd>Space</kbd> → <kbd>\\</kbd>      | Normal | Split Window Vertically             |
+| <kbd>Space</kbd> → <kbd>/</kbd>       | Normal | Split Window Vertically             |
+| <kbd>Space</kbd> → <kbd>h/l/k/j</kbd> | Normal | Move split panes Left/Right/Up/Down |
+| <kbd>Space</kbd> → <kbd>m</kbd>       | Normal | Equalize split panes                |
+| <kbd>Alt</kbd> + <kbd>Up</kbd>        | Normal | Resize pane up                      |
+| <kbd>Alt</kbd> + <kbd>Down</kbd>      | Normal | Resize pane down                    |
+| <kbd>Alt</kbd> + <kbd>Left</kbd>      | Normal | Resize pane left                    |
+| <kbd>Alt</kbd> + <kbd>Right</kbd>     | Normal | Resize pane right                   |
 
-### Other Keybindings  
+### Search and Replace
 
-| <kbd><C-\></kbd> | Toggle the terminal. |
-| <kbd><C-0></kbd> | Open the dashboard. |
-| <kbd><leader>m</kbd> | Zoom the current window. |
-| <kbd><leader>r</kbd> | Open the nvim-forge.core configuration file. |
-| <kbd><leader>P</kbd> | Preview the current Markdown file. |
+| Keys                        | Mode   | Description                              |
+| --------------------------- | ------ | ---------------------------------------- |
+| <kbd>,</kbd> → <kbd>R</kbd> | Normal | Search and Replace the word under cursor |
+| <kbd>,</kbd> → <kbd>r</kbd> | Normal | Search and replace in visual selection   |
 
+### Selection and Deletion
 
+| Keys                              | Mode   | Description                         |
+| --------------------------------- | ------ | ----------------------------------- |
+| <kbd>Control</kbd> + <kbd>a</kbd> | Normal | Select All                          |
+| <kbd>d</kbd> + <kbd>D</kbd>       | Normal | Delete current line without yanking |
+| <kbd>d</kbd> + <kbd>d</kbd>       | Normal | Yank non-empty lines                |
+
+### Insert Mode
+
+| Keys                              | Mode   | Description                           |
+| --------------------------------- | ------ | ------------------------------------- |
+| <kbd>Escape</kbd>                 | Insert | Exit Insert Mode                      |
+| <kbd>Control</kbd> + <kbd>l</kbd> | Insert | Correct Word                          |
+| <kbd>Alt</kbd> + <kbd>i</kbd>     | Insert | Jump to Beginn of Line in insert mode |
+| <kbd>Alt</kbd> + <kbd>a</kbd>     | Insert | Jump to End of Line in insert mode    |
+| <kbd>Ctrl</kbd> + <kbd>b</kbd>    | Insert | Add curly with comma {},              |
+
+### Editor Functionality
+
+| Keys                                            | Mode          | Description                         |
+| ----------------------------------------------- | ------------- | ----------------------------------- |
+| <kbd>Escape</kbd>                               | Insert/Normal | Escape and clear highlighted search |
+| <kbd>z</kbd> → <kbd>.</kbd>                     | Normal        | 󰓆 Fix Spelling                      |
+| <kbd>z</kbd> → <kbd>=</kbd>                     | Normal        | Spelling suggestions                |
+| <kbd>Leader</kbd> → <kbd>m</kbd> → <kbd>m</kbd> | Normal        | File Changes (Messages)             |
+| <kbd>Leader</kbd> → <kbd>c</kbd> → <kbd>t</kbd> | Normal        | Toggle TS Context                   |
+
+### Plugin Management (Lazy)
+
+| Keys                                            | Mode   | Description        |
+| ----------------------------------------------- | ------ | ------------------ |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>a</kbd> | Normal | Open Lazy          |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>c</kbd> | Normal | Check Lazy Plugins |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>s</kbd> | Normal | Sync Lazy Plugins  |
+
+### Debugging
+
+| Keys                                                           | Mode   | Description                |
+| -------------------------------------------------------------- | ------ | -------------------------- |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>B</kbd>                | Normal | Add Conditional Breakpoint |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>c</kbd>                | Normal | Dap Continue               |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>s</kbd> → <kbd>i</kbd> | Normal | Dap Step Into              |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>s</kbd> → <kbd>o</kbd> | Normal | Dap Step Over              |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>s</kbd> → <kbd>t</kbd> | Normal | Dap Step Out               |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>t</kbd>                | Normal | Dap Terminate              |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>l</kbd>                | Normal | Dap Show Log               |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>r</kbd>                | Normal | Dap Toggle Repl            |
+
+### Diff View
+
+| Keys                                            | Mode   | Description     |
+| ----------------------------------------------- | ------ | --------------- |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>v</kbd> | Normal | Diffview Toggle |
+
+### Noice
+
+| Keys                                           | Mode   | Description         |
+| ---------------------------------------------- | ------ | ------------------- |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>n</kbd> | Normal | Noice Messages      |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>a</kbd> | Normal | Noice All Messages  |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>l</kbd> | Normal | Noice Last          |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>t</kbd> | Normal | Noice Telescope     |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>e</kbd> | Normal | Noice Errors        |
+| <kbd>Space</kbd> → <kbd>n</kbd> → <kbd>s</kbd> | Normal | Noice Notifications |
+
+### Terminal Bindings
+
+| Keys                           | Mode     | Description        |
+| ------------------------------ | -------- | ------------------ |
+| <kbd>Escape</kbd>              | Terminal | Exit Terminal Mode |
+| <kbd>k</kbd> → <kbd>j</kbd>    | Terminal | Exit Terminal Mode |
+| <kbd>Ctrl</kbd> + <kbd>h</kbd> | Terminal | Window Left        |
+| <kbd>Ctrl</kbd> + <kbd>j</kbd> | Terminal | Window Down        |
+| <kbd>Ctrl</kbd> + <kbd>k</kbd> | Terminal | Window Up          |
+| <kbd>Ctrl</kbd> + <kbd>l</kbd> | Terminal | Window Right       |
+| <kbd>Ctrl</kbd> + <kbd>w</kbd> | Terminal | Window             |
+
+### Java Development Tools
+
+| Keys                                            | Mode          | Description         |
+| ----------------------------------------------- | ------------- | ------------------- |
+| <kbd>Alt</kbd> + <kbd>o</kbd>                   | Normal        | Organize Imports    |
+| <kbd>c</kbd> → <kbd>r</kbd> → <kbd>v</kbd>      | Normal/Visual | Extract Variable    |
+| <kbd>c</kbd> → <kbd>r</kbd> → <kbd>c</kbd>      | Normal/Visual | Extract Constant    |
+| <kbd>c</kbd> → <kbd>r</kbd> → <kbd>m</kbd>      | Visual        | Extract Method      |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>f</kbd> | Normal        | Test Class          |
+| <kbd>Leader</kbd> → <kbd>d</kbd> → <kbd>n</kbd> | Normal        | Test Nearest Method |
+
+### LuaSnip
+
+| Keys                                              | Mode          | Description |
+| ------------------------------------------------- | ------------- | ----------- |
+| <kbd>Ctrl</kbd> + <kbd>i</kbd>                    | Insert/Select |             |
+| <kbd>Ctrl</kbd> + <kbd>l</kbd>                    | Insert/Select |             |
+| <kbd>Ctrl</kbd> + <kbd>h</kbd>                    | Insert/Select |             |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>o</kbd> | Insert/Select |             |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>a</kbd> | Insert/Select |             |
+
+### Nvim-Toggler
+
+| Keys                             | Mode          | Description    |
+| -------------------------------- | ------------- | -------------- |
+| <kbd>Leader</kbd> → <kbd>w</kbd> | Normal/Visual | Toggle a Value |
+
+### Nvim-Tree
+
+| Keys                           | Mode   | Description           |
+| ------------------------------ | ------ | --------------------- |
+| <kbd>Ctrl</kbd> + <kbd>t</kbd> | Normal | Up Change Directory   |
+| <kbd>Ctrl</kbd> + <kbd>d</kbd> | Normal | Change Root Directory |
+| <kbd>?</kbd>                   | Normal | Help                  |
+
+### LSP (Language Server Protocol)
+
+| Keys                                                      | Mode          | Description                  |
+| --------------------------------------------------------- | ------------- | ---------------------------- |
+| <kbd>Space</kbd> → <kbd>d</kbd>                           | Normal        | Open Diagnostic Window       |
+| <kbd>Space</kbd> → <kbd>Left</kbd>                        | Normal        |                              |
+| <kbd>Space</kbd> → <kbd>Right</kbd>                       | Normal        |                              |
+| <kbd>Space</kbd> → <kbd>q</kbd>                           | Normal        | Send Diagnostic to Locallist |
+| <kbd>K</kbd>                                              | Normal        | Hover                        |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>a</kbd>                | Normal/Visual | LSP Code Action              |
+| <kbd>Alt</kbd> + <kbd>Enter</kbd>                         | Normal/Visual | LSP Code Action              |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>n</kbd>                | Normal        | LSP Rename                   |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>r</kbd>                | Normal        | LSP References               |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>d</kbd>                | Normal        | LSP Go to Definition         |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>D</kbd>                | Normal        | LSP Go to Declaration        |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>i</kbd>                | Normal        | LSP Go to Implementation     |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>f</kbd>                | Normal        |                              |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>k</kbd>                | Normal        | LSP Signature Help           |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>s</kbd>                | Normal        | LSP Document Symbols         |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>t</kbd>                | Normal        | LSP Type Definition          |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>w</kbd> → <kbd>a</kbd> | Normal        | LSP Add Workspace Folder     |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>w</kbd> → <kbd>r</kbd> | Normal        | LSP Remove Workspace Folder  |
+| <kbd>g</kbd> → <kbd>r</kbd> → <kbd>w</kbd> → <kbd>l</kbd> | Normal        | List Workplace Folder        |
+| <kbd>Space</kbd> → <kbd>i</kbd> → <kbd>h</kbd>            | Normal        | Inlay Hints                  |
+
+### Treesitter
+
+| Keys         | Mode            | Description      |
+| ------------ | --------------- | ---------------- |
+| <kbd>m</kbd> | Visual/Operator | Treesitter Nodes |
 
 ## Inspiration
 
@@ -261,5 +420,8 @@ The following projects were instrumental in the crafting of this environment
 - [dragove's nvim](https://github.com/dragove/nvim)
 - [Dharmx's Nvim](https://github.com/dharmx/nvim)
 - [loctvl842's nvim'](https://github.com/loctvl842/nvim)
+- **... and many, many more!**
+
+```
 
 ```

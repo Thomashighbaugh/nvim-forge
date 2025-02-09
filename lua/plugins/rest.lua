@@ -1,6 +1,6 @@
 return {
     'rest-nvim/rest.nvim',
-    enabled = false,
+    enabled = true,
     keys = {
         { '<leader>R', '<cmd>lua require("rest-nvim").run()<cr>', desc = 'Rest API' },
     },

@@ -58,7 +58,7 @@ return {
                 highlight = {
                     enable = true,
                 },
-                -- Buildin
+                -- Builtin
                 incremental_selection = {
                     enable = true,
                     keymaps = {
