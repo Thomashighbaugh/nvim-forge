@@ -1,6 +1,5 @@
 return {
     {
-        -- "lua/ollama", -- for local dev
         'nomnivore/ollama.nvim', -- for release
         cmd = { 'Ollama', 'OllamaModel', 'OllamaServe', 'OllamaServeStop' },
 
@@ -108,8 +107,7 @@ return {
 
         -- prompt
         opts = {
-            model = 'codegeex4:latest',
-
+            model = 'codegeex4',
             url = 'http://127.0.0.1:11434',
             serve = {
                 on_start = false,
@@ -156,35 +154,4 @@ return {
             },
         },
     },
-    -- {
-    --   "folke/which-key.nvim",
-    --   optional = true,
-    --   opts = {
-    --     defaults = {
-    --       ["<leader>o"] = { name = "+ollama" },
-    --     },
-    --   },
-    -- },
-
-    -- {
-    --     'nvim-lualine/lualine.nvim',
-    --     optional = true,
-    --
-    --     opts = function(_, opts)
-    --         table.insert(opts.sections.lualine_x, {
-    --             function()
-    --                 local status = require('ollama').status()
-    --
-    --                 if status == 'IDLE' then
-    --                     return '󱙺' -- nf-md-robot-outline
-    --                 elseif status == 'WORKING' then
-    --                     return '󰚩' -- nf-md-robot
-    --                 end
-    --             end,
-    --             cond = function()
-    --                 return package.loaded['ollama'] and require('ollama').status() ~= nil
-    --             end,
-    --         })
-    --     end,
-    -- },
 }

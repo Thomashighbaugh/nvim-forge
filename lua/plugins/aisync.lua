@@ -50,6 +50,7 @@ return {
                 level = 'info',
             })
 
+            -- Splits a command into a table of words.
             local splitCommandIntoTable = function(command)
                 local cmd = {}
                 for word in command:gmatch('%S+') do
@@ -58,6 +59,9 @@ return {
                 return cmd
             end
 
+            -- Loads a configuration value from an external command.
+            -- Executes the given command and passes its result to the callback.
+            -- If the command returns an empty string or fails, uses the provided default value if available.
             local function loadConfigFromCommand(command, callback, defaultValue)
                 local cmd = splitCommandIntoTable(command)
                 job:new({
@@ -65,7 +69,7 @@ return {
                     args = vim.list_slice(cmd, 2, #cmd),
                     on_exit = function(j, exit_code)
                         if exit_code ~= 0 then
-                            logger.warn("Command'" .. command .. "' did not return a value when executed")
+                            logger.warn("Command '" .. command .. "' did not return a value when executed")
                             return
                         end
                         local value = j:result()[1]:gsub('%s+$', '')
@@ -78,6 +82,7 @@ return {
                 }):start()
             end
 
+            -- Attempts to load the Hugging Face API token from an external command.
             local huggingface_api_token
             local command = 'pass show huggingface/access-token'
             loadConfigFromCommand(command, function(value)
@@ -95,7 +100,8 @@ return {
                     top_p = 0.95,
                     stop_tokens = nil,
                 },
-                enable_suggestions_on_files = '*.py,*.lua,*.java,*.js,*.jsx,*.ts,*.tsx,*.html,*.css,*.scss,*.json,*.yaml,*.yml,*.md,*.rmd,*.tex,*.bib,*.cpp,*.h,*.hpp', -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+                enable_suggestions_on_files = '*.py,*.lua,*.java,*.js,*.jsx,*.ts,*.tsx,*.html,*.css,*.scss,*.json,*.yaml,*.yml,*.md,*.rmd,*.tex,*.bib,*.cpp,*.h,*.hpp',
+                '*.nix', -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
             }
         end,
     },

@@ -11,6 +11,7 @@ return {
                 { 'gr', group = '+LSP Functions' },
                 { 'grw', group = '+LSP Workspace Folders' },
                 { '<leader>c', group = '+Comment-Box / Context Treesitter' }, -- Comment Box
+                { '<leader>O', group = 'Ollama' },
                 { '<leader>d', group = '+Diffview / Debug' }, -- Diffview & nvim-dap
                 { '<leader>ds', group = '+Dap Step' }, -- nvim-dap step
                 { '<leader>f', group = '+File' }, -- Telescope
