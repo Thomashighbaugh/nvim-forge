@@ -107,7 +107,7 @@ return {
 
         -- prompt
         opts = {
-            model = 'codegeex4',
+            model = 'huggingface.co/THUDM/codegeex4-all-9b-GGUF:latest',
             url = 'http://127.0.0.1:11434',
             serve = {
                 on_start = false,
