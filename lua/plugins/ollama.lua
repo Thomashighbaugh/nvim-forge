@@ -107,7 +107,7 @@ return {
 
         -- prompt
         opts = {
-            model = 'huggingface.co/THUDM/codegeex4-all-9b-GGUF:latest',
+            model = 'huggingface.co/lmstudio-community/DeepSeek-Coder-V2-Lite-Instruct-GGUF:latest',
             url = 'http://127.0.0.1:11434',
             serve = {
                 on_start = false,
