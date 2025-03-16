@@ -117,12 +117,13 @@ return {
     -- ╰─────────────────────────────────────────────────────────╯
     {
         'LudoPinelli/comment-box.nvim',
-        cmd = { 'CBcatalog', 'CBcbox' },
+        cmd = { 'CBcatalog', 'CBlcbox7', 'CBlcbox13', 'CBd', 'CBline14' },
         keys = {
-            { '<leader>cb', '<cmd>CBlcbox<cr>', desc = 'Comment Box Big' },
-            { '<leader>cd', '<cmd>CBd<cr>', desc = 'Comment Box Delete' },
-            { '<leader>ca', '<cmd>CBalbox<cr>', desc = 'Comment Box Auto' },
+            { '<leader>cb', '<cmd>CBlcbox7<cr>', desc = 'Section Title' },
+            { '<leader>cd', '<cmd>CBd<cr>', desc = 'Delete Commet Box' },
+            { '<leader>ca', '<cmd>CBlcbox13<cr>', desc = 'Subsection Title' },
             { '<leader>cl', '<cmd>CBcatalog<cr>', desc = 'Comment Box Catalog' },
+            { '<leader>cl', '<cmd>CBline14<cr>', desc = 'Dividing Line' },
         },
         opts = {
             line_width = 60,

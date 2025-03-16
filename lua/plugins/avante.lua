@@ -1,11 +1,19 @@
 return {
     'yetone/avante.nvim',
     event = 'VeryLazy',
-    version = '*', -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    version = false, -- Have to use newest to work with ollama as "first class provider"
+
     opts = {
         provider = 'ollama',
         ollama = {
-            model = 'huggingface.co/lmstudio-community/DeepSeek-Coder-V2-Lite-Instruct-GGUF:latest',
+            api_key_name = '',
+            endpoint = 'http://127.0.0.1:11434',
+            model = 'mistral-nemo:latest',
+            options = {
+                num_ctx = 32768,
+                temperature = 0,
+            },
+            stream = true,
         },
         behaviour = {
             auto_focus_sidebar = true,

@@ -21,6 +21,7 @@
   "diagnostics.disable": ["missing-fields"],
   "telemetry.enable": false,
     "diagnostics.globals": [
+        "vim",
         "vim"
     ]
 }
