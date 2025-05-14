@@ -15,6 +15,7 @@ return {
         'mfussenegger/nvim-jdtls',
         'octaltree/cmp-look',
         'L3MON4D3/cmp-luasnip-choice',
+        'chrisgrieser/cmp-nerdfont',
         'ray-x/cmp-treesitter',
         'saadparwaiz1/cmp_luasnip',
         'zbirenbaum/copilot-cmp',
@@ -163,6 +164,7 @@ return {
                 { name = 'codeium', keyword_length = 2 },
                 { name = 'copilot', keyword_length = 2 },
                 { name = 'nvim_lsp' },
+
                 { name = 'nvim_lsp_signature_help' },
                 { name = 'luasnip' },
                 { name = 'luasnip_choice' },
@@ -179,6 +181,7 @@ return {
                     },
                     max_item_count = 5,
                 },
+                { name = 'nerdfont' },
             }),
             formatting = {
                 fields = { 'abbr', 'kind', 'menu' },
