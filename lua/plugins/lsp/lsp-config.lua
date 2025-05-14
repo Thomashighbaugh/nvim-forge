@@ -36,7 +36,6 @@ return {
                 'lua_ls',
                 'ruff',
                 'rust_analyzer',
-
                 'ts_ls',
                 'volar',
                 'yamlls',
@@ -71,7 +70,7 @@ return {
         local navic = require('nvim-navic')
 
         -- ╭─────────────────────────────────────────────────────────╮
-        -- │                   DIAGNOSTIC KAYMAPS                    │
+        -- │                   DIAGNOSTIC KEY MAPS                   │
         -- ╰─────────────────────────────────────────────────────────╯
         local opts = function(desc)
             return { noremap = true, silent = true, desc = desc }
@@ -250,13 +249,6 @@ return {
         lspconfig.ts_ls.setup({
             handlers = handlers,
             init_options = {
-                plugins = {
-                    {
-                        name = '@/vue/typescript-plugin',
-                        location = '/Users/ilias/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server',
-                        languages = { 'vue' },
-                    },
-                },
                 preferences = {
                     includeInlayParameterNameHints = 'all',
                     includeInlayParameterNameHintsWhenArgumentMatchesName = true,
@@ -282,9 +274,6 @@ return {
         lspconfig.volar.setup({
             handlers = handlers,
             init_options = {
-                typescript = {
-                    tsdk = '/Users/ilias/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib',
-                },
                 vue = {
                     hybridMode = false,
                 },

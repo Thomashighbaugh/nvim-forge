@@ -10,18 +10,11 @@
     "$XDG_DATA_HOME/nvim/lazy"
   ],
   "workspace.checkThirdParty": false,
-  "workspace.library": [
-    "$VIMRUNTIME/lua",
-    "${3rd}/luv/library",
-    "$XDG_DATA_HOME/nvim/lazy/catppuccin/lua"
-  ],
+  "workspace.library": ["$VIMRUNTIME/lua", "${3rd}/luv/library"],
   "hint.enable": true,
   "hint.setType": true,
   "hint.arrayIndex": "Disable",
   "diagnostics.disable": ["missing-fields"],
   "telemetry.enable": false,
-    "diagnostics.globals": [
-        "vim",
-        "vim"
-    ]
+  "diagnostics.globals": ["vim", "vim"]
 }

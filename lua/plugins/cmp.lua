@@ -14,6 +14,7 @@ return {
         'hrsh7th/cmp-path',
         'mfussenegger/nvim-jdtls',
         'octaltree/cmp-look',
+        'L3MON4D3/cmp-luasnip-choice',
         'ray-x/cmp-treesitter',
         'saadparwaiz1/cmp_luasnip',
         'zbirenbaum/copilot-cmp',
@@ -24,13 +25,14 @@ return {
         -- ╭───────────────╮
         -- │ LOAD SNIPPETS │
         -- ╰───────────────╯
-        require('luasnip/loaders/from_lua').load({ paths = { '~/.config/nvim/snippets/' } })
+        require('luasnip/loaders/from_lua').lazy_load()
+        require('luasnip.loaders.from_snipmate').lazy_load()
         require('luasnip/loaders/from_vscode').lazy_load()
 
         -- ╭────────────────╮
         -- │ COMPLETEOPTION │
         -- ╰────────────────╯
-        vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+        vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'preview' }
 
         -- ╭────────────╮
         -- │ KIND ICONS │
@@ -163,6 +165,7 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'nvim_lsp_signature_help' },
                 { name = 'luasnip' },
+                { name = 'luasnip_choice' },
                 { name = 'buffer' },
                 { name = 'path' },
                 { name = 'nvim_lua' },
@@ -204,7 +207,7 @@ return {
                         nvim_lua = '( Lua )',
                         treesitter = '( Treesitter )',
                         look = '( Look )',
-                        -- cmdline = '(CMDLine)',
+                        cmdline = '( CMD )',
                     })[entry.source.name]
                     return vim_item
                 end,
@@ -228,7 +231,7 @@ return {
         })
 
         -- ╭─────────────────────────╮
-        -- │ CMP CMDLINE FOR / AND ? │
+        -- │ CMP CMDLINE FOR / AND ?│
         -- ╰─────────────────────────╯
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),

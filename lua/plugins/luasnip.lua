@@ -10,12 +10,12 @@ return {
     config = function()
         require('luasnip.loaders.from_vscode').lazy_load()
         require('luasnip.loaders.from_snipmate').lazy_load()
-        require('luasnip.loaders.from_lua')
+        require('luasnip.loaders.from_lua').lazy_load()
         local ls = require('luasnip')
         local types = require('luasnip.util.types')
         ls.config.set_config({
             history = true, --keep around last snippet local to jump back
-            updateevents = 'TextChanged,TextChangedI', --update changes as you type
+            updateevents = 'InsertLeave,TextChanged,TextChangedI', --update changes as you type
             enable_autosnippets = true,
             ext_opts = {
                 [types.choiceNode] = {
@@ -31,11 +31,11 @@ return {
             ls.expand()
         end)
 
-        vim.keymap.set({ 'i', 's' }, '<C-l>', function()
+        vim.keymap.set({ 'i', 's' }, '<C-Up>', function()
             ls.jump(1)
         end)
 
-        vim.keymap.set({ 'i', 's' }, '<C-h>', function()
+        vim.keymap.set({ 'i', 's' }, '<C-Down>', function()
             ls.jump(-1)
         end)
 
