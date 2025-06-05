@@ -1,19 +1,70 @@
+local au = vim.api.nvim_create_autocmd
 -- ╭─────────────────────────────────────────────────────────╮
 -- │                 HIGHLIGHT SELECTET TEXT                 │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('TextYankPost', {
+au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 100,
+            higroup = 'visual',
+            timeout = 300,
         })
+    end,
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║                        Autosave                         ║
+-- ╚═════════════════════════════════════════════════════════╝
+
+-- Autosave
+au({ 'InsertLeave', 'FocusLost' }, {
+    pattern = '<buffer>',
+    command = 'silent! write',
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║             Update file on external changes             ║
+-- ╚═════════════════════════════════════════════════════════╝
+au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+    pattern = '<buffer>',
+    command = 'checktime',
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║           Align windows when resizing Neovim            ║
+-- ╚═════════════════════════════════════════════════════════╝
+au('VimResized', {
+    pattern = '*',
+    command = 'wincmd =',
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║             Auto cd to current buffer path              ║
+-- ╚═════════════════════════════════════════════════════════╝
+au('BufEnter', {
+    pattern = '*',
+    command = 'silent! lcd %:p:h',
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║  Automatically create directory when saving a file in   ║
+-- ║                 case it does not exist                  ║
+-- ╚═════════════════════════════════════════════════════════╝
+
+au('BufWritePre', {
+    pattern = '*',
+    callback = function()
+        local fpath = vim.fn.expand('<afile>')
+        local dir = vim.fn.fnamemodify(fpath, ':p:h')
+        if vim.fn.isdirectory(dir) ~= 1 then
+            vim.fn.mkdir(dir, 'p')
+        end
     end,
 })
 
 -- ╭─────────────────────────────────────────────────────────╮
 -- │    FORCE TREESITTER TO WORK WITH SPECIFIC FILESTYPES    │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
     pattern = { 'zsh', 'conf' },
     callback = function()
         vim.bo.filetype = 'sh'
@@ -39,7 +90,7 @@ vim.filetype.add({
 -- ╭─────────────────────────────────────────────────────────╮
 -- │                QUIT SOME WINDOWS WITH Q                 │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
     pattern = { 'help', 'qf', 'man', 'oil', 'aerial-nav', 'query' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>bd<cr>', { silent = true, buffer = true })
@@ -49,7 +100,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- ╭─────────────────────────────────────────────────────────╮
 -- │                  QUIT DIFFVIEW WITH Q                   │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
     pattern = { 'DiffViewFiles', 'checkhealth' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>tabc<cr>', { silent = true, buffer = true })
@@ -57,9 +108,9 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- ╭─────────────────────────────────────────────────────────╮
--- │       CHECK IF CODE ACTIONS ARE AVAILEBLE ON LSP        │
+-- │       CHECK IF CODE ACTIONS ARE AVAILABLE ON LSP        │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+au({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
         require('code_action_utils').code_action_listener()
     end,
@@ -68,15 +119,15 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 -- ╭─────────────────────────────────────────────────────────╮
 -- │                 OPEN HELP IN A NEW TAB                  │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
     pattern = 'help',
     command = ':wincmd T',
 })
 
 -- ╭─────────────────────────────────────────────────────────╮
--- │                      FORMATOPTIONS                      │
+-- │                      FORMAT OPTIONS                      │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+au({ 'BufEnter' }, {
     callback = function()
         vim.opt.formatoptions:remove({ 'o', 'r', 'c' })
         vim.opt.formatoptions:append({ 't' })
@@ -86,7 +137,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 -- ╭─────────────────────────────────────────────────────────╮
 -- │       JUMP TO LAST EDIT POSITION ON OPENING FILE        │
 -- ╰─────────────────────────────────────────────────────────╯
-vim.api.nvim_create_autocmd('BufReadPost', {
+au('BufReadPost', {
     desc = 'Open file at the last position it was edited earlier',
     pattern = '*',
     command = 'silent! normal! g`"zv',
@@ -96,7 +147,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 -- │               MESSAGE IF MACRO IS STOPPED               │
 -- ╰─────────────────────────────────────────────────────────╯
 local macro_group = vim.api.nvim_create_augroup('MacroRecording', { clear = true })
-vim.api.nvim_create_autocmd('RecordingLeave', {
+au('RecordingLeave', {
     group = macro_group,
     callback = function()
         -- Display a message when macro recording stops

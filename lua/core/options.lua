@@ -18,7 +18,7 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.showcmd = true
 vim.o.cmdheight = 0
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes:1'
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 4
 vim.opt.laststatus = 3
@@ -93,7 +93,7 @@ vim.opt.updatetime = 100
 vim.g.skip_ts_context_commentstring_module = true
 
 -- Disable providers for health checks
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_node_provider = 0
+-- vim.g.loaded_python3_provider = 0
+-- vim.g.loaded_ruby_provider = 0
+-- vim.g.loaded_perl_provider = 0
+-- vim.g.loaded_node_provider = 0

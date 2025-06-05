@@ -128,7 +128,7 @@ return {
                 -- ╭─────────────╮
                 -- │ INLAY HINTS │
                 -- ╰─────────────╯
-                if client.server_capabilities.inlayHintProvider then
+                if client and client.server_capabilities and client.server_capabilities.inlayHintProvider then
                     vim.lsp.inlay_hint.enable(true)
                 else
                     vim.lsp.inlay_hint.enable(false)
@@ -137,7 +137,7 @@ return {
                 -- ╭────────────╮
                 -- │ NVIM-NAVIC │
                 -- ╰────────────╯
-                if client.server_capabilities.documentSymbolProvider then
+                if client and client.server_capabilities and client.server_capabilities.documentSymbolProvider then
                     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
                     navic.attach(client, ev.buf)
                 end
