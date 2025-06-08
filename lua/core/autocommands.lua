@@ -112,7 +112,7 @@ au('FileType', {
 -- ╰─────────────────────────────────────────────────────────╯
 au({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
-        require('code_action_utils').code_action_listener()
+        require('utils.code_actions').code_action_listener()
     end,
 })
 
