@@ -1,0 +1,7 @@
+Toggle Boolean Value | <leader> + w 
+
+Toggle Color Picker | <leader> + C + p 
+Toggle Color Shade Selector | <leader> + C + s
+Toggle Color Hue Selector | <leader> + C + h
+
+

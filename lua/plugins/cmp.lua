@@ -16,6 +16,7 @@ return {
         'octaltree/cmp-look',
         'L3MON4D3/cmp-luasnip-choice',
         'chrisgrieser/cmp-nerdfont',
+        'MeanderingProgrammer/render-markdown.nvim',
         'ray-x/cmp-treesitter',
         'saadparwaiz1/cmp_luasnip',
         'zbirenbaum/copilot-cmp',
@@ -162,12 +163,12 @@ return {
             }),
             sources = cmp.config.sources({
                 -- { name = 'codeium', keyword_length = 2 },
-                { name = 'copilot', keyword_length = 2 },
+                { name = 'copilot' },
                 { name = 'nvim_lsp' },
-
                 { name = 'nvim_lsp_signature_help' },
                 { name = 'luasnip' },
                 { name = 'luasnip_choice' },
+                { name = 'render-markdown' },
                 { name = 'buffer' },
                 { name = 'path' },
                 { name = 'nvim_lua' },

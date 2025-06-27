@@ -23,7 +23,7 @@ return {
                     underline_selected = true,
                     underline_visible = false,
                     underline_fill = false,
-                    bold = false,
+                    bold = true,
                 },
                 indent_blankline = {
                     context_highlight = 'default', -- default | pro
@@ -65,18 +65,10 @@ return {
         -- lazy-loading with `cmd =` does not work well with incremental preview
         event = 'CmdlineEnter',
     },
-    {
-        'ellisonleao/glow.nvim',
-        cmd = 'Glow',
-        ft = 'markdown',
-        config = true,
-        opts = {
-            border = 'double',
-            style = 'dark',
-            width = 120,
-            width_ratio = 0.8,
-        },
-    },
+
+    -- ╭─────────────────────────────────────────────────────────╮
+    -- │                         COLORS                          │
+    -- ╰─────────────────────────────────────────────────────────╯
     {
         'nvim-zh/colorful-winsep.nvim',
         enabled = true,
@@ -86,13 +78,10 @@ return {
         },
     },
 
-    -- ╭─────────────────────────────────────────────────────────╮
-    -- │                         COLORS                          │
-    -- ╰─────────────────────────────────────────────────────────╯
     {
         'uga-rosa/ccc.nvim',
         keys = {
-            { '<leader>cc', '<cmd>CccPick<cr>', desc = 'Color Picker' },
+            { '<leader>Cp', '<cmd>CccPick<cr>', desc = 'Color Picker' },
         },
         opts = {
             win_opts = {
@@ -105,12 +94,20 @@ return {
         enabled = true,
         event = 'BufReadPre',
         opts = {
-            render = 'virtual', ---@usage 'background'|'foreground'|'virtual'
-            virtual_symbol = '',
+            render = 'background', ---@usage 'background'|'foreground'|'virtual'
+            -- virtual_symbol = '',
         },
         config = true,
     },
-
+    {
+        'nvzone/minty',
+        cmd = { 'Shades', 'Huefy' },
+        keys = {
+            { '<leader>Cs', '<cmd>Shadesk<cr>', desc = 'Color Shades' },
+            { '<leader>Ch', '<cmd>Huefy<cr>', desc = 'Color Huefy' },
+        },
+    },
+    { 'nvzone/volt', lazy = true },
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                     Text Functions                      │
     -- ╰─────────────────────────────────────────────────────────╯
@@ -121,7 +118,6 @@ return {
             require('sort').setup()
         end,
     },
-    -- ╞══════════════════════════════════════════════════════════╡
     {
         'echasnovski/mini.nvim',
         config = function()
@@ -143,26 +139,24 @@ return {
             require('mini.pairs').setup()
         end,
     },
+    ----------------------------------------------------------------------
+    --                              Icons                               --
+    ----------------------------------------------------------------------
 
-    -- icons
     {
         'echasnovski/mini.icons',
         enabled = true,
         opts = {},
         lazy = true,
     },
-    -- for kitty
+    ----------------------------------------------------------------------
+    --                              Kitty                               --
+    ----------------------------------------------------------------------
     {
         'fladson/vim-kitty',
         'MunifTanjim/nui.nvim',
     },
     -- colors
-    { 'nvzone/volt', lazy = true },
-
-    {
-        'nvzone/minty',
-        cmd = { 'Shades', 'Huefy' },
-    },
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                    Markdown Writing                     │
@@ -178,6 +172,13 @@ return {
         config = true,
     },
 
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        opts = {},
+    },
     --  ╭──────────────────────────────────────────────────────────╮
     --  │                          DEBUG                           │
     --  ╰──────────────────────────────────────────────────────────╯
@@ -185,7 +186,7 @@ return {
         'mfussenegger/nvim-dap',
         cmd = { 'DapToggleBreakpoint' },
         keys = {
-            { '<leader>db', '<cmd>DapToggleBreakpoint<cr>', desc = 'Add Breakpoint' },
+            { '<leader>Db', '<cmd>DapToggleBreakpoint<cr>', desc = 'Add Breakpoint' },
         },
         dependencies = {
             'theHamsta/nvim-dap-virtual-text',
@@ -201,7 +202,7 @@ return {
     {
         'rcarriga/nvim-dap-ui',
         keys = {
-            { '<leader>du', '<cmd>lua require("dapui").toggle()<CR>', desc = 'DAP UI Toggle' },
+            { '<leader>Du', '<cmd>lua require("dapui").toggle()<CR>', desc = 'DAP UI Toggle' },
         },
         dependencies = {
             'mfussenegger/nvim-dap',
