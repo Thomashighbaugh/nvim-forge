@@ -20,6 +20,15 @@ return {
         'ray-x/cmp-treesitter',
         'saadparwaiz1/cmp_luasnip',
         'zbirenbaum/copilot-cmp',
+        'lukas-reineke/cmp-rg',
+        'prabirshrestha/vim-lsp',
+        'SergioRibera/cmp-dotenv',
+        'jcha0713/cmp-tw2css',
+        'dmitmel/cmp-vim-lsp',
+        'roginfarrer/cmp-css-variables',
+        'PhilippFeO/cmp-help-tags',
+
+        'JMarkin/cmp-diag-codes',
 
         -- 'chrisgrieser/cmp_yanky',
     },
@@ -173,6 +182,16 @@ return {
                 { name = 'path' },
                 { name = 'nvim_lua' },
                 { name = 'treesitter' },
+                { name = 'vim_lsp' },
+                { name = 'dotenv' },
+                { name = 'diag-codes' },
+                { name = 'css-variables' },
+                { name = 'tw2css' },
+                {
+                    name = 'cmp_help_tags', -- '_' not '-' 😯
+                    -- recommended to avoid cluttering
+                    keyword_length = 5,
+                },
                 {
                     name = 'look',
                     keyword_length = 3,
@@ -181,6 +200,11 @@ return {
                         loud = true,
                     },
                     max_item_count = 5,
+                },
+                {
+                    name = 'rg',
+                    -- Try it when you feel cmp performance is poor
+                    -- keyword_length = 3
                 },
                 { name = 'nerdfont' },
             }),
