@@ -1,7 +1,94 @@
-Toggle Boolean Value | <leader> + w 
+# General
+<leader>w              - Save
+<leader>fn             - New File
+<leader>R              - Search and replace word under cursor
+<leader>r              - Search and replace in visual selection
+<leader>mm             - Show messages
+<leader>la             - Open Lazy
+<leader>lc             - Check Lazy Plugins
+<leader>ls             - Sync Lazy Plugins
+<leader>?              - Which-Key Menu
+kj                     - Exit insert mode
 
-Toggle Color Picker | <leader> + C + p 
-Toggle Color Shade Selector | <leader> + C + s
-Toggle Color Hue Selector | <leader> + C + h
+# Window & Buffer Management
+<Space>\              - Split Window Vertically
+<Space>/              - Split Window Horizontally
+<Space>h/j/k/l         - Move between splits
+<Space>m              - Maximize/Equalize split
+<S-Left>/<S-Right>     - Previous/Next buffer
+<Space>bd              - Delete buffer
+<Space>bp              - Pin buffer
+<Space>bo              - Close other buffers
+<leader>o              - Open file browser (Oil)
+<Space>e               - Toggle file tree (Neo-tree)
+<Space>bb              - Toggle buffer list (Neo-tree)
 
+# Telescope
+<leader>ff             - Find files
+<leader>fg             - Live grep
+<leader>fb             - Find buffers
+<leader>fo             - Old files
+<leader>fr             - Grep string under cursor
+<leader>fk             - Keymaps
+<leader>fc             - Commands
+<leader>fh             - Help tags
+<leader>fd             - Diagnostics
 
+# LSP
+gra                    - Code action
+grn                    - Rename
+grr                    - References
+grd                    - Definition
+gri                    - Implementation
+K                      - Hover documentation
+<Space>d               - Show diagnostics float
+<Space>ih              - Toggle inlay hints
+
+# Trouble (Diagnostics)
+<Space>xx              - Toggle diagnostics
+<Space>xX              - Toggle buffer diagnostics
+<Space>xs              - Toggle symbols
+<Space>xr              - Toggle LSP references
+<Space>xt              - Toggle todo comments
+
+# Git
+<leader>gg             - Neogit
+<leader>dv             - Toggle Diffview
+<leader>gs             - Stage hunk
+<leader>gr             - Reset hunk
+<leader>gS             - Stage buffer
+<leader>gR             - Reset buffer
+<leader>gp             - Preview hunk
+<leader>gn             - Next hunk
+<leader>gN             - Previous hunk
+
+# Debugging (DAP)
+<leader>Db             - Toggle breakpoint
+<leader>DB             - Toggle conditional breakpoint
+<leader>dc             - Continue
+<leader>dsi            - Step into
+<leader>dso            - Step over
+<leader>dst            - Step out
+<leader>dt             - Terminate
+<leader>Du             - Toggle DAP UI
+
+# AI (Ollama/Avante)
+<leader>Oaa            - Ask
+<leader>Oae            - Edit
+<leader>Oag            - Grammar Correction
+<leader>Oak            - Get Keywords
+<leader>Oax            - Explain Code
+<leader>Oac            - Complete Code
+<leader>Oad            - Add Docstring
+<leader>Oab            - Fix Bugs
+
+# Comments
+gcc                    - Toggle line comment
+gbc                    - Toggle block comment
+<leader>cb             - Create comment box (section)
+<leader>ca             - Create comment box (subsection)
+
+# Toggle
+<leader>w              - Toggle boolean value
+<leader>tt             - Toggle terminal
+<Space>ir              - Incremental rename

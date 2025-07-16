@@ -1,0 +1,228 @@
+*nvim-forge.txt* The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
+
+==============================================================================
+Table of Contents                               *nvim-forge-table-of-contents*
+
+1. NeoVim Forge                                      |nvim-forge-neovim-forge|
+  - Installation                        |nvim-forge-neovim-forge-installation|
+  - Configuration Structure  |nvim-forge-neovim-forge-configuration-structure|
+  - Keybindings                              |nvim-forge-neovim-forge-keybindings|
+
+==============================================================================
+1. NeoVim Forge                                      *nvim-forge-neovim-forge*
+
+My Winchester Mystery <https://en.wikipedia.org/wiki/Winchester_Mystery_House>
+NeoVim Configuration, using `lazy.nvim` for plugin management and Lua as its
+configuration language. My _Personal Development Environment_ (PDE) and the
+core tool used in cultivating my Personal Knowledge Base (PKB).
+
+
+  **Warning** This is my personal configuration, subject to experimentation and
+  radical rewrites periodically, rebases or substantially modifications without
+  prior warning and other things that may make this unstable for you to use as it
+  is presented.
+With this in mind, **feel free to take from it as you please**, use pieces of
+it or the whole thing as a basis for your own and you are more than welcome to
+**submit pull requests** if it so pleases you, that’s why its on GitHub |wink
+|
+
+
+INSTALLATION                            *nvim-forge-neovim-forge-installation*
+
+To use this configuration, clone it into your `~/.config/nvim` directory:
+
+>sh
+    
+    # Back up your old configuration if present
+    mv ~/.config/nvim ~/.config/nvim.bak
+    # Now clone this one
+    git clone https://github.com/Thomashighbaugh/nvim-forge ~/.config/nvim
+<
+
+And that should be it. If you have the prerequisites installed, it should run
+through the lazy.nvim installation process and handle setting up everything in
+the process from Treesitter grammars to Mason dependencies. This might take
+a few minutes, so be patient.
+
+
+CONFIGURATION STRUCTURE      *nvim-forge-neovim-forge-configuration-structure*
+
+This configuration roughly follows that of LazyVim, with some minor changes
+that are mostly due to personal taste. The lion’s share of the configuration
+exists within the `lua/` subdirectory as is the convention of Lua-based NeoVim
+configurations.
+
+Below is a representation of the structure of the configuration in tree format:
+
+nvim/
+├── doc/
+│   └── nvim-forge.txt
+├── ftplugin/
+│   └── java.lua
+├── lua/
+│   ├── core/
+│   │   ├── autocommands.lua
+│   │   ├── keymaps.lua
+│   │   ├── options.lua
+│   │   ├── usercommands.lua
+│   │   └── utils.lua
+│   ├── plugins/
+│   │   ├── ai/
+│   │   │   ├── avante.lua
+│   │   │   ├── ollama-chat.lua
+│   │   │   └── ollama.lua
+│   │   ├── dap/
+│   │   │   └── debug_adapter.lua
+│   │   ├── lsp/
+│   │   │   ├── aerial.lua
+│   │   │   ├── glance.lua
+│   │   │   ├── lazydev.lua
+│   │   │   ├── lsp-config.lua
+│   │   │   ├── mason-workaround.lua
+│   │   │   ├── mason.lua
+│   │   │   ├── nvim-navic.lua
+│   │   │   ├── outline.lua
+│   │   │   └── trouble.lua
+│   │   ├── aisync.lua
+│   │   ├── bufferline.lua
+│   │   ├── cheatsheet.lua
+│   │   ├── cmp.lua
+│   │   ├── codesnap.lua
+│   │   ├── comments.lua
+│   │   ├── conform.lua
+│   │   ├── dashboard.lua
+│   │   ├── devdocs.lua
+│   │   ├── dressing.lua
+│   │   ├── flash.lua
+│   │   ├── git.lua
+│   │   ├── image_preview.lua
+│   │   ├── inc_rename.lua
+│   │   ├── indent-blankline.lua
+│   │   ├── init.lua
+│   │   ├── lualine.lua
+│   │   ├── luasnip.lua
+│   │   ├── mini-align.lua
+│   │   ├── mini-indentscope.lua
+│   │   ├── neo-tree.lua
+│   │   ├── noice.lua
+│   │   ├── nvim-autopairs.lua
+│   │   ├── nvim-lint.lua
+│   │   ├── nvim-notify.lua
+│   │   ├── nvim-surround.lua
+│   │   ├── oil.lua
+│   │   ├── project-notes.lua
+│   │   ├── rainbow-delimiters.lua
+│   │   ├── rest.lua
+│   │   ├── smart-splits.lua
+│   │   ├── snipe.lua
+│   │   ├── statuscol.lua
+│   │   ├── symbols.lua
+│   │   ├── telescope.lua
+│   │   ├── toggleterm.lua
+│   │   ├── treesitter.lua
+│   │   ├── web_devicons.lua
+│   │   ├── which-key.lua
+│   │   └── yanky.lua
+│   └── utils/
+│       └── code_actions.lua
+├── README.md
+├── cheatsheet.txt
+└── init.lua
+
+KEYBINDINGS                              *nvim-forge-neovim-forge-keybindings*
+
+Below are the keybind mappings used in this configuration. They are subject to change and are not exhaustive, but they should give you a good idea of how the configuration is set up and how to use it. For a complete and interactive list, use the Which-Key command by pressing `<leader>?`.
+
+### General Keybindings
+
+| Keybinding       | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `kj`             | Exit insert mode                            |
+| `<leader>w`      | Save file                                   |
+| `<Space>\\`      | Split window vertically                     |
+| `<Space>/`       | Split window horizontally                   |
+| `j` / `k`        | Better up/down movement (wraps lines)       |
+| `ƒ`              | Search                                      |
+| `<leader>R`      | Search and replace word under the cursor    |
+| `<leader>r`      | Search and replace in visual selection      |
+| `<C-a>`          | Select all                                  |
+| `<c-l>`          | Correct word in insert mode                 |
+| `<leader>fn`     | New file                                    |
+| `z.`             | Fix spelling                                |
+| `z=`             | Spelling suggestions                        |
+| `<leader>mm`     | Show messages                               |
+| `<leader>la`     | Open Lazy plugin manager                    |
+
+### Window and Buffer Management
+
+| Keybinding       | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `<Space>bd`      | Delete buffer                               |
+| `<Space>h/j/k/l` | Move to split pane left/down/up/right       |
+| `<Space>m`       | Maximize or equalize split size             |
+| `<M-UP/DOWN>`    | Resize pane vertically                      |
+| `<M-LEFT/RIGHT>` | Resize pane horizontally                    |
+| `<c-k>` / `<c-j>`| Move line up/down                           |
+| `<S-Left>`       | Previous buffer                             |
+| `<S-Right>`      | Next buffer                                 |
+| `<Space>b`+`...` | Bufferline commands (pin, pick, close, etc.)|
+| `<leader>o`      | Open file browser (Oil)                     |
+
+### Telescope
+
+| Keybinding       | Description                          |
+| ---------------- | ------------------------------------ |
+| `<leader>ff`     | Find files                           |
+| `<leader>fg`     | Live grep (find word)                |
+| `<leader>fb`     | Find buffers                         |
+| `<leader>fh`     | Find help tags                       |
+| `<leader>fo`     | Find old files (recently opened)     |
+| `<leader>fk`     | Find keymaps                         |
+| `<leader>fc`     | Find commands                        |
+| `<leader>fr`     | Find word under cursor               |
+
+### LSP and Diagnostics
+
+| Keybinding       | Description                          |
+| ---------------- | ------------------------------------ |
+| `gr`+`...`       | LSP actions (rename, references, etc.)|
+| `K`              | Hover documentation                  |
+| `<space>d`       | Open diagnostics float               |
+| `<space>xx`      | Toggle diagnostics (Trouble)         |
+| `<space>xr`      | Toggle LSP references (Trouble)      |
+
+### Git
+
+| Keybinding       | Description                          |
+| ---------------- | ------------------------------------ |
+| `<leader>gg`     | Open Neogit                          |
+| `<leader>g`+`...`| Gitsigns actions (stage, reset, etc.)|
+| `<leader>dv`     | Toggle Diffview                      |
+
+### AI (Ollama, Copilot)
+
+| Keybinding       | Description                          |
+| ---------------- | ------------------------------------ |
+| `<leader>Oa`+`...`| Avante (Ollama) actions              |
+| `<leader>Oc`+`...`| Ollama-chat actions                  |
+| `<leader>Oo`      | Ollama prompt                        |
+| `<C-a>` (Insert) | Accept Copilot suggestion            |
+
+For a more detailed and interactive list of keybindings, you can use the `<leader>?` command to open the Which-Key menu.
+
+## Inspiration
+
+The following projects were instrumental in the crafting of this environment
+
+- [Allaman's nvim](https://github.com/Allaman/nvim)
+- [Alexis12119's nvim-config](https://github.com/Alexis12119/nvim-config)
+- [glepnir's nvim](https://github.com/glepnir/nvim)
+- [ayamir's nvimdots](https://github.com/ayamir/nvimdots)
+- [CharlesChiuGit's nvimdots](https://github.com/CharlesChiuGit/nvimdots.lua)
+- [dragove's nvim](https://github.com/dragove/nvim)
+- [Dharmx's Nvim](https://github.com/dharmx/nvim)
+- [loctvl842's nvim'](https://github.com/loctvl842/nvim)
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
