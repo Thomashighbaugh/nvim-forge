@@ -1,18 +1,19 @@
-*nvim-forge.txt* The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
+*nvim-forge.txt*The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
 
 ==============================================================================
 Table of Contents                               *nvim-forge-table-of-contents*
 
-1. NeoVim Forge                                      |nvim-forge-neovim-forge|
+1. Neovim Forge                                      |nvim-forge-neovim-forge|
   - Installation                        |nvim-forge-neovim-forge-installation|
   - Configuration Structure  |nvim-forge-neovim-forge-configuration-structure|
-  - Keybindings                              |nvim-forge-neovim-forge-keybindings|
+  - Keybindings                          |nvim-forge-neovim-forge-keybindings|
+  - Inspiration                          |nvim-forge-neovim-forge-inspiration|
 
 ==============================================================================
-1. NeoVim Forge                                      *nvim-forge-neovim-forge*
+1. Neovim Forge                                      *nvim-forge-neovim-forge*
 
 My Winchester Mystery <https://en.wikipedia.org/wiki/Winchester_Mystery_House>
-NeoVim Configuration, using `lazy.nvim` for plugin management and Lua as its
+Neovim Configuration, using `lazy.nvim` for plugin management and Lua as its
 configuration language. My _Personal Development Environment_ (PDE) and the
 core tool used in cultivating my Personal Knowledge Base (PKB).
 
@@ -22,206 +23,522 @@ core tool used in cultivating my Personal Knowledge Base (PKB).
   prior warning and other things that may make this unstable for you to use as it
   is presented.
 With this in mind, **feel free to take from it as you please**, use pieces of
-it or the whole thing as a basis for your own and you are more than welcome to
-**submit pull requests** if it so pleases you, that’s why its on GitHub |wink
-|
+it or the whole thing as a basis for your own, and you are more than welcome to
+**submit pull requests** if it so pleases you, that’s why its on GitHub
+|wink|
 
 
 INSTALLATION                            *nvim-forge-neovim-forge-installation*
 
-To use this configuration, clone it into your `~/.config/nvim` directory:
+To use this configuration, clone or copy it directly into your `~/.config/nvim`
+directory.
 
 >sh
     
     # Back up your old configuration if present
-    mv ~/.config/nvim ~/.config/nvim.bak
+    mv ~/.config/nim ~/.config/nvim.bak
+    
     # Now clone this one
     git clone https://github.com/Thomashighbaugh/nvim-forge ~/.config/nvim
 <
 
-And that should be it. If you have the prerequisites installed, it should run
+And that _should_ be it, if you have the prerequisites installed it should run
 through the lazy.nvim installation process and handle setting up everything in
-the process from Treesitter grammars to Mason dependencies. This might take
-a few minutes, so be patient.
+the process from Treesitter grammars to Mason dependencies, it might just take
+a few minutes so be patient.
 
 
 CONFIGURATION STRUCTURE      *nvim-forge-neovim-forge-configuration-structure*
 
 This configuration roughly follows that of LazyVim, with some minor changes
-that are mostly due to personal taste. The lion’s share of the configuration
+that are mostly due to personal taste, which while arbitrary is much easier to
+quickly locate various things when they are arranged in the way one prefers and
+not an artificially imposed standard. The lion’s share of the configuration
 exists within the `lua/` subdirectory as is the convention of Lua-based NeoVim
 configurations.
 
-Below is a representation of the structure of the configuration in tree format:
+Unlike many other highly customized NeoVim configurations, as well as most
+major configuration frameworks, the configuration is not nested within a
+subdirectory of the Lua subdirectory named after the author, plugin or
+configuration, I find no need to brand this configuration in a way that makes
+using its parts elsewhere highly onerous and introduces a needless source of
+potential errors for me to deal with instead of working on code like I intend
+to be.
 
-nvim/
-├── doc/
-│   └── nvim-forge.txt
-├── ftplugin/
-│   └── java.lua
-├── lua/
-│   ├── core/
-│   │   ├── autocommands.lua
-│   │   ├── keymaps.lua
-│   │   ├── options.lua
-│   │   ├── usercommands.lua
-│   │   └── utils.lua
-│   ├── plugins/
-│   │   ├── ai/
-│   │   │   ├── avante.lua
-│   │   │   ├── ollama-chat.lua
-│   │   │   └── ollama.lua
-│   │   ├── dap/
-│   │   │   └── debug_adapter.lua
-│   │   ├── lsp/
-│   │   │   ├── aerial.lua
-│   │   │   ├── glance.lua
-│   │   │   ├── lazydev.lua
-│   │   │   ├── lsp-config.lua
-│   │   │   ├── mason-workaround.lua
-│   │   │   ├── mason.lua
-│   │   │   ├── nvim-navic.lua
-│   │   │   ├── outline.lua
-│   │   │   └── trouble.lua
-│   │   ├── aisync.lua
-│   │   ├── bufferline.lua
-│   │   ├── cheatsheet.lua
-│   │   ├── cmp.lua
-│   │   ├── codesnap.lua
-│   │   ├── comments.lua
-│   │   ├── conform.lua
-│   │   ├── dashboard.lua
-│   │   ├── devdocs.lua
-│   │   ├── dressing.lua
-│   │   ├── flash.lua
-│   │   ├── git.lua
-│   │   ├── image_preview.lua
-│   │   ├── inc_rename.lua
-│   │   ├── indent-blankline.lua
-│   │   ├── init.lua
-│   │   ├── lualine.lua
-│   │   ├── luasnip.lua
-│   │   ├── mini-align.lua
-│   │   ├── mini-indentscope.lua
-│   │   ├── neo-tree.lua
-│   │   ├── noice.lua
-│   │   ├── nvim-autopairs.lua
-│   │   ├── nvim-lint.lua
-│   │   ├── nvim-notify.lua
-│   │   ├── nvim-surround.lua
-│   │   ├── oil.lua
-│   │   ├── project-notes.lua
-│   │   ├── rainbow-delimiters.lua
-│   │   ├── rest.lua
-│   │   ├── smart-splits.lua
-│   │   ├── snipe.lua
-│   │   ├── statuscol.lua
-│   │   ├── symbols.lua
-│   │   ├── telescope.lua
-│   │   ├── toggleterm.lua
-│   │   ├── treesitter.lua
-│   │   ├── web_devicons.lua
-│   │   ├── which-key.lua
-│   │   └── yanky.lua
-│   └── utils/
-│       └── code_actions.lua
-├── README.md
-├── cheatsheet.txt
-└── init.lua
+Below is a representation of the structure of the configuration in tree format
+
+. ├──  Dockerfile ├──  ftplugin │ └──  java.lua
+├──  init.lua ├──  lazy-lock.json ├──  lua │
+├──  code_action_utils.lua │ ├──  core │ │ ├──
+ autocommands.lua │ │ ├──  keymaps.lua │ │ ├── 
+options.lua │ │ ├──  usercommands.lua │ │ └── 
+utils.lua │ └──  plugins │ ├──  aisync.lua │ ├──
+ bufferline.lua │ ├──  cmp.lua │ ├──  codesnap.lua │
+├──  comments.lua │ ├──  conform.lua │ ├──  dap
+│ │ └──  debug_adapter.lua │ ├──  dashboard.lua │
+├──  devdocs.lua │ ├──  dressing.lua │ ├── 
+flash.lua │ ├──  focus.lua │ ├──  git.lua │ ├──
+ image_preview.lua │ ├──  inc_rename.lua │ ├── 
+indent-blankline.lua │ ├──  init.lua │ ├──  lsp │ │
+├──  aerial.lua │ │ ├──  glance.lua │ │ ├── 
+lazydev.lua │ │ ├──  lsp-config.lua │ │ ├── 
+mason.lua │ │ ├──  nvim-navic.lua │ │ ├── 
+outline.lua │ │ └──  trouble.lua │ ├──  lualine.lua │
+├──  luasnip.lua │ ├──  mini-align.lua │ ├── 
+mini-indentscope.lua │ ├──  neo-tree.lua │ ├──  noice.lua
+│ ├──  nvim-autopairs.lua │ ├──  nvim-lint.lua │
+├──  nvim-notify.lua │ ├──  nvim-surround.lua │ ├──
+ nvim-tree.lua │ ├──  oil.lua │ ├──  ollama.lua │
+├──  rainbow-delimiters.lua │ ├──  rest.lua │ ├──
+ snipe.lua │ ├──  ssr.lua │ ├──  statuscol.lua │
+├──  symbols.lua │ ├──  telescope.lua │ ├── 
+toggleterm.lua │ ├──  treesitter.lua │ ├── 
+web_devicons.lua │ ├──  which-key.lua │ └──  yanky.lua
+├── 󰂺 README.md → .github/README.md ├──  snippets │
+├──  all.lua │ ├──  java.snippets │ ├── 
+javascript.lua │ ├──  lua.lua │ ├──  markdown.lua │
+├──  package.json │ ├──  vscode │ │ ├── 
+c.json │ │ ├──  cpp.json │ │ ├──  css.json │ │
+├──  frameworks │ │ │ ├──  ejs.json │ │ │
+├──  flutter.json │ │ │ ├──  jekyll.json │ │ │
+└──  vue │ │ │ ├──  html.json │ │ │ ├── 
+javascript.json │ │ │ ├──  pug.json │ │ │ └── 
+vue.json │ │ ├──  gdscript.json │ │ ├── 
+gitcommit.json │ │ ├──  global.json │ │ ├── 
+glsl.json │ │ ├──  go.json │ │ ├──  haskell.json │
+│ ├──  html.json │ │ ├──  java.json │ │ ├──
+ javascript │ │ │ ├──  javascript.json │ │ │ ├──
+ react-native-ts.json │ │ │ ├──  react-native.json │ │
+│ ├──  react-ts.json │ │ │ ├──  react.json │ │
+│ └──  typescript.json │ │ ├──  kotlin.json │ │
+├──  kubernetes.json │ │ ├──  latex │ │ │ ├──
+ latex-snippets.json │ │ │ └──  vscode-latex-snippets.json
+│ │ ├──  latex.json │ │ ├──  lua.json │ │
+├──  markdown.json │ │ ├──  meson.json │ │ ├──
+ norg.json │ │ ├──  org.json │ │ ├── 
+package-lock.json │ │ ├──  package.json │ │ ├── 
+python │ │ │ ├──  base.json │ │ │ ├── 
+comprehension.json │ │ │ ├──  debug.json │ │ │ ├──
+ python.json │ │ │ └──  unittest.json │ │ ├── 
+rust.json │ │ ├──  scala.json │ │ ├──  shell.json │
+│ └──  sql.json │ └──  yaml.lua └──  spell
+├──  en.dict ├──  en.utf-8.add └──  en.utf-8.add.spl
+
 
 KEYBINDINGS                              *nvim-forge-neovim-forge-keybindings*
 
-Below are the keybind mappings used in this configuration. They are subject to change and are not exhaustive, but they should give you a good idea of how the configuration is set up and how to use it. For a complete and interactive list, use the Which-Key command by pressing `<leader>?`.
+Below are the keybind mappings used in this configuration, they are subject to
+change and are not exhaustive, but they should give you a good idea of how the
+configuration is set up and how to use it.
 
-### General Keybindings
 
-| Keybinding       | Description                                 |
-| ---------------- | ------------------------------------------- |
-| `kj`             | Exit insert mode                            |
-| `<leader>w`      | Save file                                   |
-| `<Space>\\`      | Split window vertically                     |
-| `<Space>/`       | Split window horizontally                   |
-| `j` / `k`        | Better up/down movement (wraps lines)       |
-| `ƒ`              | Search                                      |
-| `<leader>R`      | Search and replace word under the cursor    |
-| `<leader>r`      | Search and replace in visual selection      |
-| `<C-a>`          | Select all                                  |
-| `<c-l>`          | Correct word in insert mode                 |
-| `<leader>fn`     | New file                                    |
-| `z.`             | Fix spelling                                |
-| `z=`             | Spelling suggestions                        |
-| `<leader>mm`     | Show messages                               |
-| `<leader>la`     | Open Lazy plugin manager                    |
+GENERAL KEYBINDINGS ~
 
-### Window and Buffer Management
 
-| Keybinding       | Description                                 |
-| ---------------- | ------------------------------------------- |
-| `<Space>bd`      | Delete buffer                               |
-| `<Space>h/j/k/l` | Move to split pane left/down/up/right       |
-| `<Space>m`       | Maximize or equalize split size             |
-| `<M-UP/DOWN>`    | Resize pane vertically                      |
-| `<M-LEFT/RIGHT>` | Resize pane horizontally                    |
-| `<c-k>` / `<c-j>`| Move line up/down                           |
-| `<S-Left>`       | Previous buffer                             |
-| `<S-Right>`      | Next buffer                                 |
-| `<Space>b`+`...` | Bufferline commands (pin, pick, close, etc.)|
-| `<leader>o`      | Open file browser (Oil)                     |
+  [!] Note:
+  - >
+          means press both keys at the same time
+      <
+      → means first the key on the left then the key on the right
 
-### Telescope
+BASIC NAVIGATION AND EDITING ~
 
-| Keybinding       | Description                          |
-| ---------------- | ------------------------------------ |
-| `<leader>ff`     | Find files                           |
-| `<leader>fg`     | Live grep (find word)                |
-| `<leader>fb`     | Find buffers                         |
-| `<leader>fh`     | Find help tags                       |
-| `<leader>fo`     | Find old files (recently opened)     |
-| `<leader>fk`     | Find keymaps                         |
-| `<leader>fc`     | Find commands                        |
-| `<leader>fr`     | Find word under cursor               |
+  ---------------------------------------------------------------------------
+  Keys                             Mode            Description
+  -------------------------------- --------------- --------------------------
+  j/k                              Normal/Visual   Better Up/Down
 
-### LSP and Diagnostics
+  /                                Normal          Search
 
-| Keybinding       | Description                          |
-| ---------------- | ------------------------------------ |
-| `gr`+`...`       | LSP actions (rename, references, etc.)|
-| `K`              | Hover documentation                  |
-| `<space>d`       | Open diagnostics float               |
-| `<space>xx`      | Toggle diagnostics (Trouble)         |
-| `<space>xr`      | Toggle LSP references (Trouble)      |
+  g,                               Normal          Go to the newest change
 
-### Git
+  g;                               Normal          Go to last change
 
-| Keybinding       | Description                          |
-| ---------------- | ------------------------------------ |
-| `<leader>gg`     | Open Neogit                          |
-| `<leader>g`+`...`| Gitsigns actions (stage, reset, etc.)|
-| `<leader>dv`     | Toggle Diffview                      |
+  i                                Normal          Better Insert
 
-### AI (Ollama, Copilot)
+  , → w                            Normal          Save
 
-| Keybinding       | Description                          |
-| ---------------- | ------------------------------------ |
-| `<leader>Oa`+`...`| Avante (Ollama) actions              |
-| `<leader>Oc`+`...`| Ollama-chat actions                  |
-| `<leader>Oo`      | Ollama prompt                        |
-| `<C-a>` (Insert) | Accept Copilot suggestion            |
+  Alt + Enter                      Normal          List suggested code
+                                                   actions
+  ---------------------------------------------------------------------------
 
-For a more detailed and interactive list of keybindings, you can use the `<leader>?` command to open the Which-Key menu.
+TEXT MANIPULATION ~
 
-## Inspiration
+  -----------------------------------------------------------------------------
+  Keys                          Mode              Description
+  ----------------------------- ----------------- -----------------------------
+  Ctrl + k                      Normal            Move line up
+
+  Ctrl + j                      Normal            Move line down
+
+  Ctrl + k                      Visual            Move line up visual
+
+  Ctrl + j                      Visual            Move line down visual
+
+  <                             Visual            Unindent lines in visual
+                                                  selection
+
+  >                             Visual            Indent lines in visual
+                                                  selection
+
+  p                             Visual            Paste without yanking
+
+  p                             Select(x)         Paste without yanking
+
+  c                             Normal/Visual     Change without yanking
+
+  C                             Normal            Change line without yanking
+
+  Space + Up                    Normal            Add blank line below
+
+  Space + Down                  Normal            Add blank line below
+
+  Ctrl + ,                      Insert            Add comma after character
+
+  Ctrl + b                      Insert            Add curly with comma {},
+
+  i + q                         Operator/Visual   Inner Single Quotes
+
+  i + Q                         Operator/Visual   Inner Double Quotes
+
+  a + q                         Operator/Visual   Around Single Quotes
+
+  a + Q                         Operator/Visual   Around Double Quotes
+
+  a + ’                         Operator/Visual   Around Single Quotes
+
+  a + “                         Operator/Visual   Around Double Quotes
+
+  i + r                         Operator/Visual   Inner Brackets
+
+  a + r                         Operator/Visual   Inner Brackets
+  -----------------------------------------------------------------------------
+
+BUFFER MANAGEMENT ~
+
+  --------------------------------------------------------------------------
+  Keys                                           Mode     Description
+  ---------------------------------------------- -------- ------------------
+  , → b → d                                      Normal   Delete Buffer
+
+  Leader → f → n                                 Normal   New File
+
+  Shift + Left                                   Normal   Buffer Previous
+
+  Shift + Right                                  Normal   Buffer Next
+
+  Space → b → p                                  Normal   Pin Buffer
+
+  Space → b → k                                  Normal   Pick Buffer
+
+  Space → b → o                                  Normal   Close Other
+                                                          Buffers
+
+  Space → b → Left                               Normal   Move Buffer to
+                                                          Left
+
+  Space → b → Right                              Normal   Move Buffer to
+                                                          Right
+
+  Space → b → 1                                  Normal   Go to Buffer 1
+
+  Space → b → 2                                  Normal   Go to Buffer 2
+
+  Space → b → 3                                  Normal   Go to Buffer 3
+
+  Space → b → 4                                  Normal   Go to Buffer 4
+
+  Space → b → 5                                  Normal   Go to Buffer 5
+
+  Space → b → 6                                  Normal   Go to Buffer 6
+
+  Space → b → 7                                  Normal   Go to Buffer 7
+
+  Space → b → 8                                  Normal   Go to Buffer 8
+
+  Space → b → 9                                  Normal   Go to Buffer 9
+  --------------------------------------------------------------------------
+
+WINDOW MANAGEMENT ~
+
+  --------------------------------------------------------------------------
+  Keys                              Mode     Description
+  --------------------------------- -------- -------------------------------
+  Space → \                         Normal   Split Window Vertically
+
+  Space → /                         Normal   Split Window Vertically
+
+  Space → h/l/k/j                   Normal   Move split panes
+                                             Left/Right/Up/Down
+
+  Space → m                         Normal   Equalize split panes
+
+  Alt + Up                          Normal   Resize pane up
+
+  Alt + Down                        Normal   Resize pane down
+
+  Alt + Left                        Normal   Resize pane left
+
+  Alt + Right                       Normal   Resize pane right
+  --------------------------------------------------------------------------
+
+SEARCH AND REPLACE ~
+
+  --------------------------------------------------------------------------
+  Keys                       Mode     Description
+  -------------------------- -------- --------------------------------------
+  , → R                      Normal   Search and Replace the word under
+                                      cursor
+
+  , → r                      Normal   Search and replace in visual selection
+  --------------------------------------------------------------------------
+
+SELECTION AND DELETION ~
+
+  --------------------------------------------------------------------------
+  Keys                            Mode     Description
+  ------------------------------- -------- ---------------------------------
+  Control + a                     Normal   Select All
+
+  d + D                           Normal   Delete current line without
+                                           yanking
+
+  d + d                           Normal   Yank non-empty lines
+  --------------------------------------------------------------------------
+
+INSERT MODE ~
+
+  --------------------------------------------------------------------------
+  Keys                           Mode     Description
+  ------------------------------ -------- ----------------------------------
+  Escape                         Insert   Exit Insert Mode
+
+  Control + l                    Insert   Correct Word
+
+  Alt + i                        Insert   Jump to Beginn of Line in insert
+                                          mode
+
+  Alt + a                        Insert   Jump to End of Line in insert mode
+
+  Ctrl + b                       Insert   Add curly with comma {},
+  --------------------------------------------------------------------------
+
+EDITOR FUNCTIONALITY ~
+
+  ------------------------------------------------------------------------------
+  Keys                                Mode            Description
+  ----------------------------------- --------------- --------------------------
+  Escape                              Insert/Normal   Escape and clear
+                                                      highlighted search
+
+  z → .                               Normal          󰓆 Fix Spelling
+
+  z → =                               Normal          Spelling suggestions
+
+  Leader → m → m                      Normal          File Changes (Messages)
+
+  Leader → c → t                      Normal          Toggle TS Context
+  ------------------------------------------------------------------------------
+
+PLUGIN MANAGEMENT (LAZY) ~
+
+  ---------------------------------------------------------------------------
+  Keys                                            Mode     Description
+  ----------------------------------------------- -------- ------------------
+  Leader → l → a                                  Normal   Open Lazy
+
+  Leader → l → c                                  Normal   Check Lazy Plugins
+
+  Leader → l → s                                  Normal   Sync Lazy Plugins
+  ---------------------------------------------------------------------------
+
+DEBUGGING ~
+
+  ---------------------------------------------------------------------------
+  Keys                                           Mode     Description
+  ---------------------------------------------- -------- -------------------
+  Leader → d → B                                 Normal   Add Conditional
+                                                          Breakpoint
+
+  Leader → d → c                                 Normal   Dap Continue
+
+  Leader → d → s → i                             Normal   Dap Step Into
+
+  Leader → d → s → o                             Normal   Dap Step Over
+
+  Leader → d → s → t                             Normal   Dap Step Out
+
+  Leader → d → t                                 Normal   Dap Terminate
+
+  Leader → d → l                                 Normal   Dap Show Log
+
+  Leader → d → r                                 Normal   Dap Toggle Repl
+  ---------------------------------------------------------------------------
+
+DIFF VIEW ~
+
+  --------------------------------------------------------------------------
+  Keys                                              Mode     Description
+  ------------------------------------------------- -------- ---------------
+  Leader → d → v                                    Normal   Diffview Toggle
+
+  --------------------------------------------------------------------------
+
+NOICE ~
+
+  ---------------------------------------------------------------------------
+  Keys                                           Mode     Description
+  ---------------------------------------------- -------- -------------------
+  Space → n → n                                  Normal   Noice Messages
+
+  Space → n → a                                  Normal   Noice All Messages
+
+  Space → n → l                                  Normal   Noice Last
+
+  Space → n → t                                  Normal   Noice Telescope
+
+  Space → n → e                                  Normal   Noice Errors
+
+  Space → n → s                                  Normal   Noice Notifications
+  ---------------------------------------------------------------------------
+
+TERMINAL BINDINGS ~
+
+  Keys       Mode       Description
+  ---------- ---------- --------------------
+  Escape     Terminal   Exit Terminal Mode
+  k → j      Terminal   Exit Terminal Mode
+  Ctrl + h   Terminal   Window Left
+  Ctrl + j   Terminal   Window Down
+  Ctrl + k   Terminal   Window Up
+  Ctrl + l   Terminal   Window Right
+  Ctrl + w   Terminal   Window
+
+JAVA DEVELOPMENT TOOLS ~
+
+  ----------------------------------------------------------------------------
+  Keys                                       Mode            Description
+  ------------------------------------------ --------------- -----------------
+  Alt + o                                    Normal          Organize Imports
+
+  c → r → v                                  Normal/Visual   Extract Variable
+
+  c → r → c                                  Normal/Visual   Extract Constant
+
+  c → r → m                                  Visual          Extract Method
+
+  Leader → d → f                             Normal          Test Class
+
+  Leader → d → n                             Normal          Test Nearest
+                                                             Method
+  ----------------------------------------------------------------------------
+
+LUASNIP ~
+
+  -----------------------------------------------------------------------------
+  Keys                                            Mode            Description
+  ----------------------------------------------- --------------- -------------
+  Ctrl + i                                        Insert/Select   
+
+  Ctrl + l                                        Insert/Select   
+
+  Ctrl + h                                        Insert/Select   
+
+  Ctrl + Shift + o                                Insert/Select   
+
+  Ctrl + Shift + a                                Insert/Select   
+  -----------------------------------------------------------------------------
+
+NVIM-TOGGLER ~
+
+  Keys         Mode            Description
+  ------------ --------------- ----------------
+  Leader → w   Normal/Visual   Toggle a Value
+
+NVIM-TREE ~
+
+  Keys       Mode     Description
+  ---------- -------- -----------------------
+  Ctrl + t   Normal   Up Change Directory
+  Ctrl + d   Normal   Change Root Directory
+  ?          Normal   Help
+
+LSP (LANGUAGE SERVER PROTOCOL) ~
+
+  ------------------------------------------------------------------------------
+  Keys                                      Mode            Description
+  ----------------------------------------- --------------- --------------------
+  Space → d                                 Normal          Open Diagnostic
+                                                            Window
+
+  Space → Left                              Normal          
+
+  Space → Right                             Normal          
+
+  Space → q                                 Normal          Send Diagnostic to
+                                                            Locallist
+
+  K                                         Normal          Hover
+
+  g → r → a                                 Normal/Visual   LSP Code Action
+
+  Alt + Enter                               Normal/Visual   LSP Code Action
+
+  g → r → n                                 Normal          LSP Rename
+
+  g → r → r                                 Normal          LSP References
+
+  g → r → d                                 Normal          LSP Go to Definition
+
+  g → r → D                                 Normal          LSP Go to
+                                                            Declaration
+
+  g → r → i                                 Normal          LSP Go to
+                                                            Implementation
+
+  g → r → f                                 Normal          
+
+  g → r → k                                 Normal          LSP Signature Help
+
+  g → r → s                                 Normal          LSP Document Symbols
+
+  g → r → t                                 Normal          LSP Type Definition
+
+  g → r → w → a                             Normal          LSP Add Workspace
+                                                            Folder
+
+  g → r → w → r                             Normal          LSP Remove Workspace
+                                                            Folder
+
+  g → r → w → l                             Normal          List Workplace
+                                                            Folder
+
+  Space → i → h                             Normal          Inlay Hints
+  ------------------------------------------------------------------------------
+
+TREESITTER ~
+
+  Keys   Mode              Description
+  ------ ----------------- ------------------
+  m      Visual/Operator   Treesitter Nodes
+
+INSPIRATION                              *nvim-forge-neovim-forge-inspiration*
 
 The following projects were instrumental in the crafting of this environment
 
-- [Allaman's nvim](https://github.com/Allaman/nvim)
-- [Alexis12119's nvim-config](https://github.com/Alexis12119/nvim-config)
-- [glepnir's nvim](https://github.com/glepnir/nvim)
-- [ayamir's nvimdots](https://github.com/ayamir/nvimdots)
-- [CharlesChiuGit's nvimdots](https://github.com/CharlesChiuGit/nvimdots.lua)
-- [dragove's nvim](https://github.com/dragove/nvim)
-- [Dharmx's Nvim](https://github.com/dharmx/nvim)
-- [loctvl842's nvim'](https://github.com/loctvl842/nvim)
+- Allaman’s nvim <https://github.com/Allaman/nvim>
+- Alexis12119’s nvim-config <https://github.com/Alexis12119/nvim-config>
+- glepnir’s nvim <https://github.com/glepnir/nvim>
+- ayamir’s nvimdots <https://github.com/ayamir/nvimdots>
+- CharlesChiuGit’s nvimdots <https://github.com/CharlesChiuGit/nvimdots.lua>
+- dragove’s nvim <https://github.com/dragove/nvim>
+- Dharmx’s Nvim <https://github.com/dharmx/nvim>
+- loctvl842’s nvim’ <https://github.com/loctvl842/nvim>
+- **… and many, many more!**
+
+>
+    
+<
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
