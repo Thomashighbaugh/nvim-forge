@@ -171,7 +171,6 @@ return {
                 end, { 'i', 's' }),
             }),
             sources = cmp.config.sources({
-                -- { name = 'codeium', keyword_length = 2 },
                 { name = 'copilot' },
                 { name = 'nvim_lsp' },
                 { name = 'nvim_lsp_signature_help' },
@@ -225,7 +224,6 @@ return {
                     vim_item.abbr = trim(vim_item.abbr)
                     -- Source
                     vim_item.menu = ({
-                        codeium = '( Codeium )',
                         copilot = '( Copilot )',
                         nvim_lsp = '( LSP )',
                         nvim_lsp_signature_help = '( Signature )',
