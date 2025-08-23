@@ -33,8 +33,6 @@ return {
         'jvgrootveld/telescope-zoxide',
         -- 'piersolenski/telescope-import.nvim',
         'crispgm/telescope-heading.nvim',
-        '2kabhishek/nerdy.nvim',
-        'folke/snacks.nvim',
     },
     config = function()
         local actions = require('telescope.actions')
