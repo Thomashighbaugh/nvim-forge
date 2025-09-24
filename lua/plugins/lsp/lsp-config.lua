@@ -42,22 +42,11 @@ return {
             },
         })
 
-        -- ╭───────────╮
-        -- │ LSPCONFIG │
-        -- ╰───────────╯
-        local lspconfig = require('lspconfig')
-
-        -- ╭──────────────────────╮
-        -- │ CMP LSP CAPABILITIES │
-        -- ╰──────────────────────╯
-        local lsp_defaults = lspconfig.util.default_config
-        lsp_defaults.capabilities =
-            vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-        -- lsp_defaults.capabilities = vim.tbl_deep_extend(
-        --     'force',
-        --     lsp_defaults.capabilities,
-        --     require('blink.cmp').get_lsp_capabilities(lsp_defaults.capabilities)
-        -- )
+        -- ╭─────────────────────╮
+        -- │ LSP CAPABILITIES    │
+        -- ╰─────────────────────╯
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        -- local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         -- ╭─────────────────────────────────╮
         -- │ LSP BORDER FOR :LSPINFO COMMAND │
@@ -209,7 +198,8 @@ return {
         local runtime_path = vim.split(package.path, ';')
         table.insert(runtime_path, 'lua/?.lua')
         table.insert(runtime_path, 'lua/?/init.lua')
-        lspconfig.lua_ls.setup({
+        vim.lsp.config.lua_ls = {
+            capabilities = capabilities,
             handlers = handlers,
             on_init = function(client)
                 local path = client.workspace_folders[1].name
@@ -241,12 +231,13 @@ return {
             settings = {
                 Lua = {},
             },
-        })
+        }
 
         -- ╭───────────────────╮
         -- │ JAVASCRIPT SERVER │
         -- ╰───────────────────╯
-        lspconfig.ts_ls.setup({
+        vim.lsp.config.ts_ls = {
+            capabilities = capabilities,
             handlers = handlers,
             init_options = {
                 preferences = {
@@ -266,38 +257,42 @@ return {
             --     client.server_capabilities.document_range_formatting = false
             --     on_attach(client, bufnr)
             -- end,
-        })
+        }
 
         -- ╭──────────────────╮
         -- │ VOLAR VUE SERVER │
         -- ╰──────────────────╯
-        lspconfig.volar.setup({
+        vim.lsp.config.volar = {
+            capabilities = capabilities,
             handlers = handlers,
             init_options = {
                 vue = {
                     hybridMode = false,
                 },
             },
-        })
+        }
 
         -- ╭───────────────╮
         -- │ PYTHON SERVER │
         -- ╰───────────────╯
-        lspconfig.ruff.setup({
+        vim.lsp.config.ruff = {
+            capabilities = capabilities,
             handlers = handlers,
-        })
+        }
 
         -- ╭──────────────╮
         -- │ EMMET SERVER │
         -- ╰──────────────╯
-        lspconfig.emmet_ls.setup({
+        vim.lsp.config.emmet_ls = {
+            capabilities = capabilities,
             handlers = handlers,
-        })
+        }
 
         -- ╭────────────╮
         -- │ CSS SERVER │
         -- ╰────────────╯
-        lspconfig.cssls.setup({
+        vim.lsp.config.cssls = {
+            capabilities = capabilities,
             handlers = handlers,
             settings = {
                 css = {
@@ -306,12 +301,13 @@ return {
                     },
                 },
             },
-        })
+        }
 
         -- ╭─────────────────╮
         -- │ TAILWIND SERVER │
         -- ╰─────────────────╯
-        lspconfig.tailwindcss.setup({
+        vim.lsp.config.tailwindcss = {
+            capabilities = capabilities,
             handlers = handlers,
             settings = {
                 tailwindCSS = {
@@ -334,23 +330,25 @@ return {
                     validate = true,
                 },
             },
-        })
+        }
 
         -- ╭─────────────╮
         -- │ JSON SERVER │
         -- ╰─────────────╯
-        lspconfig.jsonls.setup({
+        vim.lsp.config.jsonls = {
+            capabilities = capabilities,
             handlers = handlers,
             filetypes = { 'json', 'jsonc' },
             init_options = {
                 provideFormatter = true,
             },
-        })
+        }
 
         -- ╭─────────────╮
         -- │ HTML SERVER │
         -- ╰─────────────╯
-        lspconfig.html.setup({
+        vim.lsp.config.html = {
+            capabilities = capabilities,
             handlers = handlers,
             settigns = {
                 css = {
@@ -359,12 +357,13 @@ return {
                     },
                 },
             },
-        })
+        }
 
         -- ╭─────────────╮
         -- │ LTEX SERVER │
         -- ╰─────────────╯
-        lspconfig.ltex.setup({
+        vim.lsp.config.ltex = {
+            capabilities = capabilities,
             handlers = handlers,
             filetypes = { 'bibtex', 'markdown', 'latex', 'tex' },
             settings = {
@@ -372,12 +371,13 @@ return {
                 --     language = 'de-DE',
                 -- },
             },
-        })
+        }
 
         -- ╭───────────────╮
         -- │ TEXLAB SERVER │
         -- ╰───────────────╯
-        lspconfig.texlab.setup({
+        vim.lsp.config.texlab = {
+            capabilities = capabilities,
             handlers = handlers,
             settings = {
                 texlab = {
@@ -404,26 +404,29 @@ return {
                     },
                 },
             },
-        })
+        }
 
         -- ╭────────────╮
         -- │ PHP SERVER │
         -- ╰────────────╯
-        lspconfig.intelephense.setup({
+        vim.lsp.config.intelephense = {
+            capabilities = capabilities,
             handlers = handlers,
-        })
+        }
 
         -- ╭─────────────╮
         -- │ JAVA SERVER │
         -- ╰─────────────╯
-        lspconfig.jdtls.setup({
+        vim.lsp.config.jdtls = {
+            capabilities = capabilities,
             handlers = handlers,
-        })
+        }
 
         -- ╭─────────────╮
         -- │ YAML SERVER │
         -- ╰─────────────╯
-        lspconfig.yamlls.setup({
+        vim.lsp.config.yamlls = {
+            capabilities = capabilities,
             handlers = handlers,
             settings = {
                 yaml = {
@@ -446,19 +449,21 @@ return {
                     tabSize = 2,
                 },
             },
-        })
+        }
 
         -- ╭─────────────╮
         -- │ RUST SERVER │
         -- ╰─────────────╯
-        lspconfig.rust_analyzer.setup({
+        vim.lsp.config.rust_analyzer = {
+            capabilities = capabilities,
             handlers = handlers,
-        })
+        }
 
         -- ╭──────────────╮
         -- │ TYPST SERVER │
         -- ╰──────────────╯
-        lspconfig.tinymist.setup({
+        vim.lsp.config.tinymist = {
+            capabilities = capabilities,
             handlers = handlers,
             single_file_support = true,
             root_dir = function()
@@ -467,6 +472,6 @@ return {
             settings = {
                 formatterMode = 'typstyle',
             },
-        })
+        }
     end,
 }

@@ -2,7 +2,13 @@ return {
     'ravnheim/project_notes',
     url = 'https://codeberg.org/ravnheim/project_notes',
     event = 'VeryLazy',
-
+    keys = {
+        { '<leader>nm', desc = 'Project Notes Main' },
+        { '<leader>nt', desc = 'Project Notes Toggle' },
+        { '<leader>nl', desc = 'Project Notes List' },
+        { '<leader>nd', desc = 'Project Notes Delete' },
+        { '<leader>ne', desc = 'Project Notes Delete Empty' },
+    },
     config = function()
         local opts = {
             notes_path = '.github/documentation/',

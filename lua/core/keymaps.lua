@@ -289,25 +289,5 @@ vim.keymap.set('v', '<leader>OaU', function()
     AvanteUtils.prefill_edit_window(AvanteUtils.avante_add_tests)
 end, { desc = 'Add Tests(edit)' })
 
--- ╓
--- ║                  Smart Splits Bindings
--- ╙
--- ╞══════════════════════════════════════════════════════════╡
--- resizing splits
--- these keymaps will also accept a range,
--- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-vim.keymap.set('n', '<A-h>', "<cmd>lua require('smart-splits').resize_left<CR>")
-vim.keymap.set('n', '<A-j>', "<cmd>lua require('smart-splits').resize_down<CR>")
-vim.keymap.set('n', '<A-k>', "<cmd>lua require('smart-splits').resize_up<CR>")
-vim.keymap.set('n', '<A-l>', "<cmd>lua require('smart-splits').resize_right<CR>")
--- moving between splits
-vim.keymap.set('n', '<C-h>', "<CMD> lua require('smart-splits').move_cursor_left<CR>")
-vim.keymap.set('n', '<C-j>', "<CMD> lua require('smart-splits').move_cursor_down<CR>")
-vim.keymap.set('n', '<C-k>', "<CMD> lua require('smart-splits').move_cursor_up<CR>")
-vim.keymap.set('n', '<C-l>', "<CMD> lua require('smart-splits').move_cursor_right<CR>")
-vim.keymap.set('n', '<C-\\>', "<CMD>lua require('smart-splits').move_cursor_previous<CR>")
--- swapping buffers between windows
-vim.keymap.set('n', '<leader><leader>h', "<CMD>lua require('smart-splits').swap_buf_left<CR>")
-vim.keymap.set('n', '<leader><leader>j', "<CMD>lua require('smart-splits').swap_buf_down<CR>")
-vim.keymap.set('n', '<leader><leader>k', "<CMD>lua require('smart-splits').swap_buf_up<CR>")
-vim.keymap.set('n', '<leader><leader>l', "<CMD>lua require('smart-splits').swap_buf_right<CR>")
+-- Smart Splits keybindings are now defined in lua/plugins/smart-splits.lua
+

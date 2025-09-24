@@ -2,6 +2,9 @@ return {
     'oskarrrrrrr/symbols.nvim',
     enabled = true,
     cmd = 'Symbols',
+    keys = {
+        { '<leader>ls', '<cmd>Symbols<cr>', desc = 'LSP Symbols Sidebar' },
+    },
     config = function()
         local r = require('symbols.recipes')
         require('symbols').setup(r.DefaultFilters, r.AsciiSymbols, {

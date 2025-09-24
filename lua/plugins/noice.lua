@@ -1,6 +1,11 @@
 return {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    keys = {
+        { '<space>nd', '<cmd>NoiceDismiss<cr>', desc = 'Dismiss Noice Messages' },
+        { '<space>nh', '<cmd>NoiceHistory<cr>', desc = 'Noice Message History' },
+        { '<space>nl', '<cmd>NoiceLast<cr>', desc = 'Noice Last Message' },
+    },
     opts = {
         cmdline = {
             format = {

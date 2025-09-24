@@ -1,6 +1,10 @@
 return {
     'luckasRanarison/nvim-devdocs',
     cmd = { 'DevdocsOpen', 'DevdocsOpenFloat' },
+    keys = {
+        { '<leader>fo', '<cmd>DevdocsOpen<cr>', desc = 'Open Devdocs' },
+        { '<leader>fO', '<cmd>DevdocsOpenFloat<cr>', desc = 'Open Devdocs Float' },
+    },
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim',
