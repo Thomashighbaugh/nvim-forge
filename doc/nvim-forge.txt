@@ -347,10 +347,31 @@ PLUGIN MANAGEMENT (LAZY) ~
   ----------------------------------------------- -------- ------------------
   Leader → l → a                                  Normal   Open Lazy
 
-  Leader → l → c                                  Normal   Check Lazy Plugins
+  Leader → l → A                                  Normal   Aerial Symbol
+                                                           Outline
+
+  Leader → l → c                                  Normal   Clean Lazy Plugins
+
+  Leader → l → C                                  Normal   Check Lazy Plugins
+
+  Leader → l → m                                  Normal   Mason LSP Manager
 
   Leader → l → s                                  Normal   Sync Lazy Plugins
+
+  Leader → l → S                                  Normal   LSP Symbols
+                                                           Sidebar
   ---------------------------------------------------------------------------
+
+IMAGE PREVIEW ~
+
+  --------------------------------------------------------------------------
+  Keys                                       Mode     Description
+  ------------------------------------------ -------- ----------------------
+  Leader → p → i                             Normal   Initialize Image
+                                                      Preview
+
+  Leader → p → p                             Normal   Clear Images
+  --------------------------------------------------------------------------
 
 DEBUGGING ~
 
