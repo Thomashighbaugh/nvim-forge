@@ -71,9 +71,6 @@ au('FileType', {
     end,
 })
 
--- ╭─────────────────────────────────────────────────────────╮
--- │    FORCE TREESITTER TO WORK WITH SPECIFIC FILESTYPES    │
--- ╰─────────────────────────────────────────────────────────╯
 vim.filetype.add({
     extension = {
         sh = 'sh',
@@ -88,12 +85,26 @@ vim.filetype.add({
 })
 
 -- ╭─────────────────────────────────────────────────────────╮
--- │                QUIT SOME WINDOWS WITH Q                 │
+-- │                QUIT SPECIAL WINDOWS WITH Q              │
 -- ╰─────────────────────────────────────────────────────────╯
 au('FileType', {
     pattern = { 'help', 'qf', 'man', 'oil', 'aerial-nav', 'query' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>bd<cr>', { silent = true, buffer = true })
+        -- Open help in a new tab
+        if vim.bo.filetype == 'help' then
+            vim.cmd('wincmd T')
+        end
+    end,
+})
+
+-- ╭─────────────────────────────────────────────────────────╮
+-- │                  QUIT DIFFVIEW WITH Q                   │
+-- ╰─────────────────────────────────────────────────────────╯
+au('FileType', {
+    pattern = { 'DiffViewFiles', 'checkhealth' },
+    callback = function()
+        vim.keymap.set('n', 'q', '<cmd>tabc<cr>', { silent = true, buffer = true })
     end,
 })
 
@@ -112,7 +123,10 @@ au('FileType', {
 -- ╰─────────────────────────────────────────────────────────╯
 au({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
-        require('utils.code_actions').code_action_listener()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local range = nil
+        local context = { diagnostics = {} }
+        require('utils.code_actions').code_action_listener(bufnr, range, context)
     end,
 })
 

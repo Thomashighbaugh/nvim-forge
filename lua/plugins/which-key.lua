@@ -28,6 +28,7 @@ return {
                 { '<leader>m', group = 'Show Messages' },
                 { '<leader>n', group = 'Project Notes' },
                 { '<leader>o', group = 'Oil File Manager' },
+                { '<leader>p', group = 'Image Preview' },
                 { '<leader>r', group = 'Search & Replace' },
                 { '<leader>R', group = 'Rest API' },
                 { '<leader>s', group = 'Flash/Search' },

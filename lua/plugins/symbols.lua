@@ -3,7 +3,7 @@ return {
     enabled = true,
     cmd = 'Symbols',
     keys = {
-        { '<leader>ls', '<cmd>Symbols<cr>', desc = 'LSP Symbols Sidebar' },
+        { '<leader>lS', '<cmd>Symbols<cr>', desc = 'LSP Symbols Sidebar' },
     },
     config = function()
         local r = require('symbols.recipes')

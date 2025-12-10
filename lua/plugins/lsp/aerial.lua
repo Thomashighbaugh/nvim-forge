@@ -3,7 +3,7 @@ return {
     enabled = true,
     cmd = 'AerialToggle',
     keys = {
-        { '<leader>la', '<cmd>AerialToggle<cr>', desc = 'Aerial Symbol Outline' },
+        { '<leader>lA', '<cmd>AerialToggle<cr>', desc = 'Aerial Symbol Outline' },
     },
     dependencies = {
         'nvim-treesitter/nvim-treesitter',

@@ -5,10 +5,18 @@
 <leader>r              | Search and replace in visual selection
 <leader>mm             | Show messages
 <leader>la             | Open Lazy
-<leader>lc             | Check Lazy Plugins
+<leader>lA             | Aerial Symbol Outline
+<leader>lc             | Clean Lazy Plugins
+<leader>lC             | Check Lazy Plugins
+<leader>lm             | Mason LSP Manager
 <leader>ls             | Sync Lazy Plugins
+<leader>lS             | LSP Symbols Sidebar
 <leader>?              | Which-Key Menu
 kj                     | Exit insert mode
+
+# Image Preview
+<leader>pi             | Initialize Image Preview
+<leader>pp             | Clear Images
 
 # Window & Buffer Management
 <Space>\              | Split Window Vertically
@@ -72,7 +80,15 @@ K                      | Hover documentation
 <leader>dt             | Terminate
 <leader>Du             | Toggle DAP UI
 
-# AI (Ollama/Avante)
+# AI (Copilot/Avante/CodeCompanion)
+<Tab>                  | Accept Copilot suggestion
+<M-]>                  | Next Copilot/Avante suggestion
+<M-[>                  | Previous Copilot/Avante suggestion
+<C-e>                  | Dismiss Copilot suggestion
+<leader>ic             | CodeCompanion
+<leader>iC             | CodeCompanion Chat
+<leader>ia             | CodeCompanion Actions
+<leader>id             | CodeCompanion CMD
 <leader>Oaa            | Ask
 <leader>Oae            | Edit
 <leader>Oag            | Grammar Correction

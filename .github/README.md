@@ -296,9 +296,20 @@ Below are the keybind mappings used in this configuration, they are subject to c
 
 | Keys                                            | Mode   | Description        |
 | ----------------------------------------------- | ------ | ------------------ |
-| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>a</kbd> | Normal | Open Lazy          |
-| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>c</kbd> | Normal | Check Lazy Plugins |
-| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>s</kbd> | Normal | Sync Lazy Plugins  |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>a</kbd> | Normal | Open Lazy            |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>A</kbd> | Normal | Aerial Symbol Outline |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>c</kbd> | Normal | Clean Lazy Plugins   |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>C</kbd> | Normal | Check Lazy Plugins   |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>m</kbd> | Normal | Mason LSP Manager    |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>s</kbd> | Normal | Sync Lazy Plugins    |
+| <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>S</kbd> | Normal | LSP Symbols Sidebar  |
+
+### Image Preview
+
+| Keys                                            | Mode   | Description               |
+| ----------------------------------------------- | ------ | ------------------------- |
+| <kbd>Leader</kbd> → <kbd>p</kbd> → <kbd>i</kbd> | Normal | Initialize Image Preview  |
+| <kbd>Leader</kbd> → <kbd>p</kbd> → <kbd>p</kbd> | Normal | Clear Images             |
 
 ### Debugging
 

@@ -1,29 +1,23 @@
-# Agent Guidelines for Nvim Forge Configuration
+# Agent Guidelines for Nvim Configuration
 
 ## Build/Test/Format Commands
-- **Lint Lua**: `stylua --check .` (check), `stylua .` (format)
-- **Test config**: Launch `nvim` and check for errors in `:checkhealth`
-- **No specific test suite** - this is a Neovim configuration, not a software project
+- **Format**: `stylua .` (4 spaces, single quotes)
+- **Lint**: `stylua --check .`
+- **Test**: Launch `nvim` and run `:checkhealth`
 
 ## Code Style & Conventions
-- **Language**: Lua (LuaJIT runtime)
-- **Indentation**: 4 spaces (set in options.lua)
-- **Quotes**: Auto-prefer single quotes (stylua config)
-- **Plugin structure**: `lua/plugins/` with descriptive filenames
-- **Core config**: `lua/core/` for options, keymaps, autocommands, utils
-
-## File Organization
-- Plugin configs in `lua/plugins/` (one plugin per file or grouped logically)
-- Core settings in `lua/core/options.lua`, keymaps in `lua/core/keymaps.lua`
-- Snippets organized by language in `snippets/` directory
-- Use consistent header comments with box drawing for visual separation
+- **Language**: Lua (LuaJIT)
+- **Indentation**: 4 spaces
+- **Quotes**: Single quotes preferred
+- **Structure**: Plugin configs in `lua/plugins/`, core in `lua/core/`
+- **Naming**: Descriptive names (`monokai` not `m`)
+- **Imports**: Require at function scope: `require('plugin-name')`
+- **Options**: Use `vim.opt`, `vim.g`, `vim.o` for global settings
 
 ## Plugin Management
-- Uses `lazy.nvim` for plugin management
+- Uses `lazy.nvim` with lazy loading (events, keys, cmd, ft)
 - Plugin specs follow lazy.nvim format with opts, config, dependencies
-- Enable lazy loading with events, keys, cmd, or ft triggers when appropriate
 
-## Naming & Imports
-- Use descriptive variable names (e.g., `monokai` not `m`)
-- Require plugins at function scope: `require('plugin-name')`
-- Global vim options via `vim.opt`, `vim.g`, `vim.o`
+## Visual Style
+- Use box drawing characters for section headers
+- Consistent comment formatting with visual separators

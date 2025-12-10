@@ -173,7 +173,8 @@ vim.keymap.set('x', 'm', [[:<c-u>lua require 'tsht'.nodes()<cr>]], { silent = tr
 
 -- lazy.nvim
 vim.keymap.set('n', '<Leader>la', '<cmd>Lazy<cr>', { desc = 'Open Lazy' })
-vim.keymap.set('n', '<Leader>lc', '<cmd>Lazy check<cr>', { desc = 'Check Lazy Plugins' })
+vim.keymap.set('n', '<Leader>lc', '<cmd>Lazy clean<cr>', { desc = 'Clean Lazy Plugins' })
+vim.keymap.set('n', '<Leader>lC', '<cmd>Lazy check<cr>', { desc = 'Check Lazy Plugins' })
 vim.keymap.set('n', '<Leader>ls', '<cmd>Lazy sync<cr>', { desc = 'Sync Lazy Plugins' })
 
 -- nvim-dap
