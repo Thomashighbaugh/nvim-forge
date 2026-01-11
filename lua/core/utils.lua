@@ -10,5 +10,4 @@ M.max_or_equal = function()
     end
 end
 
-
 return M

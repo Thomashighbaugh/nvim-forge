@@ -1,64 +1,4 @@
 return {
-    -- ╭─────────────────────────────────────────────────────────╮
-    -- │                         Copilot                         │
-    -- ╰─────────────────────────────────────────────────────────╯
-    {
-        'zbirenbaum/copilot.lua',
-        cmd = 'Copilot',
-        event = { 'InsertEnter' },
-        build = ':Copilot auth',
-        dependencies = { 'zbirenbaum/copilot-cmp' },
-        config = function()
-            require('copilot').setup({
-                panel = {
-                    enabled = false,
-                },
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = true,
-                    debounce = 75,
-                    keymap = {
-                        accept = '<Tab>',
-                        accept_word = false,
-                        accept_line = false,
-                        next = '<M-]>',
-                        prev = '<M-[>',
-                        dismiss = '<C-e>',
-                    },
-                },
-            })
-        end,
-        opts = {
-            suggestion = { enabled = true },
-            panel = { enabled = true },
-            filetypes = {
-                ['*'] = true, -- disable for all other filetypes and ignore default `filetypes`
-            },
-        },
-    },
-    {
-        'CopilotC-Nvim/CopilotChat.nvim',
-        dependencies = {
-            { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
-            { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
-        },
-        build = 'make tiktoken', -- Only on MacOS or Linux
-        opts = {
-            -- See Configuration section for options
-        },
-        -- See Commands section for default commands if you want to lazy load on them
-    },
-    {
-        'zbirenbaum/copilot-cmp',
-        event = { 'InsertEnter' },
-        dependencies = { 'copilot.lua' },
-        opts = {},
-        config = function(_, opts)
-            local copilot_cmp = require('copilot_cmp')
-            copilot_cmp.setup(opts)
-        end,
-    },
-
     -- ╔═════════════════════════════════════════════════════════╗
     -- ║                        llm nvim                         ║
     -- ╚═════════════════════════════════════════════════════════╝
@@ -162,17 +102,6 @@ return {
                     },
                 },
             },
-            adapters = {
-                copilot = function()
-                    return require('codecompanion.adapters').extend('copilot', {
-                        schema = {
-                            model = {
-                                default = 'gemini-2.5-pro',
-                            },
-                        },
-                    })
-                end,
-            },
         },
         keys = {
             { '<leader>ic', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
@@ -195,15 +124,9 @@ return {
         config = function()
             require('codecompanion').setup({
                 strategies = {
-                    chat = {
-                        adapter = 'copilot',
-                    },
-                    inline = {
-                        adapter = 'copilot',
-                    },
-                    cmd = {
-                        adapter = 'copilot',
-                    },
+                    chat = {},
+                    inline = {},
+                    cmd = {},
                 },
                 display = {
                     action_palette = {

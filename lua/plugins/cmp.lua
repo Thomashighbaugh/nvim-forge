@@ -19,7 +19,6 @@ return {
         'MeanderingProgrammer/render-markdown.nvim',
         'ray-x/cmp-treesitter',
         'saadparwaiz1/cmp_luasnip',
-        'zbirenbaum/copilot-cmp',
         'lukas-reineke/cmp-rg',
         'prabirshrestha/vim-lsp',
         'SergioRibera/cmp-dotenv',
@@ -171,7 +170,6 @@ return {
                 end, { 'i', 's' }),
             }),
             sources = cmp.config.sources({
-                { name = 'copilot' },
                 { name = 'nvim_lsp' },
                 { name = 'nvim_lsp_signature_help' },
                 { name = 'luasnip' },
@@ -224,7 +222,6 @@ return {
                     vim_item.abbr = trim(vim_item.abbr)
                     -- Source
                     vim_item.menu = ({
-                        copilot = '( Copilot )',
                         nvim_lsp = '( LSP )',
                         nvim_lsp_signature_help = '( Signature )',
                         luasnip = '( LuaSnip )',

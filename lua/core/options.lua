@@ -45,6 +45,12 @@ vim.opt.undolevels = 10000
 vim.opt.conceallevel = 0
 vim.opt.virtualedit = 'onemore'
 
+-- Large file performance
+vim.opt.synmaxcol = 500
+vim.opt.lazyredraw = true
+vim.opt.updatetime = 2000
+vim.opt.timeoutlen = 500
+
 -- Folding
 vim.o.foldenable = false
 
