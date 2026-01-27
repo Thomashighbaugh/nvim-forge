@@ -3,6 +3,7 @@ vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
+vim.opt.inccommand = 'split'
 
 -- Indents, spaces
 vim.opt.autoindent = true
@@ -47,7 +48,6 @@ vim.opt.virtualedit = 'onemore'
 
 -- Large file performance
 vim.opt.synmaxcol = 500
-vim.opt.lazyredraw = true
 vim.opt.updatetime = 2000
 vim.opt.timeoutlen = 500
 

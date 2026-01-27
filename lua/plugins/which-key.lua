@@ -33,6 +33,8 @@ return {
                 { '<leader>R', group = 'Rest API' },
                 { '<leader>s', group = 'Flash/Search' },
                 { '<leader>t', group = 'ToggleTerm / Todo Comments' },
+                { ']t', desc = 'Next todo comment' },
+                { '[t', desc = 'Previous todo comment' },
                 { '<leader>w', group = 'Save/Toggle' },
                 { '<leader>y', group = 'Yanky' },
                 { '<leader><leader>', group = 'Smart Splits Swap' },

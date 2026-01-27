@@ -231,6 +231,15 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- nvim-treesitter-context
 vim.keymap.set('n', '<leader>ct', '<cmd>TSContextToggle<cr>', { desc = 'Toggle TS Context' })
 
+-- todo-comments.nvim jump functionality
+vim.keymap.set('n', ']t', function()
+    require('todo-comments').jump_next()
+end, { desc = 'Next todo comment' })
+
+vim.keymap.set('n', '[t', function()
+    require('todo-comments').jump_prev()
+end, { desc = 'Previous todo comment' })
+
 AvanteUtils = require('plugins.ai.avante')
 
 vim.keymap.set({ 'n', 'v' }, '<leader>Oag', function()

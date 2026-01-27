@@ -13,6 +13,21 @@
 <leader>lS             | LSP Symbols Sidebar
 <leader>?              | Which-Key Menu
 kj                     | Exit insert mode
+<C-a>                  | Select all
+<C-j>                  | Move line down
+<C-k>                  | Move line up
+<M-i>                  | Jump to begin of line (insert mode)
+<M-a>                  | Jump to end of line (insert mode)
+<M-UP>                 | Resize pane up
+<M-DOWN>               | Resize pane down
+<M-LEFT>               | Resize pane left
+<M-RIGHT>              | Resize pane right
+<esc>                  | Clear search highlight
+z.                     | Fix spelling
+z=                     | Spelling suggestions
+dD                     | Delete without yanking
+c                      | Change without yanking
+C                      | Change line without yanking
 
 # Image Preview
 <leader>pi             | Initialize Image Preview
@@ -27,6 +42,9 @@ kj                     | Exit insert mode
 <Space>bd              | Delete buffer
 <Space>bp              | Pin buffer
 <Space>bo              | Close other buffers
+<Space>bk              | Pick buffer
+<Space>b<left>/<right> | Move buffer left/right
+<Space>b1-9            | Go to buffer 1-9
 <leader>o              | Open file browser (Oil)
 <Space>e               | Toggle file tree (Neo-tree)
 <Space>bb              | Toggle buffer list (Neo-tree)
@@ -48,8 +66,19 @@ grn                    | Rename
 grr                    | References
 grd                    | Definition
 gri                    | Implementation
+grD                    | Go to declaration
+grf                    | Format
+grk                    | Signature help
+grs                    | Document symbols
+grt                    | Type definition
+grwa                   | Add workspace folder
+grwr                   | Remove workspace folder
+grwl                   | List workspace folders
 K                      | Hover documentation
+<M-CR>                 | Code action
 <Space>d               | Show diagnostics float
+<Space>q               | Send diagnostics to locallist
+<Space><left>/<right>  | Previous/Next diagnostic
 <Space>ih              | Toggle inlay hints
 
 # Trouble (Diagnostics)
@@ -67,8 +96,14 @@ K                      | Hover documentation
 <leader>gS             | Stage buffer
 <leader>gR             | Reset buffer
 <leader>gp             | Preview hunk
-<leader>gn              Next hunk
+<leader>gn             | Next hunk
 <leader>gN             | Previous hunk
+<leader>gu             | Undo stage hunk
+<leader>gB             | Blame line (full)
+<leader>gb             | Toggle current line blame
+<leader>gd             | Diff this
+<leader>gD             | Diff this (against ~)
+<leader>gt             | Toggle deleted lines
 
 # Debugging (DAP)
 <leader>Db             | Toggle breakpoint
@@ -78,6 +113,8 @@ K                      | Hover documentation
 <leader>dso            | Step over
 <leader>dst            | Step out
 <leader>dt             | Terminate
+<leader>dl             | Show log
+<leader>dr             | Toggle REPL
 <leader>Du             | Toggle DAP UI
 
 # AI (Copilot/Avante/CodeCompanion)
@@ -91,12 +128,38 @@ K                      | Hover documentation
 <leader>id             | CodeCompanion CMD
 <leader>Oaa            | Ask
 <leader>Oae            | Edit
-<leader>Oag            | Grammar Correction
-<leader>Oak            | Get Keywords
-<leader>Oax            | Explain Code
-<leader>Oac            | Complete Code
-<leader>Oad            | Add Docstring
-<leader>Oab            | Fix Bugs
+<leader>Oag            | Grammar Correction (ask)
+<leader>Oak            | Keywords (ask)
+<leader>Oal            | Code readability analysis (ask)
+<leader>Oao            | Optimize code (ask)
+<leader>Oam            | Summarize text (ask)
+<leader>Oan            | Translate text (ask)
+<leader>Oax            | Explain code (ask)
+<leader>Oac            | Complete code (ask)
+<leader>Oad            | Docstring (ask)
+<leader>Oab            | Fix bugs (ask)
+<leader>Oau            | Add tests (ask)
+<leader>OaG            | Grammar correction (edit)
+<leader>OaK            | Keywords (edit)
+<leader>OaO            | Optimize code (edit)
+<leader>OaC            | Complete code (edit)
+<leader>OaD            | Docstring (edit)
+<leader>OaB            | Fix bugs (edit)
+<leader>OaU            | Add tests (edit)
+
+# LLM (llm.nvim)
+<leader>ac             | Toggle LLM Chat
+<leader>ts             | Word Translate (visual)
+<leader>ae             | Explain Code (visual)
+<leader>at             | AI Translator
+<leader>tc             | Generate Test Cases (visual)
+<leader>ao             | Optimize Code (visual)
+<leader>au             | Check Account Info
+<leader>ag             | Generate AI Commit Message
+<leader>ad             | Generate Docstring (visual)
+<leader>ak             | Ask LLM (visual/normal)
+<leader>aa             | Ask LLM multi-turn (visual/normal)
+<leader>cp             | Toggle LLM Completion
 
 # Comments
 gcc                    | Toggle line comment
@@ -104,7 +167,74 @@ gbc                    | Toggle block comment
 <leader>cb             | Create comment box (section)
 <leader>ca             | Create comment box (subsection)
 
+# Text Objects
+ih/iq                  | Inner single quotes
+iQ                     | Inner double quotes
+ir                     | Inner brackets
+ah/aq                  | Around single quotes
+aQ/a"                  | Around double quotes
+ar                     | Around brackets
+
+# Align
+<leader>aa             | Align to 1 character (visual)
+<leader>ad             | Align to 2 characters (visual)
+<leader>aw             | Align to string (visual)
+<leader>ar             | Align to regex (visual)
+<leader>gaw            | Operator: Align to string
+<leader>gaa            | Operator: Align to 1 character
+
 # Toggle
 <leader>w              | Toggle boolean value
 <leader>tt             | Toggle terminal
 <Space>ir              | Incremental rename
+
+# Luasnip
+<C-i>                  | Expand snippet
+<C-Up>                 | Jump forward
+<C-Down>               | Jump backward
+<C-Shift-o>            | Next choice
+<C-Shift-a>            | Previous choice
+
+# Built-in Power Tips
+:.!date                | Replace line with date output (shell filter)
+!ip sort               | Sort paragraph with external command
+!ap jq .               | Format JSON with external command
+:%!column -t           | Align entire file (shell filter)
+g Ctrl-a               | Visual block increment (create numbered lists)
+:g/TODO/d              | Delete all TODO lines (global command)
+:g/^$/d                | Delete empty lines (global command)
+g;                     | Jump to previous change
+g,                     | Jump to next change
+gv                     | Reselect last visual selection
+gi                     | Go to last insert position
+``                     | Previous position (toggle back)
+`.                     | Last change position
+`"                     | Position when file was last closed
+q:                     | Open command history window
+q/                     | Open search history window
+Ctrl-r Ctrl-w          | Insert word under cursor (cmd/search mode)
+Ctrl-r "               | Insert last yank (cmd/search mode)
+Ctrl-r =               | Insert expression result (cmd/search mode)
+:'<,'>norm A,          | Append comma to each line in selection
+:'<,'>norm I#          | Comment each line in selection
+:t.                    | Duplicate current line below
+:m+2                   | Move line 2 lines down
+
+# Terminal
+<C-h>/<C-j>/<C-k>/<C-l> | Move between splits in terminal
+<C-w>                  | Exit terminal mode
+
+# Noice
+<Space>nn              | Noice messages
+<Space>na              | Noice all messages
+<Space>nl              | Noice last message
+<Space>nt              | Noice telescope
+<Space>ne              | Noice errors
+<Space>ns              | Noice notifications
+
+# Treesitter Context
+<leader>ct             | Toggle context
+
+# Todo Comments
+]t                     | Next todo comment
+[t                     | Previous todo comment

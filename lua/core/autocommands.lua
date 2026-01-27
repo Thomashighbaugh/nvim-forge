@@ -190,6 +190,7 @@ au('BufReadPre', {
             vim.opt_local.foldmethod = 'manual'
             vim.opt_local.syntax = 'off'
             vim.opt_local.synmaxcol = 200
+            vim.opt_local.lazyredraw = true
             print(
                 string.format(
                     'Large file detected (%.2f MB), performance optimizations applied',
