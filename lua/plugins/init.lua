@@ -165,8 +165,12 @@ return {
         cmd = 'Nerdy',
         opts = {
             max_recents = 30, -- Configure recent icons limit
-            add_default_keybindings = true, -- Add default keybindings
             copy_to_clipboard = false, -- Copy glyph to clipboard instead of inserting
+            copy_register = '+', -- Register to use for copying
+        },
+        keys = {
+            { '<leader>in', ':Nerdy list<CR>', desc = 'Browse nerd icons' },
+            { '<leader>iN', ':Nerdy recents<CR>', desc = 'Browse recent nerd icons' },
         },
     },
     -- colors

@@ -304,6 +304,13 @@ Below are the keybind mappings used in this configuration, they are subject to c
 | <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>s</kbd> | Normal | Sync Lazy Plugins    |
 | <kbd>Leader</kbd> → <kbd>l</kbd> → <kbd>S</kbd> | Normal | LSP Symbols Sidebar  |
 
+### Icons (Nerdy)
+
+| Keys                                            | Mode   | Description              |
+| ----------------------------------------------- | ------ | ------------------------ |
+| <kbd>Leader</kbd> → <kbd>i</kbd> → <kbd>n</kbd> | Normal | Browse nerd icons        |
+| <kbd>Leader</kbd> → <kbd>i</kbd> → <kbd>N</kbd> | Normal | Browse recent nerd icons |
+
 ### Image Preview
 
 | Keys                                            | Mode   | Description               |

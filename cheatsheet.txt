@@ -29,6 +29,10 @@ dD                     | Delete without yanking
 c                      | Change without yanking
 C                      | Change line without yanking
 
+# Icons (Nerdy)
+<leader>in             | Browse nerd icons
+<leader>iN             | Browse recent nerd icons
+
 # Image Preview
 <leader>pi             | Initialize Image Preview
 <leader>pp             | Clear Images
@@ -238,3 +242,63 @@ Ctrl-r =               | Insert expression result (cmd/search mode)
 # Todo Comments
 ]t                     | Next todo comment
 [t                     | Previous todo comment
+
+# Auto-synced (added from lua keymaps)
+<C-b>                  | Insert: add curly braces with comma ({}),
+<C-h>                  | Terminal: move to left split / Normal: move split left
+<C-l>                  | Insert: correct word; Terminal: move to right split
+<Leader>lC             | Lazy: Check plugins
+<Leader>la             | Lazy: Open UI
+<Leader>lc             | Lazy: Clean plugins
+<Leader>ls             | Lazy: Sync plugins
+<S-Left>               | Buffer: Previous
+<S-Right>              | Buffer: Next
+<Space>\\             | Split window vertically
+<Space>h               | Move to split left
+<Space>j               | Move to split down
+<Space>k               | Move to split up
+<Space>l               | Move to split right
+<c-j>                  | Move line down (normal)
+<c-k>                  | Move line up (normal)
+<c-l>                  | Insert: correct word
+<leader>dB             | DAP: Add conditional breakpoint
+<space><left>          | LSP: Previous diagnostic
+<space><right>         | LSP: Next diagnostic
+<space>b1              | Bufferline: Go to buffer 1
+<space>b2              | Bufferline: Go to buffer 2
+<space>b3              | Bufferline: Go to buffer 3
+<space>b4              | Bufferline: Go to buffer 4
+<space>b5              | Bufferline: Go to buffer 5
+<space>b6              | Bufferline: Go to buffer 6
+<space>b7              | Bufferline: Go to buffer 7
+<space>b8              | Bufferline: Go to buffer 8
+<space>b9              | Bufferline: Go to buffer 9
+<space>b<left>         | Buffer: Move buffer left
+<space>b<right>        | Buffer: Move buffer right
+<space>bk              | Buffer: Pick buffer
+<space>bo              | Buffer: Close other buffers
+<space>bp              | Buffer: Toggle pin
+<space>d               | LSP: Show diagnostic float
+<space>na              | Noice: All messages
+<space>ne              | Noice: Errors
+<space>nl              | Noice: Last message
+<space>nn              | Noice: Messages
+<space>ns              | Noice: Notifications
+<space>nt              | Noice: Telescope
+<space>q               | LSP: Send diagnostics to loclist
+<                      | Visual: Indent left and reselect
+>                      | Visual: Indent right and reselect
+a"                     | Around double quotes
+a'                     | Around single quotes
+aQ                     | Around double quotes (alternate)
+aq                     | Around single quotes (alternate)
+dd                     | Delete line (don't yank empty lines)
+i                      | Better insert (preserve indentation on empty lines)
+iq                     | Inner single quotes
+j                      | Better down (gj when no count)
+k                      | Better up (gk when no count)
+m                      | Treesitter: select node (tsht)
+p                      | Visual paste: paste without yanking (use "_dP)
+q                      | Buffer/tab close (buffer-local in some filetypes)
+x                      | (used by plugins / visual mode)
+ƒ                      | Search: mapped to '/'
