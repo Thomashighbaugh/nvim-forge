@@ -35,6 +35,12 @@ vim.keymap.set('x', '<leader>r', [[:s/\%V]], { desc = 'Search and replace in vis
 -- Select all
 vim.keymap.set({ 'n', 'x' }, '<C-a>', 'gg<S-v>G', { desc = 'Select all' })
 
+-- Refresh clipboard from system (useful for clipse)
+vim.keymap.set('n', '<leader>cr', function()
+    vim.fn.setreg('+', vim.fn.getreg('+'))
+    vim.notify('Clipboard refreshed from system', vim.log.levels.INFO)
+end, { desc = 'Refresh Clipboard from System' })
+
 -- For correcting a word in insert mode
 vim.keymap.set('i', '<c-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u')
 

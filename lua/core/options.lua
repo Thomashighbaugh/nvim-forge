@@ -54,7 +54,7 @@ vim.opt.timeoutlen = 500
 -- Folding
 vim.o.foldenable = false
 
--- Clipboard
+-- Clipboard - use system clipboard (let Neovim auto-detect provider)
 vim.opt.clipboard = 'unnamedplus'
 
 -- Keys

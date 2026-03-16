@@ -11,6 +11,16 @@ au('TextYankPost', {
     end,
 })
 
+-- ╭─────────────────────────────────────────────────────────╮
+-- │           SYNC CLIPBOARD ON FOCUS (FOR CLIPSE)          │
+-- ╰─────────────────────────────────────────────────────────╯
+au({ 'FocusGained', 'BufEnter' }, {
+    callback = function()
+        -- Force refresh of clipboard register from system clipboard
+        vim.fn.setreg('+', vim.fn.getreg('+'))
+    end,
+})
+
 -- ╔═════════════════════════════════════════════════════════╗
 -- ║                        Autosave                         ║
 -- ╚═════════════════════════════════════════════════════════╝

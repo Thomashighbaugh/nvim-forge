@@ -60,7 +60,7 @@ return {
         -- you can also choose "current" and "tmp"
         quick_chat_file = 'ollama-chat.md',
         animate_spinner = true, -- set this to false to disable spinner animation
-        model = 'huggingface.co/THUDM/codegeex4-all-9b-GGUF:latest',
+        model = 'gpt-4o',
         model_code = 'huggingface.co/THUDM/codegeex4-all-9b-GGUF:latest',
         url = 'http://127.0.0.1:11434',
         serve = {
