@@ -38,9 +38,9 @@ C                      | Change line without yanking
 <leader>pp             | Clear Images
 
 # Window & Buffer Management
-<Space>\              | Split Window Vertically
-<Space>/              | Split Window Horizontally
-<Space>h/j/k/l         | Move between splits
+<Space>/ | Split Window Vertically
+<Space>- | Split Window Horizontally
+<Space>h/j/k/l | Move between splits
 <Space>m              | Maximize/Equalize split
 <S-Left>/<S-Right>     | Previous/Next buffer
 <Space>bd              | Delete buffer

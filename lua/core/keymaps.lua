@@ -12,8 +12,8 @@ vim.keymap.set('i', 'kj', '<esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'Save' })
 
 -- Create Splits
-vim.keymap.set('n', '<Space>\\', ':vsplit<CR>', { desc = 'Split Window Vertically' })
-vim.keymap.set('n', '<Space>/', ':split<CR>', { desc = 'Split Window Horizontally' })
+vim.keymap.set('n', '<Space>/', ':vsplit<CR>', { desc = 'Split Window Vertically' })
+vim.keymap.set('n', '<Space>-', ':split<CR>', { desc = 'Split Window Horizontally' })
 
 -- Better up/down
 vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
