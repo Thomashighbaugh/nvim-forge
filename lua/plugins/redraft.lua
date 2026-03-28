@@ -1,7 +1,7 @@
 return {
     'jim-at-jibba/nvim-redraft',
     dependencies = {
-        { 'folke/snacks.nvim', opts = { input = {} } },
+        { 'folke/snacks.nvim', lazy = false, priority = 1000, opts = { input = {} } },
     },
     event = 'VeryLazy',
     build = 'cd ts && npm install && npm run build',

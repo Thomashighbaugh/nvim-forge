@@ -27,7 +27,7 @@ dap.adapters.python = function(cb, config)
     else
         cb({
             type = 'executable',
-            command = '/Users/ilias/.virtualenvs/debugpy/bin/python3',
+            command = vim.fn.exepath('python3'),
             args = { '-m', 'debugpy.adapter' },
             options = {
                 source_filetype = 'python',
@@ -50,12 +50,13 @@ dap.configurations.python = {
             -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
             -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
             local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. '/Users/ilias/.virtualenvs/debugpy/bin/python3') == 1 then
-                return cwd .. '/Users/ilias/.virtualenvs/debugpy/bin/python3'
-            elseif vim.fn.executable(cwd .. '/Users/ilias/.virtualenvs/debugpy/bin/python3') == 1 then
-                return cwd .. '/Users/ilias/.virtualenvs/debugpy/bin/python3'
+            local venv = cwd .. '/.venv/bin/python3'
+            if vim.fn.executable(venv) == 1 then
+                return venv
+            elseif vim.fn.executable(cwd .. '/venv/bin/python3') == 1 then
+                return cwd .. '/venv/bin/python3'
             else
-                return '/Users/ilias/.virtualenvs/debugpy/bin/python3'
+                return vim.fn.exepath('python3') or 'python3'
             end
         end,
     },
@@ -65,7 +66,7 @@ dap.configurations.python = {
 --  ╰──────────────────────────────────────────────────────────╯
 dap.adapters.lldb = {
     type = 'executable',
-    command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
+    command = vim.fn.exepath('lldb-dap') or 'lldb-dap',
     name = 'lldb',
 }
 dap.configurations.rust = {
@@ -105,7 +106,7 @@ dap.adapters['pwa-node'] = {
     port = '${port}',
     executable = {
         command = 'node',
-        args = { '/Users/ilias/.config/js-debug/src/dapDebugServer.js', '${port}' },
+        args = { vim.fn.expand('~/.config/js-debug/src/dapDebugServer.js'), '${port}' },
     },
 }
 dap.configurations.javascript = {

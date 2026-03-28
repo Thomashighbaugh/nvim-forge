@@ -282,7 +282,6 @@ return {
         -- │ NVIM-AUTOPAIRS │
         -- ╰────────────────╯
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        local ts_utils = require('nvim-treesitter.ts_utils')
 
         local ts_node_func_parens_disabled = {
             -- ecma
@@ -293,12 +292,18 @@ return {
 
         local default_handler = cmp_autopairs.filetypes['*']['('].handler
         cmp_autopairs.filetypes['*']['('].handler = function(char, item, bufnr, rules, commit_character)
-            local node_type = ts_utils.get_node_at_cursor():type()
-            if ts_node_func_parens_disabled[node_type] then
-                if item.data then
-                    item.data.funcParensDisabled = true
-                else
-                    char = ''
+            local ok, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
+            if ok then
+                local node = ts_utils.get_node_at_cursor()
+                if node then
+                    local node_type = node:type()
+                    if ts_node_func_parens_disabled[node_type] then
+                        if item.data then
+                            item.data.funcParensDisabled = true
+                        else
+                            char = ''
+                        end
+                    end
                 end
             end
             default_handler(char, item, bufnr, rules, commit_character)

@@ -34,7 +34,7 @@ return {
         -- 'piersolenski/telescope-import.nvim',
         'crispgm/telescope-heading.nvim',
         '2kabhishek/nerdy.nvim',
-        'folke/snacks.nvim',
+        { 'folke/snacks.nvim', lazy = false, priority = 1000 },
     },
     config = function()
         local actions = require('telescope.actions')

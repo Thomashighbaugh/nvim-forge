@@ -160,7 +160,7 @@ return {
     {
         '2kabhishek/nerdy.nvim',
         dependencies = {
-            'folke/snacks.nvim',
+            { 'folke/snacks.nvim', lazy = false, priority = 1000 },
         },
         cmd = 'Nerdy',
         opts = {
