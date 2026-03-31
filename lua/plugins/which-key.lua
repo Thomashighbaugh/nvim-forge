@@ -8,7 +8,7 @@ return {
         spec = {
             {
                 mode = { 'n', 'v' },
-                { '<leader>?', function() Snacks.picker.keymaps() end, desc = 'Cheatsheet' },
+                { '<leader>?', '<cmd>lua Snacks.picker.keymaps()<cr>', desc = 'Cheatsheet' },
                 { 'gr', group = 'LSP Functions' },
                 { 'grw', group = 'LSP Workspace Folders' },
                 { '<leader>a', group = 'Align' },

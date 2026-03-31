@@ -142,6 +142,9 @@ return {
         'folke/snacks.nvim',
         priority = 1000,
         lazy = false,
+        init = function()
+            _G.Snacks = require('snacks')
+        end,
         ---@type snacks.Config
         opts = {
             picker = { enabled = true },
@@ -337,9 +340,7 @@ return {
             },
             {
                 '<leader>?',
-                function()
-                    Snacks.picker.keymaps()
-                end,
+                '<cmd>lua Snacks.picker.keymaps()<cr>',
                 desc = 'Cheatsheet',
             },
             -- Explorer
