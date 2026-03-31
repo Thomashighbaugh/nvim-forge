@@ -12,6 +12,7 @@ return {
         { '<space>xl', '<cmd>Trouble loclist toggle<cr>', desc = 'Location List (Trouble)' },
         { '<space>xq', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix List (Trouble)' },
         { '<space>xt', '<cmd>Trouble todo<cr>', desc = 'Todo Trouble' },
+        { '<leader>mc', '<cmd>Trouble todo toggle<cr>', desc = 'Todo Trouble' },
     },
     opts = {
         focus = true,

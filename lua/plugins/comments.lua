@@ -1,5 +1,17 @@
 return {
     -- ╭─────────────────────────────────────────────────────────╮
+    -- │                      TODO-MARKER.NVIM                   │
+    -- ╰─────────────────────────────────────────────────────────╯
+    {
+        'maheshbansod/todo-marker.nvim',
+        config = function()
+            local tm = require('todo-marker')
+            tm.setup()
+            vim.keymap.set('n', '<leader>mt', tm.toggle_todo_item, { desc = 'Toggle Todo Marker' })
+        end,
+    },
+
+    -- ╭─────────────────────────────────────────────────────────╮
     -- │                      COMMENT.NVIM                       │
     -- ╰─────────────────────────────────────────────────────────╯
     {

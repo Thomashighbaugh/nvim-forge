@@ -16,7 +16,6 @@ return {
                 'nvim-tree',
                 'bufferline',
                 'telescope',
-                'toggleterm',
             },
             plugins = {
                 bufferline = {
@@ -70,44 +69,14 @@ return {
     -- │                         COLORS                          │
     -- ╰─────────────────────────────────────────────────────────╯
     {
-        'nvim-zh/colorful-winsep.nvim',
-        enabled = true,
-        event = { 'BufReadPre', 'BufNewFile' },
-        opts = {
-            only_line_seq = false,
-        },
-    },
-
-    {
-        'uga-rosa/ccc.nvim',
+        'wsdjeg/cpicker.nvim',
         keys = {
-            { '<leader>Cp', '<cmd>CccPick<cr>', desc = 'Color Picker' },
+            { '<leader>Cp', '<cmd>CPicker<cr>', desc = 'Color Picker' },
+            { '<leader>Cs', '<cmd>CPicker<cr>', desc = 'Color Shades' },
+            { '<leader>Ch', '<cmd>CPicker<cr>', desc = 'Color Huefy' },
         },
-        opts = {
-            win_opts = {
-                border = 'single',
-            },
-        },
+        opts = {},
     },
-    {
-        'brenoprata10/nvim-highlight-colors',
-        enabled = true,
-        event = 'BufReadPre',
-        opts = {
-            render = 'background', ---@usage 'background'|'foreground'|'virtual'
-            -- virtual_symbol = '',
-        },
-        config = true,
-    },
-    {
-        'nvzone/minty',
-        cmd = { 'Shades', 'Huefy' },
-        keys = {
-            { '<leader>Cs', '<cmd>Shadesk<cr>', desc = 'Color Shades' },
-            { '<leader>Ch', '<cmd>Huefy<cr>', desc = 'Color Huefy' },
-        },
-    },
-    { 'nvzone/volt', lazy = true },
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                     Text Functions                      │
     -- ╰─────────────────────────────────────────────────────────╯
@@ -156,12 +125,8 @@ return {
         'fladson/vim-kitty',
         'MunifTanjim/nui.nvim',
     },
-    -- Lazy
     {
         '2kabhishek/nerdy.nvim',
-        dependencies = {
-            { 'folke/snacks.nvim', lazy = false, priority = 1000 },
-        },
         cmd = 'Nerdy',
         opts = {
             max_recents = 30, -- Configure recent icons limit
@@ -171,6 +136,227 @@ return {
         keys = {
             { '<leader>in', ':Nerdy list<CR>', desc = 'Browse nerd icons' },
             { '<leader>iN', ':Nerdy recents<CR>', desc = 'Browse recent nerd icons' },
+        },
+    },
+    {
+        'folke/snacks.nvim',
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            picker = { enabled = true },
+            explorer = {
+                enabled = true,
+                layout = { position = 'right' },
+                keymaps = {
+                    ['r'] = 'rename',
+                },
+            },
+            terminal = { enabled = true },
+            words = { enabled = true },
+            dashboard = {
+                enabled = true,
+                sections = {
+                    {
+                        section = 'header',
+                        text = {
+                            '',
+                            '',
+                            '',
+                            '                  dMMMMb  dMMMMMP .aMMMb  dMP dMP dMP dMMMMMMMMb',
+                            '                dMP dMP dMP     dMP"dMP dMP dMP amr dMP"dMP"dMP',
+                            '               dMP dMP dMMMP   dMP dMP dMP dMP dMP dMP dMP dMP ',
+                            '              dMP dMP dMP     dMP.aMP  YMvAP" dMP dMP dMP dMP  ',
+                            '             dMP dMP dMMMMMP  VMMMP"    VP"  dMP dMP dMP dMP   ',
+                            '',
+                            '',
+                            '',
+                        },
+                    },
+                    {
+                        section = 'group',
+                        sections = {
+                            {
+                                section = 'keys',
+                                keys = {
+                                    {
+                                        icon = ' ',
+                                        key = 'f',
+                                        desc = 'Find file',
+                                        action = ':lua Snacks.picker.files()',
+                                    },
+                                    { icon = '󰝒 ', key = 'n', desc = 'New file', action = ':enew | startinsert' },
+                                    {
+                                        icon = ' ',
+                                        key = 'e',
+                                        desc = 'File explorer',
+                                        action = ':lua Snacks.explorer()',
+                                    },
+                                    {
+                                        icon = ' ',
+                                        key = 't',
+                                        desc = 'Find text',
+                                        action = ':lua Snacks.picker.grep()',
+                                    },
+                                    { icon = ' ', key = 'g', desc = 'Git', action = ':Neogit' },
+                                    { icon = '💤', key = 'l', desc = 'Lazy', action = ':Lazy' },
+                                    { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+                                },
+                            },
+                            { section = 'recent_files' },
+                        },
+                    },
+                    { section = 'startup' },
+                    {
+                        section = 'footer',
+                        text = function()
+                            local stats = require('lazy').stats()
+                            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+                            return {
+                                '⚡ Neovim loaded '
+                                    .. stats.loaded
+                                    .. '/'
+                                    .. stats.count
+                                    .. ' plugins in '
+                                    .. ms
+                                    .. 'ms',
+                            }
+                        end,
+                    },
+                },
+            },
+            notifier = {
+                enabled = true,
+                style = 'compact',
+                timeout = 1000,
+            },
+            indent = { enabled = true },
+        },
+        keys = {
+            -- Notifications
+            {
+                '<space>nd',
+                function()
+                    Snacks.notifier.hide()
+                end,
+                desc = 'Dismiss all Notifications',
+            },
+            -- Dashboard
+            {
+                '<leader>db',
+                function()
+                    Snacks.dashboard()
+                end,
+                desc = 'Toggle Dashboard',
+            },
+            -- Terminal
+            {
+                '<leader>tt',
+                function()
+                    Snacks.terminal()
+                end,
+                desc = 'Toggle Terminal',
+            },
+            -- Picker
+            {
+                '<leader>fb',
+                function()
+                    Snacks.picker.buffers()
+                end,
+                desc = 'Find Buffers',
+            },
+            {
+                '<leader>fc',
+                function()
+                    Snacks.picker.commands()
+                end,
+                desc = 'List Commands',
+            },
+            {
+                '<leader>fd',
+                function()
+                    Snacks.picker.diagnostics()
+                end,
+                desc = 'Find Diagnostics',
+            },
+            {
+                '<leader>ff',
+                function()
+                    Snacks.picker.files()
+                end,
+                desc = 'Find Files',
+            },
+            {
+                '<leader>fg',
+                function()
+                    Snacks.picker.grep()
+                end,
+                desc = 'Find Word',
+            },
+            {
+                '<leader>fh',
+                function()
+                    Snacks.picker.help()
+                end,
+                desc = 'Find Help',
+            },
+            {
+                '<leader>fk',
+                function()
+                    Snacks.picker.keymaps()
+                end,
+                desc = 'Find Keymaps',
+            },
+            {
+                '<leader>fl',
+                function()
+                    Snacks.picker.highlights()
+                end,
+                desc = 'Find Highlights',
+            },
+            {
+                '<leader>fo',
+                function()
+                    Snacks.picker.recent()
+                end,
+                desc = 'Recently opened files',
+            },
+            {
+                '<leader>fr',
+                function()
+                    Snacks.picker.grep_word()
+                end,
+                desc = 'Find Word Under Cursor',
+            },
+            {
+                '<leader>ft',
+                function()
+                    Snacks.picker.git_files()
+                end,
+                desc = 'Find Git Files',
+            },
+            {
+                '<leader>?',
+                function()
+                    Snacks.picker.keymaps()
+                end,
+                desc = 'Cheatsheet',
+            },
+            -- Explorer
+            {
+                '<Space>e',
+                function()
+                    Snacks.explorer()
+                end,
+                desc = 'File Explorer',
+            },
+            {
+                '<Leader>e',
+                function()
+                    Snacks.explorer()
+                end,
+                desc = 'File Explorer',
+            },
         },
     },
     -- colors
