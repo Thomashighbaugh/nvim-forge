@@ -5,6 +5,12 @@ return {
     {
         'sindrets/diffview.nvim',
         cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
+        keys = {
+            { '<leader>do', '<cmd>DiffviewOpen<cr>', desc = 'Open Diffview' },
+            { '<leader>dc', '<cmd>DiffviewClose<cr>', desc = 'Close Diffview' },
+            { '<leader>dh', '<cmd>DiffviewFileHistory<cr>', desc = 'File history' },
+            { '<leader>df', '<cmd>DiffviewToggleFiles<cr>', desc = 'Toggle file panel' },
+        },
         dependencies = 'nvim-lua/plenary.nvim',
         config = function()
             require('diffview').setup()

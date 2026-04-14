@@ -1,26 +1,20 @@
+-- ╭─────────────────────────────────────────────────────────╮
+-- │              LUALINE REPLACED BY MINI                   │
+-- ╰─────────────────────────────────────────────────────────╯
+-- lualine.nvim has been replaced by mini.statusline
+-- Configuration is now in mini-suite.lua
+-- This provides:
+-- - Lightweight status line
+-- - Better performance 
+-- - Consistent with mini ecosystem
+-- - Automatic icon support via mini.icons
+-- 
+-- Benefits:
+-- - Faster startup time
+-- - Simpler configuration
+-- - Reduced dependencies
+
 return {
-    'nvim-lualine/lualine.nvim',
-    lazy = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-        local lualine = require('lualine')
-        local lazy_status = require('lazy.status') -- to configure lazy pending updates count
-        lualine.setup({
-            options = {
-                theme = 'monokai-pro',
-            },
-            sections = {
-                lualine_x = {
-                    {
-                        lazy_status.updates,
-                        cond = lazy_status.has_updates,
-                        color = { fg = '#ff9e64' },
-                    },
-                    { 'encoding' },
-                    { 'fileformat' },
-                    { 'filetype' },
-                },
-            },
-        })
-    end,
+    -- Lualine is now disabled in favor of mini.statusline
+    -- Keeping this file as placeholder to document the change
 }

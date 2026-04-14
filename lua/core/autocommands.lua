@@ -98,7 +98,7 @@ vim.filetype.add({
 -- │                QUIT SPECIAL WINDOWS WITH Q              │
 -- ╰─────────────────────────────────────────────────────────╯
 au('FileType', {
-    pattern = { 'help', 'qf', 'man', 'oil', 'aerial-nav', 'query' },
+    pattern = { 'help', 'qf', 'man', 'query' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>bd<cr>', { silent = true, buffer = true })
         -- Open help in a new tab
@@ -176,6 +176,39 @@ au('RecordingLeave', {
     callback = function()
         -- Display a message when macro recording stops
         print('Macro recording stopped')
+    end,
+})
+
+-- ╔═════════════════════════════════════════════════════════╗
+-- ║         COMPLETE MARKDOWN SYNTAX BYPASS (NIXOS)         ║
+-- ╚═════════════════════════════════════════════════════════╝
+-- Completely prevent NixOS markdown syntax loading by intercepting filetype detection
+vim.filetype.add({
+    extension = {
+        md = 'text', -- Force markdown files to be detected as text initially
+    },
+})
+
+-- Then re-set to markdown after syntax is disabled
+au('BufReadPost', {
+    pattern = '*.md',
+    callback = function()
+        -- Set syntax off BEFORE changing filetype
+        vim.opt_local.syntax = 'off'
+        vim.b.current_syntax = 'off'
+        -- Now safely set to markdown for render-markdown plugin
+        vim.schedule(function()
+            vim.bo.filetype = 'markdown'
+        end)
+    end,
+})
+
+-- Additional safety net - disable syntax for any markdown filetype
+au('FileType', {
+    pattern = 'markdown',
+    callback = function()
+        vim.opt_local.syntax = 'off'
+        vim.b.current_syntax = 'off'
     end,
 })
 

@@ -36,7 +36,7 @@ vim.opt.winminwidth = 5
 -- Text
 vim.opt.textwidth = 0
 vim.opt.wrapmargin = 0
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.selection = 'inclusive'
@@ -91,14 +91,35 @@ vim.g.autoformat_enabled = true -- Enable auto formatting at start.
 vim.g.autopairs_enabled = true -- Enable autopairs at start.
 
 -- Markdown
-vim.g.markdown_fenced_languages = { 'html', 'python', 'lua', 'js=javascript' }
+vim.g.markdown_fenced_languages = { 'html', 'python', 'lua', 'js=javascript', 'markdown' }
 vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
 
 -- For treesitter commentstring
 vim.opt.updatetime = 100
 vim.g.skip_ts_context_commentstring_module = true
 
--- Disable providers for health checks
+-- ╭─────────────────────────────────────────────────────────────────────╮
+-- │ PERFORMANCE OPTIMIZATIONS                                           │
+-- ╰─────────────────────────────────────────────────────────────────────╯
+
+-- Reduce impact of syntax highlighting on large files
+vim.opt.redrawtime = 1500 -- Increase redraw time limit (default 2000)
+vim.opt.maxmempattern = 5000 -- Increase max memory for pattern matching
+
+-- Optimize regex engine
+vim.opt.regexpengine = 1 -- Use old regex engine which can be faster for some patterns
+
+-- Optimize completion
+vim.opt.pumheight = 15 -- Limit popup menu height to improve performance
+
+-- Optimize search
+vim.opt.maxmempattern = 1000 -- Limit memory used for pattern matching
+
+-- Improve responsiveness
+vim.opt.ttyfast = true -- Fast terminal connection
+vim.opt.ttimeoutlen = 50 -- Faster key code timeout
+
+-- Disable providers for health checks (uncomment if not needed)
 -- vim.g.loaded_python3_provider = 0
 -- vim.g.loaded_ruby_provider = 0
 -- vim.g.loaded_perl_provider = 0

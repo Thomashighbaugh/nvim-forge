@@ -83,6 +83,16 @@ return {
     --    sort lists alphabetically
     {
         'sQVe/sort.nvim',
+        keys = {
+            { '<leader>so', '<cmd>Sort<CR>', desc = 'Sort lines (motion)', mode = { 'n' } },
+            { '<leader>so', '<cmd>Sort<CR>', desc = 'Sort selection', mode = { 'v' } },
+            { '<leader>si', '<cmd>Sort i<CR>', desc = 'Sort lines (ignore case)', mode = { 'n' } },
+            { '<leader>si', '<cmd>Sort i<CR>', desc = 'Sort selection (ignore case)', mode = { 'v' } },
+            { '<leader>su', '<cmd>Sort u<CR>', desc = 'Sort lines (unique)', mode = { 'n' } },
+            { '<leader>su', '<cmd>Sort u<CR>', desc = 'Sort selection (unique)', mode = { 'v' } },
+            { '<leader>sn', '<cmd>Sort n<CR>', desc = 'Sort lines (numeric)', mode = { 'n' } },
+            { '<leader>sn', '<cmd>Sort n<CR>', desc = 'Sort selection (numeric)', mode = { 'v' } },
+        },
         config = function()
             require('sort').setup()
         end,
@@ -160,80 +170,142 @@ return {
             dashboard = {
                 enabled = true,
                 sections = {
-                    {
-                        section = 'header',
-                        text = {
-                            '',
-                            '',
-                            '',
-                            '                  dMMMMb  dMMMMMP .aMMMb  dMP dMP dMP dMMMMMMMMb',
-                            '                dMP dMP dMP     dMP"dMP dMP dMP amr dMP"dMP"dMP',
-                            '               dMP dMP dMMMP   dMP dMP dMP dMP dMP dMP dMP dMP ',
-                            '              dMP dMP dMP     dMP.aMP  YMvAP" dMP dMP dMP dMP  ',
-                            '             dMP dMP dMMMMMP  VMMMP"    VP"  dMP dMP dMP dMP   ',
-                            '',
-                            '',
-                            '',
-                        },
-                    },
-                    {
-                        section = 'group',
-                        sections = {
-                            {
-                                section = 'keys',
-                                keys = {
-                                    {
-                                        icon = ' ',
-                                        key = 'f',
-                                        desc = 'Find file',
-                                        action = ':lua Snacks.picker.files()',
-                                    },
-                                    { icon = '󰝒 ', key = 'n', desc = 'New file', action = ':enew | startinsert' },
-                                    {
-                                        icon = ' ',
-                                        key = 'e',
-                                        desc = 'File explorer',
-                                        action = ':lua Snacks.explorer()',
-                                    },
-                                    {
-                                        icon = ' ',
-                                        key = 't',
-                                        desc = 'Find text',
-                                        action = ':lua Snacks.picker.grep()',
-                                    },
-                                    { icon = ' ', key = 'g', desc = 'Git', action = ':Neogit' },
-                                    { icon = '💤', key = 'l', desc = 'Lazy', action = ':Lazy' },
-                                    { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
-                                },
-                            },
-                            { section = 'recent_files' },
-                        },
-                    },
+                    { section = 'header' },
+                    { section = 'keys', gap = 1, padding = 1 },
                     { section = 'startup' },
-                    {
-                        section = 'footer',
-                        text = function()
-                            local stats = require('lazy').stats()
-                            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                            return {
-                                '⚡ Neovim loaded '
-                                    .. stats.loaded
-                                    .. '/'
-                                    .. stats.count
-                                    .. ' plugins in '
-                                    .. ms
-                                    .. 'ms',
-                            }
-                        end,
-                    },
                 },
             },
             notifier = {
                 enabled = true,
-                style = 'compact',
-                timeout = 1000,
+                style = 'fancy', -- Use fancy style for better visibility
+                timeout = 5000, -- 5 seconds instead of 1
+                width = { min = 40, max = 0.8 }, -- Allow wider notifications
+                height = { min = 1, max = 0.6 }, -- Allow taller notifications
+                margin = { top = 0, right = 1, bottom = 0 },
+                padding = true,
+                sort = { 'level', 'added' },
+                level = vim.log.levels.INFO, -- Show all notifications
+                icons = {
+                    error = ' ',
+                    warn = ' ',
+                    info = ' ',
+                    debug = ' ',
+                    trace = ' ',
+                },
             },
             indent = { enabled = true },
+            bigfile = {
+                enabled = true,
+                notify = true, -- Show notification when optimizations are applied
+                size = 1024 * 1024, -- 1MB threshold
+                -- Configure what gets disabled for large files
+                setup = function(ctx)
+                    vim.cmd('NoMatchParen')
+                    vim.opt_local.foldmethod = 'manual'
+                    vim.opt_local.spell = false
+                    vim.opt_local.syntax = 'off'
+                    vim.opt_local.swapfile = false
+                    vim.opt_local.undofile = false
+                    vim.opt_local.wrap = false
+                    vim.opt_local.list = false
+                    vim.opt_local.colorcolumn = ''
+                    vim.opt_local.relativenumber = false
+                    vim.opt_local.cursorline = false
+                    vim.opt_local.cursorcolumn = false
+                    vim.opt_local.signcolumn = 'no'
+
+                    -- Disable treesitter
+                    vim.schedule(function()
+                        pcall(vim.treesitter.stop, ctx.buf)
+                    end)
+
+                    -- Disable LSP
+                    vim.schedule(function()
+                        local clients = vim.lsp.get_clients({ bufnr = ctx.buf })
+                        for _, client in ipairs(clients) do
+                            vim.lsp.buf_detach_client(ctx.buf, client.id)
+                        end
+                    end)
+
+                    -- Disable various plugins
+                    vim.schedule(function()
+                        -- Disable gitsigns
+                        local gitsigns_ok, gitsigns = pcall(require, 'gitsigns')
+                        if gitsigns_ok then
+                            pcall(gitsigns.detach, ctx.buf)
+                        end
+
+                        -- Disable indent-blankline
+                        pcall(vim.cmd, 'IBLDisable')
+
+                        -- Disable autocomplete
+                        local cmp_ok, cmp = pcall(require, 'cmp')
+                        if cmp_ok then
+                            cmp.setup.buffer({ enabled = false })
+                        end
+                    end)
+                end,
+            },
+            quickfile = {
+                enabled = true,
+            },
+            scope = {
+                enabled = true,
+                -- Disable animations to prevent easing errors
+                animate = false,
+                -- Configure scope appearance
+                backdrop = false,
+                border = 'rounded',
+                -- Configure when to show scope
+                treesitter = {
+                    -- Show scope for these treesitter node types
+                    blocks = {
+                        'function',
+                        'method',
+                        'class',
+                        'if_statement',
+                        'for_statement',
+                        'while_statement',
+                    },
+                },
+                -- Show scope on cursor movements and text changes
+                events = {
+                    'CursorMoved',
+                    'CursorMovedI',
+                    'TextChanged',
+                    'TextChangedI',
+                },
+            },
+            -- Disable scroll module to prevent PageUp/PageDown conflicts and easing errors
+            scroll = {
+                enabled = false,
+            },
+            statuscolumn = {
+                enabled = true,
+                left = { 'mark', 'sign' }, -- Left side: marks and signs
+                right = { 'fold', 'git' }, -- Right side: fold and git info
+                folds = {
+                    open = true, -- show open folds
+                    git_hl = false, -- don't highlight git signs
+                },
+                git = {
+                    patterns = { 'GitSign', 'MiniDiffSign' }, -- git sign patterns
+                },
+                refresh = 50, -- refresh every 50ms for performance
+            },
+            image = {
+                enabled = true,
+                -- Configure image viewing
+                backend = 'auto', -- auto-detect best backend (ueberzug, kitty, etc.)
+                integrations = {
+                    markdown = true,
+                    neorg = false,
+                },
+                max_width = 100,
+                max_height = 50,
+                window_overlap_clear_enabled = true,
+                window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs' },
+            },
         },
         keys = {
             -- Notifications
@@ -243,6 +315,21 @@ return {
                     Snacks.notifier.hide()
                 end,
                 desc = 'Dismiss all Notifications',
+            },
+            {
+                '<space>nh',
+                '<cmd>NotificationHistory<cr>',
+                desc = 'Show Notification History',
+            },
+            {
+                '<space>nl',
+                '<cmd>NotificationLast<cr>',
+                desc = 'Show Last Notification',
+            },
+            {
+                '<space>nc',
+                '<cmd>NotificationClear<cr>',
+                desc = 'Clear Notification History',
             },
             -- Dashboard
             {
@@ -358,6 +445,47 @@ return {
                 end,
                 desc = 'File Explorer',
             },
+            -- Big Files
+            {
+                '<leader>bf',
+                function()
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr))
+                    local is_bigfile = vim.b[bufnr].bigfile
+                    local msg = string.format(
+                        'File size: %.1f KB\nBig file optimizations: %s',
+                        file_size / 1024,
+                        is_bigfile and 'ENABLED' or 'DISABLED'
+                    )
+                    vim.notify(msg, vim.log.levels.INFO)
+                end,
+                desc = 'Big File Status',
+            },
+            -- Quickfile
+            {
+                '<leader>qf',
+                function()
+                    Snacks.quickfile()
+                end,
+                desc = 'Quick File Actions',
+            },
+            -- Scope
+            {
+                '<leader>sc',
+                function()
+                    Snacks.scope()
+                end,
+                desc = 'Toggle Scope',
+            },
+            -- Scroll module removed to prevent easing errors
+            -- StatusColumn
+            {
+                '<leader>st',
+                function()
+                    Snacks.statuscolumn.toggle()
+                end,
+                desc = 'Toggle Status Column',
+            },
         },
     },
     -- colors
@@ -365,11 +493,16 @@ return {
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                    Markdown Writing                     │
     -- ╰─────────────────────────────────────────────────────────╯
-    {
-        'Myzel394/easytables.nvim',
-        ft = 'markdown',
-        config = true,
-    },
+    -- Mini suite is now configured in mini-suite.lua
+    -- {
+    --     'echasnovski/mini.nvim',
+    --     event = 'VeryLazy',
+    --     config = function()
+    --         require('mini.ai').setup({ n_lines = 500 })
+    --         require('mini.surround').setup()
+    --         require('mini.pairs').setup()
+    --     end,
+    -- },
     {
         'Kicamon/markdown-table-mode.nvim',
         ft = 'markdown',
@@ -378,10 +511,42 @@ return {
 
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        opts = {},
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+        ft = 'markdown',
+        opts = {
+            -- Override built-in markdown syntax completely
+            render_modes = true,
+            -- Handle all markdown highlighting without system syntax
+            enabled = true,
+            max_file_size = 10.0,
+            -- Work without treesitter markdown parser to avoid conflicts
+            highlights = {
+                heading = {
+                    enabled = true,
+                    sign = false,
+                    backgrounds = { 'DiffAdd' },
+                    foregrounds = { 'markdownH1', 'markdownH2', 'markdownH3', 'markdownH4', 'markdownH5', 'markdownH6' },
+                },
+                code = {
+                    enabled = true,
+                    sign = false,
+                    style = 'normal',
+                    position = 'left',
+                    width = 'full',
+                    height = 'block',
+                    min_width = 0,
+                    pad = 0,
+                    border = 'thin',
+                    above = '▄',
+                    below = '▀',
+                    highlight = 'RenderMarkdownCode',
+                    highlight_inline = 'RenderMarkdownCodeInline',
+                },
+            },
+        },
+        config = function(_, opts)
+            require('render-markdown').setup(opts)
+        end,
     },
     --  ╭──────────────────────────────────────────────────────────╮
     --  │                          DEBUG                           │

@@ -30,6 +30,9 @@ require('core.options') -- General Neovim settings and options
 require('core.keymaps') -- Custom key mappings and shortcuts
 require('core.autocommands') -- Automatic commands triggered by events
 require('core.usercommands') -- Custom user-defined commands
+require('core.notifications').setup() -- Enhanced notification system
+require('core.smart-redraw').setup() -- Smart lazyredraw optimization
+require('core.error-logging').setup() -- Enhanced error logging system
 
 -- Configure lazy.nvim options
 -- These settings customize the appearance and behavior of the plugin manager

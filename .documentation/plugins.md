@@ -1,0 +1,278 @@
+# Neovim Plugin Configuration Reference
+
+This document provides a comprehensive overview of all plugins configured in this Neovim setup.
+
+## Plugin Overview
+
+**Total Plugins**: 58 active plugins  
+**Categories**: LSP, UI, Text Editing, Git, AI, Debug, Utilities  
+**Plugin Manager**: [Lazy.nvim](https://github.com/folke/lazy.nvim)  
+**Recent Update**: Major migration to Mini.nvim ecosystem for core functionality
+
+---
+
+## Complete Plugin Catalog
+
+| Plugin Name             | Repository                                  | Category          | Functionality                                                      | Key Bindings                                               |
+| ----------------------- | ------------------------------------------- | ----------------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| **Advanced Git Search** | aaronhallaert/advanced-git-search.nvim      | Git               | Advanced git search capabilities                                   | `:AdvancedGitSearch`                                       |
+| **AI Sync (Copilot)**   | zbirenbaum/copilot.lua                      | AI                | GitHub Copilot integration with auto-suggestions                   | `<Tab>` (accept), `<M-]>` (next), `<M-[>` (prev)           |
+| **Alt Substitute**      | chrisgrieser/nvim-alt-substitute            | Text Editing      | Better substitute command with preview                             | Auto-triggered on `:s/`                                    |
+| **Avante**              | yetone/avante.nvim                          | AI                | AI-powered coding assistant with Ollama integration                | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`                |
+| **Bufferline**          | akinsho/bufferline.nvim                     | UI                | Enhanced buffer/tab line with diagnostics                          | Visual only                                                |
+| **CodeCompanion**       | olimorris/codecompanion.nvim                | AI                | Code companion with chat and actions                               | `<leader>ic`, `<leader>iC`, `<leader>ia`                   |
+| **CodeSnap**            | mistricky/codesnap.nvim                     | Screenshots       | Generate beautiful code screenshots                                | `<leader>cc`, `<leader>cs` (visual mode)                   |
+| **Color Picker**        | wsdjeg/cpicker.nvim                         | Colors            | Color picker and shade generator                                   | `<leader>Cp`, `<leader>Cs`, `<leader>Ch`                   |
+| **Colorizer**           | norcalli/nvim-colorizer.lua                 | Colors            | Highlight color codes in files                                     | Auto-triggered                                             |
+| **Comment Box**         | LudoPinelli/comment-box.nvim                | Comments          | Create decorative comment boxes                                    | `<leader>cb`, `<leader>cd`, `<leader>ca`                   |
+| **Comment Frame**       | s1n7ax/nvim-comment-frame                   | Comments          | Create comment frames around text                                  | `<leader>cf`, `<leader>cm`                                 |
+| **Conform**             | stevearc/conform.nvim                       | Formatting        | Code formatter with format-on-save                                 | Auto format on save                                        |
+| **CopilotChat**         | CopilotC-Nvim/CopilotChat.nvim              | AI                | Chat interface for GitHub Copilot                                  | Chat interface                                             |
+| **DAP**                 | mfussenegger/nvim-dap                       | Debug             | Debug Adapter Protocol support                                     | `<leader>Db` (breakpoint)                                  |
+| **DAP UI**              | rcarriga/nvim-dap-ui                        | Debug             | Debug UI with variables and watches                                | `<leader>Du`                                               |
+| **DAP Virtual Text**    | theHamsta/nvim-dap-virtual-text             | Debug             | Show variable values as virtual text                               | Auto-triggered                                             |
+| **Diffview**            | sindrets/diffview.nvim                      | Git               | Git diff viewer with file history                                  | `<leader>do`, `<leader>dc`, `<leader>dh`                   |
+| **Dressing**            | stevearc/dressing.nvim                      | UI                | Better UI for vim.ui.select and vim.ui.input                       | Auto-triggered                                             |
+| **Flash**               | folke/flash.nvim                            | Navigation        | Fast cursor movement and search                                    | `s` (jump), `<leader>s` (treesitter), `<space>v` (search)  |
+| **Friendly Snippets**   | rafamadriz/friendly-snippets                | Snippets          | Collection of snippets for various languages                       | Dependency for LuaSnip                                     |
+| **Gitsigns**            | lewis6991/gitsigns.nvim                     | Git               | Git signs, hunks, and blame integration                            | `<leader>g*` (git operations)                              |
+| **Glance**              | dnlhc/glance.nvim                           | LSP               | Preview LSP locations in floating window                           | `<space>gr`, `<space>gd`, `<space>gy`, `<space>gm`         |
+| **Image Preview**       | 3rd/image.nvim                              | Media             | Preview images in terminal                                         | `<leader>pi`, `<leader>pp`                                 |
+| **Img Clip**            | HakonHarnes/img-clip.nvim                   | Media             | Clipboard image support                                            | Auto-triggered                                             |
+| **Inc Rename**          | smjonas/inc-rename.nvim                     | LSP               | Incremental LSP rename with preview                                | `<space>ir`                                                |
+| **Java LSP (JDTLS)**    | mfussenegger/nvim-jdtls                     | LSP               | Java language server integration                                   | Auto-triggered for Java                                    |
+| **Kitty Terminal**      | fladson/vim-kitty                           | Terminal          | Kitty terminal integration                                         | Auto-triggered                                             |
+| **LazyDev**             | folke/lazydev.nvim                          | LSP               | Better Lua development for Neovim                                  | Auto-triggered                                             |
+| **LSP Config**          | neovim/nvim-lspconfig                       | LSP               | Language server protocol configuration                             | `gr*` (LSP functions), `K` (hover), `<M-CR>` (code action) |
+| **LSP Endhints**        | chrisgrieser/nvim-lsp-endhints              | LSP               | Show LSP inlay hints at end of line                                | Auto-triggered                                             |
+| **LuaSnip**             | L3MON4D3/LuaSnip                            | Snippets          | Snippet engine with VS Code snippet support                        | `<C-i>`, `<C-Up>`, `<C-Down>`, `<C-Shift-o>`               |
+| **Markdown Table Mode** | Kicamon/markdown-table-mode.nvim            | Markdown          | Table mode for markdown editing                                    | Auto-triggered in markdown                                 |
+| **Mason**               | mason-org/mason.nvim                        | LSP               | LSP server installer and manager                                   | `<leader>lm`                                               |
+| **Mason LSP Config**    | mason-org/mason-lspconfig.nvim              | LSP               | Bridge between mason and lspconfig                                 | Auto configuration                                         |
+| **Mini Align**          | echasnovski/mini.align                      | Text Editing      | Align text by patterns                                             | `<leader>ma`, `<leader>mA`                                 |
+| **Mini AI**             | echasnovski/mini.ai                         | Text Objects      | Enhanced text objects (around/inside)                              | `va)`, `yinq`, `ci'`, etc.                                 |
+| **Mini Animate**        | echasnovski/mini.animate                    | UI                | Smooth animations for cursor and scroll movement                   | Auto-triggered                                             |
+| **Mini Bracketed**      | echasnovski/mini.bracketed                  | Navigation        | Navigate with bracket motions ([/] for various objects)            | `[b`, `]b`, `[d`, `]d`, etc.                               |
+| **Mini Bufremove**      | echasnovski/mini.bufremove                  | Buffer Management | Smart buffer deletion that preserves layout                        | `<leader>bd`, `<leader>bD`                                 |
+| **Mini Comment**        | echasnovski/mini.comment                    | Comments          | Toggle comments with treesitter context _(REPLACES Comment.nvim)_  | `gc`, `gcc`, `gc` (visual)                                 |
+| **Mini Completion**     | echasnovski/mini.completion                 | Completion        | Simple completion with LSP and cmdline _(REPLACES nvim-cmp)_       | `<C-Space>`, `<A-Space>`                                   |
+| **Mini Icons**          | echasnovski/mini.icons                      | Icons             | Icon provider                                                      | Auto-triggered                                             |
+| **Mini Indentscope**    | echasnovski/mini.indentscope                | UI                | Animated indent scope indicator                                    | Auto-triggered                                             |
+| **Mini Notify**         | echasnovski/mini.notify                     | UI                | Notification system with LSP progress _(REPLACES nvim-notify)_     | Auto-triggered, `vim.notify()` calls                       |
+| **Mini Pairs**          | echasnovski/mini.pairs                      | Text Editing      | Auto-close brackets and quotes                                     | Auto-triggered                                             |
+| **Mini Pick**           | echasnovski/mini.pick                       | Fuzzy Finder      | Fuzzy picker for files, buffers, grep _(REPLACES Telescope)_       | `<leader>ff`, `<leader>fg`, `<leader>fb`, `<C-p>`, `-`     |
+| **Mini Statusline**     | echasnovski/mini.statusline                 | UI                | Clean statusline with icons _(REPLACES Lualine.nvim)_              | None (automatic)                                           |
+| **Mini Surround**       | echasnovski/mini.surround                   | Text Editing      | Add/delete/replace surroundings (sa, sd, sr)                       | `saiw)`, `sd'`, `sr)'`                                     |
+| **Mini Visits**         | echasnovski/mini.visits                     | Navigation        | Track and navigate frequently/recently visited files               | `<leader>vv`, `<leader>vf`, `<leader>vr`, `<leader>vc`     |
+| **Monokai Pro**         | loctvl842/monokai-pro.nvim                  | Color Scheme      | Professional color theme with transparent background support       | None                                                       |
+| **Neogit**              | NeogitOrg/neogit                            | Git               | Git interface with staging and commit UI                           | `<leader>gg`                                               |
+| **Nerdy**               | 2kabhishek/nerdy.nvim                       | Icons             | Browse and insert nerd font icons                                  | `<leader>in`, `<leader>iN`                                 |
+| **Noice**               | folke/noice.nvim                            | UI                | Enhanced messages, cmdline and popups                              | `<space>nd`, `<space>nh`, `<space>nl`                      |
+| **NUI**                 | MunifTanjim/nui.nvim                        | UI                | UI component library                                               | Dependency                                                 |
+| **Nvim Autopairs**      | windwp/nvim-autopairs                       | Text Editing      | Auto-close brackets, quotes with smart rules                       | Auto-triggered                                             |
+| **Nvim Lint**           | mfussenegger/nvim-lint                      | Linting           | Linting engine for multiple file types                             | Auto-triggered                                             |
+| **Nvim Navic**          | SmiteshP/nvim-navic                         | LSP               | Breadcrumbs in winbar                                              | Auto-triggered in winbar                                   |
+| **Nvim Surround**       | kylechui/nvim-surround                      | Text Editing      | Add/delete/change surroundings                                     | `sa`, `sd`, `sr` + motion                                  |
+| **Nvim Toggler**        | nguyenvukhang/nvim-toggler                  | Utilities         | Toggle boolean values and words                                    | `<leader>w`                                                |
+| **Nvim Treesitter**     | nvim-treesitter/nvim-treesitter             | Syntax            | Advanced syntax highlighting and AST parsing                       | `af`, `if`, `ac`, `ic` (textobjects)                       |
+| **Nvim Web Devicons**   | nvim-tree/nvim-web-devicons                 | Icons             | File type icons                                                    | Auto-triggered                                             |
+| **Ollama**              | nomnivore/ollama.nvim                       | AI                | Local LLM integration with Ollama                                  | `<leader>Oo`, `<leader>Om`, `<leader>Os`, `<leader>OM`     |
+| **Outline**             | hedyhli/outline.nvim                        | LSP               | Code outline sidebar                                               | `<space>o`                                                 |
+| **Plenary**             | nvim-lua/plenary.nvim                       | Utilities         | Lua utilities library                                              | Dependency                                                 |
+| **Project Notes**       | ravnheim/project_notes                      | Note Taking       | Project-specific note management                                   | `<leader>nm`, `<leader>nt`, `<leader>nl`                   |
+| **Rainbow Delimiters**  | HiPhish/rainbow-delimiters.nvim             | Syntax            | Colorize matching brackets/delimiters                              | Auto-triggered                                             |
+| **Redraft**             | jim-at-jibba/nvim-redraft                   | AI                | LLM-powered code editing and generation                            | Commands available                                         |
+| **Render Markdown**     | MeanderingProgrammer/render-markdown.nvim   | Markdown          | Live markdown preview and rendering                                | Auto-triggered                                             |
+| **Smart Splits**        | mrjones2014/smart-splits.nvim               | Window Management | Smart window resizing and navigation                               | `<A-hjkl>` (resize), `<C-arrows>` (move)                   |
+| **Snacks**              | folke/snacks.nvim                           | Multi-utility     | Dashboard, terminal, explorer, notifications, bigfile optimization | `<leader>db`, `<leader>tt`, `<space>e`, `<space>nd`        |
+| **Sort**                | sQVe/sort.nvim                              | Text Editing      | Sort lines and visual selections                                   | `<leader>so`, `<leader>si`, `<leader>su`, `<leader>sn`     |
+| **Statuscol**           | luukvbaal/statuscol.nvim                    | UI                | Configurable status column                                         | Auto-triggered                                             |
+| **Symbols**             | oskarrrrrrr/symbols.nvim                    | LSP               | Symbol outline for current file                                    | `<leader>lS`                                               |
+| **Todo Comments**       | folke/todo-comments.nvim                    | Comments          | Highlight and search TODO comments                                 | `<leader>tq`, `<leader>ts`                                 |
+| **Todo Marker**         | maheshbansod/todo-marker.nvim               | Comments          | Toggle todo markers in comments                                    | `<leader>mt`                                               |
+| **Trouble**             | folke/trouble.nvim                          | Diagnostics       | Diagnostics, references, and quickfix list UI                      | `<space>xx`, `<space>xs`, `<space>xl`                      |
+| **TS Autotag**          | windwp/nvim-ts-autotag                      | HTML/XML          | Auto close and rename HTML tags                                    | Auto-triggered                                             |
+| **TS Context**          | nvim-treesitter/nvim-treesitter-context     | Treesitter        | Show function/class context at top                                 | Auto-triggered                                             |
+| **TS Node Action**      | ckolkey/ts-node-action                      | Treesitter        | Trigger actions on treesitter nodes                                | `+`                                                        |
+| **TS Textobjects**      | nvim-treesitter/nvim-treesitter-textobjects | Treesitter        | Text objects based on syntax tree                                  | `af`, `if`, `ac`, `ic` and more                            |
+| **TS Treehopper**       | mfussenegger/nvim-treehopper                | Treesitter        | Jump to treesitter nodes                                           | Commands available                                         |
+| **Which Key**           | folke/which-key.nvim                        | UI                | Keymap hints and documentation                                     | Auto-triggered                                             |
+| **Yanky**               | gbprod/yanky.nvim                           | Clipboard         | Enhanced yank/paste with history                                   | `<leader>y`, `p`, `P`, `gp`, `gP`                          |
+
+## Replaced/Disabled Plugins
+
+The following plugins have been replaced by Mini.nvim equivalents or other solutions and are no longer active:
+
+| Replaced Plugin  | Repository                | Replaced By                     | Reason                                             |
+| ---------------- | ------------------------- | ------------------------------- | -------------------------------------------------- |
+| **Comment.nvim** | numToStr/Comment.nvim     | **mini.comment**                | Simpler configuration, same functionality          |
+| **nvim-cmp**     | hrsh7th/nvim-cmp          | **mini.completion**             | Fixes cmdline errors, simpler config               |
+| **Lualine.nvim** | nvim-lualine/lualine.nvim | **mini.statusline**             | Lighter weight, better performance                 |
+| **Snipe.nvim**   | leath-dub/snipe.nvim      | **mini.pick.builtin.buffers()** | Unified picker interface (mapped to `-` key)       |
+| **Mini.files**   | echasnovski/mini.files    | **snacks.explorer**             | Disabled to preserve snacks.explorer functionality |
+
+## Plugin Categories
+
+### 🏠 Mini.nvim Ecosystem (14 modules)
+
+- **Core Modules**: mini.ai, mini.surround, mini.pairs, mini.icons
+- **New Additions**: mini.visits, mini.completion, mini.pick, mini.comment, mini.statusline, mini.bufremove, mini.notify, mini.bracketed, mini.animate, mini.align, mini.indentscope
+- **Disabled**: mini.files (conflicts with snacks.explorer)
+- **Benefits**: Consistent API, better performance, unified configuration
+
+### 🔧 LSP & Language Support (12 plugins)
+
+- **Core**: nvim-lspconfig, mason.nvim, mason-lspconfig.nvim, lazydev.nvim
+- **Java**: nvim-jdtls
+- **Navigation**: glance.nvim, outline.nvim, nvim-navic, symbols.nvim
+- **Enhancement**: inc-rename.nvim, nvim-lsp-endhints, trouble.nvim
+
+### 🎨 UI & Visual Enhancement (10 plugins)
+
+- **Theme**: monokai-pro.nvim
+- **Status**: mini.statusline (replaces lualine), bufferline.nvim, statuscol.nvim
+- **Notifications**: noice.nvim, mini.notify
+- **Visual**: rainbow-delimiters.nvim, mini.indentscope, nvim-colorizer.lua
+- **Multi-purpose**: snacks.nvim (dashboard, terminal, explorer, notifications), dressing.nvim
+
+### ✏️ Text Editing & Manipulation (15 plugins)
+
+- **Completion**: mini.completion (replaces nvim-cmp)
+- **Snippets**: LuaSnip, friendly-snippets
+- **Editing**: nvim-surround, mini.surround, nvim-autopairs, flash.nvim
+- **Formatting**: conform.nvim, nvim-lint
+- **Comments**: mini.comment (replaces Comment.nvim), todo-comments.nvim, comment-box.nvim, nvim-comment-frame, todo-marker.nvim
+- **Text Operations**: sort.nvim, nvim-toggler, chrisgrieser/nvim-alt-substitute
+
+### 🔍 Navigation & File Management (5 plugins)
+
+- **File Exploration**: snacks.explorer (mini.files disabled)
+- **Fuzzy Finding**: mini.pick (replaces telescope), snacks.picker
+- **Recent Files**: mini.visits
+- **Buffer Management**: mini.bufremove, mini.pick.builtin.buffers() (replaces snipe)
+- **Window Management**: smart-splits.nvim
+
+### 📝 Git Integration (4 plugins)
+
+- **Core**: gitsigns.nvim, neogit
+- **Advanced**: diffview.nvim, advanced-git-search.nvim
+
+### 🤖 AI & LLM Integration (8 plugins)
+
+- **Local AI**: ollama.nvim
+- **Assistant**: avante.nvim (with Ollama integration)
+- **Copilot**: copilot.lua, CopilotChat.nvim, copilot-cmp
+- **Code Assistance**: codecompanion.nvim, redraft.nvim
+- **External**: huggingface/llm.nvim
+
+### 🐛 Debug Support (3 plugins)
+
+- **Core**: nvim-dap
+- **UI**: nvim-dap-ui, nvim-dap-virtual-text
+
+### 🎯 Syntax & Treesitter (6 plugins)
+
+- **Core**: nvim-treesitter
+- **Extensions**: nvim-treesitter-textobjects, nvim-treesitter-context, nvim-treehopper
+- **Enhancements**: ts-node-action, nvim-ts-autotag
+
+### 🖼️ Media & Visualization (4 plugins)
+
+- **Screenshots**: codesnap.nvim
+- **Image Support**: 3rd/image.nvim, HakonHarnes/img-clip.nvim
+- **Colors**: wsdjeg/cpicker.nvim
+
+### 📝 Documentation & Writing (4 plugins)
+
+- **Markdown**: render-markdown.nvim, markdown-table-mode.nvim
+- **Project Notes**: ravnheim/project_notes
+- **Help**: which-key.nvim
+
+### 🔧 Utilities & Dependencies (9 plugins)
+
+- **Foundation**: plenary.nvim, nui.nvim
+- **Icons**: mini.icons, nvim-web-devicons, nerdy.nvim
+- **Terminal**: vim-kitty
+- **Development**: lazydev.nvim (with wezterm-types, luvit-meta)
+- **Clipboard**: yanky.nvim
+
+## Key Features
+
+### 🚀 Performance Optimizations
+
+- **Lazy Loading**: Most plugins load only when needed
+- **Large Files**: snacks.bigfile for performance optimization
+- **Smart Startup**: Delayed initialization for better startup time
+- **Mini.nvim**: Lighter alternative to heavy plugins
+
+### 🎯 Modern Development Workflow
+
+- **LSP Integration**: Full language server support with 15+ language servers
+- **AI Assistance**: Multiple AI providers (Ollama, Copilot, HuggingFace, CodeCompanion)
+- **Git Workflow**: Complete git integration from staging to searching
+- **Debug Support**: Full DAP implementation with UI
+
+### 🎨 Enhanced User Experience
+
+- **Rich UI**: Modern interface with notifications and popups
+- **Smart Navigation**: Fast movement with flash.nvim and mini.pick
+- **Visual Feedback**: Comprehensive syntax highlighting and colors
+- **Unified Interface**: Consistent picker experience via mini.pick
+
+## Recent Major Updates (2026-04-14)
+
+### Mini.nvim Migration
+
+- **Migrated to Mini.nvim**: Replaced multiple heavy plugins with lightweight mini.nvim modules
+- **Eliminated Issues**: Fixed cmp_cmdline errors by switching to mini.completion
+- **Unified Experience**: Single picker interface (mini.pick) for all selection tasks
+- **Performance**: Significant startup time improvements
+
+### Key Replacements
+
+1. **nvim-cmp → mini.completion**: Better cmdline support, no more errors
+2. **Comment.nvim → mini.comment**: Simpler configuration, treesitter context aware
+3. **lualine.nvim → mini.statusline**: Lighter weight, better performance
+4. **snipe.nvim → mini.pick.builtin.buffers()**: Unified picker interface (still mapped to `-`)
+5. **mini.files disabled**: Preserved snacks.explorer functionality per user preference
+
+### New Features
+
+- **File Visits**: Track frequently and recently visited files (mini.visits)
+- **Enhanced Completion**: Better cmdline completion without errors
+- **Smooth Animations**: Cursor and scroll animations for better UX
+- **Smart Navigation**: Bracket motions for quick navigation
+- **Multiple AI Providers**: Expanded AI ecosystem with 8 different AI plugins
+
+## Configuration Structure
+
+```
+lua/plugins/
+├── init.lua                 # Main snacks configuration and core plugins
+├── mini-suite.lua           # All mini.nvim modules (NEW)
+├── cmp.lua                  # Replaced by mini.completion (placeholder)
+├── comments.lua             # Comment plugins (mini.comment + extras)
+├── lualine.lua              # Replaced by mini.statusline (placeholder)
+├── snipe.lua                # Replaced by mini.pick (placeholder)
+├── lsp/                     # LSP-specific configurations
+├── ai/                      # AI and LLM plugins
+└── [various].lua            # Individual plugin configs
+```
+
+## Installation
+
+This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. All plugins are automatically installed on first startup.
+
+## Maintenance
+
+- **Health Check**: Run `:checkhealth` to verify plugin status
+- **Updates**: Use `:Lazy update` to update all plugins
+- **Update + Clean**: `:Lazy sync`
+- **Profile**: Use `:Lazy profile` to check startup performance
+
+---
+
+_Last Updated_: 2026-04-14  
+_Total Active Plugins_: 58  
+_Configuration Version_: Modern Neovim Setup with AI Integration and Mini.nvim Migration  
+_Audit Date_: 2026-04-14

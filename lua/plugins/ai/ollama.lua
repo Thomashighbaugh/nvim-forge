@@ -4,19 +4,7 @@ return {
         cmd = { 'Ollama', 'OllamaModel', 'OllamaServe', 'OllamaServeStop' },
 
         keys = {
-            {
-                -- testing chat
-                '<leader>Oc',
-                '<cmd>OllamaChat<cr>',
-                desc = 'OllamaChat',
-            },
-            {
-                '<leader>OC',
-                function()
-                    require('ollama.chat').close()
-                end,
-                desc = 'OllamaChat Close',
-            },
+
             {
                 '<leader>Oo',
                 ":<c-u>lua require('ollama').prompt()<cr>",

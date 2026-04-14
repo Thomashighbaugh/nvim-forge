@@ -7,44 +7,45 @@ return {
         config = function()
             local tm = require('todo-marker')
             tm.setup()
-            vim.keymap.set('n', '<leader>mt', tm.toggle_todo_item, { desc = 'Toggle Todo Marker' })
+            vim.keymap.set('n', '<leader>tm', tm.toggle_todo_item, { desc = 'Toggle Todo Marker' })
         end,
     },
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                      COMMENT.NVIM                       │
     -- ╰─────────────────────────────────────────────────────────╯
-    {
-        'numToStr/Comment.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        keys = {
-            { 'gc', mode = 'v' },
-            { 'gb', mode = 'v' },
-            { 'gcc' },
-            { 'gbc' },
-            { 'gco' },
-            { 'gcO' },
-            { 'gcA' },
-        },
-        dependencies = {
-            {
-                'JoosepAlviste/nvim-ts-context-commentstring',
-                config = function()
-                    require('ts_context_commentstring').setup({
-                        enable_autocmd = false,
-                    })
-                end,
-            },
-        },
-        config = function()
-            require('Comment').setup({
-                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-                -- pre_hook = function()
-                --     return vim.bo.commentstring
-                -- end,
-            })
-        end,
-    },
+    -- DISABLED: Replaced by mini.comment in mini-suite.lua
+    -- {
+    --     'numToStr/Comment.nvim',
+    --     event = { 'BufReadPre', 'BufNewFile' },
+    --     keys = {
+    --         { 'gc', mode = 'v' },
+    --         { 'gb', mode = 'v' },
+    --         { 'gcc' },
+    --         { 'gbc' },
+    --         { 'gco' },
+    --         { 'gcO' },
+    --         { 'gcA' },
+    --     },
+    --     dependencies = {
+    --         {
+    --             'JoosepAlviste/nvim-ts-context-commentstring',
+    --             config = function()
+    --                 require('ts_context_commentstring').setup({
+    --                     enable_autocmd = false,
+    --                 })
+    --             end,
+    --         },
+    --     },
+    --     config = function()
+    --         require('Comment').setup({
+    --             pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+    --             -- pre_hook = function()
+    --             --     return vim.bo.commentstring
+    --             -- end,
+    --         })
+    --     end,
+    -- },
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                   TODO-COMMENTS.NVIM                    │

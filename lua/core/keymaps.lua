@@ -8,6 +8,15 @@ local Utils = require('core.utils')
 -- Exit from insert mode
 vim.keymap.set('i', 'kj', '<esc>', { desc = 'Exit insert mode' })
 
+-- ╭─────────────────────────────────────────────────────────╮
+-- │                  PAGE UP/DOWN SCROLLING                 │
+-- ╰─────────────────────────────────────────────────────────╯
+-- Ensure PageUp/PageDown work properly for page scrolling
+vim.keymap.set('n', '<PageUp>', '<C-b>', { desc = 'Page up', noremap = true, silent = true })
+vim.keymap.set('n', '<PageDown>', '<C-f>', { desc = 'Page down', noremap = true, silent = true })
+vim.keymap.set('v', '<PageUp>', '<C-b>', { desc = 'Page up', noremap = true, silent = true })
+vim.keymap.set('v', '<PageDown>', '<C-f>', { desc = 'Page down', noremap = true, silent = true })
+
 -- Save
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'Save' })
 
@@ -306,3 +315,63 @@ vim.keymap.set('v', '<leader>OaU', function()
 end, { desc = 'Add Tests(edit)' })
 
 -- Smart Splits keybindings are now defined in lua/plugins/smart-splits.lua
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │                  NOTIFICATION KEYMAPS                   │
+--  ╰──────────────────────────────────────────────────────────╯
+-- Note: Notification keybindings are defined in:
+-- - lua/core/notifications.lua (enhanced notification system)
+-- - lua/plugins/init.lua (snacks integration)
+--
+-- Available keybindings:
+-- <space>nd  - Dismiss all notifications
+-- <space>nh  - Show notification history
+-- <space>nl  - Show last notification in detail
+-- <space>nc  - Clear notification history
+-- <space>nn  - Alternative for notification history
+--
+-- Commands:
+-- :NotificationHistory - Show notification history
+-- :NotificationClear   - Clear notification history
+-- :NotificationLast    - Show last notification
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │                 SNACKS MODULE KEYMAPS                   │
+--  ╰──────────────────────────────────────────────────────────╯
+-- Note: Snacks module keybindings are defined in lua/plugins/init.lua
+--
+-- Big File Management:
+-- <leader>bf - Show big file status and optimization state
+--
+-- Quickfile Actions:
+-- <leader>qf - Quick file actions (new file, git operations)
+--
+-- Scope Navigation:
+-- <leader>sc - Toggle scope information display
+--
+-- Smooth Scrolling:
+-- <leader>ss - Toggle smooth scrolling on/off
+--
+-- Status Column:
+-- <leader>st - Toggle enhanced status column with git/fold info
+--
+-- Automatic Features:
+-- - Big file optimizations trigger for files larger than 1MB
+-- - Scope shows context during navigation
+-- - Smooth scrolling with easing animations
+-- - Status column shows marks, signs, folds, and git info
+-- - Image viewing support for markdown and other formats
+-- - Smart lazyredraw: Temporarily enabled during macros and expensive operations
+
+--  ╭──────────────────────────────────────────────────────────╮
+--  │                 PERFORMANCE COMMANDS                     │
+--  ╰──────────────────────────────────────────────────────────╯
+-- Smart Redraw Commands (defined in lua/core/smart-redraw.lua):
+-- :LazyRedrawEnable  - Temporarily enable lazyredraw
+-- :LazyRedrawDisable - Disable temporary lazyredraw
+-- :LazyRedrawStatus  - Show current lazyredraw status
+--
+-- Note: lazyredraw is automatically managed during:
+-- - Macro recording and execution
+-- - Large search/replace operations
+-- - Other expensive operations

@@ -9,8 +9,12 @@ return {
         -- ╭─────────────────────╮
         -- │ LSP CAPABILITIES    │
         -- ╰─────────────────────╯
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        -- local capabilities = require('blink.cmp').get_lsp_capabilities()
+        -- Updated for mini.completion compatibility
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+            properties = { 'documentation', 'detail', 'additionalTextEdits' }
+        }
 
         -- ╭─────────────────────────────────╮
         -- │ LSP BORDER FOR :LSPINFO COMMAND │
@@ -44,7 +48,8 @@ return {
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('UserLspConfig', {}),
             callback = function(ev)
-                vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+                -- Set completefunc for mini.completion compatibility
+                vim.bo[ev.buf].completefunc = 'v:lua.vim.lsp.omnifunc'
 
                 -- ╭─────────╮
                 -- │ KEYMAPS │
@@ -121,8 +126,22 @@ return {
         }
 
         local handlers = {
-            ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-            ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+            ['textDocument/hover'] = function(err, result, ctx, config)
+                return vim.lsp.handlers.hover(
+                    err,
+                    result,
+                    ctx,
+                    vim.tbl_extend('force', config or {}, { border = border })
+                )
+            end,
+            ['textDocument/signatureHelp'] = function(err, result, ctx, config)
+                return vim.lsp.handlers.signature_help(
+                    err,
+                    result,
+                    ctx,
+                    vim.tbl_extend('force', config or {}, { border = border })
+                )
+            end,
         }
 
         -- ╭───────────────────╮

@@ -11,7 +11,7 @@ return {
     },
     config = function()
         local opts = {
-            notes_path = '.github/documentation/',
+            notes_path = '.documentation/', -- platform neutral and easier to find while not crowding things out like non-hidden directories
             autosave = true,
             extension = '.md',
             confirmation = true,
@@ -23,7 +23,7 @@ return {
                 delete_empty = '<leader>ne',
             },
             highlight = {
-                fg = '#a0a0a0',
+                fg = '#cbcbcb',
                 bg = '#2e2e2e',
             },
         }

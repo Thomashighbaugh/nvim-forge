@@ -74,6 +74,7 @@ return {
                 'latex',
                 'lua',
                 'luadoc',
+                -- 'markdown' and 'markdown_inline' removed due to NixOS syntax conflicts
                 'nim',
                 'nim_format_string',
                 'nix',
@@ -96,7 +97,11 @@ return {
                 'yaml',
                 'zig',
             },
-            highlight = { enable = true },
+            highlight = { 
+                enable = true,
+                -- Disable for markdown to prevent syntax conflicts with NixOS neovim
+                disable = { "markdown" },
+            },
             indent = { enable = true },
         },
         config = function(_, opts)
