@@ -84,7 +84,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **Redraft**             | jim-at-jibba/nvim-redraft                   | AI                | LLM-powered code editing and generation                            | Commands available                                         |
 | **Render Markdown**     | MeanderingProgrammer/render-markdown.nvim   | Markdown          | Live markdown preview and rendering                                | Auto-triggered                                             |
 | **Smart Splits**        | mrjones2014/smart-splits.nvim               | Window Management | Smart window resizing and navigation                               | `<A-hjkl>` (resize), `<C-arrows>` (move)                   |
-| **Snacks**              | folke/snacks.nvim                           | Multi-utility     | Dashboard, terminal, explorer, notifications, bigfile optimization | `<leader>db`, `<leader>tt`, `<space>e`, `<space>nd`        |
+| **Snacks.nvim** | folke/snacks.nvim | Multi-utility | Multi-feature utility plugin with 8 submodules | Multiple keybindings |
 | **Sort**                | sQVe/sort.nvim                              | Text Editing      | Sort lines and visual selections                                   | `<leader>so`, `<leader>si`, `<leader>su`, `<leader>sn`     |
 | **Statuscol**           | luukvbaal/statuscol.nvim                    | UI                | Configurable status column                                         | Auto-triggered                                             |
 | **Symbols**             | oskarrrrrrr/symbols.nvim                    | LSP               | Symbol outline for current file                                    | `<leader>lS`                                               |
@@ -120,6 +120,14 @@ The following plugins have been replaced by Mini.nvim equivalents or other solut
 - **Disabled**: mini.files (conflicts with snacks.explorer)
 - **Benefits**: Consistent API, better performance, unified configuration
 
+### 🍿 Snacks.nvim Ecosystem (8 submodules)
+
+- **Core Modules**: snacks.dashboard, snacks.terminal, snacks.quickfile, snacks.scope
+- **File Operations**: snacks.explorer, snacks.picker
+- **Notifications**: snacks.notifier
+- **Performance**: snacks.bigfile, snacks.words
+- **Benefits**: Lightweight, fast, integrated with folke ecosystem
+
 ### 🔧 LSP & Language Support (12 plugins)
 
 - **Core**: nvim-lspconfig, mason.nvim, mason-lspconfig.nvim, lazydev.nvim
@@ -133,7 +141,7 @@ The following plugins have been replaced by Mini.nvim equivalents or other solut
 - **Status**: mini.statusline (replaces lualine), bufferline.nvim, statuscol.nvim
 - **Notifications**: noice.nvim, mini.notify
 - **Visual**: rainbow-delimiters.nvim, mini.indentscope, nvim-colorizer.lua
-- **Multi-purpose**: snacks.nvim (dashboard, terminal, explorer, notifications), dressing.nvim
+- **Multi-purpose**: snacks.nvim (8 submodules: dashboard, explorer, picker, terminal, notifier, bigfile, quickfile, scope), dressing.nvim
 
 ### ✏️ Text Editing & Manipulation (15 plugins)
 
@@ -157,13 +165,12 @@ The following plugins have been replaced by Mini.nvim equivalents or other solut
 - **Core**: gitsigns.nvim, neogit
 - **Advanced**: diffview.nvim, advanced-git-search.nvim
 
-### 🤖 AI & LLM Integration (8 plugins)
+### 🤖 AI & LLM Integration (7 plugins)
 
 - **Local AI**: ollama.nvim
 - **Assistant**: avante.nvim (with Ollama integration)
 - **Copilot**: copilot.lua, CopilotChat.nvim, copilot-cmp
 - **Code Assistance**: codecompanion.nvim, redraft.nvim
-- **External**: huggingface/llm.nvim
 
 ### 🐛 Debug Support (3 plugins)
 
@@ -208,7 +215,7 @@ The following plugins have been replaced by Mini.nvim equivalents or other solut
 ### 🎯 Modern Development Workflow
 
 - **LSP Integration**: Full language server support with 15+ language servers
-- **AI Assistance**: Multiple AI providers (Ollama, Copilot, HuggingFace, CodeCompanion)
+- **AI Assistance**: Multiple AI providers (Ollama, Copilot, CodeCompanion)
 - **Git Workflow**: Complete git integration from staging to searching
 - **Debug Support**: Full DAP implementation with UI
 
@@ -242,7 +249,7 @@ The following plugins have been replaced by Mini.nvim equivalents or other solut
 - **Enhanced Completion**: Better cmdline completion without errors
 - **Smooth Animations**: Cursor and scroll animations for better UX
 - **Smart Navigation**: Bracket motions for quick navigation
-- **Multiple AI Providers**: Expanded AI ecosystem with 8 different AI plugins
+- **Multiple AI Providers**: Expanded AI ecosystem with 7 different AI plugins
 
 ## Configuration Structure
 
