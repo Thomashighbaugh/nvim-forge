@@ -7,7 +7,6 @@ return {
         cmd = 'Copilot',
         event = { 'InsertEnter' },
         build = ':Copilot auth',
-        dependencies = { 'zbirenbaum/copilot-cmp' },
         config = function()
             require('copilot').setup({
                 panel = {
@@ -47,16 +46,6 @@ return {
             -- See Configuration section for options
         },
         -- See Commands section for default commands if you want to lazy load on them
-    },
-    {
-        'zbirenbaum/copilot-cmp',
-        event = { 'InsertEnter' },
-        dependencies = { 'copilot.lua' },
-        opts = {},
-        config = function(_, opts)
-            local copilot_cmp = require('copilot_cmp')
-            copilot_cmp.setup(opts)
-        end,
     },
 
     -- ╔═════════════════════════════════════════════════════════╗

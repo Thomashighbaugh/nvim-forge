@@ -238,11 +238,11 @@ return {
                         -- Disable indent-blankline
                         pcall(vim.cmd, 'IBLDisable')
 
-                        -- Disable autocomplete
-                        local cmp_ok, cmp = pcall(require, 'cmp')
-                        if cmp_ok then
-                            cmp.setup.buffer({ enabled = false })
-                        end
+                        -- Disable mini.completion for big files
+                        pcall(function()
+                            local minicomp = require('mini.completion')
+                            vim.b.minicompletion_disabled = true
+                        end)
                     end)
                 end,
             },
@@ -304,7 +304,7 @@ return {
                 max_width = 100,
                 max_height = 50,
                 window_overlap_clear_enabled = true,
-                window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs' },
+                window_overlap_clear_ft_ignore = {},
             },
         },
         keys = {

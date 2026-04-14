@@ -84,32 +84,15 @@ function M.setup()
         end
     end, { desc = 'Show recent errors from log' })
 
-    -- CMP specific error debugging
-    vim.api.nvim_create_user_command('CmpDebug', function()
-        local cmp = require('cmp')
-        vim.notify('CMP Debug Info:\nSources: ' .. vim.inspect(cmp.get_config().sources), vim.log.levels.INFO)
-    end, { desc = 'Show CMP debug information' })
-
-    vim.api.nvim_create_user_command('CmpTest', function()
-        vim.notify('Testing CMP cmdline completion...', vim.log.levels.INFO)
-
-        -- Schedule the test to avoid blocking
-        vim.schedule(function()
-            -- Simulate entering command mode
-            vim.api.nvim_feedkeys(':', 'n', false)
-
-            vim.defer_fn(function()
-                -- Type some text that should trigger completion
-                vim.api.nvim_feedkeys('help ', 'n', false)
-
-                vim.defer_fn(function()
-                    -- Exit command mode
-                    vim.api.nvim_feedkeys('<C-c>', 'n', false)
-                    vim.notify('CMP cmdline test completed - check for any errors above', vim.log.levels.INFO)
-                end, 500)
-            end, 300)
-        end)
-    end, { desc = 'Test CMP cmdline completion' })
+    -- Mini.completion debug command
+    vim.api.nvim_create_user_command('MiniCompDebug', function()
+        local ok, minicomp = pcall(require, 'mini.completion')
+        if ok then
+            vim.notify('mini.completion is active', vim.log.levels.INFO)
+        else
+            vim.notify('mini.completion not available', vim.log.levels.WARN)
+        end
+    end, { desc = 'Show mini.completion debug information' })
 end
 
 -- Function to capture and log Lua errors
