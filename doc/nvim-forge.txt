@@ -14,9 +14,7 @@ Table of Contents                               *nvim-forge-table-of-contents*
 1. Neovim Forge                                      *nvim-forge-neovim-forge*
 
 My Winchester Mystery <https://en.wikipedia.org/wiki/Winchester_Mystery_House>
-Neovim Configuration, using `lazy.nvim` for plugin management and Lua as its
-configuration language. My _Personal Development Environment_ (PDE) and the
-core tool used in cultivating my Personal Knowledge Base (PKB).
+Neovim Configuration, using `lazy.nvim`
 
 
   **Warning** This is my personal configuration, subject to experimentation and
@@ -344,23 +342,22 @@ EDITOR FUNCTIONALITY ~
 PLUGIN MANAGEMENT (LAZY) ~
 
   ---------------------------------------------------------------------------
-  Keys                                            Mode     Description
-  ----------------------------------------------- -------- ------------------
-  Leader → l → a                                  Normal   Open Lazy
+  Keys                                          Mode     Description
+  --------------------------------------------- -------- --------------------
+  Leader → l → a                                Normal   Open Lazy
 
-  Leader → l → A                                  Normal   Aerial Symbol
-                                                           Outline
+  Leader → l → A                                Normal   Aerial Symbol
+                                                         Outline
 
-  Leader → l → c                                  Normal   Clean Lazy Plugins
+  Leader → l → c                                Normal   Clean Lazy Plugins
 
-  Leader → l → C                                  Normal   Check Lazy Plugins
+  Leader → l → C                                Normal   Check Lazy Plugins
 
-  Leader → l → m                                  Normal   Mason LSP Manager
+  Leader → l → m                                Normal   Mason LSP Manager
 
-  Leader → l → s                                  Normal   Sync Lazy Plugins
+  Leader → l → s                                Normal   Sync Lazy Plugins
 
-  Leader → l → S                                  Normal   LSP Symbols
-                                                           Sidebar
+  Leader → l → S                                Normal   LSP Symbols Sidebar
   ---------------------------------------------------------------------------
 
 ICONS (NERDY) ~
@@ -376,14 +373,14 @@ ICONS (NERDY) ~
 
 IMAGE PREVIEW ~
 
-  --------------------------------------------------------------------------
-  Keys                                       Mode     Description
-  ------------------------------------------ -------- ----------------------
-  Leader → p → i                             Normal   Initialize Image
-                                                      Preview
+  ---------------------------------------------------------------------------
+  Keys                                        Mode     Description
+  ------------------------------------------- -------- ----------------------
+  Leader → p → i                              Normal   Initialize Image
+                                                       Preview
 
-  Leader → p → p                             Normal   Clear Images
-  --------------------------------------------------------------------------
+  Leader → p → p                              Normal   Clear Images
+  ---------------------------------------------------------------------------
 
 DEBUGGING ~
 
