@@ -1,4 +1,5 @@
-*nvim-forge.txt*The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
+*nvim-forge.txt* The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
+                                 For NVIM v0.8.0    Last change: 2026 April 14
 
 ==============================================================================
 Table of Contents                               *nvim-forge-table-of-contents*
@@ -138,7 +139,7 @@ GENERAL KEYBINDINGS ~
   [!] Note:
   - >
           means press both keys at the same time
-      <
+  <
       → means first the key on the left then the key on the right
 
 BASIC NAVIGATION AND EDITING ~
