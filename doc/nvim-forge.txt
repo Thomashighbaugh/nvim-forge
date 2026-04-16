@@ -1,5 +1,5 @@
 *nvim-forge.txt* The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
-                                 For NVIM v0.8.0    Last change: 2026 April 14
+                                 For NVIM v0.8.0    Last change: 2026 April 16
 
 ==============================================================================
 Table of Contents                               *nvim-forge-table-of-contents*
