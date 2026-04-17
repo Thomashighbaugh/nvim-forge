@@ -22,36 +22,36 @@ return {
         keys = {
             {
                 '<leader>Ocq',
-                '<cmd>OllamaQuickChat<cr>',
-                desc = 'Ollama Quick Chat',
+                '<cmd>vsplit | OllamaQuickChat<cr>',
+                desc = 'Ollama Quick Chat (vsplit)',
                 mode = { 'n', 'x' },
                 silent = true,
             },
             {
                 '<leader>Ocn',
-                '<cmd>OllamaCreateNewChat<cr>',
-                desc = 'Create Ollama Chat',
+                '<cmd>vsplit | OllamaCreateNewChat<cr>',
+                desc = 'Create Ollama Chat (vsplit)',
                 mode = { 'n', 'x' },
                 silent = true,
             },
             {
                 '<leader>Occ',
-                '<cmd>OllamaContinueChat<cr>',
-                desc = 'Continue Ollama Chat',
+                '<cmd>vsplit | OllamaContinueChat<cr>',
+                desc = 'Continue Ollama Chat (vsplit)',
                 mode = { 'n', 'x' },
                 silent = true,
             },
             {
                 '<leader>Och',
-                '<cmd>OllamaChat<cr>',
-                desc = 'Chat',
+                '<cmd>vsplit | OllamaChat<cr>',
+                desc = 'Chat (vsplit)',
                 mode = { 'n' },
                 silent = true,
             },
             {
                 '<leader>Ocd',
-                '<cmd>OllamaChatCode<cr>',
-                desc = 'Chat Code',
+                '<cmd>vsplit | OllamaChatCode<cr>',
+                desc = 'Chat Code (vsplit)',
                 mode = { 'n' },
                 silent = true,
             },
@@ -149,6 +149,18 @@ return {
                     },
                 },
                 display = {
+                    chat = {
+                        window = {
+                            layout = 'vertical',
+                            width = 0.45,
+                            height = 0.9,
+                            opts = {
+                                number = false,
+                                relativenumber = false,
+                                wrap = true,
+                            },
+                        },
+                    },
                     action_palette = {
                         width = 95,
                         height = 10,

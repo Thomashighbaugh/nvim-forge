@@ -242,18 +242,6 @@ return {
             -- end,
         }
 
-        -- ╭──────────────────╮
-        -- │ VOLAR VUE SERVER │
-        -- ╰──────────────────╯
-        vim.lsp.config.volar = {
-            capabilities = capabilities,
-            handlers = handlers,
-            init_options = {
-                vue = {
-                    hybridMode = false,
-                },
-            },
-        }
 
         -- ╭───────────────╮
         -- │ PYTHON SERVER │
