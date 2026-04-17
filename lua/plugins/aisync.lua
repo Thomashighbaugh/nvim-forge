@@ -118,11 +118,17 @@ return {
                 end,
             },
         },
-        { '<leader>Oc', group = 'CodeCompanion' },
-        { '<leader>Occ', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
-        { '<leader>Oca', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Actions', mode = { 'n', 'v', 'x' } },
-        { '<leader>Ocd', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
-        { '<leader>Oc<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
+        keys = {
+            { '<leader>Occ', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
+            {
+                '<leader>Oca',
+                '<cmd>CodeCompanionActions<cr>',
+                desc = 'CodeCompanion Actions',
+                mode = { 'n', 'v', 'x' },
+            },
+            { '<leader>Ocd', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
+            { '<leader>Oc<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
+        },
         dependencies = {
             'j-hui/fidget.nvim',
             'ravitemer/codecompanion-history.nvim',
