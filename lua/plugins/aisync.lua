@@ -1,51 +1,76 @@
 return {
     -- ╭─────────────────────────────────────────────────────────╮
-    -- │                         Copilot                         │
+    -- │                      ollama-chat                         │
     -- ╰─────────────────────────────────────────────────────────╯
     {
-        'zbirenbaum/copilot.lua',
-        cmd = 'Copilot',
-        event = { 'InsertEnter' },
-        build = ':Copilot auth',
-        config = function()
-            require('copilot').setup({
-                panel = {
-                    enabled = false,
-                },
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = true,
-                    debounce = 75,
-                    keymap = {
-                        accept = '<Tab>',
-                        accept_word = false,
-                        accept_line = false,
-                        next = '<M-]>',
-                        prev = '<M-[>',
-                        dismiss = '<C-e>',
-                    },
-                },
-            })
-        end,
-        opts = {
-            suggestion = { enabled = true },
-            panel = { enabled = true },
-            filetypes = {
-                ['*'] = true, -- disable for all other filetypes and ignore default `filetypes`
+        'gerazov/ollama-chat.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'stevearc/dressing.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+        cmd = {
+            'OllamaQuickChat',
+            'OllamaCreateNewChat',
+            'OllamaContinueChat',
+            'OllamaChat',
+            'OllamaChatCode',
+            'OllamaModel',
+            'OllamaServe',
+            'OllamaServeStop',
+        },
+        keys = {
+            {
+                '<leader>Ocq',
+                '<cmd>OllamaQuickChat<cr>',
+                desc = 'Ollama Quick Chat',
+                mode = { 'n', 'x' },
+                silent = true,
+            },
+            {
+                '<leader>Ocn',
+                '<cmd>OllamaCreateNewChat<cr>',
+                desc = 'Create Ollama Chat',
+                mode = { 'n', 'x' },
+                silent = true,
+            },
+            {
+                '<leader>Occ',
+                '<cmd>OllamaContinueChat<cr>',
+                desc = 'Continue Ollama Chat',
+                mode = { 'n', 'x' },
+                silent = true,
+            },
+            {
+                '<leader>Och',
+                '<cmd>OllamaChat<cr>',
+                desc = 'Chat',
+                mode = { 'n' },
+                silent = true,
+            },
+            {
+                '<leader>Ocd',
+                '<cmd>OllamaChatCode<cr>',
+                desc = 'Chat Code',
+                mode = { 'n' },
+                silent = true,
             },
         },
-    },
-    {
-        'CopilotC-Nvim/CopilotChat.nvim',
-        dependencies = {
-            { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
-            { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
-        },
-        build = 'make tiktoken', -- Only on MacOS or Linux
         opts = {
-            -- See Configuration section for options
+            chats_folder = vim.fn.stdpath('data'),
+            quick_chat_file = 'ollama-chat.md',
+            animate_spinner = true,
+            model = 'glm-5:cloud',
+            model_code = 'glm-5:cloud',
+            url = 'http://127.0.0.1:11434',
+            serve = {
+                on_start = false,
+                command = 'ollama',
+                args = { 'serve' },
+                stop_command = 'pkill',
+                stop_args = { '-SIGTERM', 'ollama' },
+            },
         },
-        -- See Commands section for default commands if you want to lazy load on them
     },
 
     -- ╔═════════════════════════════════════════════════════════╗
@@ -82,57 +107,50 @@ return {
                 },
             },
             adapters = {
-                copilot = function()
-                    return require('codecompanion.adapters').extend('copilot', {
+                ollama = function()
+                    return require('codecompanion.adapters').extend('ollama', {
                         schema = {
                             model = {
-                                default = 'gemini-2.5-pro',
+                                default = 'glm-5:cloud',
                             },
                         },
                     })
                 end,
             },
         },
-        keys = {
-            { '<leader>ic', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
-            { '<leader>iC', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
-            { '<leader>ia', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Actions', mode = { 'n', 'v', 'x' } },
-            { '<leader>id', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
-        },
+        { '<leader>Oc', group = 'CodeCompanion' },
+        { '<leader>Occ', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
+        { '<leader>Oca', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Actions', mode = { 'n', 'v', 'x' } },
+        { '<leader>Ocd', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
+        { '<leader>Oc<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
         dependencies = {
             'j-hui/fidget.nvim',
-            'ravitemer/codecompanion-history.nvim', -- Save and load conversation history
+            'ravitemer/codecompanion-history.nvim',
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
-            -- {
-            --     "Davidyz/VectorCode", -- Index and search code in your repositories
-            --     version = "*",
-            --     build = "pipx upgrade vectorcode",
-            --     dependencies = { "nvim-lua/plenary.nvim" },
-            -- },
         },
         config = function()
             require('codecompanion').setup({
                 strategies = {
                     chat = {
-                        adapter = 'copilot',
+                        adapter = 'ollama',
                     },
                     inline = {
-                        adapter = 'copilot',
+                        adapter = 'ollama',
                     },
                     cmd = {
-                        adapter = 'copilot',
+                        adapter = 'ollama',
                     },
                 },
                 display = {
                     action_palette = {
                         width = 95,
                         height = 10,
-                        prompt = 'Prompt ', -- Prompt used for interactive LLM calls
-                        provider = 'telescope', -- Can be "default", "telescope", "mini_pick" or "snacks". If not specified, the plugin will autodetect installed providers.
+                        prompt = 'Prompt ',
+                        provider = 'telescope',
                         opts = {
-                            show_default_actions = true, -- Show the default actions in the action palette?
-                            show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+                            show_default_actions = true,
+                            show_default_prompt_library = true,
                         },
                     },
                 },

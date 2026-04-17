@@ -7,7 +7,7 @@
 -- - Buffer selection via mini.pick interface
 -- - Consistent picker experience
 -- - Better integration with overall workflow
--- 
+--
 -- Benefits:
 -- - Unified picker interface for all selection tasks
 -- - Consistent keybindings and behavior

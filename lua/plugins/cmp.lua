@@ -5,11 +5,11 @@
 -- Configuration is now in mini-suite.lua
 -- This provides:
 -- - LSP completion
--- - Cmdline completion (peek functionality)  
+-- - Cmdline completion (peek functionality)
 -- - Buffer completion
 -- - Path completion
 -- - Built-in fallback completion
--- 
+--
 -- Benefits:
 -- - No more cmp_cmdline errors
 -- - Simpler configuration

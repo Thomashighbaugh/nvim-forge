@@ -15,7 +15,7 @@ return {
                 -- How visit is tracked
                 track = {
                     event = 'BufEnter', -- Track on buffer enter
-                    delay = 1000,       -- Delay in ms
+                    delay = 1000, -- Delay in ms
                 },
                 -- How visit information is stored
                 store = {
@@ -74,7 +74,7 @@ return {
                 -- Module mappings. Use `''` (empty string) to disable one. Some of them
                 -- might conflict with system mappings.
                 mappings = {
-                    force_twostep  = '<C-Space>', -- Force two-step completion
+                    force_twostep = '<C-Space>', -- Force two-step completion
                     force_fallback = '<A-Space>', -- Force fallback completion
                 },
 
@@ -98,37 +98,37 @@ return {
 
                 -- Keys for performing actions. See `:h MiniPick-actions`.
                 mappings = {
-                    choose            = '<CR>',
-                    choose_in_split   = '<C-s>',
+                    choose = '<CR>',
+                    choose_in_split = '<C-s>',
                     choose_in_tabpage = '<C-t>',
-                    choose_in_vsplit  = '<C-v>',
-                    choose_marked     = '<M-CR>',
+                    choose_in_vsplit = '<C-v>',
+                    choose_marked = '<M-CR>',
 
-                    delete_char      = '<BS>',
+                    delete_char = '<BS>',
                     delete_char_right = '<Del>',
-                    delete_left      = '<C-u>',
-                    delete_word      = '<C-w>',
+                    delete_left = '<C-u>',
+                    delete_word = '<C-w>',
 
-                    mark     = '<C-x>',
+                    mark = '<C-x>',
                     mark_all = '<C-a>',
 
-                    move_down  = '<C-n>',
+                    move_down = '<C-n>',
                     move_start = '<C-g>',
-                    move_up    = '<C-p>',
+                    move_up = '<C-p>',
 
                     paste = '<C-r>',
 
-                    refine        = '<C-Space>',
+                    refine = '<C-Space>',
                     refine_marked = '<M-Space>',
 
                     scroll_down = '<C-f>',
                     scroll_left = '<C-h>',
                     scroll_right = '<C-l>',
-                    scroll_up   = '<C-b>',
+                    scroll_up = '<C-b>',
 
                     stop = '<Esc>',
 
-                    toggle_info    = '<S-Tab>',
+                    toggle_info = '<S-Tab>',
                     toggle_preview = '<Tab>',
                 },
 
@@ -172,20 +172,20 @@ return {
                 --
                 -- See `:h MiniBracketed.config` for more details.
 
-                buffer     = { suffix = 'b', options = {} },
-                comment    = { suffix = 'c', options = {} },
-                conflict   = { suffix = 'x', options = {} },
+                buffer = { suffix = 'b', options = {} },
+                comment = { suffix = 'c', options = {} },
+                conflict = { suffix = 'x', options = {} },
                 diagnostic = { suffix = 'd', options = {} },
-                file       = { suffix = 'f', options = {} },
-                indent     = { suffix = 'i', options = {} },
-                jump       = { suffix = 'j', options = {} },
-                location   = { suffix = 'l', options = {} },
-                oldfile    = { suffix = 'o', options = {} },
-                quickfix   = { suffix = 'q', options = {} },
+                file = { suffix = 'f', options = {} },
+                indent = { suffix = 'i', options = {} },
+                jump = { suffix = 'j', options = {} },
+                location = { suffix = 'l', options = {} },
+                oldfile = { suffix = 'o', options = {} },
+                quickfix = { suffix = 'q', options = {} },
                 treesitter = { suffix = 't', options = {} },
-                undo       = { suffix = 'u', options = {} },
-                window     = { suffix = 'w', options = {} },
-                yank       = { suffix = 'y', options = {} },
+                undo = { suffix = 'u', options = {} },
+                window = { suffix = 'w', options = {} },
+                yank = { suffix = 'y', options = {} },
             })
 
             -- ╭─────────────────────────────────────────────────────────╮
@@ -344,27 +344,117 @@ return {
         end,
         keys = {
             -- Mini.visits keybindings
-            { '<leader>vv', function() require('mini.visits').select_path() end, desc = 'Select recent path' },
-            { '<leader>vf', function() require('mini.visits').select_path('', { filter = 'frequent' }) end, desc = 'Select frequent path' },
-            { '<leader>vr', function() require('mini.visits').select_path('', { filter = 'recent' }) end, desc = 'Select recent path' },
-            { '<leader>vc', function() require('mini.visits').select_path(vim.fn.getcwd()) end, desc = 'Select path in cwd' },
+            {
+                '<leader>vv',
+                function()
+                    require('mini.visits').select_path()
+                end,
+                desc = 'Select recent path',
+            },
+            {
+                '<leader>vf',
+                function()
+                    require('mini.visits').select_path('', { filter = 'frequent' })
+                end,
+                desc = 'Select frequent path',
+            },
+            {
+                '<leader>vr',
+                function()
+                    require('mini.visits').select_path('', { filter = 'recent' })
+                end,
+                desc = 'Select recent path',
+            },
+            {
+                '<leader>vc',
+                function()
+                    require('mini.visits').select_path(vim.fn.getcwd())
+                end,
+                desc = 'Select path in cwd',
+            },
 
             -- Mini.pick keybindings (telescope replacement)
-            { '<leader>ff', function() require('mini.pick').builtin.files() end, desc = 'Find files' },
-            { '<leader>fg', function() require('mini.pick').builtin.grep_live() end, desc = 'Live grep' },
-            { '<leader>fb', function() require('mini.pick').builtin.buffers() end, desc = 'Find buffers' },
-            { '<leader>fh', function() require('mini.pick').builtin.help() end, desc = 'Find help' },
-            { '<leader>fr', function() require('mini.pick').builtin.resume() end, desc = 'Resume last picker' },
-            { '<leader>f/', function() require('mini.pick').builtin.grep() end, desc = 'Grep in files' },
-            
+            {
+                '<leader>ff',
+                function()
+                    require('mini.pick').builtin.files()
+                end,
+                desc = 'Find files',
+            },
+            {
+                '<leader>fg',
+                function()
+                    require('mini.pick').builtin.grep_live()
+                end,
+                desc = 'Live grep',
+            },
+            {
+                '<leader>fb',
+                function()
+                    require('mini.pick').builtin.buffers()
+                end,
+                desc = 'Find buffers',
+            },
+            {
+                '<leader>fh',
+                function()
+                    require('mini.pick').builtin.help()
+                end,
+                desc = 'Find help',
+            },
+            {
+                '<leader>fr',
+                function()
+                    require('mini.pick').builtin.resume()
+                end,
+                desc = 'Resume last picker',
+            },
+            {
+                '<leader>f/',
+                function()
+                    require('mini.pick').builtin.grep()
+                end,
+                desc = 'Grep in files',
+            },
+
             -- Mini.bufremove keybindings
-            { '<leader>bd', function() require('mini.bufremove').delete() end, desc = 'Delete buffer (keep layout)' },
-            { '<leader>bD', function() require('mini.bufremove').delete(0, true) end, desc = 'Delete buffer (force)' },
-            
+            {
+                '<leader>bd',
+                function()
+                    require('mini.bufremove').delete()
+                end,
+                desc = 'Delete buffer (keep layout)',
+            },
+            {
+                '<leader>bD',
+                function()
+                    require('mini.bufremove').delete(0, true)
+                end,
+                desc = 'Delete buffer (force)',
+            },
+
             -- Convenience mappings
-            { '<C-p>', function() require('mini.pick').builtin.files() end, desc = 'Find files' },
-            { '<leader>/', function() require('mini.pick').builtin.grep_live() end, desc = 'Live grep' },
-            { '-', function() require('mini.pick').builtin.buffers() end, desc = 'Buffer picker (replaces snipe)' },
+            {
+                '<C-p>',
+                function()
+                    require('mini.pick').builtin.files()
+                end,
+                desc = 'Find files',
+            },
+            {
+                '<leader>/',
+                function()
+                    require('mini.pick').builtin.grep_live()
+                end,
+                desc = 'Live grep',
+            },
+            {
+                '-',
+                function()
+                    require('mini.pick').builtin.buffers()
+                end,
+                desc = 'Buffer picker (replaces snipe)',
+            },
         },
     },
 }

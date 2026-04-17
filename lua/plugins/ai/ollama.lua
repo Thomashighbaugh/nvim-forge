@@ -95,7 +95,7 @@ return {
 
         -- prompt
         opts = {
-            model = 'huggingface.co/lmstudio-community/DeepSeek-Coder-V2-Lite-Instruct-GGUF:latest',
+            model = 'glm-5:cloud',
             url = 'http://127.0.0.1:11434',
             serve = {
                 on_start = false,

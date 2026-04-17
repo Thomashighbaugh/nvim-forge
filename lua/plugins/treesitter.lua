@@ -97,10 +97,10 @@ return {
                 'yaml',
                 'zig',
             },
-            highlight = { 
+            highlight = {
                 enable = true,
                 -- Disable for markdown to prevent syntax conflicts with NixOS neovim
-                disable = { "markdown" },
+                disable = { 'markdown' },
             },
             indent = { enable = true },
         },

@@ -8,7 +8,7 @@ return {
         ollama = {
             api_key_name = '',
             endpoint = 'http://127.0.0.1:11434',
-            model = 'mistral-nemo:latest',
+            model = 'glm-5:cloud',
             options = {
                 num_ctx = 32768,
                 temperature = 0,

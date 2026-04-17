@@ -5,10 +5,10 @@
 -- Configuration is now in mini-suite.lua
 -- This provides:
 -- - Lightweight status line
--- - Better performance 
+-- - Better performance
 -- - Consistent with mini ecosystem
 -- - Automatic icon support via mini.icons
--- 
+--
 -- Benefits:
 -- - Faster startup time
 -- - Simpler configuration
