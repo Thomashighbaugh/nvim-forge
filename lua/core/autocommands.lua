@@ -209,6 +209,11 @@ au('FileType', {
     callback = function()
         vim.opt_local.syntax = 'off'
         vim.b.current_syntax = 'off'
+        -- Soft wrapping for markdown
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        vim.opt_local.breakindent = true
+        vim.opt_local.showbreak = '↪ '
     end,
 })
 
