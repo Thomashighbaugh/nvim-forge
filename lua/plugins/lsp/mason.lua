@@ -32,7 +32,6 @@ return {
                 'ruff',
                 'rust_analyzer',
                 'ts_ls',
-                'volar',
                 'yamlls',
             },
         })

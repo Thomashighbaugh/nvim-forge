@@ -205,7 +205,7 @@ return {
                             -- "${3rd}/luv/library"
                             -- "${3rd}/busted/library",
                         },
-                        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+                        -- or pull in all of 'runtimepath' but this is a lot slower
                         -- library = vim.api.nvim_get_runtime_file("", true)
                     },
                 })
@@ -234,14 +234,13 @@ return {
                     importModuleSpecifierPreference = 'non-relative',
                 },
             },
-            -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-            -- on_attach = function(client, bufnr)
-            --     client.server_capabilities.document_formatting = false
-            --     client.server_capabilities.document_range_formatting = false
-            --     on_attach(client, bufnr)
-            -- end,
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            on_attach = function(client, bufnr)
+                client.server_capabilities.document_formatting = false
+                client.server_capabilities.document_range_formatting = false
+                on_attach(client, bufnr)
+            end,
         }
-
 
         -- ╭───────────────╮
         -- │ PYTHON SERVER │
@@ -446,3 +445,7 @@ return {
         }
     end,
 }
+
+ 
+> Generating... ⠋
+

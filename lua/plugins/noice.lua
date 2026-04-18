@@ -56,6 +56,20 @@ return {
             },
         },
         routes = {
+            -- ╭──────────────────────────────╮
+            -- │ BLOCK LTEX PROGRESS MESSAGES │
+            -- ╰──────────────────────────────╯
+            {
+                filter = {
+                    event = 'lsp',
+                    kind = 'progress',
+                    any = {
+                        { find = 'Checking document' },
+                        { find = 'ltex' },
+                    },
+                },
+                opts = { skip = true },
+            },
             -- ╭───────────────────────╮
             -- │ SEND MESSAGES TO MINI │
             -- ╰───────────────────────╯
