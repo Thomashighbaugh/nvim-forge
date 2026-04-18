@@ -1,78 +1,4 @@
 return {
-    -- ╭─────────────────────────────────────────────────────────╮
-    -- │                      ollama-chat                         │
-    -- ╰─────────────────────────────────────────────────────────╯
-    {
-        'gerazov/ollama-chat.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'stevearc/dressing.nvim',
-            'nvim-telescope/telescope.nvim',
-        },
-        cmd = {
-            'OllamaQuickChat',
-            'OllamaCreateNewChat',
-            'OllamaContinueChat',
-            'OllamaChat',
-            'OllamaChatCode',
-            'OllamaModel',
-            'OllamaServe',
-            'OllamaServeStop',
-        },
-        keys = {
-            {
-                '<leader>Ocq',
-                '<cmd>vsplit | OllamaQuickChat<cr>',
-                desc = 'Ollama Quick Chat (vsplit)',
-                mode = { 'n', 'x' },
-                silent = true,
-            },
-            {
-                '<leader>Ocn',
-                '<cmd>vsplit | OllamaCreateNewChat<cr>',
-                desc = 'Create Ollama Chat (vsplit)',
-                mode = { 'n', 'x' },
-                silent = true,
-            },
-            {
-                '<leader>Occ',
-                '<cmd>vsplit | OllamaContinueChat<cr>',
-                desc = 'Continue Ollama Chat (vsplit)',
-                mode = { 'n', 'x' },
-                silent = true,
-            },
-            {
-                '<leader>Och',
-                '<cmd>vsplit | OllamaChat<cr>',
-                desc = 'Chat (vsplit)',
-                mode = { 'n' },
-                silent = true,
-            },
-            {
-                '<leader>Ocd',
-                '<cmd>vsplit | OllamaChatCode<cr>',
-                desc = 'Chat Code (vsplit)',
-                mode = { 'n' },
-                silent = true,
-            },
-        },
-        opts = {
-            chats_folder = vim.fn.stdpath('data'),
-            quick_chat_file = 'ollama-chat.md',
-            animate_spinner = true,
-            model = 'glm-5:cloud',
-            model_code = 'glm-5:cloud',
-            url = 'http://127.0.0.1:11434',
-            serve = {
-                on_start = false,
-                command = 'ollama',
-                args = { 'serve' },
-                stop_command = 'pkill',
-                stop_args = { '-SIGTERM', 'ollama' },
-            },
-        },
-    },
-
     -- ╔═════════════════════════════════════════════════════════╗
     -- ║                     code companion                      ║
     -- ╚═════════════════════════════════════════════════════════╝
@@ -119,15 +45,15 @@ return {
             },
         },
         keys = {
-            { '<leader>Occ', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
+            { '<leader>Oc', '<cmd>CodeCompanionChat<cr>', desc = 'CodeCompanion Chat', mode = { 'n', 'v', 'x' } },
             {
-                '<leader>Oca',
+                '<leader>Oa',
                 '<cmd>CodeCompanionActions<cr>',
                 desc = 'CodeCompanion Actions',
                 mode = { 'n', 'v', 'x' },
             },
-            { '<leader>Ocd', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
-            { '<leader>Oc<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
+            { '<leader>Od', '<cmd>CodeCompanionCmd<cr>', desc = 'CodeCompanion CMD', mode = { 'n', 'v', 'x' } },
+            { '<leader>O<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
         },
         dependencies = {
             'j-hui/fidget.nvim',

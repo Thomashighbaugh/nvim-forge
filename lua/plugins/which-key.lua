@@ -18,7 +18,6 @@ return {
                 { '<leader>Ds', group = 'Dap Step' },
                 { '<leader>O', group = 'Ollama / AI' },
                 { '<leader>Oa', group = 'Avante' },
-                { '<leader>Oc', group = 'Chat (CodeCompanion & Ollama)' },
                 { '<leader>Oo', group = 'Ollama Prompts' },
                 { '<leader>d', group = 'Diffview' },
                 { '<leader>e', group = 'File Explorer (Snacks)' },

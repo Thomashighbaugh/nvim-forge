@@ -98,23 +98,24 @@ return {
                 if client and client.server_capabilities and client.server_capabilities.documentSymbolProvider then
                     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
                     navic.attach(client, ev.buf)
+                else
+                    vim.o.winbar = ''
                 end
             end,
         })
 
-        -- ╭────────────────────╮
-        -- │ TOGGLE INLAY HINTS │
-        -- ╰────────────────────╯
-        if vim.lsp.inlay_hint then
-            vim.keymap.set('n', '<Space>ih', function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, { desc = 'Toggle Inlay Hints' })
-        end
-
-        -- ╭─────────────╮
-        -- │ LSP BORDERS │
-        -- ╰─────────────╯
+        -- ╭──────────────────────╮
+        -- │ BORDER CONFIGURATION │
+        -- ╰──────────────────────╯
         local border = {
+            { '╭', 'FloatBorder' },
+            { '─', 'FloatBorder' },
+            { '╮', 'FloatBorder' },
+            { '│', 'FloatBorder' },
+            { '╯', 'FloatBorder' },
+            { '─', 'FloatBorder' },
+            { '╰', 'FloatBorder' },
+            { '│', 'FloatBorder' },
             { '┌', 'FloatBorder' },
             { '─', 'FloatBorder' },
             { '┐', 'FloatBorder' },
@@ -197,133 +198,172 @@ return {
                         version = 'LuaJIT',
                     },
                     -- Make the server aware of Neovim runtime files
+                    library = { vim.env.VIMRUNTIME },
+                    -- Or vim.fn.expand('$VIMRUNTIME/lua'),
+                    --    vim.api.nvim_get_runtime_file("", true),
+                    -- })
                     workspace = {
                         checkThirdParty = false,
-                        library = {
-                            vim.env.VIMRUNTIME,
-                            -- Depending on the usage, you might want to add additional paths here.
-                            -- "${3rd}/luv/library"
-                            -- "${3rd}/busted/library",
-                        },
-                        -- or pull in all of 'runtimepath' but this is a lot slower
-                        -- library = vim.api.nvim_get_runtime_file("", true)
                     },
+                    diagnostics = {
+                        globals = { 'vim' },
+                    },
+                    completion = {
+                        callSnippet = 'Replace',
+                    },
+                    telemetry = { enabled = false },
                 })
-                client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
             end,
             settings = {
-                Lua = {},
-            },
-        }
-
-        -- ╭───────────────────╮
-        -- │ JAVASCRIPT SERVER │
-        -- ╰───────────────────╯
-        vim.lsp.config.ts_ls = {
-            capabilities = capabilities,
-            handlers = handlers,
-            init_options = {
-                preferences = {
-                    includeInlayParameterNameHints = 'all',
-                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = true,
-                    includeInlayPropertyDeclarationTypeHints = true,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayEnumMemberValueHints = true,
-                    importModuleSpecifierPreference = 'non-relative',
+                Lua = {
+                    runtime = {
+                        version = 'LuaJIT',
+                    },
+                    diagnostics = {
+                        globals = { 'vim' },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file('.', true),
+                        checkThirdParty = false,
+                    },
+                    telemetry = { enable = false },
                 },
             },
-            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-            on_attach = function(client, bufnr)
-                client.server_capabilities.document_formatting = false
-                client.server_capabilities.document_range_formatting = false
-                on_attach(client, bufnr)
-            end,
-        }
-
-        -- ╭───────────────╮
-        -- │ PYTHON SERVER │
-        -- ╰───────────────╯
-        vim.lsp.config.ruff = {
-            capabilities = capabilities,
-            handlers = handlers,
-        }
-
-        -- ╭──────────────╮
-        -- │ EMMET SERVER │
-        -- ╰──────────────╯
-        vim.lsp.config.emmet_ls = {
-            capabilities = capabilities,
-            handlers = handlers,
         }
 
         -- ╭────────────╮
-        -- │ CSS SERVER │
+        -- │ NIX SERVER │
         -- ╰────────────╯
-        vim.lsp.config.cssls = {
+        vim.lsp.config.nil_ls = {
             capabilities = capabilities,
             handlers = handlers,
             settings = {
-                css = {
-                    lint = {
-                        unknownAtRules = 'ignore',
+                ['nil'] = {
+                    formatting = {
+                        command = { 'nixfmt' },
                     },
-                },
-            },
-        }
-
-        -- ╭─────────────────╮
-        -- │ TAILWIND SERVER │
-        -- ╰─────────────────╯
-        vim.lsp.config.tailwindcss = {
-            capabilities = capabilities,
-            handlers = handlers,
-            settings = {
-                tailwindCSS = {
-                    classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass' },
-                    includeLanguages = {
-                        eelixir = 'html-eex',
-                        eruby = 'erb',
-                        htmlangular = 'html',
-                        templ = 'html',
-                    },
-                    lint = {
-                        cssConflict = 'warning',
-                        invalidApply = 'error',
-                        invalidConfigPath = 'error',
-                        invalidScreen = 'error',
-                        invalidTailwindDirective = 'error',
-                        invalidVariant = 'error',
-                        recommendedVariantOrder = 'warning',
-                    },
-                    validate = true,
                 },
             },
         }
 
         -- ╭─────────────╮
-        -- │ JSON SERVER │
+        -- │ PYTHON LS  │
         -- ╰─────────────╯
+        vim.lsp.config.pyright = {
+            capabilities = capabilities,
+            handlers = handlers,
+            settings = {
+                python = {
+                    analysis = {
+                        autoSearchPaths = true,
+                        diagnosticMode = 'workspace',
+                        useLibraryCodeForTypes = true,
+                    },
+                },
+            },
+        }
+
+        -- ╭─────────────╮
+        -- │ PYTHON RUFF │
+        -- ╰─────────────╯
+        vim.lsp.config.ruff = {
+            capabilities = capabilities,
+            handlers = handlers,
+            init_options = {
+                settings = {
+                    args = {},
+                },
+            },
+        }
+
+        -- ╭────────────╮
+        -- │ JSON LS    │
+        -- ╰────────────╯
         vim.lsp.config.jsonls = {
             capabilities = capabilities,
             handlers = handlers,
-            filetypes = { 'json', 'jsonc' },
-            init_options = {
-                provideFormatter = true,
+            settings = {
+                json = {
+                    schemas = require('schemastore').json.schemas(),
+                    validate = { enable = true },
+                },
+            },
+        }
+
+        -- ╭────────────╮
+        -- │ TSSERVER   │
+        -- ╰────────────╯
+        vim.lsp.config.ts_ls = {
+            capabilities = capabilities,
+            handlers = handlers,
+            settings = {
+                typescript = {
+                    inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayVariableTypeHints = false,
+                    },
+                },
+                javascript = {
+                    inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayVariableTypeHints = false,
+                    },
+                },
             },
         }
 
         -- ╭─────────────╮
-        -- │ HTML SERVER │
+        -- │ BASH LS     │
         -- ╰─────────────╯
-        vim.lsp.config.html = {
+        vim.lsp.config.bashls = {
             capabilities = capabilities,
             handlers = handlers,
-            settigns = {
-                css = {
-                    lint = {
-                        validProperties = {},
+            filetypes = { 'sh', 'zsh' },
+        }
+
+        -- ╭─────────────╮
+        -- │ TAILWIND   │
+        -- ╰─────────────╯
+        vim.lsp.config.tailwindcss = {
+            capabilities = capabilities,
+            handlers = handlers,
+            filetypes = {
+                'html',
+                'css',
+                'scss',
+                'javascript',
+                'javascriptreact',
+                'typescript',
+                'typescriptreact',
+                'svelte',
+                'vue',
+                'rust',
+                'go',
+                'tmpl',
+                'gotmpl',
+            },
+            init_options = {
+                userLanguages = {
+                    rust = 'html',
+                    go = 'html',
+                    tmpl = 'html',
+                    ['gotmpl.html'] = 'html',
+                },
+            },
+            settings = {
+                tailwindCSS = {
+                    experimental = {
+                        classRegex = {
+                            { 'clsx\\(([^)]*)\\)', '(?: clsx\\(|")([^"]|[^)(]+)(?:",\\s"|\\))' },
+                        },
                     },
                 },
             },
@@ -337,9 +377,9 @@ return {
             handlers = handlers,
             filetypes = { 'bibtex', 'markdown', 'latex', 'tex' },
             settings = {
-                -- ltex = {
-                --     language = 'de-DE',
-                -- },
+                ltex = {
+                    language = 'en-US',
+                },
             },
         }
 
@@ -377,56 +417,53 @@ return {
         }
 
         -- ╭────────────╮
-        -- │ PHP SERVER │
+        -- │ GOLang LS  │
         -- ╰────────────╯
-        vim.lsp.config.intelephense = {
+        vim.lsp.config.gopls = {
             capabilities = capabilities,
             handlers = handlers,
+            settings = {
+                gopls = {
+                    analyses = {
+                        unusedparams = true,
+                        unusedwrite = true,
+                        useany = true,
+                    },
+                    staticcheck = true,
+                    gofumpt = true,
+                },
+            },
         }
 
-        -- ╭─────────────╮
-        -- │ JAVA SERVER │
-        -- ╰─────────────╯
-        vim.lsp.config.jdtls = {
+        -- ╭────────────╮
+        -- │ RUST LS    │
+        -- ╰────────────╯
+        vim.lsp.config.rust_analyzer = {
             capabilities = capabilities,
             handlers = handlers,
+            settings = {
+                ['rust-analyzer'] = {
+                    check = {
+                        command = 'clippy',
+                    },
+                    diagnostics = {
+                        enable = true,
+                    },
+                },
+            },
         }
 
-        -- ╭─────────────╮
-        -- │ YAML SERVER │
-        -- ╰─────────────╯
+        -- ╭────────────╮
+        -- │ YAML LS    │
+        -- ╰────────────╯
         vim.lsp.config.yamlls = {
             capabilities = capabilities,
             handlers = handlers,
             settings = {
                 yaml = {
-                    validate = true,
-                    hover = true,
-                    completion = true,
-                    format = {
-                        enable = true,
-                        singleQuote = true,
-                        bracketSpacing = true,
-                    },
-                    editor = {
-                        tabSize = 2,
-                    },
-                    schemaStore = {
-                        enable = true,
-                    },
-                },
-                editor = {
-                    tabSize = 2,
+                    schemas = require('schemastore').yaml.schemas(),
                 },
             },
-        }
-
-        -- ╭─────────────╮
-        -- │ RUST SERVER │
-        -- ╰─────────────╯
-        vim.lsp.config.rust_analyzer = {
-            capabilities = capabilities,
-            handlers = handlers,
         }
 
         -- ╭──────────────╮
@@ -445,7 +482,3 @@ return {
         }
     end,
 }
-
- 
-> Generating... ⠋
-
