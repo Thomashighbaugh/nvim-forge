@@ -4,7 +4,9 @@
 return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufReadPost', 'BufNewFile' },
-    -- depedencies = { 'saghen/blink.cmp' },
+    dependencies = {
+        'b0o/schemastore.nvim',
+    },
     config = function()
         -- ╭─────────────────────╮
         -- │ LSP CAPABILITIES    │
@@ -279,12 +281,13 @@ return {
         -- ╭────────────╮
         -- │ JSON LS    │
         -- ╰────────────╯
+        local schemastore_ok, schemastore = pcall(require, 'schemastore')
         vim.lsp.config.jsonls = {
             capabilities = capabilities,
             handlers = handlers,
             settings = {
                 json = {
-                    schemas = require('schemastore').json.schemas(),
+                    schemas = schemastore_ok and schemastore.json.schemas() or {},
                     validate = { enable = true },
                 },
             },
@@ -461,7 +464,7 @@ return {
             handlers = handlers,
             settings = {
                 yaml = {
-                    schemas = require('schemastore').yaml.schemas(),
+                    schemas = schemastore_ok and schemastore.yaml.schemas() or {},
                 },
             },
         }
