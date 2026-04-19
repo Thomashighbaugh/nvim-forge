@@ -71,9 +71,10 @@ return {
     {
         'wsdjeg/cpicker.nvim',
         keys = {
-            { '<leader>Cp', '<cmd>CPicker<cr>', desc = 'Color Picker' },
-            { '<leader>Cs', '<cmd>CPicker<cr>', desc = 'Color Shades' },
-            { '<leader>Ch', '<cmd>CPicker<cr>', desc = 'Color Huefy' },
+            { '<leader>Cp', '<cmd>Cpicker<cr>', desc = 'Color Picker' },
+            { '<leader>Cc', '<cmd>Cpicker rgb hsl hex<cr>', desc = 'Color Convert' },
+            { '<leader>Cs', '<cmd>Cpicker<cr>', desc = 'Color Shades' },
+            { '<leader>Ch', '<cmd>Cpicker<cr>', desc = 'Color Huefy' },
         },
         opts = {},
     },
