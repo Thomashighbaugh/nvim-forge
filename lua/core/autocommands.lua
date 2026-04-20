@@ -185,35 +185,22 @@ au('RecordingLeave', {
 -- Completely prevent NixOS markdown syntax loading by intercepting filetype detection
 vim.filetype.add({
     extension = {
-        md = 'text', -- Force markdown files to be detected as text initially
+        md = 'markdown',
     },
 })
 
--- Then re-set to markdown after syntax is disabled
-au('BufReadPost', {
+-- Markdown soft wrapping (using BufWinEnter to ensure window options apply)
+local markdown_group = vim.api.nvim_create_augroup('MarkdownWrap', { clear = true })
+au('BufWinEnter', {
+    group = markdown_group,
     pattern = '*.md',
     callback = function()
-        -- Set syntax off BEFORE changing filetype
         vim.opt_local.syntax = 'off'
         vim.b.current_syntax = 'off'
-        -- Now safely set to markdown for render-markdown plugin
-        vim.schedule(function()
-            vim.bo.filetype = 'markdown'
-        end)
-    end,
-})
-
--- Additional safety net - disable syntax for any markdown filetype
-au('FileType', {
-    pattern = 'markdown',
-    callback = function()
-        vim.opt_local.syntax = 'off'
-        vim.b.current_syntax = 'off'
-        -- Soft wrapping for markdown
-        vim.opt_local.wrap = true
-        vim.opt_local.linebreak = true
-        vim.opt_local.breakindent = true
-        vim.opt_local.showbreak = '↪ '
+        vim.wo.wrap = true
+        vim.wo.linebreak = true
+        vim.wo.breakindent = true
+        vim.wo.showbreak = '↪ '
     end,
 })
 

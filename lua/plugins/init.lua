@@ -69,14 +69,17 @@ return {
     -- │                         COLORS                          │
     -- ╰─────────────────────────────────────────────────────────╯
     {
-        'wsdjeg/cpicker.nvim',
+        'uga-rosa/ccc.nvim',
         keys = {
-            { '<leader>Cp', '<cmd>Cpicker<cr>', desc = 'Color Picker' },
-            { '<leader>Cc', '<cmd>Cpicker rgb hsl hex<cr>', desc = 'Color Convert' },
-            { '<leader>Cs', '<cmd>Cpicker<cr>', desc = 'Color Shades' },
-            { '<leader>Ch', '<cmd>Cpicker<cr>', desc = 'Color Huefy' },
+            { '<leader>Cp', '<cmd>CccPick<cr>', desc = 'Color Picker' },
+            { '<leader>Cc', '<cmd>CccConvert<cr>', desc = 'Color Convert' },
         },
-        opts = {},
+        opts = {
+            highlighter = {
+                auto_enable = true,
+                lsp = true,
+            },
+        },
     },
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                     Text Functions                      │

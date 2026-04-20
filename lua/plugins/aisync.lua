@@ -56,7 +56,7 @@ return {
             { '<leader>O<space>', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion', mode = { 'n', 'v', 'x' } },
         },
         dependencies = {
-            'j-hui/fidget.nvim',
+            { 'j-hui/fidget.nvim', dependencies = { 'rcarriga/nvim-notify' } },
             'ravitemer/codecompanion-history.nvim',
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',

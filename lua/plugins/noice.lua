@@ -1,5 +1,6 @@
 return {
     'folke/noice.nvim',
+    dependencies = { 'rcarriga/nvim-notify' },
     event = 'VeryLazy',
     keys = {
         { '<space>nd', '<cmd>NoiceDismiss<cr>', desc = 'Dismiss Noice Messages' },
