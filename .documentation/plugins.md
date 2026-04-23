@@ -4,7 +4,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 
 ## Plugin Overview
 
-**Total Plugins**: 56 active plugins  
+**Total Plugins**: 57 active plugins  
 **Categories**: LSP, UI, Text Editing, Git, AI, Debug, Utilities  
 **Plugin Manager**: [Lazy.nvim](https://github.com/folke/lazy.nvim)  
 **Recent Update**: Major migration to Mini.nvim ecosystem; Copilot replaced with Ollama (glm-5:cloud)
@@ -18,6 +18,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **Advanced Git Search** | aaronhallaert/advanced-git-search.nvim      | Git               | Advanced git search capabilities                                   | `:AdvancedGitSearch`                                       |
 | **Alt Substitute**      | chrisgrieser/nvim-alt-substitute            | Text Editing      | Better substitute command with preview                             | Auto-triggered on `:s/`                                    |
 | **Avante**              | yetone/avante.nvim                          | AI                | AI-powered coding assistant with Ollama integration                | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`                |
+| **Command Completion**  | smolck/command-completion.nvim              | UI                | Wildmenu-style command completion with fuzzy matching (cmdwin disabled) | `<Tab>` (complete), auto-triggered                         |
 | **Bufferline**          | akinsho/bufferline.nvim                     | UI                | Enhanced buffer/tab line with diagnostics                          | Visual only                                                |
 | **CodeCompanion**       | olimorris/codecompanion.nvim                | AI                | Main chat interface with Ollama glm-5:cloud model                  | `<leader>Oc` (chat), `<leader>Oa` (actions), `<leader>Od` (cmd), `<leader>O<space>` (inline) |
 | **CodeSnap**            | mistricky/codesnap.nvim                     | Screenshots       | Generate beautiful code screenshots                                | `<leader>cc`, `<leader>cs` (visual mode)                   |
@@ -312,7 +313,7 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 
 ---
 
-_Last Updated_: 2026-04-17  
-_Total Active Plugins_: 56  
-_Configuration Version_: Modern Neovim Setup with Ollama AI (glm-5:cloud) and Mini.nvim Migration  
+_Last Updated_: 2026-04-22  
+_Total Active Plugins_: 57  
+_Configuration Version_: Modern Neovim Setup with Ollama AI (glm-5:cloud), Mini.nvim Migration, and Cmdline.nvim  
 _Audit Date_: 2026-04-17

@@ -62,4 +62,8 @@ return {
             }
         )
     ),
+    env.s({ trig = 'todo', name = 'TODO checkbox' }, {
+        env.t('[ ] TODO '),
+        env.i(0),
+    }),
 }
