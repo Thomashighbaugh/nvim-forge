@@ -331,5 +331,35 @@
       "<p><b>${3:WarningType} Warning:</b> ${4:WhateverWarning}</p>",
       "</details>"
     ]
+  },
+  "TODO checkbox": {
+    "prefix": "todo",
+    "body": ["- [ ] TODO ${0}"],
+    "description": "Insert a TODO checkbox"
+  },
+  "Gitlab Warning": {
+    "prefix": "gwa",
+    "body": [":warning: ${1:some-warning}"],
+    "description": "Insert a Gitlab warning admonition"
+  },
+  "Hugo image shortcut": {
+    "prefix": "hugoimg",
+    "body": ["{{< img name=${1:name} lazy=${2:true} >}}"],
+    "description": "Insert a Hugo image shortcode"
+  },
+  "Hugo toc shortcut": {
+    "prefix": "hugotoc",
+    "body": ["{{< toc >}}"],
+    "description": "Insert a Hugo table of contents"
+  },
+  "Hugo intro separator": {
+    "prefix": "hugosep",
+    "body": ["<!-- more -->"],
+    "description": "Insert a Hugo more separator"
+  },
+  "Link": {
+    "prefix": "link",
+    "body": ["[${1:name}](${2:url})${0}"],
+    "description": "Insert a markdown link"
   }
 }

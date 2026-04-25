@@ -44,7 +44,16 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **LazyDev**             | folke/lazydev.nvim                          | LSP               | Better Lua development for Neovim                                  | Auto-triggered                                             |
 | **LSP Config**          | neovim/nvim-lspconfig                       | LSP               | Language server protocol configuration                             | `gr*` (LSP functions), `K` (hover), `<M-CR>` (code action) |
 | **LSP Endhints**        | chrisgrieser/nvim-lsp-endhints              | LSP               | Show LSP inlay hints at end of line                                | Auto-triggered                                             |
-| **Codeium**            | Exafunction/codeium.nvim                   | AI                | Free AI inline code completions (replaces Ollama for completions)   | Auto-triggered on insert                                 |
+| **Blink CMP**            | saghen/blink.cmp                            | Completion        | Fast completion with LSP, snippets, and many sources                 | `<C-Space>`, `<C-n>`, `<C-p>`, `<C-e>`, `<C-y>`    |
+| **Blink CMP Spell**      | ribru17/blink-cmp-spell                     | Completion        | Spellcheck completion source for blink.cmp                           | Auto-triggered on spell context                         |
+| **Blink Ripgrep**        | mikavilpas/blink-ripgrep.nvim               | Completion        | Ripgrep/gitgrep project-wide word completion for blink.cmp           | Auto-triggered                                           |
+| **Blink Emoji**          | moyiz/blink-emoji.nvim                      | Completion        | Emoji completion source for blink.cmp                               | `:` in markdown/gitcommit                              |
+| **Blink CMP Words**      | archie-judd/blink-cmp-words                  | Completion        | Dictionary and thesaurus completion via WordNet for blink.cmp         | Auto-triggered                                           |
+| **Blink CMP Dictionary** | Kaiser-Yang/blink-cmp-dictionary             | Completion        | Dictionary file completion source for blink.cmp                      | Auto-triggered                                           |
+| **Blink CMP Kitty**      | garyhurtz/blink_cmp_kitty                    | Completion        | Kitty terminal window content as blink.cmp source                    | Auto-triggered                                           |
+| **Blink CMP Yanky**      | marcoSven/blink-cmp-yanky                    | Completion        | Yank history completion source for blink.cmp                         | Auto-triggered                                           |
+| **Blink CMP Env**        | bydlw98/blink-cmp-env                        | Completion        | Environment variable completion source for blink.cmp                 | `$` trigger                                              |
+| **Blink CMP Git**        | Kaiser-Yang/blink-cmp-git                    | Completion        | Git issues, PRs, commits, and mentions for blink.cmp               | `#`, `:`, `@` in gitcommit/markdown                    |
 | **Mini Snippets**       | echasnovski/mini.snippets                   | Snippets          | Snippet management and expansion with mini.completion integration  | Auto-triggered via mini.completion                         |
 | **Markdown Table Mode** | Kicamon/markdown-table-mode.nvim            | Markdown          | Table mode for markdown editing                                    | Auto-triggered in markdown                                 |
 | **Mason**               | mason-org/mason.nvim                        | LSP               | LSP server installer and manager                                   | `<leader>lm`                                               |
@@ -106,11 +115,11 @@ The following plugins have been replaced by Mini.nvim equivalents, Ollama, or ot
 | Replaced Plugin  | Repository                | Replaced By                     | Reason                                             |
 | ---------------- | ------------------------- | ------------------------------- | -------------------------------------------------- |
 | **Comment.nvim** | numToStr/Comment.nvim     | **mini.comment**                | Simpler configuration, same functionality          |
-| **nvim-cmp**     | hrsh7th/nvim-cmp          | **mini.completion**             | Fixes cmdline errors, simpler config               |
+| **mini.completion** | echasnovski/mini.completion | **blink.cmp** | Replaced by blink.cmp for richer completion sources |
 | **Lualine.nvim** | nvim-lualine/lualine.nvim | **mini.statusline**             | Lighter weight, better performance                 |
 | **Snipe.nvim**   | leath-dub/snipe.nvim      | **mini.pick.builtin.buffers()** | Unified picker interface (mapped to `-` key)       |
 | **Mini.files**   | echasnovski/mini.files    | **snacks.explorer**             | Disabled to preserve snacks.explorer functionality |
-| **LuaSnip**      | L3MON4D3/LuaSnip          | **mini.snippets**               | Was never loading (wrong paths); mini.snippets integrates with mini.completion |
+| **Codeium**     | Exafunction/codeium.nvim | **blink.cmp**                    | blink.cmp provides LSP + snippet completion natively    |
 | **copilot.lua**  | zbirenbaum/copilot.lua   | **Codeium** + **Ollama**        | Codeium for inline completions; Ollama reserved for chat/keybound actions  |
 | **Statuscol**      | luukvbaal/statuscol.nvim  | **snacks.statuscolumn**         | Redundant; snacks already provides equivalent functionality        |
 
@@ -148,8 +157,8 @@ The following plugins have been replaced by Mini.nvim equivalents, Ollama, or ot
 
 ### ✏️ Text Editing & Manipulation (15 plugins)
 
-- **Completion**: mini.completion (replaces nvim-cmp)
-- **Snippets**: Mini Snippets, friendly-snippets
+- **Completion**: blink.cmp (replaces mini.completion and Codeium)
+- **Snippets**: Mini Snippets, friendly-snippets (loaded by blink.cmp)
 - **Editing**: nvim-surround, mini.surround, nvim-autopairs, flash.nvim
 - **Formatting**: conform.nvim, nvim-lint
 - **Comments**: mini.comment (replaces Comment.nvim), todo-comments.nvim, comment-box.nvim, nvim-comment-frame, todo-marker.nvim
@@ -260,7 +269,7 @@ All AI/LLM keybindings are consolidated under the `<leader>O` prefix:
 
 ### Key Replacements
 
-1. **nvim-cmp → mini.completion**: Better cmdline support, no more errors
+1. **nvim-cmp → mini.completion → blink.cmp**: Full completion with LSP, snippets, and custom sources
 2. **Comment.nvim → mini.comment**: Simpler configuration, treesitter context aware
 3. **lualine.nvim → mini.statusline**: Lighter weight, better performance
 4. **snipe.nvim → mini.pick.builtin.buffers()**: Unified picker interface (still mapped to `-`)

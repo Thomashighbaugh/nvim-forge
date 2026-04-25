@@ -9,11 +9,13 @@ return {
             api_key_name = '',
             endpoint = 'http://127.0.0.1:11434',
             model = 'glm-5.1:cloud',
-            options = {
-                num_ctx = 32768,
-                temperature = 0,
-            },
             stream = true,
+            extra_request_body = {
+                options = {
+                    num_ctx = 32768,
+                    temperature = 0,
+                },
+            },
         },
         behaviour = {
             auto_focus_sidebar = true,

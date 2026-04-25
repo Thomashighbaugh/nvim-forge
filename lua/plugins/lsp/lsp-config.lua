@@ -6,17 +6,13 @@ return {
     event = { 'BufReadPre', 'BufReadPost', 'BufNewFile' },
     dependencies = {
         'b0o/schemastore.nvim',
+        'saghen/blink.cmp',
     },
     config = function()
         -- ╭─────────────────────╮
         -- │ LSP CAPABILITIES    │
         -- ╰─────────────────────╯
-        -- Updated for mini.completion compatibility
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-        capabilities.textDocument.completion.completionItem.resolveSupport = {
-            properties = { 'documentation', 'detail', 'additionalTextEdits' },
-        }
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         -- ╭─────────────────────────────────╮
         -- │ LSP BORDER FOR :LSPINFO COMMAND │
