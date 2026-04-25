@@ -34,16 +34,11 @@ return {
             -- User specifically wants to keep snacks.explorer functionality
             -- require('mini.files').setup({ ... })
 
-            require('mini.snippets').setup({
-                snippets = {
-                    require('mini.snippets').gen_loader.from_file(vim.fn.stdpath('config') .. '/snippets/global.json'),
-                    require('mini.snippets').gen_loader.from_lang(),
-                },
-            })
-
             -- ╭─────────────────────────────────────────────────────────╮
-            -- │           MINI.COMPLETION (REPLACED BY BLINK)           │
+            -- │         MINI.SNIPPETS (REPLACED BY BLINK.CMP)           │
             -- ╰─────────────────────────────────────────────────────────╯
+            -- mini.snippets removed - blink.cmp handles snippet expansion
+            -- via its built-in snippets source with friendly-snippets + custom snippets
 
             -- ╭─────────────────────────────────────────────────────────╮
             -- │                    MINI.PICK                            │
