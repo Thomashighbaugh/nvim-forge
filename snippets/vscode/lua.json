@@ -1,27 +1,37 @@
 {
   "require": {
     "prefix": "req",
-    "body": ["require(\"${1:module}\")"],
+    "body": [
+      "require(\"${1:module}\")"
+    ],
     "description": "Require module"
   },
   "return": {
     "prefix": "rt",
-    "body": ["return $0"],
+    "body": [
+      "return $0"
+    ],
     "description": "return value"
   },
   "assigment": {
     "prefix": "ll",
-    "body": ["local ${1:varName} = ${0:value}"],
+    "body": [
+      "local ${1:varName} = ${0:value}"
+    ],
     "description": "create a variable"
   },
   "local": {
     "prefix": "l",
-    "body": ["local ${0}"],
+    "body": [
+      "local ${0}"
+    ],
     "description": "create a variable"
   },
   "locreq": {
     "prefix": "lreq",
-    "body": ["local ${1:var} = require(\"${2:module}\")"],
+    "body": [
+      "local ${1:var} = require(\"${2:module}\")"
+    ],
     "description": "Require module as a variable"
   },
   "class": {
@@ -38,20 +48,35 @@
   },
   "if": {
     "prefix": "if",
-    "body": ["if ${1:true} then", "\t$0", "end"]
+    "body": [
+      "if ${1:true} then",
+      "\t$0",
+      "end"
+    ]
   },
   "elseif": {
     "prefix": "elseif",
-    "body": ["elseif ${1:true} then", "\t$0"]
+    "body": [
+      "elseif ${1:true} then",
+      "\t$0"
+    ]
   },
   "for": {
     "prefix": "for",
-    "body": ["for ${1:i}=${2:1},${3:10} do", "\t$0", "end"],
+    "body": [
+      "for ${1:i}=${2:1},${3:10} do",
+      "\t$0",
+      "end"
+    ],
     "description": "for loop range"
   },
   "foreach": {
     "prefix": "foreach",
-    "body": ["for i, ${1:x} in pairs(${2:table}) do", "\t$0", "end"]
+    "body": [
+      "for i, ${1:x} in pairs(${2:table}) do",
+      "\t$0",
+      "end"
+    ]
   },
   "forline": {
     "prefix": "forline",
@@ -67,22 +92,56 @@
   },
   "function": {
     "prefix": "fu",
-    "body": ["function ${1:name}($2)", "\t${3:-- code}", "end"]
+    "body": [
+      "function ${1:name}($2)",
+      "\t${3:-- code}",
+      "end"
+    ]
   },
   "inline-function": {
     "prefix": "f=",
-    "body": ["local ${1:name} = function($2)", "\t${0:-- code}", "end"]
+    "body": [
+      "local ${1:name} = function($2)",
+      "\t${0:-- code}",
+      "end"
+    ]
   },
   "print": {
     "prefix": "p",
-    "body": ["print(${0})"]
+    "body": [
+      "print(${0})"
+    ]
   },
   "self": {
     "prefix": "self:",
-    "body": ["function self:${1:methodName}($2)", "\t$0", "end"]
+    "body": [
+      "function self:${1:methodName}($2)",
+      "\t$0",
+      "end"
+    ]
   },
   "while": {
     "prefix": "while",
-    "body": ["while ${1:true} do", "\t$0", "end"]
+    "body": [
+      "while ${1:true} do",
+      "\t$0",
+      "end"
+    ]
+  },
+  "Local function": {
+    "prefix": "mySnip",
+    "body": [
+      "local ${1:myVar} = function(${2:})",
+      "    ${3:-- TODO: }",
+      "end"
+    ]
+  },
+  "Config function": {
+    "prefix": "conffn",
+    "body": [
+      "config = function()",
+      "    $0",
+      "end"
+    ]
   }
 }

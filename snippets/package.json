@@ -351,6 +351,10 @@
       {
         "language": "gdscript",
         "path": "./vscode/gdscript.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./vscode/yaml.json"
       }
     ]
   }

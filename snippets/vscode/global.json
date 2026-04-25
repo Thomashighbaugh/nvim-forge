@@ -1,7 +1,7 @@
 {
   "Author": {
     "prefix": "$me",
-    "body": "Thomas Leon Highbaugh ©${CURRENT_YEAR}",
+    "body": "Thomas Leon Highbaugh \u00a9${CURRENT_YEAR}",
     "description": "A quick way of signing a document with the current year and copyright symbol already pasted with it."
   },
   "Letter Signature": {
@@ -55,5 +55,17 @@
       "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE",
       "SOFTWARE."
     ]
+  },
+  "Date": {
+    "prefix": "date",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
+  },
+  "Time": {
+    "prefix": "time",
+    "body": "$CURRENT_HOUR:$CURRENT_MINUTE"
+  },
+  "Datetime": {
+    "prefix": "htime",
+    "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATET$CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND+10:00"
   }
 }
