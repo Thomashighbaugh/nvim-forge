@@ -1,0 +1,10 @@
+{
+  "For...in loop": {
+    "prefix": "forin",
+    "body": [
+      "for (const ${1:iterator} in ${2:array}) {",
+      "    $0",
+      "}"
+    ]
+  }
+}

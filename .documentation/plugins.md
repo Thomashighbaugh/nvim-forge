@@ -4,7 +4,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 
 ## Plugin Overview
 
-**Total Plugins**: 57 active plugins  
+**Total Plugins**: 58 active plugins
 **Categories**: LSP, UI, Text Editing, Git, AI, Debug, Utilities  
 **Plugin Manager**: [Lazy.nvim](https://github.com/folke/lazy.nvim)  
 **Recent Update**: Major migration to Mini.nvim ecosystem; Copilot replaced with Ollama (glm-5:cloud)
@@ -17,7 +17,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | ----------------------- | ------------------------------------------- | ----------------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
 | **Advanced Git Search** | aaronhallaert/advanced-git-search.nvim      | Git               | Advanced git search capabilities                                   | `:AdvancedGitSearch`                                       |
 | **Alt Substitute**      | chrisgrieser/nvim-alt-substitute            | Text Editing      | Better substitute command with preview                             | Auto-triggered on `:s/`                                    |
-| **Avante**              | yetone/avante.nvim                          | AI                | AI-powered coding assistant with Ollama integration                | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`                |
+| **Avante**              | yetone/avante.nvim                          | AI                | AI-powered coding assistant sidebar (auto-suggestions disabled)     | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`                |
 | **Command Completion**  | smolck/command-completion.nvim              | UI                | Wildmenu-style command completion with fuzzy matching (cmdwin disabled) | `<Tab>` (complete), auto-triggered                         |
 | **Bufferline**          | akinsho/bufferline.nvim                     | UI                | Enhanced buffer/tab line with diagnostics                          | Visual only                                                |
 | **CodeCompanion**       | olimorris/codecompanion.nvim                | AI                | Main chat interface with Ollama glm-5:cloud model                  | `<leader>Oc` (chat), `<leader>Oa` (actions), `<leader>Od` (cmd), `<leader>O<space>` (inline) |
@@ -33,7 +33,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **Diffview**            | sindrets/diffview.nvim                      | Git               | Git diff viewer with file history                                  | `<leader>do`, `<leader>dc`, `<leader>dh`                   |
 | **Dressing**            | stevearc/dressing.nvim                      | UI                | Better UI for vim.ui.select and vim.ui.input                       | Auto-triggered                                             |
 | **Flash**               | folke/flash.nvim                            | Navigation        | Fast cursor movement and search                                    | `s` (jump), `<leader>s` (treesitter), `<space>v` (search)  |
-| **Friendly Snippets**   | rafamadriz/friendly-snippets                | Snippets          | Collection of snippets for various languages                       | Dependency for LuaSnip                                     |
+| **Friendly Snippets**   | rafamadriz/friendly-snippets                | Snippets          | Collection of snippets for various languages                       | Loaded by mini.snippets via from_lang()                    |
 | **Gitsigns**            | lewis6991/gitsigns.nvim                     | Git               | Git signs, hunks, and blame integration                            | `<leader>g*` (git operations)                              |
 | **Glance**              | dnlhc/glance.nvim                           | LSP               | Preview LSP locations in floating window                           | `<space>gr`, `<space>gd`, `<space>gy`, `<space>gm`         |
 | **Image Preview**       | 3rd/image.nvim                              | Media             | Preview images in terminal                                         | `<leader>pi`, `<leader>pp`                                 |
@@ -44,7 +44,8 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **LazyDev**             | folke/lazydev.nvim                          | LSP               | Better Lua development for Neovim                                  | Auto-triggered                                             |
 | **LSP Config**          | neovim/nvim-lspconfig                       | LSP               | Language server protocol configuration                             | `gr*` (LSP functions), `K` (hover), `<M-CR>` (code action) |
 | **LSP Endhints**        | chrisgrieser/nvim-lsp-endhints              | LSP               | Show LSP inlay hints at end of line                                | Auto-triggered                                             |
-| **LuaSnip**             | L3MON4D3/LuaSnip                            | Snippets          | Snippet engine with VS Code snippet support                        | `<C-i>`, `<C-Up>`, `<C-Down>`, `<C-Shift-o>`               |
+| **Codeium**            | Exafunction/codeium.nvim                   | AI                | Free AI inline code completions (replaces Ollama for completions)   | Auto-triggered on insert                                 |
+| **Mini Snippets**       | echasnovski/mini.snippets                   | Snippets          | Snippet management and expansion with mini.completion integration  | Auto-triggered via mini.completion                         |
 | **Markdown Table Mode** | Kicamon/markdown-table-mode.nvim            | Markdown          | Table mode for markdown editing                                    | Auto-triggered in markdown                                 |
 | **Mason**               | mason-org/mason.nvim                        | LSP               | LSP server installer and manager                                   | `<leader>lm`                                               |
 | **Mason LSP Config**    | mason-org/mason-lspconfig.nvim              | LSP               | Bridge between mason and lspconfig                                 | Auto configuration                                         |
@@ -85,7 +86,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **Smart Splits**        | mrjones2014/smart-splits.nvim               | Window Management | Smart window resizing and navigation                               | `<A-hjkl>` (resize), `<C-arrows>` (move)                   |
 | **Snacks.nvim**         | folke/snacks.nvim                           | Multi-utility     | Multi-feature utility plugin with 8 submodules                     | Multiple keybindings                                       |
 | **Sort**                | sQVe/sort.nvim                              | Text Editing      | Sort lines and visual selections                                   | `<leader>so`, `<leader>si`, `<leader>su`, `<leader>sn`     |
-| **Statuscol**           | luukvbaal/statuscol.nvim                    | UI                | Configurable status column                                         | Auto-triggered                                             |
+| **Snacks Statuscol**   | folke/snacks.nvim (statuscolumn)        | UI                | Configurable status column with git/fold/sign support _(REPLACES statuscol.nvim)_ | Auto-triggered, `<leader>Sc` toggle |
 | **Symbols**             | oskarrrrrrr/symbols.nvim                    | LSP               | Symbol outline for current file                                    | `<leader>lS`                                               |
 | **Todo Comments**       | folke/todo-comments.nvim                    | Comments          | Highlight and search TODO comments                                 | `<leader>tq`, `<leader>ts`                                 |
 | **Todo Marker**         | maheshbansod/todo-marker.nvim               | Comments          | Toggle todo markers in comments                                    | `<leader>mt` (also `<leader>tm`)                          |
@@ -109,8 +110,9 @@ The following plugins have been replaced by Mini.nvim equivalents, Ollama, or ot
 | **Lualine.nvim** | nvim-lualine/lualine.nvim | **mini.statusline**             | Lighter weight, better performance                 |
 | **Snipe.nvim**   | leath-dub/snipe.nvim      | **mini.pick.builtin.buffers()** | Unified picker interface (mapped to `-` key)       |
 | **Mini.files**   | echasnovski/mini.files    | **snacks.explorer**             | Disabled to preserve snacks.explorer functionality |
-| **copilot.lua**  | zbirenbaum/copilot.lua   | **Ollama (glm-5:cloud)**        | Replaced with local Ollama LLM for better control  |
-| **CopilotChat**  | CopilotC-Nvim/CopilotChat.nvim | **CodeCompanion**     | Main chat interface for Ollama with glm-5:cloud model   |
+| **LuaSnip**      | L3MON4D3/LuaSnip          | **mini.snippets**               | Was never loading (wrong paths); mini.snippets integrates with mini.completion |
+| **copilot.lua**  | zbirenbaum/copilot.lua   | **Codeium** + **Ollama**        | Codeium for inline completions; Ollama reserved for chat/keybound actions  |
+| **Statuscol**      | luukvbaal/statuscol.nvim  | **snacks.statuscolumn**         | Redundant; snacks already provides equivalent functionality        |
 
 ## Plugin Categories
 
@@ -147,7 +149,7 @@ The following plugins have been replaced by Mini.nvim equivalents, Ollama, or ot
 ### ✏️ Text Editing & Manipulation (15 plugins)
 
 - **Completion**: mini.completion (replaces nvim-cmp)
-- **Snippets**: LuaSnip, friendly-snippets
+- **Snippets**: Mini Snippets, friendly-snippets
 - **Editing**: nvim-surround, mini.surround, nvim-autopairs, flash.nvim
 - **Formatting**: conform.nvim, nvim-lint
 - **Comments**: mini.comment (replaces Comment.nvim), todo-comments.nvim, comment-box.nvim, nvim-comment-frame, todo-marker.nvim
@@ -166,19 +168,21 @@ The following plugins have been replaced by Mini.nvim equivalents, Ollama, or ot
 - **Core**: gitsigns.nvim, neogit
 - **Advanced**: diffview.nvim, advanced-git-search.nvim
 
-### 🤖 AI & LLM Integration (5 plugins)
+### 🤖 AI & LLM Integration (6 plugins)
 
 All AI/LLM keybindings are consolidated under the `<leader>O` prefix:
+- **Inline completions**: Codeium (free, no Ollama load)
 - **`<leader>Oo`**: Ollama prompt commands
 - **`<leader>Oc`**: CodeCompanion subgroup (codecompanion.nvim)
 - **`<leader>Oa`**: Avante subgroup (avante.nvim)
 
 | Plugin               | Model         | Purpose                          | Key Bindings                                                      |
 | -------------------- | ------------- | -------------------------------- | ------------------------------------------------------------------ |
+| **codeium.nvim**     | Codeium Cloud | Free AI inline code completions  | Auto-triggered on insert                                          |
 | **ollama.nvim**      | Various       | Prompt-based LLM interactions    | `<leader>Oo` (prompt), `<leader>Om` (model), `<leader>Os` (sample), `<leader>OM` |
 | **CodeCompanion**    | glm-5:cloud   | Main chat interface (Ollama)     | `<leader>Oc` (chat), `<leader>Oa` (actions), `<leader>Od` (cmd), `<leader>O<space>` (inline) |
-| **Avante**           | mistral-nemo  | AI coding assistant sidebar     | `<leader>Oaa` (ask), `<leader>Oae` (edit), `<leader>Oat` (toggle)   |
-| **Redraft**          | OpenRouter    | LLM-powered editing              | Commands available                                                 |
+| **Avante**           | glm-5.1:cloud | AI coding assistant sidebar     | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`       |
+| **Redraft**          | OpenRouter    | LLM-powered editing              | Commands available                                 |
 
 ### 🐛 Debug Support (3 plugins)
 
@@ -295,9 +299,10 @@ All AI plugins are configured to use Ollama. All AI/LLM keybindings are consolid
 
 | Plugin               | Model         | Purpose                          | Key Bindings                                                      |
 | -------------------- | ------------- | -------------------------------- | ------------------------------------------------------------------ |
+| **codeium.nvim**     | Codeium Cloud | Free AI inline code completions  | Auto-triggered on insert                                          |
 | **ollama.nvim**      | Various       | Prompt-based LLM interactions    | `<leader>Oo` (prompt), `<leader>Om` (model), `<leader>Os` (sample), `<leader>OM` |
 | **CodeCompanion**    | glm-5:cloud   | Main chat interface (Ollama)     | `<leader>Oc` (chat), `<leader>Oa` (actions), `<leader>Od` (cmd), `<leader>O<space>` (inline) |
-| **Avante**           | mistral-nemo  | AI coding assistant sidebar     | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`       |
+| **Avante**           | glm-5.1:cloud | AI coding assistant sidebar     | `<leader>Oaa`, `<leader>Oae`, `<leader>Oat`       |
 | **Redraft**          | OpenRouter    | LLM-powered editing              | Commands available                                |
 
 ## Installation

@@ -1,0 +1,59 @@
+{
+  "Kustomization": {
+    "prefix": "kust",
+    "body": [
+      "---",
+      "apiVersion: kustomize.config.k8s.io/v1beta1",
+      "kind: Kustomization",
+      "namespace: foo",
+      "commonLabels:",
+      "  app.kubernetes.io/managed-by: kustomize",
+      "commonAnnotations:",
+      "  foo: bar",
+      "nameSuffix: foo",
+      "resources:",
+      "  - ${1:resources}",
+      "patchesStrategicMerge:",
+      "  - ${2:patchesStrategicMerge}",
+      "$0"
+    ]
+  },
+  "Kustomization Patch": {
+    "prefix": "kust_patch",
+    "body": [
+      "patches:",
+      "  - target:",
+      "      group: ${1:group}",
+      "      version: ${2:version}",
+      "      kind: ${3:kind}",
+      "    patch: |-",
+      "      - op: ${4:operation}",
+      "        path: ${5:path}",
+      "        value: ${6:value}",
+      "$0"
+    ]
+  },
+  "Kustomization Image": {
+    "prefix": "kust_img",
+    "body": [
+      "images:",
+      "  - name: ${1:name}",
+      "    newName: ${2:newName}",
+      "    newTag: ${3:newTag}",
+      "$0"
+    ]
+  },
+  "Kustomization ConfigMap": {
+    "prefix": "kust_cm",
+    "body": [
+      "configMapGenerator:",
+      "  - name: ${1:name}",
+      "    files:",
+      "      - ${2:file}",
+      "    options:",
+      "      labels:",
+      "        - foo: bar",
+      "$0"
+    ]
+  }
+}

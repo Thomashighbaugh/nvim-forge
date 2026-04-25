@@ -1,0 +1,26 @@
+{
+  "TODO checkbox": {
+    "prefix": "todo",
+    "body": "- [ ] TODO $0"
+  },
+  "Gitlab Warning": {
+    "prefix": "gwa",
+    "body": ":warning: ${1:some-warning}"
+  },
+  "Hugo image shortcut": {
+    "prefix": "hugoimg",
+    "body": "{{< img name=${1:name} lazy=${2:true} >}}"
+  },
+  "Hugo toc shortcut": {
+    "prefix": "hugotoc",
+    "body": "{{< toc >}}"
+  },
+  "Hugo intro separator": {
+    "prefix": "hugosep",
+    "body": "<!-- more -->"
+  },
+  "Link": {
+    "prefix": "link",
+    "body": "[${1:name}](${2:url})$0"
+  }
+}

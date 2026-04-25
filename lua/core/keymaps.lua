@@ -255,7 +255,7 @@ vim.keymap.set('n', '[t', function()
     require('todo-comments').jump_prev()
 end, { desc = 'Previous todo comment' })
 
-AvanteUtils = require('plugins.ai.avante')
+AvanteUtils = require('plugins.avante')
 
 vim.keymap.set({ 'n', 'v' }, '<leader>Oag', function()
     AvanteUtils.ask(AvanteUtils.avante_grammar_correction)

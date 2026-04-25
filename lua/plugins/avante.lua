@@ -8,7 +8,7 @@ return {
         ollama = {
             api_key_name = '',
             endpoint = 'http://127.0.0.1:11434',
-            model = 'glm-5:cloud',
+            model = 'glm-5.1:cloud',
             options = {
                 num_ctx = 32768,
                 temperature = 0,
@@ -17,7 +17,7 @@ return {
         },
         behaviour = {
             auto_focus_sidebar = true,
-            auto_suggestions = true, -- Experimental stage
+            auto_suggestions = false,
             auto_suggestions_respect_ignore = false,
             auto_set_highlight_group = true,
             auto_set_keymaps = true,
@@ -77,7 +77,7 @@ return {
                 close = { '<Esc>', 'q' },
                 ---@alias AvanteCloseFromInput { normal: string | nil, insert: string | nil }
                 ---@type AvanteCloseFromInput | nil
-                close_from_input = nil, -- e.g., { normal = "<Esc>", insert = "<C-d>" }
+                close_from_input = { normal = '<Esc>', insert = '<C-d>' },
             },
             files = {
                 add_current = '<leader>Oac', -- Add current buffer to selected files

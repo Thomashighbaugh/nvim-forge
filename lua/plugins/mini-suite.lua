@@ -34,6 +34,39 @@ return {
             -- User specifically wants to keep snacks.explorer functionality
             -- require('mini.files').setup({ ... })
 
+            require('mini.snippets').setup({
+                snippets = {
+                    require('mini.snippets').gen_loader.from_file(vim.fn.stdpath('config') .. '/snippets/global.json'),
+                    require('mini.snippets').gen_loader.from_lang(),
+                },
+                mappings = {
+                    expand = '',
+                    jump_next = '',
+                    jump_prev = '',
+                },
+            })
+
+            local snip_expand_or_jump = function()
+                if #MiniSnippets.expand({ insert = false }) > 0 then
+                    vim.schedule(MiniSnippets.expand)
+                    return ''
+                end
+                if MiniSnippets.session.get() then
+                    MiniSnippets.session.jump('next')
+                    return ''
+                end
+                return '\t'
+            end
+
+            local snip_jump_prev = function()
+                if MiniSnippets.session.get() then
+                    MiniSnippets.session.jump('prev')
+                end
+            end
+
+            vim.keymap.set('i', '<Tab>', snip_expand_or_jump, { expr = true })
+            vim.keymap.set('i', '<S-Tab>', snip_jump_prev)
+
             -- ╭─────────────────────────────────────────────────────────╮
             -- │                   MINI.COMPLETION                       │
             -- ╰─────────────────────────────────────────────────────────╯

@@ -158,13 +158,34 @@ return {
         lazy = false,
         init = function()
             _G.Snacks = require('snacks')
+            Snacks = require('snacks')
         end,
         ---@type snacks.Config
         opts = {
-            picker = { enabled = true },
+            picker = {
+                enabled = true,
+                sources = {
+                    explorer = {
+                        auto_close = true,
+                        follow_file = true,
+                        focus = 'list',
+                        jump = { close = false },
+                        layout = {
+                            preset = 'sidebar',
+                            preview = false,
+                            layout = {
+                                position = 'right',
+                            },
+                        },
+                        formatters = {
+                            file = { filename_only = true },
+                            severity = { pos = 'right' },
+                        },
+                    },
+                },
+            },
             explorer = {
                 enabled = true,
-                layout = { position = 'right' },
                 keymaps = {
                     ['r'] = 'rename',
                 },
