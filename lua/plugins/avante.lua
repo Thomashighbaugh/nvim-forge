@@ -5,15 +5,15 @@ return {
 
     opts = {
         provider = 'ollama',
-        ollama = {
-            api_key_name = '',
-            endpoint = 'http://127.0.0.1:11434',
-            model = 'glm-5.1:cloud',
-            stream = true,
-            extra_request_body = {
-                options = {
-                    num_ctx = 32768,
-                    temperature = 0,
+        providers = {
+            ollama = {
+                endpoint = 'http://127.0.0.1:11434',
+                model = 'glm-5.1:cloud',
+                extra_request_body = {
+                    options = {
+                        num_ctx = 32768,
+                        temperature = 0,
+                    },
                 },
             },
         },

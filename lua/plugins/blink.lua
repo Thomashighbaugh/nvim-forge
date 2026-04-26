@@ -13,6 +13,11 @@ return {
         'marcoSven/blink-cmp-yanky',
         'bydlw98/blink-cmp-env',
         'Kaiser-Yang/blink-cmp-git',
+        'disrupted/blink-cmp-conventional-commits',
+        'jdrupal-dev/css-vars.nvim',
+        'MahanRahmati/blink-nerdfont.nvim',
+        'mayromr/blink-cmp-dap',
+        'jmbuhr/cmp-pandoc-references',
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -32,10 +37,24 @@ return {
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
             per_filetype = {
-                gitcommit = { 'git', 'buffer' },
-                markdown = { 'lsp', 'path', 'snippets', 'buffer', 'emoji', 'dictionary', 'ripgrep' },
-                text = { 'buffer', 'spell', 'dictionary' },
+                gitcommit = { 'conventional_commits', 'git', 'nerdfont', 'buffer' },
+                markdown = {
+                    'lsp',
+                    'path',
+                    'snippets',
+                    'buffer',
+                    'emoji',
+                    'nerdfont',
+                    'dictionary',
+                    'ripgrep',
+                    'pandoc_references',
+                },
+                text = { 'buffer', 'spell', 'dictionary', 'register' },
                 lua = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                css = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                scss = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                less = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                ['dap-repl'] = { 'dap' },
             },
             providers = {
                 spell = {
@@ -111,6 +130,36 @@ return {
                     module = 'blink-cmp-git',
                     enabled = function()
                         return vim.tbl_contains({ 'octo', 'gitcommit', 'markdown' }, vim.bo.filetype)
+                    end,
+                },
+                conventional_commits = {
+                    name = 'Conventional Commits',
+                    module = 'blink-cmp-conventional-commits',
+                    enabled = function()
+                        return vim.bo.filetype == 'gitcommit'
+                    end,
+                },
+                css_vars = {
+                    name = 'CSS Variables',
+                    module = 'css-vars.blink',
+                },
+                nerdfont = {
+                    name = 'Nerd Fonts',
+                    module = 'blink-nerdfont',
+                    score_offset = 15,
+                    opts = {
+                        insert = true,
+                    },
+                },
+                dap = {
+                    name = 'DAP',
+                    module = 'blink-cmp-dap',
+                },
+                pandoc_references = {
+                    name = 'Pandoc References',
+                    module = 'cmp-pandoc-references.blink',
+                    enabled = function()
+                        return vim.tbl_contains({ 'markdown', 'pandoc' }, vim.bo.filetype)
                     end,
                 },
             },
