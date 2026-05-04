@@ -22,7 +22,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **Bufferline**          | akinsho/bufferline.nvim                     | UI                | Enhanced buffer/tab line with diagnostics                          | Visual only                                                |
 | **CodeCompanion**       | olimorris/codecompanion.nvim                | AI                | Main chat interface with Ollama glm-5:cloud model                  | `<leader>Oc` (chat), `<leader>Oa` (actions), `<leader>Od` (cmd), `<leader>O<space>` (inline) |
 | **CodeSnap**            | mistricky/codesnap.nvim                     | Screenshots       | Generate beautiful code screenshots                                | `<leader>cc`, `<leader>cs` (visual mode)                   |
-| **Color Picker**        | wsdjeg/cpicker.nvim                         | Colors            | Color picker and shade generator                                   | `<leader>Cp`, `<leader>Cs`, `<leader>Ch`                   |
+| **Color Picker**        | ziontee113/color-picker.nvim                | Colors            | Interactive color picker with RGB/HSL/HEX support                 | `<leader>Cp` (normal), `<leader>CP` (insert), `<leader>Cr` (HEX→RGB), `<leader>Ch` (HEX→HSL) |
 | **Colorizer**           | norcalli/nvim-colorizer.lua                 | Colors            | Highlight color codes in files                                     | Auto-triggered                                             |
 | **Comment Box**         | LudoPinelli/comment-box.nvim                | Comments          | Create decorative comment boxes                                    | `<leader>cb`, `<leader>cd`, `<leader>ca`                   |
 | **Comment Frame**       | s1n7ax/nvim-comment-frame                   | Comments          | Create comment frames around text                                  | `<leader>cf`, `<leader>cm`                                 |
@@ -208,7 +208,7 @@ All AI/LLM keybindings are consolidated under the `<leader>O` prefix:
 
 - **Screenshots**: codesnap.nvim
 - **Image Support**: 3rd/image.nvim, HakonHarnes/img-clip.nvim
-- **Colors**: wsdjeg/cpicker.nvim
+- **Colors**: ziontee113/color-picker.nvim
 
 ### 📝 Documentation & Writing (4 plugins)
 
