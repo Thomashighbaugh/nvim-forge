@@ -19,4 +19,27 @@ All notable changes to this project are documented here.
 - **Markdown**: Removed `syntax=off` from BufWinEnter handler (overly aggressive)
 - **Markdown**: Smart spell — only in normal mode, 2s delayed after InsertLeave, disabled immediately on InsertEnter
 
-**Commits**: `18d64ab`, `d96e3b4`
+### Plugin Cleanup (2026-06-10)
+
+- **Removed 13 plugins** replaced by built-in or consolidated equivalents:
+  - `nvim-lsp-endhints` → `vim.lsp.inlay_hint` (Neovim 0.10+ built-in)
+  - `sQVe/sort.nvim` → built-in `:sort` (aliased as `:Sort` with flag completion)
+  - `inc-rename.nvim` → `vim.lsp.buf.rename()`
+  - `3rd/image.nvim` → `snacks.image` (already configured)
+  - `nvim-autopairs` → `mini.pairs` (already loaded, eliminated duplicate)
+  - `nvim-surround` → `mini.surround` (already loaded, eliminated duplicate)
+  - `mini-indentscope` → `snacks.indent` (already enabled)
+  - `noice.nvim` → `snacks.notifier` + `mini.notify` (consolidation)
+  - `nvim-lint` → manual `vim.system()` autocmd calls (eslint/jsonlint/yamllint)
+  - `lualine.nvim`, `LuaSnip`, `codeium.nvim`, `statuscol.nvim`, `snipe.nvim` (dead placeholders, all already disabled)
+- **Updated which-key labels** for removed plugins
+- **Added `:Sort` user command** with flag completion (`i`, `u`, `n`, `iu`, `in`, `un`, `iun`)
+- **Replaced noice keymaps** with snacks.notifier equivalents
+
+### Commits
+
+- `18d64ab` — perf fixes batch 1
+- `d96e3b4` — smart markdown spell
+- `fbaf20d` — changelog update
+- `ad9d599` — project-scoped opencode.jsonc
+- `13fedd3` — remove 13 plugins
