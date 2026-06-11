@@ -12,16 +12,16 @@ return {
                             return require('codecompanion.adapters').extend('ollama', {
                                 schema = {
                                     model = {
-                                        default = 'glm-5.1:cloud',
+                                        default = 'deepseek-v4-flash:cloud',
                                         choices = {
-                                            ['glm-5.1:cloud'] = {
+                                            ['deepseek-v4-pro:cloud'] = {
                                                 opts = {
                                                     can_reason = true,
                                                     can_use_tools = true,
                                                     has_vision = true,
                                                 },
                                             },
-                                            ['glm-5:cloud'] = {
+                                            ['deepseek-v4-flash:cloud'] = {
                                                 opts = {
                                                     can_reason = true,
                                                     can_use_tools = true,

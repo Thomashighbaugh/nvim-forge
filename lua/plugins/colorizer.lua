@@ -4,7 +4,7 @@ return {
     -- ╰─────────────────────────────────────────────────────────╯
     {
         'norcalli/nvim-colorizer.lua',
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = 'VeryLazy',
         config = function()
             require('colorizer').setup({ '*' }, {
                 RGB = true, -- #RGB hex codes

@@ -52,7 +52,7 @@ return {
     -- ╰─────────────────────────────────────────────────────────╯
     {
         'folke/todo-comments.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = 'VeryLazy',
         keys = {
             { '<leader>tq', '<cmd>TodoQuickFix<cr>', desc = 'Todo QuickFix' },
             { '<leader>tl', '<cmd>TodoLocList<cr>', desc = 'Todo LocList' },

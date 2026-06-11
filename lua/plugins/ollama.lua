@@ -95,7 +95,7 @@ return {
 
         -- prompt
         opts = {
-            model = 'glm-5.1:cloud',
+            model = 'deepseek-v4-flash:cloud',
             url = 'http://127.0.0.1:11434',
             serve = {
                 on_start = false,

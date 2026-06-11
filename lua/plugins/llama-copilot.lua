@@ -8,7 +8,7 @@ return {
         require('llama-copilot').setup({
             host = 'localhost',
             port = '11434',
-            model = 'glm-5.1:cloud',
+            model = 'deepseek-v4-flash:cloud',
             max_completion_size = -1, -- use -1 for limitless
             debug = false,
         })

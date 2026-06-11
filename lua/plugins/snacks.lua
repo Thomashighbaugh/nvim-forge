@@ -140,7 +140,7 @@ return {
                 git_hl = false,
             },
             git = {
-                patterns = { 'GitSign', 'MiniDiffSign' },
+                patterns = { 'GitSign' },
             },
             refresh = 50,
         },

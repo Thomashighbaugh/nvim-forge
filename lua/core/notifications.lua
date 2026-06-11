@@ -1,6 +1,7 @@
 -- ╭─────────────────────────────────────────────────────────────────────╮
 -- │ NOTIFICATION ENHANCEMENTS                                           │
--- │ Enhanced notification system with history and better management     │
+-- │ Enhanced notification system with history, routed through           │
+-- │ snacks.notifier for display (primary notification backend).         │
 -- ╰─────────────────────────────────────────────────────────────────────╯
 
 local M = {}
@@ -16,10 +17,7 @@ local config = {
 local notification_history = {}
 local notification_count = 0
 
--- Original vim.notify function
-local original_notify = vim.notify
-
--- Enhanced notify function
+-- Enhanced notify — wraps snacks.notifier, maintains history
 local function enhanced_notify(msg, level, opts)
     opts = opts or {}
     level = level or vim.log.levels.INFO
@@ -41,26 +39,13 @@ local function enhanced_notify(msg, level, opts)
         table.remove(notification_history, 1)
     end
 
-    -- Adjust timeout based on message length and level
-    local timeout = opts.timeout
-    if not timeout then
-        local base_timeout = 3000 -- 3 seconds base
-        local length_factor = math.min(#msg / 50, 5) -- Add time for longer messages
-        local level_factor = 1
-
-        -- Keep important notifications longer
-        if level == vim.log.levels.ERROR then
-            level_factor = 3
-        elseif level == vim.log.levels.WARN then
-            level_factor = 2
-        end
-
-        timeout = math.floor(base_timeout * (1 + length_factor) * level_factor)
-        opts.timeout = timeout
+    -- Route through snacks.notifier if available, else fallback to vim.notify
+    local snacks_ok, snacks = pcall(require, 'snacks')
+    if snacks_ok and snacks.notifier then
+        snacks.notifier.notify(msg, level, opts)
+    else
+        vim.notify(msg, level, opts)
     end
-
-    -- Call original notify
-    return original_notify(msg, level, opts)
 end
 
 -- Show notification history
@@ -150,7 +135,7 @@ function M.show_history()
         syntax match NotificationInfo /INFO.*$/
         syntax match NotificationDebug /DEBUG.*$/
         syntax match NotificationTrace /TRACE.*$/
-        
+
         highlight link NotificationTime Comment
         highlight link NotificationError DiagnosticError
         highlight link NotificationWarn DiagnosticWarn
@@ -227,7 +212,7 @@ end
 function M.setup(opts)
     config = vim.tbl_deep_extend('force', config, opts or {})
 
-    -- Replace vim.notify with enhanced version
+    -- Replace vim.notify with enhanced version (routes to snacks.notifier)
     vim.notify = enhanced_notify
 
     -- Set up auto-cleanup timer
@@ -249,11 +234,6 @@ function M.setup(opts)
     vim.api.nvim_create_user_command('NotificationLast', function()
         M.show_last()
     end, { desc = 'Show last notification in detail' })
-
-    -- Add keymaps
-    vim.keymap.set('n', '<space>nn', M.show_history, { desc = 'Show notification history' })
-    vim.keymap.set('n', '<space>nc', M.clear_history, { desc = 'Clear notification history' })
-    vim.keymap.set('n', '<space>nl', M.show_last, { desc = 'Show last notification' })
 end
 
 return M
