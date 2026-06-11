@@ -220,15 +220,19 @@ vim.keymap.set('n', '<leader>dv', function()
     end
 end, { desc = 'Diffview Toggle' })
 
--- noice.nvim
-vim.keymap.set('n', '<space>nn', '<cmd>Noice<cr>', { desc = 'Noice Messages' })
-vim.keymap.set('n', '<space>na', '<cmd>NoiceAll<cr>', { desc = 'Noice All Messages' })
-vim.keymap.set('n', '<space>nl', '<cmd>NoiceLast<cr>', { desc = 'Noice Last' })
-vim.keymap.set('n', '<space>nt', '<cmd>NoiceTelescope<cr>', { desc = 'Noice Telescope' })
-vim.keymap.set('n', '<space>ne', '<cmd>NoiceErrors<cr>', { desc = 'Noice Errors' })
-vim.keymap.set('n', '<space>ns', function()
-    require('noice').redirect('Notifications')
-end, { desc = 'Noice Notifications' })
+-- Notifications (Snacks.notifier — replaces noice.nvim)
+vim.keymap.set('n', '<space>nn', function()
+    Snacks.notifier.show_history()
+end, { desc = 'Notification History' })
+vim.keymap.set('n', '<space>nl', function()
+    Snacks.notifier.show_history()
+end, { desc = 'Notification History (Last)' })
+vim.keymap.set('n', '<space>nd', function()
+    Snacks.notifier.hide()
+end, { desc = 'Dismiss Notifications' })
+vim.keymap.set('n', '<space>nc', function()
+    Snacks.notifier.hide()
+end, { desc = 'Dismiss Notifications' })
 
 -- toggleterm.nvim
 function _G.set_terminal_keymaps()
@@ -375,3 +379,27 @@ end, { desc = 'Add Tests(edit)' })
 -- - Macro recording and execution
 -- - Large search/replace operations
 -- - Other expensive operations
+
+-- ═══════════════════════════════════════════════════════════════
+-- SORT KEYMAPS — replaces sQVe/sort.nvim
+-- Uses built-in :sort via :Sort alias (see core/usercommands.lua)
+-- ═══════════════════════════════════════════════════════════════
+vim.keymap.set('n', '<leader>so', ':Sort<CR>', { desc = 'Sort lines' })
+vim.keymap.set('v', '<leader>so', "'<,'>Sort<CR>", { desc = 'Sort selection' })
+vim.keymap.set('n', '<leader>si', ':Sort i<CR>', { desc = 'Sort lines (ignore case)' })
+vim.keymap.set('v', '<leader>si', "'<,'>Sort i<CR>", { desc = 'Sort selection (ignore case)' })
+vim.keymap.set('n', '<leader>su', ':Sort u<CR>', { desc = 'Sort lines (unique)' })
+vim.keymap.set('v', '<leader>su', "'<,'>Sort u<CR>", { desc = 'Sort selection (unique)' })
+vim.keymap.set('n', '<leader>sn', ':Sort n<CR>', { desc = 'Sort lines (numeric)' })
+vim.keymap.set('v', '<leader>sn', "'<,'>Sort n<CR>", { desc = 'Sort selection (numeric)' })
+
+-- ═══════════════════════════════════════════════════════════════
+-- IMAGE CLEAR — replaces 3rd/image.nvim keybind
+-- snacks.image handles rendering; this just clears if needed
+-- ═══════════════════════════════════════════════════════════════
+vim.keymap.set('n', '<leader>pp', function()
+    local snacks_ok, snacks = pcall(require, 'snacks')
+    if snacks_ok and snacks.image then
+        snacks.image.clear()
+    end
+end, { desc = 'Clear Images' })

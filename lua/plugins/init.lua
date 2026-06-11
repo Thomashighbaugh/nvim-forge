@@ -84,23 +84,9 @@ return {
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                     Text Functions                      │
     -- ╰─────────────────────────────────────────────────────────╯
-    --    sort lists alphabetically
-    {
-        'sQVe/sort.nvim',
-        keys = {
-            { '<leader>so', '<cmd>Sort<CR>', desc = 'Sort lines (motion)', mode = { 'n' } },
-            { '<leader>so', '<cmd>Sort<CR>', desc = 'Sort selection', mode = { 'v' } },
-            { '<leader>si', '<cmd>Sort i<CR>', desc = 'Sort lines (ignore case)', mode = { 'n' } },
-            { '<leader>si', '<cmd>Sort i<CR>', desc = 'Sort selection (ignore case)', mode = { 'v' } },
-            { '<leader>su', '<cmd>Sort u<CR>', desc = 'Sort lines (unique)', mode = { 'n' } },
-            { '<leader>su', '<cmd>Sort u<CR>', desc = 'Sort selection (unique)', mode = { 'v' } },
-            { '<leader>sn', '<cmd>Sort n<CR>', desc = 'Sort lines (numeric)', mode = { 'n' } },
-            { '<leader>sn', '<cmd>Sort n<CR>', desc = 'Sort selection (numeric)', mode = { 'v' } },
-        },
-        config = function()
-            require('sort').setup()
-        end,
-    },
+    --    sort lines alphabetically (built-in :sort, aliased as :Sort)
+    --    Keymaps replaced with built-in :sort commands.
+    --    See core/usercommands.lua for :Sort alias.
     {
         'echasnovski/mini.nvim',
         config = function()
