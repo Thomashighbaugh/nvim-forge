@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/opencode-ai/config/main/opencode.schema.json",
+  "agents": {
+    "default": "hubs",
+    "hubs": "hubs",
+    "list": ["hubs", "explore", "executor"]
+  },
+  "project": {
+    "name": "nvim-forge",
+    "type": "neovim-config",
+    "language": "lua",
+    "framework": "lazy.nvim",
+    "description": "Neovim configuration with lazy.nvim plugin manager, 49+ plugins, LSP for 16 servers, and AI integration"
+  },
+  "rules": ["shell_strategy.md", "context-strategy.md"],
+  "plugins": [],
+  "tools": [],
+  "model": {
+    "default": "deepseek-v4-flash:cloud",
+    "agentic": "deepseek-v4-pro:cloud"
+  }
+}
