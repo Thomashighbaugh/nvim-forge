@@ -125,9 +125,7 @@ return {
             },
             events = {
                 'CursorMoved',
-                'CursorMovedI',
                 'TextChanged',
-                'TextChangedI',
             },
         },
         scroll = {

@@ -119,19 +119,9 @@ au('FileType', {
 })
 
 -- ╭─────────────────────────────────────────────────────────╮
--- │                  QUIT DIFFVIEW WITH Q                   │
--- ╰─────────────────────────────────────────────────────────╯
-au('FileType', {
-    pattern = { 'DiffViewFiles', 'checkhealth' },
-    callback = function()
-        vim.keymap.set('n', 'q', '<cmd>tabc<cr>', { silent = true, buffer = true })
-    end,
-})
-
--- ╭─────────────────────────────────────────────────────────╮
 -- │       CHECK IF CODE ACTIONS ARE AVAILABLE ON LSP        │
 -- ╰─────────────────────────────────────────────────────────╯
-au({ 'CursorHold', 'CursorHoldI' }, {
+au({ 'CursorHold' }, {
     callback = function()
         local bufnr = vim.api.nvim_get_current_buf()
         local range = nil
@@ -180,23 +170,16 @@ au('RecordingLeave', {
 })
 
 -- ╔═════════════════════════════════════════════════════════╗
--- ║         COMPLETE MARKDOWN SYNTAX BYPASS (NIXOS)         ║
+-- ║              MARKDOWN SOFT WRAPPING (NIXOS)              ║
 -- ╚═════════════════════════════════════════════════════════╝
--- Completely prevent NixOS markdown syntax loading by intercepting filetype detection
-vim.filetype.add({
-    extension = {
-        md = 'markdown',
-    },
-})
-
 -- Markdown soft wrapping (using BufWinEnter to ensure window options apply)
+-- NOTE: `after/syntax/markdown.vim` handles minimal syntax setup;
+--       render-markdown.nvim handles visual rendering.
 local markdown_group = vim.api.nvim_create_augroup('MarkdownWrap', { clear = true })
 au('BufWinEnter', {
     group = markdown_group,
     pattern = '*.md',
     callback = function()
-        vim.opt_local.syntax = 'off'
-        vim.b.current_syntax = 'off'
         vim.wo.wrap = true
         vim.wo.linebreak = true
         vim.wo.breakindent = true

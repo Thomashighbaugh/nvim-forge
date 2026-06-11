@@ -73,8 +73,9 @@ vim.opt.guicursor = {
 -- Path
 vim.opt.path:append('**')
 
--- Spell
-vim.opt.spell = true
+-- Spell — disabled globally, enable per-buffer with `:setlocal spell` when needed
+-- Global spell is a major cause of insert-mode lag (runs on every keystroke)
+vim.opt.spell = false
 vim.opt.spelllang = { 'en' }
 
 -- Split
@@ -103,17 +104,11 @@ vim.g.skip_ts_context_commentstring_module = true
 -- ╰─────────────────────────────────────────────────────────────────────╯
 
 -- Reduce impact of syntax highlighting on large files
-vim.opt.redrawtime = 1500 -- Increase redraw time limit (default 2000)
-vim.opt.maxmempattern = 5000 -- Increase max memory for pattern matching
-
--- Optimize regex engine
-vim.opt.regexpengine = 1 -- Use old regex engine which can be faster for some patterns
+vim.opt.redrawtime = 2000 -- Redraw time limit (default 2000)
+vim.opt.maxmempattern = 2000 -- Balanced memory for pattern matching
 
 -- Optimize completion
 vim.opt.pumheight = 15 -- Limit popup menu height to improve performance
-
--- Optimize search
-vim.opt.maxmempattern = 1000 -- Limit memory used for pattern matching
 
 -- Improve responsiveness
 vim.opt.ttyfast = true -- Fast terminal connection

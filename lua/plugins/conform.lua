@@ -9,7 +9,8 @@ return {
             json = { 'prettier' },
             tex = { 'latexindent' },
             lua = { 'stylua' },
-            markdown = { 'prettier' },
+            -- markdown formatters — use none by default (render-markdown handles display)
+            -- prettier doesn't support markdown meaningfully
             nix = { 'alejandra' },
             php = { 'prettier' },
             python = { 'black' },
@@ -20,8 +21,8 @@ return {
         },
         format_on_save = {
             lsp_format = 'fallback',
-            async = false,
-            timeout_ms = 500,
+            async = true,
+            timeout_ms = 1000,
         },
     },
 }

@@ -1,6 +1,5 @@
 return {
     'mrjones2014/smart-splits.nvim',
-    lazy = false,
     keys = {
         { '<A-h>', "<cmd>lua require('smart-splits').resize_left<CR>", desc = 'Smart Resize Left' },
         { '<A-j>', "<cmd>lua require('smart-splits').resize_down<CR>", desc = 'Smart Resize Down' },
