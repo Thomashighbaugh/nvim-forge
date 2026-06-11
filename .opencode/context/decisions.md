@@ -32,6 +32,7 @@
 | Change | File | Impact |
 |--------|------|--------|
 | Removed `vim.opt_local.syntax = 'off'` from markdown BufWinEnter | `lua/core/autocommands.lua` | Was disabling syntax entirely for ALL markdown files — `after/syntax/markdown.vim` handles this minimally. render-markdown.nvim handles visual rendering |
+| Added delayed normal-mode-only spell for markdown (`InsertEnter` → off, `InsertLeave` → schedule after 2s) | `lua/core/autocommands.lua` | Spell active only in normal mode with 2s delay — no per-keystroke overhead, still get squiggly underlines when reading |
 | Removed markdown from conform.nvim formatters | `lua/plugins/conform.lua` | Prettier for markdown is slow and rarely produces useful changes |
 | Made `format_on_save` async with longer timeout | `lua/plugins/conform.lua` | Synchronous formatting blocked the UI on save |
 
@@ -44,7 +45,7 @@
 ### Rationale
 
 - **`CursorHoldI`** is the single biggest insert-mode lag source. It fires after `updatetime` (100ms) of idle in insert mode. The code action listener built LSP params on every fire, adding ~5-15ms of Lua work that visibly interrupts typing.
-- **Spell checking** (`'spell'`) is O(n) per keystroke in insert mode where n = visible text. For long markdown documents this is destructive. Leave it off globally and enable per-buffer via `:setlocal spell` or a FileType autocommand for prose filetypes.
+- **Spell checking** (`'spell'`) is O(n) per keystroke in insert mode where n = visible text. For long markdown documents this is destructive. Solution: spell is enabled only in normal mode with a 2-second delay after exiting insert mode. On `InsertEnter` it's immediately disabled and any pending activation timer is cancelled. On `InsertLeave` a `vim.defer_fn` schedules activation at 2000ms, guarded by a mode check so rapid in/out doesn't trigger spell.
 - **Lazy loading plugins** that don't need to be available at startup trims ~50-100ms from boot time per plugin.
 - **Per-keystroke scope recalculation** in snacks adds unnecessary overhead; scope is primarily useful in normal mode for navigation.
 
@@ -52,7 +53,7 @@
 
 - **Positive**: Dramatically reduced insert mode lag, faster boot, no perceptible pauses when typing in markdown or any filetype.
 - **Positive**: Eliminated duplicate autocommand execution.
-- **Neutral**: Global spell is off; users who want it in markdown can add `vim.bo.spell = true` in a `FileType markdown` autocommand.
+- **Positive**: Spell is still active in markdown normal mode (with 2s delay after leaving insert), so squiggly underlines appear when reading but never during typing.
 - **Neutral**: nvim-lint now only runs on `BufEnter` and `BufWritePost` instead of every `InsertLeave`.
 
 ### Key Metrics (Before/After Estimates)
@@ -61,7 +62,8 @@
 |--------|--------|-------|
 | Plugins loaded at startup | 3 (non-lazy) | 1 (monokai-pro colorscheme only) |
 | Insert mode CursorHoldI handlers | 1 (~10ms every 100ms idle) | 0 |
-| Spell checking per keystroke | Yes (O(n) overhead) | No |
+| Spell checking in insert mode | Yes (O(n) per keystroke) | **No** (disabled on InsertEnter) |
+| Spell checking in normal mode | Yes (always) | **Yes** (2s delayed after InsertLeave) |
 | Scope recalculation per keystroke | Yes (CursorMovedI + TextChangedI) | No |
 | Lint on InsertLeave | Yes | No |
 | Markdown formatting on save | Prettier (sync, 500ms timeout) | None (user opt-in) |

@@ -176,6 +176,10 @@ au('RecordingLeave', {
 -- NOTE: `after/syntax/markdown.vim` handles minimal syntax setup;
 --       render-markdown.nvim handles visual rendering.
 local markdown_group = vim.api.nvim_create_augroup('MarkdownWrap', { clear = true })
+
+-- Timer handle for delayed spell activation in normal mode
+local spell_timer = nil
+
 au('BufWinEnter', {
     group = markdown_group,
     pattern = '*.md',
@@ -184,6 +188,42 @@ au('BufWinEnter', {
         vim.wo.linebreak = true
         vim.wo.breakindent = true
         vim.wo.showbreak = '↪ '
+    end,
+})
+
+-- Spell: only in normal mode, never in insert mode (avoids per-keystroke overhead)
+-- On InsertEnter: disable spell immediately, cancel any pending activation
+-- On InsertLeave: schedule spell to activate after 2s (cancelled if re-entering insert)
+au('InsertEnter', {
+    group = markdown_group,
+    pattern = '*.md',
+    callback = function()
+        vim.bo.spell = false
+        if spell_timer then
+            spell_timer:stop()
+            spell_timer:close()
+            spell_timer = nil
+        end
+    end,
+})
+
+au('InsertLeave', {
+    group = markdown_group,
+    pattern = '*.md',
+    callback = function()
+        -- Cancel any previous pending activation
+        if spell_timer then
+            spell_timer:stop()
+            spell_timer:close()
+        end
+        -- Schedule spell activation in 2 seconds
+        spell_timer = vim.defer_fn(function()
+            -- Only activate if still in normal mode and still a markdown buffer
+            if vim.api.nvim_get_mode().mode == 'n' and vim.bo.filetype == 'markdown' then
+                vim.bo.spell = true
+            end
+            spell_timer = nil
+        end, 2000)
     end,
 })
 
