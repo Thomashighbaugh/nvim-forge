@@ -36,6 +36,20 @@ All notable changes to this project are documented here.
 - **Added `:Sort` user command** with flag completion (`i`, `u`, `n`, `iu`, `in`, `un`, `iun`)
 - **Replaced noice keymaps** with snacks.notifier equivalents
 
+### Architecture Refactor (2026-06-10)
+
+- **AI consolidation**: Removed `avante.nvim` (heaviest AI plugin, 6+ unique deps)
+- **AI models**: Updated all plugins to `deepseek-v4-flash:cloud` / `deepseek-v4-pro:cloud`
+- **Notifications**: Disabled `mini.notify` — primary is now `snacks.notifier` + history via `core/notifications.lua`
+- **Which-key**: Merged duplicate groups, removed `<space>e`, cleaned labels (83→57 entries)
+- **Lazy loading**: Moved `rainbow-delimiters`, `todo-comments`, `nvim-colorizer` to `VeryLazy`
+- **Removed** `after/syntax/markdown.vim` (dead weight with render-markdown.nvim)
+- **Status column**: Removed unused `MiniDiffSign` pattern from snacks config
+- **LSP config**: Split 529-line file into 16 per-server files under `lua/plugins/lsp/servers/`
+- **Autocommands**: Split 262-line file into 5 category files under `lua/core/autocommands.d/`
+- **Keymaps**: Split 405-line file into 6 category files under `lua/core/keymaps.d/`
+- **Removed avante-related keymaps** (20+ keymap definitions)
+
 ### Commits
 
 - `18d64ab` — perf fixes batch 1
@@ -43,3 +57,5 @@ All notable changes to this project are documented here.
 - `fbaf20d` — changelog update
 - `ad9d599` — project-scoped opencode.jsonc
 - `13fedd3` — remove 13 plugins
+- `fd90c2d` — changelog update
+- `3f435c2` — major config consolidation

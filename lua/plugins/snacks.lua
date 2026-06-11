@@ -158,30 +158,6 @@ return {
         },
     },
     keys = {
-        -- Notifications
-        {
-            '<space>nd',
-            function()
-                Snacks.notifier.hide()
-            end,
-            desc = 'Dismiss all Notifications',
-        },
-        {
-            '<space>nh',
-            '<cmd>NotificationHistory<cr>',
-            desc = 'Show Notification History',
-        },
-        {
-            '<space>nl',
-            '<cmd>NotificationLast<cr>',
-            desc = 'Show Last Notification',
-        },
-        {
-            '<space>nc',
-            '<cmd>NotificationClear<cr>',
-            desc = 'Clear Notification History',
-        },
-        -- Dashboard
         {
             '<leader>db',
             function()
