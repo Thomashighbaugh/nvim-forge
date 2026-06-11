@@ -17,5 +17,6 @@ All notable changes to this project are documented here.
 - **Markdown**: Reduced blink.cmp markdown sources from 9 to 6
 - **Markdown**: Made conform.nvim `format_on_save` async, removed prettier for markdown
 - **Markdown**: Removed `syntax=off` from BufWinEnter handler (overly aggressive)
+- **Markdown**: Smart spell — only in normal mode, 2s delayed after InsertLeave, disabled immediately on InsertEnter
 
-**Commit**: `18d64ab`
+**Commits**: `18d64ab`, `d96e3b4`
