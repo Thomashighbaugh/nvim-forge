@@ -4,7 +4,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 
 ## Plugin Overview
 
-**Total Plugins**: 58 active plugins
+**Total Plugins**: 59 active plugins
 **Categories**: LSP, UI, Text Editing, Git, AI, Debug, Utilities  
 **Plugin Manager**: [Lazy.nvim](https://github.com/folke/lazy.nvim)  
 **Recent Update**: Major migration to Mini.nvim ecosystem; Copilot replaced with Ollama (glm-5:cloud)
@@ -32,6 +32,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 | **DAP Virtual Text**    | theHamsta/nvim-dap-virtual-text             | Debug             | Show variable values as virtual text                               | Auto-triggered                                             |
 | **Diffview**            | sindrets/diffview.nvim                      | Git               | Git diff viewer with file history                                  | `<leader>do`, `<leader>dc`, `<leader>dh`                   |
 | **Dressing**            | stevearc/dressing.nvim                      | UI                | Better UI for vim.ui.select and vim.ui.input                       | Auto-triggered                                             |
+| **FastAction**          | Chaitanyabsprip/fastaction.nvim             | LSP               | LSP code actions in a popup with intelligent key mapping           | `<space>aa` (actions), `<space>af` (apply first)             |
 | **Flash**               | folke/flash.nvim                            | Navigation        | Fast cursor movement and search                                    | `s` (jump), `<leader>s` (treesitter), `<space>v` (search)  |
 | **Friendly Snippets**   | rafamadriz/friendly-snippets                | Snippets          | Collection of snippets for various languages                       | Loaded by mini.snippets via from_lang()                    |
 | **Gitsigns**            | lewis6991/gitsigns.nvim                     | Git               | Git signs, hunks, and blame integration                            | `<leader>g*` (git operations)                              |
@@ -327,7 +328,7 @@ This configuration uses [Lazy.nvim](https://github.com/folke/lazy.nvim) as the p
 
 ---
 
-_Last Updated_: 2026-04-22  
-_Total Active Plugins_: 57  
+_Last Updated_: 2026-05-05  
+_Total Active Plugins_: 59  
 _Configuration Version_: Modern Neovim Setup with Ollama AI (glm-5:cloud), Mini.nvim Migration, and Cmdline.nvim  
 _Audit Date_: 2026-04-17
