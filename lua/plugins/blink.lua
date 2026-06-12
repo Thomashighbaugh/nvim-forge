@@ -35,28 +35,47 @@ return {
         },
         signature = { enabled = true },
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+            default = { 'lsp', 'path', 'snippets', 'ripgrep', 'spell', 'dictionary' },
             per_filetype = {
-                gitcommit = { 'conventional_commits', 'git', 'nerdfont', 'buffer' },
-                markdown = {
-                    'lsp',
-                    'path',
-                    'snippets',
-                    'buffer',
-                    'emoji',
-                    'ripgrep',
-                },
-                text = { 'buffer', 'spell', 'dictionary', 'register' },
-                lua = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
-                css = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
-                scss = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
-                less = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
-                ['dap-repl'] = { 'dap' },
+                -- Code filetypes — buffer is useful here for identifiers
+                lua             = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                python          = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                rust            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                go              = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                typescript      = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                javascript      = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                typescriptreact = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                javascriptreact = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                java            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                c               = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                cpp             = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                sh              = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                zsh             = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                bash            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                yaml            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                json            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                html            = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                css             = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                scss            = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                less            = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
+                -- Prose filetypes — no buffer, spell/dictionary win
+                markdown = { 'lsp', 'path', 'snippets', 'emoji', 'ripgrep', 'spell', 'dictionary' },
+                text     = { 'spell', 'dictionary', 'register' },
+                help     = { 'spell', 'dictionary' },
+                -- Special filetypes
+                gitcommit       = { 'conventional_commits', 'git', 'nerdfont' },
+                ['dap-repl']    = { 'dap' },
             },
             providers = {
+                -- Buffer — code-only, capped at 3 items so stale codebases don't flood
+                buffer = {
+                    name = 'Buffer',
+                    max_items = 3,
+                },
                 spell = {
                     name = 'Spell',
                     module = 'blink-cmp-spell',
+                    score_offset = 20,
                     opts = {},
                 },
                 ripgrep = {
@@ -90,6 +109,7 @@ return {
                 dictionary = {
                     name = 'blink-cmp-words',
                     module = 'blink-cmp-words.dictionary',
+                    score_offset = 20,
                     opts = {
                         dictionary_search_threshold = 3,
                     },
@@ -97,6 +117,7 @@ return {
                 dict = {
                     name = 'Dict',
                     module = 'blink-cmp-dictionary',
+                    score_offset = 20,
                     min_keyword_length = 3,
                     opts = {
                         force_fallback = true,

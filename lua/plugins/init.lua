@@ -123,7 +123,7 @@ return {
     ----------------------------------------------------------------------
     {
         'fladson/vim-kitty',
-        'MunifTanjim/nui.nvim',
+        dependencies = { 'MunifTanjim/nui.nvim' },
     },
     {
         '2kabhishek/nerdy.nvim',
