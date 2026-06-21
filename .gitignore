@@ -19,3 +19,5 @@ debug/
 vscode-java-test/
 java-debug/
 js-debug/
+
+.opencode/state/*
