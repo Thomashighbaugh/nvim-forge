@@ -15,10 +15,48 @@ au({ 'FocusGained', 'BufEnter' }, {
     end,
 })
 
--- Autosave on InsertLeave and FocusLost
+-- ╔════════════════════════════════════════════════════════════╗
+-- ║                     AUTOSAVE SYSTEM                        ║
+-- ╠════════════════════════════════════════════════════════════╣
+-- ║ • InsertLeave / FocusLost: immediate save (instant)        ║
+-- ║ • CursorHoldI: debounced save after 3s typing pause       ║
+-- ║   (prevents data loss during config reloads without       ║
+-- ║    causing per-keystroke overhead)                         ║
+-- ╚════════════════════════════════════════════════════════════╝
+
+local autosave_timer = nil
+
+-- Instant save on leaving insert mode or losing focus
+-- Use a flag so downstream autocmds (like format-on-save) can distinguish
+-- autosaves from manual saves.
 au({ 'InsertLeave', 'FocusLost' }, {
     pattern = '<buffer>',
-    command = 'silent! write',
+    callback = function()
+        vim.g.saving_for_autosave = true
+        vim.cmd('silent! write')
+        vim.g.saving_for_autosave = false
+    end,
+})
+
+-- Debounced save during active typing: after 3s of no keystrokes
+-- in insert mode, save the buffer. This prevents data loss from
+-- config reloads that happen while you're mid-sentence.
+au('TextChangedI', {
+    pattern = '<buffer>',
+    callback = function()
+        if autosave_timer then
+            autosave_timer:stop()
+            autosave_timer:close()
+        end
+        autosave_timer = vim.defer_fn(function()
+            if vim.bo.modified and vim.bo.buftype == '' and vim.api.nvim_buf_get_name(0) ~= '' then
+                vim.g.saving_for_autosave = true
+                vim.cmd('silent! write')
+                vim.g.saving_for_autosave = false
+            end
+            autosave_timer = nil
+        end, 3000) -- 3 second debounce: only saves after a real pause
+    end,
 })
 
 -- Update file on external changes

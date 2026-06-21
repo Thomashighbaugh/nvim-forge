@@ -1,4 +1,4 @@
-local lsp = require('plugins.lsp.servers')
+local lsp = require('plugins.lsp.servers.helpers')
 local schemastore_ok, schemastore = pcall(require, 'schemastore')
 
 vim.lsp.config.yamlls = {

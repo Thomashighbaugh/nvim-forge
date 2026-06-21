@@ -1,0 +1,35 @@
+{
+  "lastToolCall": "2026-06-18T08:22:05.469Z",
+  "lastToolName": "bash",
+  "lastOutputTruncated": "http.postbuffer is now unset (default 1MB) ",
+  "toolCount": 66,
+  "recentTools": [
+    {
+      "name": "bash",
+      "time": "2026-06-18T08:22:05.469Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-18T08:22:05.468Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-18T08:21:51.144Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-18T08:21:51.144Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-18T07:25:42.193Z"
+    }
+  ],
+  "todoProgress": {
+    "lastChange": "",
+    "completed": 0,
+    "remaining": 0,
+    "pending": 0,
+    "inProgress": 0
+  }
+}

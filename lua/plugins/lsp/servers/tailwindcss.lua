@@ -1,4 +1,4 @@
-local lsp = require('plugins.lsp.servers')
+local lsp = require('plugins.lsp.servers.helpers')
 
 vim.lsp.config.tailwindcss = {
     capabilities = lsp.capabilities,

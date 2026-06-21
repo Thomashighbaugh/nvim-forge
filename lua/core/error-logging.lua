@@ -8,42 +8,40 @@ local M = {}
 -- Error log file
 local log_file = vim.fn.stdpath('log') .. '/errors.log'
 
--- Original error handler
-local original_notify = vim.notify
+-- Appends error/warn messages to log file
+local function write_to_log(msg, level)
+    if not level or level < vim.log.levels.WARN then
+        return
+    end
 
--- Enhanced error logging
-local function log_error(msg, level, opts)
-    opts = opts or {}
-    level = level or vim.log.levels.INFO
+    local timestamp = os.date('%Y-%m-%d %H:%M:%S')
+    local level_name = level == vim.log.levels.ERROR and 'ERROR' or 'WARN'
+    local log_entry = string.format('[%s] %s: %s\n', timestamp, level_name, msg)
 
-    -- Always call original notify first
-    original_notify(msg, level, opts)
-
-    -- Only log errors and warnings to file
-    if level >= vim.log.levels.WARN then
-        local timestamp = os.date('%Y-%m-%d %H:%M:%S')
-        local level_name = level == vim.log.levels.ERROR and 'ERROR' or 'WARN'
-        local log_entry = string.format('[%s] %s: %s\n', timestamp, level_name, msg)
-
-        -- Append to log file
-        local file = io.open(log_file, 'a')
-        if file then
-            file:write(log_entry)
-            file:close()
-        end
+    local file = io.open(log_file, 'a')
+    if file then
+        file:write(log_entry)
+        file:close()
     end
 end
 
 -- Setup error logging
 function M.setup()
-    -- Don't replace notify if our notification system already did
-    if vim.notify ~= original_notify then
-        -- Our notification system is already in place, just enhance it
-        return
-    end
+    -- Capture whatever vim.notify is right now
+    -- (could be original, or already enhanced by notifications.lua)
+    local current_notify = vim.notify
 
-    -- Replace vim.notify with enhanced version
-    vim.notify = log_error
+    -- Wrap vim.notify to add file logging; chains to whatever was there before
+    vim.notify = function(msg, level, opts)
+        opts = opts or {}
+        level = level or vim.log.levels.INFO
+
+        -- Write errors and warnings to log file
+        write_to_log(msg, level)
+
+        -- Chain to current notify (original or enhanced_notify)
+        current_notify(msg, level, opts)
+    end
 
     -- Create commands for error management
     vim.api.nvim_create_user_command('ErrorLog', function()
@@ -100,7 +98,8 @@ function M.capture_lua_errors()
     -- Override the global error handler
     local original_error = _G.error
     _G.error = function(msg, level)
-        log_error('Lua Error: ' .. tostring(msg), vim.log.levels.ERROR)
+        write_to_log('Lua Error: ' .. tostring(msg), vim.log.levels.ERROR)
+        vim.notify('Lua Error: ' .. tostring(msg), vim.log.levels.ERROR)
         return original_error(msg, level)
     end
 end

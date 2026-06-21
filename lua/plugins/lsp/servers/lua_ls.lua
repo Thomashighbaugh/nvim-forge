@@ -1,5 +1,5 @@
 -- Lua Language Server
-local lsp = require('plugins.lsp.servers')
+local lsp = require('plugins.lsp.servers.helpers')
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')

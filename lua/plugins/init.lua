@@ -165,8 +165,11 @@ return {
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
         ft = 'markdown',
         opts = {
-            -- Override built-in markdown syntax completely
-            render_modes = true,
+            -- Only render markdown visuals in normal/visual mode, not insert.
+            -- The old `render_modes = true` included ALL modes, which meant a
+            -- buffer-wide visual re-render on every insert-mode keystroke.
+            render_modes = { 'n', 'v' },
+            debounce = 200,
             -- Handle all markdown highlighting without system syntax
             enabled = true,
             max_file_size = 10.0,

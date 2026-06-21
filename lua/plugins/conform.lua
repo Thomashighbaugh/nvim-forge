@@ -19,10 +19,18 @@ return {
             vue = { 'prettier' },
             yaml = { 'yamlfmt' },
         },
-        format_on_save = {
-            lsp_format = 'fallback',
-            async = true,
-            timeout_ms = 1000,
-        },
+        -- Use a function for format_on_save so we can skip during autosaves.
+        -- When autosave triggers a write (InsertLeave/FocusLost/TextChangedI debounce),
+        -- vim.g.saving_for_autosave is set to true, and we return nil to skip formatting.
+        -- On manual :w, the flag is nil/false, so we return the normal format config.
+        format_on_save = function()
+            if vim.g.saving_for_autosave then
+                return nil
+            end
+            return {
+                lsp_format = 'fallback',
+                timeout_ms = 1000,
+            }
+        end,
     },
 }

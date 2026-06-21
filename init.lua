@@ -4,7 +4,8 @@ local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     -- Clone lazy.nvim repository if it doesn't exist
     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-    local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
+    -- Use --depth=1 instead of --filter=blob:none (partial clone broken on NixOS git 2.54+)
+    local out = vim.fn.system({ 'git', 'clone', '--depth=1', '--branch=stable', lazyrepo, lazypath })
     if vim.v.shell_error ~= 0 then
         -- Display error message and exit if cloning fails
         vim.api.nvim_echo({
@@ -46,6 +47,15 @@ local opts = {
     checker = {
         enabled = true, -- Enable automatic checking for plugin updates
     },
+    -- Limit concurrent git operations to avoid OOM during cloning
+    -- With 47+ plugins to clone, unlimited parallelism overwhelms memory
+    concurrency = 8,
+git = {
+timeout = 600,
+-- Disable --filter=blob:none (partial clone) — broken on NixOS git 2.54+
+-- Falls back to regular shallow clones which work at full speed
+filter = false,
+},
 }
 
 -- Initialize lazy.nvim with plugin configurations

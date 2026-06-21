@@ -36,6 +36,7 @@ return {
                 { '[t', desc = 'Previous todo comment' },
                 { '<leader>v', group = 'Visits (Mini.visits)' },
                 { '<leader>w', group = 'Save / Sort / Toggle' },
+                { '<leader>ww', desc = 'Toggle Word Wrap' },
                 { '<leader>y', group = 'Yanky' },
                 { '<leader><leader>', group = 'Smart Splits Swap' },
                 { '<space>', group = 'Space Commands' },

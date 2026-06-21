@@ -1,0 +1,35 @@
+{
+  "lastToolCall": "2026-06-15T02:07:32.106Z",
+  "lastToolName": "read",
+  "lastOutputTruncated": "<path>/etc/nixos/external/nvim/lua/plugins/conform.lua</path> <type>file</type> <content> 1: return { 2:     'stevearc/conform.nvim', 3:     event = { 'BufReadPre', 'BufNewFile' }, 4:     opts = { 5: ",
+  "toolCount": 28,
+  "recentTools": [
+    {
+      "name": "read",
+      "time": "2026-06-15T02:07:32.106Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-15T02:07:30.093Z"
+    },
+    {
+      "name": "edit",
+      "time": "2026-06-15T02:07:25.504Z"
+    },
+    {
+      "name": "read",
+      "time": "2026-06-15T02:07:03.915Z"
+    },
+    {
+      "name": "todowrite",
+      "time": "2026-06-15T01:04:16.427Z"
+    }
+  ],
+  "todoProgress": {
+    "lastChange": "",
+    "completed": 0,
+    "remaining": 0,
+    "pending": 0,
+    "inProgress": 0
+  }
+}

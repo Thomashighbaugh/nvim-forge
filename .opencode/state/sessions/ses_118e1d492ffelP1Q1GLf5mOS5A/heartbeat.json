@@ -1,0 +1,35 @@
+{
+  "lastToolCall": "2026-06-20T23:49:42.419Z",
+  "lastToolName": "todowrite",
+  "lastOutputTruncated": "[   {     \"content\": \"Run lazy sync and capture the error\",     \"status\": \"completed\",     \"priority\": \"high\"   },   {     \"content\": \"Diagnose the assertion failure root cause\",     \"status\": \"comple",
+  "toolCount": 90,
+  "recentTools": [
+    {
+      "name": "todowrite",
+      "time": "2026-06-20T23:49:42.419Z"
+    },
+    {
+      "name": "todowrite",
+      "time": "2026-06-20T23:49:42.417Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-20T23:49:34.853Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-20T23:49:34.852Z"
+    },
+    {
+      "name": "bash",
+      "time": "2026-06-20T23:49:27.735Z"
+    }
+  ],
+  "todoProgress": {
+    "lastChange": "",
+    "completed": 0,
+    "remaining": 0,
+    "pending": 0,
+    "inProgress": 0
+  }
+}

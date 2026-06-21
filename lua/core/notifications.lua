@@ -17,6 +17,9 @@ local config = {
 local notification_history = {}
 local notification_count = 0
 
+-- Saved original notify — set during setup() to break circular chains
+local _orig_notify = nil
+
 -- Enhanced notify — wraps snacks.notifier, maintains history
 local function enhanced_notify(msg, level, opts)
     opts = opts or {}
@@ -39,12 +42,12 @@ local function enhanced_notify(msg, level, opts)
         table.remove(notification_history, 1)
     end
 
-    -- Route through snacks.notifier if available, else fallback to vim.notify
+    -- Route through snacks.notifier if available, else fallback to saved original
     local snacks_ok, snacks = pcall(require, 'snacks')
     if snacks_ok and snacks.notifier then
         snacks.notifier.notify(msg, level, opts)
-    else
-        vim.notify(msg, level, opts)
+    elseif _orig_notify then
+        _orig_notify(msg, level, opts)
     end
 end
 
@@ -211,6 +214,9 @@ end
 -- Setup function
 function M.setup(opts)
     config = vim.tbl_deep_extend('force', config, opts or {})
+
+    -- Save original notify to break circular chains with error-logging.lua
+    _orig_notify = vim.notify
 
     -- Replace vim.notify with enhanced version (routes to snacks.notifier)
     vim.notify = enhanced_notify

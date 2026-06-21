@@ -13,6 +13,14 @@ vim.keymap.set('v', '<PageDown>', '<C-f>', { desc = 'Page down', noremap = true,
 -- Save
 vim.keymap.set('n', '<leader>w', '<cmd>w!<CR>', { desc = 'Save' })
 
+-- Toggle word wrap (useful in markdown/prose, one of the most common toggles)
+vim.keymap.set('n', '<leader>ww', function()
+    local new_val = not vim.wo.wrap
+    vim.wo.wrap = new_val
+    vim.wo.linebreak = new_val
+    vim.notify('Word wrap: ' .. (new_val and 'ON' or 'OFF'), vim.log.levels.INFO)
+end, { desc = 'Toggle Word Wrap' })
+
 -- Create splits
 vim.keymap.set('n', '<Space>/', ':vsplit<CR>', { desc = 'Split Window Vertically' })
 vim.keymap.set('n', '<Space>-', ':split<CR>', { desc = 'Split Window Horizontally' })
