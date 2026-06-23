@@ -54,7 +54,21 @@ vim.opt.timeoutlen = 500
 -- Folding
 vim.o.foldenable = false
 
--- Clipboard - use system clipboard (let Neovim auto-detect provider)
+-- Clipboard - explicit xclip provider with absolute paths (NixOS-safe)
+-- NixOS may not have xclip in PATH when nvim is started from GUI launchers,
+-- so we use absolute paths and define the provider explicitly.
+vim.g.clipboard = {
+    name = 'xclip',
+    copy = {
+        ['+'] = '/run/current-system/sw/bin/xclip -selection clipboard -i',
+        ['*'] = '/run/current-system/sw/bin/xclip -selection primary -i',
+    },
+    paste = {
+        ['+'] = '/run/current-system/sw/bin/xclip -selection clipboard -o',
+        ['*'] = '/run/current-system/sw/bin/xclip -selection primary -o',
+    },
+    cache_enabled = true,
+}
 vim.opt.clipboard = 'unnamedplus'
 
 -- Keys
