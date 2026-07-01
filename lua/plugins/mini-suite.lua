@@ -168,36 +168,6 @@ return {
             -- })
 
             -- ╭─────────────────────────────────────────────────────────╮
-            -- │                   MINI.COMMENT                          │
-            -- ╰─────────────────────────────────────────────────────────╯
-            -- Comment system replacement for Comment.nvim
-            require('mini.comment').setup({
-                -- Options which control module behavior
-                options = {
-                    -- Function to compute custom 'commentstring' (optional)
-                    custom_commentstring = nil,
-                    -- Whether to ignore blank lines
-                    ignore_blank_line = false,
-                    -- Whether to recognize as comment only lines without indent
-                    start_of_line = false,
-                    -- Whether to ensure single space pad for comment parts
-                    pad_comment_parts = true,
-                },
-                -- Module mappings. Use `''` (empty string) to disable one.
-                mappings = {
-                    -- Toggle comment (like `gcip` - comment inner paragraph) for both
-                    -- Normal and Visual modes
-                    comment = 'gc',
-                    -- Toggle comment on current line
-                    comment_line = 'gcc',
-                    -- Toggle comment on visual selection
-                    comment_visual = 'gc',
-                    -- Define 'comment' textobject (like `dgc` - delete whole comment block)
-                    textobject = 'gc',
-                },
-            })
-
-            -- ╭─────────────────────────────────────────────────────────╮
             -- │                  MINI.STATUSLINE                        │
             -- ╰─────────────────────────────────────────────────────────╯
             -- Status line replacement for lualine.nvim
@@ -217,12 +187,6 @@ return {
                 -- this to `false` and 'laststatus' to 3.
                 set_vim_settings = true,
             })
-
-            -- ╭─────────────────────────────────────────────────────────╮
-            -- │                  MINI.BUFREMOVE                         │
-            -- ╰─────────────────────────────────────────────────────────╯
-            -- Buffer management utilities
-            require('mini.bufremove').setup()
 
             -- ╭─────────────────────────────────────────────────────────╮
             -- │                    MINI.ANIMATE                         │
@@ -280,12 +244,7 @@ return {
                 },
             })
             -- ╭─────────────────────────────────────────────────────────╮
-            -- │              EXISTING MINI MODULES                      │
-            -- ╰─────────────────────────────────────────────────────────╯
-            -- Keep existing mini modules that are already configured
-            require('mini.ai').setup({ n_lines = 500 })
-            require('mini.surround').setup()
-            require('mini.pairs').setup()
+            -- │                    MINI.AI                              │
         end,
         keys = {
             -- Mini.visits keybindings
@@ -360,22 +319,6 @@ return {
                     require('mini.pick').builtin.grep()
                 end,
                 desc = 'Grep in files',
-            },
-
-            -- Mini.bufremove keybindings
-            {
-                '<leader>bd',
-                function()
-                    require('mini.bufremove').delete()
-                end,
-                desc = 'Delete buffer (keep layout)',
-            },
-            {
-                '<leader>bD',
-                function()
-                    require('mini.bufremove').delete(0, true)
-                end,
-                desc = 'Delete buffer (force)',
             },
 
             -- Convenience mappings

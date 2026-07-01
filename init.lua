@@ -35,6 +35,16 @@ require('core.notifications').setup() -- Enhanced notification system
 require('core.smart-redraw').setup() -- Smart lazyredraw optimization
 require('core.error-logging').setup() -- Enhanced error logging system
 
+-- Load utility modules (local function replacements for plugins)
+require('utils.window').setup() -- Window management (replaces smart-splits.nvim)
+require('utils.buffer').setup() -- Buffer management (replaces mini.bufremove)
+require('utils.autopairs').setup() -- Auto-close brackets/quotes (replaces mini.pairs)
+require('utils.comment').setup() -- Comment toggling (replaces mini.comment)
+require('utils.surround').setup() -- Surround operations (replaces mini.surround)
+require('utils.todo-marker').setup() -- TODO/checkbox markers (replaces todo-marker.nvim)
+require('utils.toggler').setup() -- Boolean toggling (replaces nvim-toggler)
+require('utils.substitute').setup() -- Cmdline substitute alt (replaces nvim-alt-substitute)
+
 -- Configure lazy.nvim options
 -- These settings customize the appearance and behavior of the plugin manager
 local opts = {

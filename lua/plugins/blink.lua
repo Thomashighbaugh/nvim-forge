@@ -106,6 +106,15 @@ return {
                 ['dap-repl'] = { 'dap' },
             },
             providers = {
+                -- Snippets — friendly-snippets + custom snippets from scissors
+                snippets = {
+                    name = 'Snippets',
+                    opts = {
+                        search_paths = {
+                            vim.fn.stdpath('config') .. '/snippets',
+                        },
+                    },
+                },
                 -- Buffer — code-only, capped at 3 items so stale codebases don't flood
                 buffer = {
                     name = 'Buffer',

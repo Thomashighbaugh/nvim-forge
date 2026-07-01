@@ -37,34 +37,6 @@ return {
         end,
     },
 
-    --  ╭──────────────────────────────────────────────────────────╮
-    --  │                          UTILS                           │
-    --  ╰──────────────────────────────────────────────────────────╯
-    {
-        'nguyenvukhang/nvim-toggler',
-        keys = {
-            { '<leader>w', desc = 'Toggle Word' },
-        },
-        config = function()
-            require('nvim-toggler').setup({
-                remove_default_keybinds = true,
-            })
-            vim.keymap.set(
-                { 'n', 'v' },
-                '<leader>w',
-                require('nvim-toggler').toggle,
-                { desc = 'Toggle a Boolean Value' }
-            )
-        end,
-    },
-    {
-        'chrisgrieser/nvim-alt-substitute',
-        enabled = true,
-        opts = true,
-        -- lazy-loading with `cmd =` does not work well with incremental preview
-        event = 'CmdlineEnter',
-    },
-
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                         COLORS                          │
     -- ╰─────────────────────────────────────────────────────────╯
@@ -97,15 +69,6 @@ return {
             --  - yinq - [Y]ank [I]nside [N]ext [']quote
             --  - ci'  - [C]hange [I]nside [']quote
             require('mini.ai').setup({ n_lines = 500 })
-
-            -- Add/delete/replace surroundings (brackets, quotes, etc.)
-            --
-            -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-            -- - sd'   - [S]urround [D]elete [']quotes
-            -- - sr)'  - [S]urround [R]eplace [)] [']
-            require('mini.surround').setup()
-
-            require('mini.pairs').setup()
         end,
     },
     ----------------------------------------------------------------------
@@ -139,21 +102,11 @@ return {
         },
     },
     -- snacks.nvim is now configured in lua/plugins/snacks.lua
-    -- colors
 
     -- ╭─────────────────────────────────────────────────────────╮
     -- │                    Markdown Writing                     │
     -- ╰─────────────────────────────────────────────────────────╯
     -- Mini suite is now configured in mini-suite.lua
-    -- {
-    --     'echasnovski/mini.nvim',
-    --     event = 'VeryLazy',
-    --     config = function()
-    --         require('mini.ai').setup({ n_lines = 500 })
-    --         require('mini.surround').setup()
-    --         require('mini.pairs').setup()
-    --     end,
-    -- },
     {
         'Kicamon/markdown-table-mode.nvim',
         ft = 'markdown',

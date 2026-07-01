@@ -1,17 +1,5 @@
 return {
     -- ╭─────────────────────────────────────────────────────────╮
-    -- │                      TODO-MARKER.NVIM                   │
-    -- ╰─────────────────────────────────────────────────────────╯
-    {
-        'maheshbansod/todo-marker.nvim',
-        config = function()
-            local tm = require('todo-marker')
-            tm.setup()
-            vim.keymap.set('n', '<leader>tm', tm.toggle_todo_item, { desc = 'Toggle Todo Marker' })
-        end,
-    },
-
-    -- ╭─────────────────────────────────────────────────────────╮
     -- │                      COMMENT.NVIM                       │
     -- ╰─────────────────────────────────────────────────────────╯
     -- DISABLED: Replaced by mini.comment in mini-suite.lua
