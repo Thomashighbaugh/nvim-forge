@@ -8,6 +8,8 @@ return {
     dependencies = {
         'b0o/schemastore.nvim',
         'saghen/blink.cmp',
+        -- lsp-auto-setup: auto-enables servers based on available executables
+        'Massolari/lsp-auto-setup.nvim',
     },
     config = function()
         -- ╭─────────────────────────────────╮
@@ -127,26 +129,46 @@ return {
         require('plugins.lsp.servers.yamlls')
         require('plugins.lsp.servers.tinymist')
 
-        -- ╭────────────────────╮
-        -- │ ENABLE LSP SERVERS │
-        -- ╰────────────────────╯
-        vim.lsp.enable({
-            'lua_ls',
-            'nil_ls',
-            'pyright',
-            'ruff',
-            'jsonls',
-            'ts_ls',
-            'bashls',
-            'tailwindcss',
-            'cssls',
-            'html',
-            'ltex',
-            'texlab',
-            'gopls',
-            'rust_analyzer',
-            'yamlls',
-            'tinymist',
-        })
+        -- ╭──────────────────────────────────────────────────────────╮
+        -- │              AUTO-ENABLE LSP SERVERS                    │
+        -- │  lsp-auto-setup scans nvim-lspconfig for available      │
+        -- │  servers, checks if each executable is on PATH, and     │
+        -- │  enables only those found. Per-server configs from      │
+        -- │  lsp/servers/*.lua are picked up via vim.lsp.config[].  │
+        -- ╰──────────────────────────────────────────────────────────╯
+        local lsp_auto_setup_ok, lsp_auto_setup = pcall(require, 'lsp-auto-setup')
+        if lsp_auto_setup_ok then
+            lsp_auto_setup.setup({
+                exclude = {
+                    'emmet_ls',
+                    'intelephense',
+                    'jdtls',
+                },
+                stop_unused_servers = {
+                    enable = true,
+                    exclude = { 'lua_ls' },
+                },
+            })
+        else
+            -- Fallback: manually enable servers if lsp-auto-setup is not installed
+            vim.lsp.enable({
+                'lua_ls',
+                'nil_ls',
+                'pyright',
+                'ruff',
+                'jsonls',
+                'ts_ls',
+                'bashls',
+                'tailwindcss',
+                'cssls',
+                'html',
+                'ltex',
+                'texlab',
+                'gopls',
+                'rust_analyzer',
+                'yamlls',
+                'tinymist',
+            })
+        end
     end,
 }

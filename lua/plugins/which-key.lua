@@ -62,9 +62,12 @@ return {
                 { '<space>i', group = 'Inlay Hints' },
                 { '<space>m', group = 'Maximize / Messages' },
                 { '<space>n', group = 'Notifications (Snacks)' },
+
                 { '<space>o', group = 'Outline' },
                 { '<space>x', group = 'Trouble' },
                 { '<space>a', group = 'Action (FastAction)' },
+                { '<space>aa', desc = 'Code Actions' },
+                { '<space>af', desc = 'Apply First Code Action' },
                 { '<space>\\', desc = 'Split Window Vertically' },
                 { '<space>/', desc = 'Split Window Horizontally' },
                 { 'z', group = 'Spell / Folds' },
