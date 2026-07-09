@@ -73,7 +73,14 @@ return {
             -- instead of the default 0. This avoids spawning the engine on every 1-2 char
             -- prefix which is where most backspace/rapid-typing overhead comes from.
             min_keyword_length = function()
-                return vim.bo.filetype == 'markdown' and 3 or 0
+                local ft = vim.bo.filetype
+                if ft == 'markdown' then
+                    return 3
+                end
+                if ft == 'json' then
+                    return 2
+                end
+                return 0
             end,
             per_filetype = {
                 -- Code filetypes — buffer is useful here for identifiers
@@ -92,13 +99,13 @@ return {
                 zsh = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
                 bash = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
                 yaml = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
-                json = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+                json = { 'lsp', 'path', 'snippets', 'buffer' },
                 html = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
                 css = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
                 scss = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
                 less = { 'lsp', 'path', 'snippets', 'buffer', 'css_vars' },
                 -- Prose filetypes — no buffer, spell/dictionary win
-                markdown = { 'lsp', 'path', 'snippets', 'emoji', 'ripgrep', 'spell', 'dictionary' },
+                markdown = { 'lsp', 'path', 'snippets', 'emoji', 'spell', 'dictionary' },
                 text = { 'spell', 'dictionary', 'register' },
                 help = { 'spell', 'dictionary' },
                 -- Special filetypes
