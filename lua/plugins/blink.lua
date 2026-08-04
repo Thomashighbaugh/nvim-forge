@@ -14,7 +14,7 @@ return {
         'bydlw98/blink-cmp-env',
         'Kaiser-Yang/blink-cmp-git',
         'disrupted/blink-cmp-conventional-commits',
-        'jdrupal-dev/css-vars.nvim',
+        { 'jdrupal-dev/css-vars.nvim', branch = 'feature/blink-cmp' },
         'MahanRahmati/blink-nerdfont.nvim',
         'mayromr/blink-cmp-dap',
         'jmbuhr/cmp-pandoc-references',

@@ -143,6 +143,7 @@ return {
                     'emmet_ls',
                     'intelephense',
                     'jdtls',
+                    'gitlab_duo',
                 },
                 stop_unused_servers = {
                     enable = true,
