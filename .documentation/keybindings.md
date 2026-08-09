@@ -10,110 +10,125 @@ This document provides a comprehensive reference of all keybindings configured i
 
 ---
 
-## Core Navigation & Basic Operations
+## Core Editor (lua/core/keymaps/editor.lua)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
 | `kj` | i | `<esc>` | Exit insert mode |
+| `<PageUp>` / `<PageDown>` | n,v | `<C-b>` / `<C-f>` | Page up/down |
 | `<leader>w` | n | `<cmd>w!<CR>` | Save file |
+| `<leader>ww` | n | Toggle `wrap` + `linebreak` | Toggle word wrap |
 | `<Space>/` | n | `:vsplit<CR>` | Split window vertically |
 | `<Space>-` | n | `:split<CR>` | Split window horizontally |
-| `j` | n,x | `v:count == 0 ? 'gj' : 'j'` | Better up movement (visual lines) |
-| `k` | n,x | `v:count == 0 ? 'gk' : 'k'` | Better down movement (visual lines) |
-| `<C-a>` | n,x | `gg<S-v>G` | Select all text |
-| `<esc>` | i,n | `<cmd>noh<cr><esc>` | Escape and clear search highlight |
-
-## Search & Replace
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
+| `j` / `k` | n,x | `v:count == 0 ? 'gj' : 'j'` | Visual-line movement (better j/k) |
 | `ƒ` | n | `/` | Search |
 | `<leader>R` | n | `:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>` | Search and replace word under cursor |
 | `<leader>r` | x | `:s/\%V` | Search and replace in visual selection |
-
-## Window & Buffer Management
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `<Space>bd` | n | `<cmd>bd<cr>` | Delete buffer |
-| `<Space>h` | n | `<c-w>h` | Move to left split pane |
-| `<Space>l` | n | `<c-w>l` | Move to right split pane |
-| `<Space>k` | n | `<c-w>k` | Move to upper split pane |
-| `<Space>j` | n | `<c-w>j` | Move to lower split pane |
+| `<C-a>` | n,x | `gg<S-v>G` | Select all text |
+| `<leader>cr` | n | Re-set `+` register | Refresh clipboard from system |
+| `<c-l>` | i | `<c-g>u<Esc>[s1z=`]a<c-g>u` | Fix spelling in insert mode |
 | `<Space>m` | n | `Utils.max_or_equal()` | Maximize or equalize split |
-| `<S-Left>` | n | `<cmd>BufferLineCyclePrev<cr>` | Previous buffer |
-| `<S-Right>` | n | `<cmd>BufferLineCycleNext<cr>` | Next buffer |
-| `<space>bp` | n | `<cmd>BufferLineTogglePin<cr>` | Pin buffer |
-| `<space>bk` | n | `<cmd>BufferLinePick<cr>` | Pick buffer |
-| `<space>bo` | n | `<cmd>BufferLineCloseOthers<cr>` | Close other buffers |
-| `<space>b<left>` | n | `<cmd>BufferLineMovePrev<cr>` | Move buffer left |
-| `<space>b<right>` | n | `<cmd>BufferLineMoveNext<cr>` | Move buffer right |
-| `<space>b1-9` | n | `<cmd>BufferLineGoToBuffer N<cr>` | Go to buffer N (1-9) |
-
-## Window Resizing
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
 | `<M-UP>` | n | `<cmd>resize +2<cr>` | Resize pane up |
 | `<M-DOWN>` | n | `<cmd>resize -2<cr>` | Resize pane down |
 | `<M-LEFT>` | n | `<cmd>vertical resize +2<cr>` | Resize pane left |
 | `<M-RIGHT>` | n | `<cmd>vertical resize -2<cr>` | Resize pane right |
-
-## Smart Splits (Advanced Window Management)
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `<A-h>` | n | Smart resize left | Smart resize left |
-| `<A-j>` | n | Smart resize down | Smart resize down |
-| `<A-k>` | n | Smart resize up | Smart resize up |
-| `<A-l>` | n | Smart resize right | Smart resize right |
-| `<C-Left>` | n | Smart move cursor left | Smart move cursor left |
-| `<C-Down>` | n | Smart move cursor down | Smart move cursor down |
-| `<C-Up>` | n | Smart move cursor up | Smart move cursor up |
-| `<C-Right>` | n | Smart move cursor right | Smart move cursor right |
-| `<C-\>` | n | Smart move to previous | Smart move to previous |
-| `<leader><leader>h` | n | Smart swap buffer left | Smart swap buffer left |
-| `<leader><leader>j` | n | Smart swap buffer down | Smart swap buffer down |
-| `<leader><leader>k` | n | Smart swap buffer up | Smart swap buffer up |
-| `<leader><leader>l` | n | Smart swap buffer right | Smart swap buffer right |
-
-## Text Editing & Movement
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
 | `<c-k>` | n | `:m -2<CR>==` | Move line up |
 | `<c-j>` | n | `:m +1<CR>==` | Move line down |
 | `<c-k>` | v | `:m '<-2<CR>gv=gv` | Move selection up |
 | `<c-j>` | v | `:m '>+1<CR>gv=gv` | Move selection down |
-| `<` | v | `<gv` | Indent left and reselect |
-| `>` | v | `>gv` | Indent right and reselect |
+| `<` / `>` | v | `<gv` / `>gv` | Indent and reselect |
 | `p` | v | `"_dP` | Paste without yanking |
 | `p` | x | `P` | Paste |
 | `dD` | n | `"_dd` | Delete line without yanking |
 | `c` | n,v | `"_c` | Change without yanking |
 | `C` | n | `"_C` | Change to end without yanking |
-
-## Insert Mode Helpers
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
+| `dd` | n | `"_dd` on empty lines | Don't yank empty lines |
 | `<M-i>` | i | `<Esc>I` | Jump to beginning of line |
 | `<M-a>` | i | `<Esc>A` | Jump to end of line |
-| `<c-l>` | i | `<c-g>u<Esc>[s1z=`]a<c-g>u` | Fix spelling in insert mode |
 | `<C-b>` | i | `{},<esc>hha` | Add curly braces with comma |
+| `g,` | n | `g;` | Go to newest change (swapped) |
+| `g;` | n | `g,` | Go to last change (swapped) |
+| `<esc>` | i,n | `<cmd>noh<cr><esc>` | Escape and clear search highlight |
+| `<leader>fn` | n | `<cmd>enew<cr>` | New file |
+| `i` | n | `"_cc` on empty lines | Better `i` on empty lines |
+| `z.` | n | `1z=` | Fix spelling |
+| `z=` | n | `vim.ui.select` suggestions | Spelling suggestions |
+| `<leader>mm` | n | `<cmd>messages<cr>` | Show messages |
 
 ## Text Objects
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `iq` | o,x | `i'` | Inner single quotes |
-| `iQ` | o,x | `i"` | Inner double quotes |
-| `aq` | o,x | `2i'` | Around single quotes |
-| `aQ` | o,x | `2i"` | Around double quotes |
-| `ir` | o,x | `i[` | Inner brackets |
-| `ar` | o,x | `a[` | Around brackets |
+| `iq` / `iQ` | o,x | `i'` / `i"` | Inner single/double quotes |
+| `aq` / `aQ` | o,x | `2i'` / `2i"` | Around single/double quotes |
+| `a'` / `a"` | o,x | `2i'` / `2i"` | Around single/double quotes (alt) |
+| `ir` / `ar` | o,x | `i[` / `a[` | Inner/around brackets |
 
-## LSP Functions
+## Window & Buffer Management
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<Space>h` / `<Space>l` / `<Space>k` / `<Space>j` | n | `<c-w>h/l/k/j` | Move to split pane |
+| `<Space>bd` | n | `<cmd>bd<cr>` | Delete buffer |
+| `<leader>bd` | n | `mini.bufremove.delete(0, false)` | Delete buffer (keep layout) |
+| `<leader>bD` | n | `mini.bufremove.delete(0, true)` | Delete buffer (force) |
+| `<S-Left>` | n | `<cmd>BufferLineCyclePrev<cr>` | Previous buffer |
+| `<S-Right>` | n | `<cmd>BufferLineCycleNext<cr>` | Next buffer |
+| `<Space>bp` | n | `<cmd>BufferLineTogglePin<cr>` | Pin buffer |
+| `<Space>bk` | n | `<cmd>BufferLinePick<cr>` | Pick buffer |
+| `<Space>bo` | n | `<cmd>BufferLineCloseOthers<cr>` | Close other buffers |
+| `<Space>b<left>` / `<Space>b<right>` | n | BufferLineMovePrev/Next | Move buffer |
+| `<Space>b1-9` | n | `<cmd>BufferLineGoToBuffer N<cr>` | Go to buffer 1-9 |
+| `-` | n | `mini.pick.builtin.buffers()` | Buffer picker (mini.pick) |
+
+## Smart Window Moves (lua/utils/window.lua)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<C-Left>` / `<C-Right>` / `<C-Up>` / `<C-Down>` | n | Smart move cursor | Move between windows (smart-splits style) |
+| `<C-\>` | n | Smart move previous | Move to previous window |
+| `<M-h>` / `<M-l>` / `<M-k>` / `<M-j>` | n | Smart resize | Resize window toward direction |
+| `<leader><leader>h/l/k/j` | n | Swap buffer | Swap buffer to adjacent window |
+
+## Surround (mini.surround)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `sa` | n | `sa{motion}{char}` | Add surround (e.g. `saiw(`) |
+| `sd` | n | `sd{char}` | Delete surround |
+| `sr` | n | `sr{old}{new}` | Replace surround |
+| `sa` | x | Add around selection | Add surround around visual selection |
+| `sf` / `sF` | n | Find right/left surround | Jump to surrounding pair |
+| `sh` | n | Highlight surround | Highlight surrounding pair |
+| `sn` | n | Update n_lines | Update lines searched for surround |
+
+**Note**: HTML tag surround (`sa t`, `sd t`) from the old custom util is NOT available in mini.surround.
+
+## Comments (mini.comment)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `gc` | n | Toggle comment (motion) | Comment motion (`gcw`, `gcap`) |
+| `gc` | x | Toggle comment (visual) | Comment selection |
+| `gcc` | n | Toggle comment line | Comment current line |
+
+**Note**: Block comment keys (`gb`/`gbc`) do not exist in this mini.nvim version.
+
+## Todo Comments & Markers
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<leader>tq` | n | `<cmd>TodoQuickFix<cr>` | Todo QuickFix |
+| `<leader>tl` | n | `<cmd>TodoLocList<cr>` | Todo LocList |
+| `<leader>ts` | n | `<cmd>TodoTelescope<cr>` | Todo Telescope |
+| `]t` | n | `require('todo-comments').jump_next()` | Next todo comment |
+| `[t` | n | `require('todo-comments').jump_prev()` | Previous todo comment |
+| `<leader>tc` | n | `utils/todo-marker.lua` | Toggle checkbox `[ ]` / `[x]` |
+| `<leader>tt` | n | **Toggle Terminal (Snacks)** | Terminal toggle — shadows todo-marker cycle |
+
+**Note**: `,tt` was the TODO/FIXME/HACK cycle key (todo-marker util); Snacks' terminal toggle now wins that key. The checkbox toggle (`,tc`) is unaffected.
+
+## LSP Functions (lua/plugins/lsp/lsp-config.lua)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
@@ -129,27 +144,40 @@ This document provides a comprehensive reference of all keybindings configured i
 | `grk` | n | `vim.lsp.buf.signature_help` | Signature help |
 | `grs` | n | `vim.lsp.buf.document_symbol` | Document symbols |
 | `grt` | n | `vim.lsp.buf.type_definition` | Type definition |
+| `grwa` / `grwr` / `grwl` | n | Workspace folders | Add/remove/list workspace folders |
+| `<C-S>` | i,v | `vim.lsp.buf.signature_help` | Signature help |
 
-## LSP Workspace
+## Glance LSP (glance.nvim)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `grwa` | n | `vim.lsp.buf.add_workspace_folder` | Add workspace folder |
-| `grwr` | n | `vim.lsp.buf.remove_workspace_folder` | Remove workspace folder |
-| `grwl` | n | List workspace folders | List workspace folders |
+| `gd` | n | Glance definitions | Go to definition (floating) |
+| `gr` | n | Glance references | LSP references (floating) |
+| `gm` | n | Glance implementations | Go to implementation |
+| `gy` | n | Glance type definitions | Go to type definition |
+
+## Code Actions (fastaction)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<Space>aa` | n,v | Code actions | Open code actions menu |
+| `<Space>af` | n,v | Apply first code action | Apply first available action |
 
 ## Diagnostics
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<space>d` | n | `vim.diagnostic.open_float` | Open diagnostic window |
-| `<space><left>` | n | `vim.diagnostic.jump({ count = -1 })` | Previous diagnostic |
-| `<space><right>` | n | `vim.diagnostic.jump({ count = 1 })` | Next diagnostic |
-| `<space>q` | n | `vim.diagnostic.setloclist` | Send diagnostics to loclist |
-| `<Space>ih` | n | Toggle inlay hints | Toggle inlay hints |
+| `<Space>d` | n | `vim.diagnostic.open_float` | Open diagnostic window |
+| `<Space><left>` | n | `vim.diagnostic.jump({ count = -1 })` | Previous diagnostic |
+| `<Space><right>` | n | `vim.diagnostic.jump({ count = 1 })` | Next diagnostic |
+| `<Space>q` | n | `vim.diagnostic.setloclist` | Send diagnostics to loclist |
+| `[d` / `]d` | n | mini.bracketed | Previous/next diagnostic (buffer) |
+| `[D` / `]D` | n | mini.bracketed | First/last diagnostic (buffer) |
+| `<C-W>d` / `<C-W><C-D>` | n | Show diagnostics under cursor | Diagnostic float under cursor |
 
-## File Navigation & Search (Snacks Picker)
+## File Navigation & Search
 
+### Snacks Picker
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
 | `<leader>fb` | n | `Snacks.picker.buffers()` | Find buffers |
@@ -165,15 +193,22 @@ This document provides a comprehensive reference of all keybindings configured i
 | `<leader>ft` | n | `Snacks.picker.git_files()` | Find git files |
 | `<leader>?` | n | `Snacks.picker.keymaps()` | Cheatsheet (keymaps) |
 
+### Mini.pick
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<C-p>` | n | `mini.pick.builtin.files()` | Find files |
+| `<leader>/` | n | `mini.pick.builtin.grep_live()` | Live grep |
+| `<leader>f/` | n | `mini.pick.builtin.grep()` | Grep in files |
+| `-` | n | `mini.pick.builtin.buffers()` | Buffer picker |
+
 ## File Management
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<Space>e` | n | `Snacks.explorer()` | File explorer |
-| `<Leader>e` | n | `Snacks.explorer()` | File explorer |
+| `<Space>e` / `<Leader>e` | n | `Snacks.explorer()` | File explorer |
 | `<leader>fn` | n | `<cmd>enew<cr>` | New file |
 
-## Git Operations
+## Git Operations (lua/plugins/git.lua + misc.lua)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
@@ -182,6 +217,7 @@ This document provides a comprehensive reference of all keybindings configured i
 | `<leader>dc` | n | `<cmd>DiffviewClose<cr>` | Close Diffview |
 | `<leader>dh` | n | `<cmd>DiffviewFileHistory<cr>` | File history |
 | `<leader>df` | n | `<cmd>DiffviewToggleFiles<cr>` | Toggle file panel |
+| `<leader>dv` | n | `diffview.lib` toggle | Toggle Diffview open/close |
 | `<leader>gn` | n | `gs.next_hunk()` | Next git hunk |
 | `<leader>gN` | n | `gs.prev_hunk()` | Previous git hunk |
 | `<leader>gs` | n,v | `gs.stage_hunk` | Stage hunk |
@@ -213,55 +249,40 @@ This document provides a comprehensive reference of all keybindings configured i
 |-----|------|----------|-------------|
 | `<leader>y` | n,x | `<cmd>YankyRingHistory<cr>` | Yank ring history |
 | `y` | n,x | `<Plug>(YankyYank)` | Yank (Yanky) |
-| `p` | n,x | `<Plug>(YankyPutAfter)` | Put after (Yanky) |
-| `P` | n,x | `<Plug>(YankyPutBefore)` | Put before (Yanky) |
-| `gp` | n,x | `<Plug>(YankyGPutAfter)` | GPut after (Yanky) |
-| `gP` | n,x | `<Plug>(YankyGPutBefore)` | GPut before (Yanky) |
+| `p` / `P` | n,x | `<Plug>(YankyPutAfter/Before)` | Put (Yanky) |
+| `gp` / `gP` | n,x | `<Plug>(YankyGPutAfter/Before)` | GPut (Yanky) |
+| `=p` / `=P` | n,x | Put after/before with filter | Filter put |
+| `>p` / `>P` | n,x | Put indent right | Indent put |
+| `<lt>p` / `<lt>P` | n,x | Put indent left | Dedent put |
 
-## Comments
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `gc` | v | Comment visual selection | Comment visual selection |
-| `gb` | v | Block comment visual | Block comment visual |
-| `gcc` | n | Comment line | Comment line |
-| `gbc` | n | Block comment line | Block comment line |
-| `gco` | n | Comment below | Comment below |
-| `gcO` | n | Comment above | Comment above |
-| `gcA` | n | Comment end of line | Comment end of line |
-| `<leader>mt` | n | Toggle todo marker | Toggle todo marker |
-
-## Todo Comments
+## Align (mini.align)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<leader>tq` | n | `<cmd>TodoQuickFix<cr>` | Todo QuickFix |
-| `<leader>tl` | n | `<cmd>TodoLocList<cr>` | Todo LocList |
-| `<leader>ts` | n | `<cmd>TodoTelescope<cr>` | Todo Telescope |
-| `]t` | n | `require('todo-comments').jump_next()` | Next todo comment |
-| `[t` | n | `require('todo-comments').jump_prev()` | Previous todo comment |
+| `<leader>ma` | n,x | Mini.align with preview | Align with interactive preview |
+| `<leader>mA` | n,x | Mini.align without preview | Align without preview |
 
-## Trouble (Diagnostics & Lists)
+## Comments & Comment Boxes
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<space>xx` | n | `<cmd>Trouble diagnostics toggle<cr>` | Diagnostics (Trouble) |
-| `<space>xX` | n | `<cmd>Trouble diagnostics toggle filter.buf=0<cr>` | Buffer diagnostics (Trouble) |
-| `<space>xs` | n | `<cmd>Trouble symbols toggle<cr>` | Symbols (Trouble) |
-| `<space>xr` | n | `<cmd>Trouble lsp toggle win.position=right<cr>` | LSP references (Trouble) |
-| `<space>xl` | n | `<cmd>Trouble loclist toggle<cr>` | Location list (Trouble) |
-| `<space>xq` | n | `<cmd>Trouble qflist toggle<cr>` | Quickfix list (Trouble) |
-| `<space>xt` | n | `<cmd>Trouble todo<cr>` | Todo trouble |
-| `<leader>mc` | n | `<cmd>Trouble todo toggle<cr>` | Todo trouble |
+| `gc` / `gcc` | n,x | mini.comment | Toggle comment (see Comments section) |
+| `<leader>cb` | n | Comment Box: Section Title | Section title box |
+| `<leader>ca` | n | Comment Box: Subsection Title | Subsection title box |
+| `<leader>cl` | n | Comment Box: Dividing Line | Dividing line |
+| `<leader>cd` | n | Comment Box: Delete | Delete comment box |
+| `<leader>cf` | n | Comment Box: Single Frame | Single comment frame |
+| `<leader>cm` | n | Comment Box: Multi Frame | Multi comment frame |
 
-## Notifications (Snacks)
+## Notifications
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<space>nd` | n | `Snacks.notifier.hide()` | Dismiss all notifications |
-| `<space>nh` | n | `<cmd>NotificationHistory<cr>` | Show notification history |
-| `<space>nl` | n | `<cmd>NotificationLast<cr>` | Show last notification |
-| `<space>nc` | n | `<cmd>NotificationClear<cr>` | Clear notification history |
+| `<Space>nn` | n | `Snacks.notifier.show_history()` | Notification history |
+| `<Space>nc` | n | `Snacks.notifier.hide()` | Dismiss notifications |
+| `<Space>nh` | n | Noice message history | Noice history |
+| `<Space>nl` | n | Noice last message | Noice last message |
+| `<Space>nd` | n | Dismiss Noice messages | Noice dismiss |
 
 ## Debug (DAP)
 
@@ -269,83 +290,142 @@ This document provides a comprehensive reference of all keybindings configured i
 |-----|------|----------|-------------|
 | `<leader>Db` | n | `<cmd>DapToggleBreakpoint<cr>` | Add breakpoint |
 | `<leader>Du` | n | `<cmd>lua require("dapui").toggle()<CR>` | DAP UI toggle |
-| `<leader>dB` | n | Set conditional breakpoint | Add conditional breakpoint |
-| `<leader>dc` | n | `<cmd>DapContinue<CR>` | Dap continue |
-| `<leader>dsi` | n | `<cmd>DapStepInto<CR>` | Dap step into |
-| `<leader>dso` | n | `<cmd>DapStepOver<CR>` | Dap step over |
-| `<leader>dst` | n | `<cmd>DapStepOut<CR>` | Dap step out |
-| `<leader>dt` | n | `<cmd>DapTerminate<CR>` | Dap terminate |
-| `<leader>dl` | n | `<cmd>DapShowLog<CR>` | Dap show log |
-| `<leader>dr` | n | `<cmd>DapToggleRepl<CR>` | Dap toggle REPL |
+| `<leader>dB` | n | `require("dap").set_breakpoint(input)` | Add conditional breakpoint |
+| `<leader>Dc` | n | `<cmd>DapContinue<CR>` | Dap continue |
+| `<leader>Dsi` | n | `<cmd>DapStepInto<CR>` | Dap step into |
+| `<leader>Dso` | n | `<cmd>DapStepOver<CR>` | Dap step over |
+| `<leader>Dst` | n | `<cmd>DapStepOut<CR>` | Dap step out |
+| `<leader>Dt` | n | `<cmd>DapTerminate<CR>` | Dap terminate |
+| `<leader>Dl` | n | `<cmd>DapShowLog<CR>` | Dap show log |
+| `<leader>Dr` | n | `<cmd>DapToggleRepl<CR>` | Dap toggle REPL |
 
-## Text Sorting & Alignment
+## Text Sorting & Alignment (lua/core/keymaps/misc.lua)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<leader>so` | n,v | `<cmd>Sort<CR>` | Sort lines/selection |
-| `<leader>si` | n,v | `<cmd>Sort i<CR>` | Sort lines/selection (ignore case) |
-| `<leader>su` | n,v | `<cmd>Sort u<CR>` | Sort lines/selection (unique) |
-| `<leader>sn` | n,v | `<cmd>Sort n<CR>` | Sort lines/selection (numeric) |
-| `<leader>ma` | n,x | Mini.align with preview | Align text with interactive preview |
-| `<leader>mA` | n,x | Mini.align without preview | Align text without preview |
+| `<leader>so` | n,v | `:Sort<CR>` | Sort lines/selection |
+| `<leader>si` | n,v | `:Sort i<CR>` | Sort (ignore case) |
+| `<leader>su` | n,v | `:Sort u<CR>` | Sort (unique) |
+| `<leader>sn` | n,v | `:Sort n<CR>` | Sort (numeric) |
+
+## Trouble (Diagnostics & Lists)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<Space>xx` | n | `<cmd>Trouble diagnostics toggle<cr>` | Diagnostics (Trouble) |
+| `<Space>xX` | n | `<cmd>Trouble diagnostics toggle filter.buf=0<cr>` | Buffer diagnostics |
+| `<Space>xs` | n | `<cmd>Trouble symbols toggle<cr>` | Symbols (Trouble) |
+| `<Space>xr` | n | `<cmd>Trouble lsp toggle win.position=right<cr>` | LSP references |
+| `<Space>xl` | n | `<cmd>Trouble loclist toggle<cr>` | Location list |
+| `<Space>xq` | n | `<cmd>Trouble qflist toggle<cr>` | Quickfix list |
+| `<Space>xt` | n | `<cmd>Trouble todo<cr>` | Todo trouble |
+| `<leader>mc` | n | `<cmd>Trouble todo toggle<cr>` | Todo trouble |
 
 ## AI Integration
 
+### CodeCompanion
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
+| `<leader>O` | n,v | CodeCompanion toggle | Open CodeCompanion |
+| `<leader>Oa` | n,v | CodeCompanion actions | Actions menu |
+| `<leader>Oc` | n,v | CodeCompanion chat | Chat |
+| `<leader>Od` | n,v | CodeCompanion CMD | CMD mode |
+| `<leader>OG` | n | Generate code | Generate code |
+| `<leader>OM` | n,v | Modify code | Modify code |
 
-## Avante AI (Ask Functions)
-
+### Ollama
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<leader>Oaa` | n,v | Avante ask | Avante ask |
-| `<leader>Oae` | n,v | Avante edit | Avante edit |
-| `<leader>Oar` | n,v | Avante refresh | Avante refresh |
-| `<leader>Oaf` | n,v | Avante focus | Avante focus |
-| `<leader>Oat` | n,v | Avante toggle | Avante toggle |
-| `<leader>Oag` | n,v | Grammar correction (ask) | Grammar correction (ask) |
-| `<leader>Oak` | n,v | Keywords (ask) | Keywords (ask) |
-| `<leader>Oal` | n,v | Code readability analysis (ask) | Code readability analysis (ask) |
-| `<leader>Oao` | n,v | Optimize code (ask) | Optimize code (ask) |
-| `<leader>Oam` | n,v | Summarize text (ask) | Summarize text (ask) |
-| `<leader>Oan` | n,v | Translate text (ask) | Translate text (ask) |
-| `<leader>Oax` | n,v | Explain code (ask) | Explain code (ask) |
-| `<leader>Oac` | n,v | Complete code (ask) | Complete code (ask) |
-| `<leader>Oad` | n,v | Docstring (ask) | Docstring (ask) |
-| `<leader>Oab` | n,v | Fix bugs (ask) | Fix bugs (ask) |
-| `<leader>Oau` | n,v | Add tests (ask) | Add tests (ask) |
-
-## Avante AI (Edit Functions)
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `<leader>OaG` | v | Grammar correction (edit) | Grammar correction (edit) |
-| `<leader>OaK` | v | Keywords (edit) | Keywords (edit) |
-| `<leader>OaO` | v | Optimize code (edit) | Optimize code (edit) |
-| `<leader>OaC` | v | Complete code (edit) | Complete code (edit) |
-| `<leader>OaD` | v | Docstring (edit) | Docstring (edit) |
-| `<leader>OaB` | v | Fix bugs (edit) | Fix bugs (edit) |
-| `<leader>OaU` | v | Add tests (edit) | Add tests (edit) |
-
-## Utility Features
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `-` | n | `require('snipe').open_buffer_menu()` | Open Snipe buffer menu |
-| `<leader>w` | n,v | Toggle boolean value | Toggle word/boolean value |
-| `<space>ir` | n | `:IncRename ` | Incremental rename |
-| `<space>o` | n | `<cmd>Outline<cr>` | Toggle outline |
-| `<leader>cr` | n | Refresh clipboard | Refresh clipboard from system |
+| `<leader>Os` | n | Ollama Serve | Start Ollama serve |
+| `<leader>OS` | n | Ollama Serve Stop | Stop Ollama serve |
+| `<leader>Om` | n | Ollama Model | Select model |
+| `<leader>Oo` | n,v | Ollama Prompt | Prompt menu |
+| `<leader>Oq` | n | Cancel All Jobs | Cancel Ollama jobs |
 
 ## Colors & Icons
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
-| `<leader>Cp` | n | `<cmd>CPicker<cr>` | Color picker |
-| `<leader>Cs` | n | `<cmd>CPicker<cr>` | Color shades |
-| `<leader>Ch` | n | `<cmd>CPicker<cr>` | Color huefy |
+| `<leader>Cp` | n | Color picker | Open color picker |
+| `<leader>CP` | n | Color picker insert | Insert color at cursor |
+| `<leader>Cc` | n | Color convert | Convert color format |
+| `<leader>Cr` | n | Convert HEX to RGB | Convert |
+| `<leader>Ch` | n | Convert HEX to HSL | Convert |
 | `<leader>in` | n | `:Nerdy list<CR>` | Browse nerd icons |
 | `<leader>iN` | n | `:Nerdy recents<CR>` | Browse recent nerd icons |
+
+## Project Notes (project_notes.nvim)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<leader>nt` | n | Toggle notes | Open/close note for current file |
+| `<leader>nm` | n | Main note | Open main note |
+| `<leader>nl` | n | List notes | List all notes |
+| `<leader>nd` | n | Delete note | Delete current note |
+| `<leader>ne` | n | Delete empty notes | Delete empty note files |
+
+**Note**: Notes are stored in `.opencode/context/notes/` when the project has an `.opencode/` directory, otherwise `.documentation/notes`.
+
+## Neovim Tips (neovim-tips)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<Space>nto` | n | `:NeovimTips<CR>` | Open tips |
+| `<Space>ntb` | n | `:NeovimTipsBookmarks<CR>` | Bookmarked tips |
+| `<Space>ntr` | n | `:NeovimTipsRandom<CR>` | Show random tip |
+| `<Space>nte` | n | `:NeovimTipsEdit<CR>` | Edit your tips |
+| `<Space>nta` | n | `:NeovimTipsAdd<CR>` | Add your tip |
+| `<Space>ntp` | n | `:NeovimTipsPdf<CR>` | Open tips PDF |
+
+## Snacks Extras
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<leader>db` | n | `Snacks.dashboard()` | Toggle dashboard |
+| `<leader>bf` | n | Big file status | Show big file optimization status |
+| `<leader>qf` | n | Quick file actions | Quick file action menu |
+| `<leader>sc` | n | Toggle scope | Toggle scope highlight |
+| `<leader>st` | n | Toggle status column | Toggle status column |
+| `<leader>tt` | n | Toggle terminal | Toggle floating terminal |
+| `<leader>pp` | n | `Snacks.image.clear()` | Clear images |
+
+## Mini.visits (Path Selection)
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<leader>vv` | n | Select recent path | Pick from visited paths |
+| `<leader>vr` | n | Select recent path | Recent filter |
+| `<leader>vf` | n | Select frequent path | Frequent filter |
+| `<leader>vc` | n | Select path in cwd | Current directory filter |
+
+## LSP Tooling
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<leader>lm` | n | `<cmd>Mason<cr>` | Mason LSP manager |
+| `<leader>lS` | n | `<cmd>Symbols<cr>` | LSP symbols sidebar |
+| `<Space>o` | n | `<cmd>Outline<cr>` | Toggle outline |
+
+## Snippets
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `<Tab>` | i,s | `vim.snippet.jump` | Jump to next snippet field |
+| `<S-Tab>` | i,s | `vim.snippet.jump(-1)` | Jump to previous field |
+| `<leader>sa` | n | Scissors: Add | Add snippet |
+| `<leader>se` | n | Scissors: Edit | Edit snippet |
+
+**Note**: LuaSnip's `<C-i>`/`<C-Up>`/`<C-Down>`/`<C-Shift-o>` keys are gone — snippet jumping is handled by native `vim.snippet`.
+
+## Treesitter
+
+| Key | Mode | Function | Description |
+|-----|------|----------|-------------|
+| `m` | o,x | `require('tsht').nodes()` | Treehopper: select TS nodes |
+| `]n` / `[n` | x | Select next/prev node | TS node selection |
+| `]N` / `[N` | x | Select next/prev sibling | TS sibling selection |
+| `in` / `an` | x | Select child / parent node | TS node text objects |
+| `<leader>ct` | n | `<cmd>TSContextToggle<cr>` | Toggle treesitter context |
 
 ## Miscellaneous
 
@@ -355,12 +435,9 @@ This document provides a comprehensive reference of all keybindings configured i
 | `<Leader>lc` | n | `<cmd>Lazy clean<cr>` | Clean Lazy plugins |
 | `<Leader>lC` | n | `<cmd>Lazy check<cr>` | Check Lazy plugins |
 | `<Leader>ls` | n | `<cmd>Lazy sync<cr>` | Sync Lazy plugins |
-| `<leader>mm` | n | `<cmd>messages<cr>` | Show messages |
-| `<leader>ct` | n | `<cmd>TSContextToggle<cr>` | Toggle treesitter context |
+| `gx` | n | Open filepath/URI | Open under cursor with system handler |
 | `z.` | n | `1z=` | Fix spelling |
 | `z=` | n | Spelling suggestions via vim.ui.select | Spelling suggestions |
-| `g,` | n | `g;` | Go to newest change |
-| `g;` | n | `g,` | Go to last change |
 
 ## Terminal Mode
 
@@ -381,7 +458,7 @@ This document provides a comprehensive reference of all keybindings configured i
 | `q` | n | `<cmd>bd<cr>` | Quit help/qf/man/query buffers |
 | `q` | n | `<cmd>tabc<cr>` | Quit DiffView/checkhealth tabs |
 
-## Completion (CMP)
+## Completion (blink.cmp)
 
 | Key | Mode | Function | Description |
 |-----|------|----------|-------------|
@@ -392,17 +469,8 @@ This document provides a comprehensive reference of all keybindings configured i
 | `<C-Space>` | i | Complete | Trigger completion |
 | `<C-e>` | i | Abort | Close completion |
 | `<CR>` | i | Confirm selection | Accept completion |
-| `<Tab>` | i,s | Smart tab completion | Tab/snippet/copilot navigation |
+| `<Tab>` | i,s | Smart tab completion | Tab/snippet navigation |
 | `<S-Tab>` | i,s | Smart shift-tab | Previous completion/snippet |
-
-## Snippets (LuaSnip)
-
-| Key | Mode | Function | Description |
-|-----|------|----------|-------------|
-| `<C-i>` | i,s | Expand or jump forward | Snippet expand/next |
-| `<C-Up>` | i,s | Jump to next choice | Next snippet choice |
-| `<C-Down>` | i,s | Jump to previous choice | Previous snippet choice |
-| `<C-Shift-o>` | i,s | Change choice | Change snippet choice |
 
 ---
 
@@ -423,9 +491,10 @@ This document provides a comprehensive reference of all keybindings configured i
 2. Use `<leader>fk` to search through all keymaps
 3. Many plugins have their own `:help` documentation for additional keybindings
 4. Buffer-specific keymaps are created dynamically based on file type
+5. Keymap sources: core keymaps live in `lua/core/keymaps/` (editor.lua = EDITOR/UI/IMAGE, misc.lua = DEBUG/GIT/SORT); plugin keymaps live in their plugin files under `lua/plugins/`
 
 ---
 
-*Last Updated*: 2026-04-13  
+*Last Updated*: 2026-08-08  
 *Total Keybindings*: 200+  
 *Leader Key*: `,` (comma)

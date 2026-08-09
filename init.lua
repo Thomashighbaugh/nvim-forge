@@ -36,11 +36,11 @@ require('core.smart-redraw').setup() -- Smart lazyredraw optimization
 require('core.error-logging').setup() -- Enhanced error logging system
 
 -- Load utility modules (local function replacements for plugins)
+-- NOTE: surround/autopairs/buffer/comment were replaced by mini.surround /
+-- mini.pairs / mini.bufremove / mini.comment (see lua/plugins/mini-suite.lua).
+-- The remaining utils have NO mini.nvim equivalent — do not remove them
+-- without a verified drop-in replacement (see AGENTS.md "Custom Utilities").
 require('utils.window').setup() -- Window management (replaces smart-splits.nvim)
-require('utils.buffer').setup() -- Buffer management (replaces mini.bufremove)
-require('utils.autopairs').setup() -- Auto-close brackets/quotes (replaces mini.pairs)
-require('utils.comment').setup() -- Comment toggling (replaces mini.comment)
-require('utils.surround').setup() -- Surround operations (replaces mini.surround)
 require('utils.todo-marker').setup() -- TODO/checkbox markers (replaces todo-marker.nvim)
 require('utils.toggler').setup() -- Boolean toggling (replaces nvim-toggler)
 require('utils.substitute').setup() -- Cmdline substitute alt (replaces nvim-alt-substitute)
@@ -60,12 +60,12 @@ local opts = {
     -- Limit concurrent git operations to avoid OOM during cloning
     -- With 47+ plugins to clone, unlimited parallelism overwhelms memory
     concurrency = 8,
-git = {
-timeout = 600,
--- Disable --filter=blob:none (partial clone) — broken on NixOS git 2.54+
--- Falls back to regular shallow clones which work at full speed
-filter = false,
-},
+    git = {
+        timeout = 600,
+        -- Disable --filter=blob:none (partial clone) — broken on NixOS git 2.54+
+        -- Falls back to regular shallow clones which work at full speed
+        filter = false,
+    },
 }
 
 -- Initialize lazy.nvim with plugin configurations

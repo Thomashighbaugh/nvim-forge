@@ -10,8 +10,17 @@ return {
         { '<leader>ne', desc = 'Project Notes Delete Empty' },
     },
     config = function()
+        -- Project-specific notes live in .opencode/context/notes/ when the
+        -- project has an .opencode/ directory (opencode-managed projects),
+        -- and fall back to .documentation/notes otherwise. Both are relative
+        -- to the project root (the plugin resolves them against cwd).
+        local notes_path = '.documentation/notes'
+        if vim.fn.isdirectory('.opencode') == 1 then
+            notes_path = '.opencode/context/notes/'
+        end
+
         local opts = {
-            notes_path = '.documentation/', -- platform neutral and easier to find while not crowding things out like non-hidden directories
+            notes_path = notes_path, -- platform neutral and easier to find while not crowding things out like non-hidden directories
             autosave = true,
             extension = '.md',
             confirmation = true,

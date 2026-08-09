@@ -103,7 +103,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.url_effect_enabled = true -- Highlight URLs with an underline effect.
 
 vim.g.autoformat_enabled = true -- Enable auto formatting at start.
-vim.g.autopairs_enabled = true -- Enable autopairs at start.
 
 -- Markdown
 vim.g.markdown_fenced_languages = { 'html', 'python', 'lua', 'js=javascript', 'markdown' }

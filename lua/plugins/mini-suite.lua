@@ -244,6 +244,45 @@ return {
                 },
             })
             -- ╭─────────────────────────────────────────────────────────╮
+            -- │                    MINI.SURROUND                        │
+            -- ╰─────────────────────────────────────────────────────────╯
+            -- Add/delete/replace surrounding brackets & quotes.
+            -- Replaces the former lua/utils/surround.lua (sa/sd/sr).
+            -- NOTE: no HTML tag surround support (custom utils had it).
+            require('mini.surround').setup({
+                mappings = {
+                    add = 'sa',
+                    delete = 'sd',
+                    replace = 'sr',
+                    find = 'sf',
+                    find_left = 'sF',
+                    highlight = 'sh',
+                    update_n_lines = 'sn',
+                },
+            })
+
+            -- ╭─────────────────────────────────────────────────────────╮
+            -- │                     MINI.PAIRS                          │
+            -- ╰─────────────────────────────────────────────────────────╯
+            -- Auto-close brackets, quotes, and backticks in insert mode.
+            -- Replaces the former lua/utils/autopairs.lua.
+            require('mini.pairs').setup()
+
+            -- ╭─────────────────────────────────────────────────────────╮
+            -- │                    MINI.COMMENT                         │
+            -- ╰─────────────────────────────────────────────────────────╯
+            -- Toggle line/block comments with gc/gcc/gb/gbc.
+            -- Replaces the former lua/utils/comment.lua.
+            require('mini.comment').setup()
+
+            -- ╭─────────────────────────────────────────────────────────╮
+            -- │                    MINI.BUFREMOVE                       │
+            -- ╰─────────────────────────────────────────────────────────╯
+            -- Delete buffers without closing the window.
+            -- Replaces the former lua/utils/buffer.lua (keymaps in `keys`).
+            require('mini.bufremove').setup()
+
+            -- ╭─────────────────────────────────────────────────────────╮
             -- │                    MINI.AI                              │
         end,
         keys = {
@@ -342,6 +381,34 @@ return {
                     require('mini.pick').builtin.buffers()
                 end,
                 desc = 'Buffer picker (replaces snipe)',
+            },
+
+            -- Mini.bufremove keybindings (replaces utils/buffer.lua)
+            {
+                '<leader>bd',
+                function()
+                    require('mini.bufremove').delete(0, false)
+                end,
+                desc = 'Delete buffer (keep layout)',
+            },
+            {
+                '<leader>bD',
+                function()
+                    require('mini.bufremove').delete(0, true)
+                end,
+                desc = 'Delete buffer (force)',
+            },
+
+            -- Mini.surround visual add (replaces utils/surround.lua's x sa;
+            -- keeps 'sa' instead of mini's default visual 's' to avoid
+            -- clashing with flash's visual `s` jump)
+            {
+                mode = 'x',
+                'sa',
+                function()
+                    require('mini.surround').add()
+                end,
+                desc = 'Add surround around selection',
             },
         },
     },

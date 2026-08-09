@@ -1,14 +1,30 @@
--- Editor autocommands
+-- ╭──────────────────────────────────────────────────────────╮
+-- │                    EDITOR AUTOCOMMANDS                    │
+-- │  Consolidated from:                                       │
+-- │    • editor.lua — general editor autocommands             │
+-- │    • lsp.lua    — LSP-related autocommands                │
+-- ╰──────────────────────────────────────────────────────────╯
+-- ──────────────────────── TABLE OF CONTENTS ────────────────────────
+--   1. EDITOR          Yank highlight, clipboard, autosave, checktime,
+--                      window resize, auto-cd, mkdir, filetype forcing,
+--                      help tab, formatoptions, last edit position,
+--                      macro stop message, quit-special-windows
+--   2. LSP             Code action listener (CursorHold)
+-- ────────────────────────────────────────────────────────────────────
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 1. EDITOR — general editor autocommands                  │
+-- ╰──────────────────────────────────────────────────────────╯
 local au = vim.api.nvim_create_autocmd
 
--- Highlight on yank
+-- ────────────── Highlight on yank ──────────────
 au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({ higroup = 'visual', timeout = 300 })
     end,
 })
 
--- Sync clipboard on focus (for clipse)
+-- ────────────── Sync clipboard on focus (for clipse) ──────────────
 au({ 'FocusGained', 'BufEnter' }, {
     callback = function()
         vim.fn.setreg('+', vim.fn.getreg('+'))
@@ -59,25 +75,25 @@ au('TextChangedI', {
     end,
 })
 
--- Update file on external changes
+-- ────────────── Update file on external changes ──────────────
 au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
     pattern = '<buffer>',
     command = 'checktime',
 })
 
--- Align windows when resizing
+-- ────────────── Align windows when resizing ──────────────
 au('VimResized', {
     pattern = '*',
     command = 'wincmd =',
 })
 
--- Auto cd to current buffer path
+-- ────────────── Auto cd to current buffer path ──────────────
 au('BufEnter', {
     pattern = '*',
     command = 'silent! lcd %:p:h',
 })
 
--- Auto-create directory on save
+-- ────────────── Auto-create directory on save ──────────────
 au('BufWritePre', {
     pattern = '*',
     callback = function()
@@ -89,7 +105,7 @@ au('BufWritePre', {
     end,
 })
 
--- Force treesitter for specific filetypes
+-- ────────────── Force treesitter for specific filetypes ──────────────
 au('FileType', {
     pattern = { 'zsh', 'conf' },
     callback = function()
@@ -102,13 +118,13 @@ vim.filetype.add({
     filename = { ['.zshrc'] = 'sh', ['.zshenv'] = 'sh', ['.conf'] = 'sh' },
 })
 
--- Open help in a new tab
+-- ────────────── Open help in a new tab ──────────────
 au('FileType', {
     pattern = 'help',
     command = ':wincmd T',
 })
 
--- Format options on BufEnter
+-- ────────────── Format options on BufEnter ──────────────
 au({ 'BufEnter' }, {
     callback = function()
         vim.opt.formatoptions:remove({ 'o', 'r', 'c' })
@@ -116,14 +132,14 @@ au({ 'BufEnter' }, {
     end,
 })
 
--- Jump to last edit position on opening file
+-- ────────────── Jump to last edit position on opening file ──────────────
 au('BufReadPost', {
     desc = 'Open file at the last position it was edited earlier',
     pattern = '*',
     command = 'silent! normal! g`"zv',
 })
 
--- Message if macro is stopped
+-- ────────────── Message if macro is stopped ──────────────
 au('RecordingLeave', {
     group = vim.api.nvim_create_augroup('MacroRecording', { clear = true }),
     callback = function()
@@ -131,7 +147,7 @@ au('RecordingLeave', {
     end,
 })
 
--- Quit special windows with q
+-- ────────────── Quit special windows with q ──────────────
 au('FileType', {
     pattern = { 'help', 'qf', 'man', 'query' },
     callback = function()
@@ -142,10 +158,23 @@ au('FileType', {
     end,
 })
 
--- Quit DiffView/checkhealth with q
+-- ────────────── Quit DiffView/checkhealth with q ──────────────
 au('FileType', {
     pattern = { 'DiffViewFiles', 'checkhealth' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>tabc<cr>', { silent = true, buffer = true })
+    end,
+})
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 2. LSP — LSP-related autocommands                        │
+-- ╰──────────────────────────────────────────────────────────╯
+-- Code action listener (only on CursorHold, not CursorHoldI)
+au({ 'CursorHold' }, {
+    callback = function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local range = nil
+        local context = { diagnostics = {} }
+        require('utils.code_actions').code_action_listener(bufnr, range, context)
     end,
 })
