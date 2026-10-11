@@ -1,5 +1,5 @@
 *nvim-forge.txt* The Personal Software Development and Personal Knowledge Base Management Environment of Thomas Leon Highbaugh.
-                                For NVIM v0.8.0    Last change: 2026 August 09
+                               For NVIM v0.8.0    Last change: 2026 October 11
 
 ==============================================================================
 Table of Contents                               *nvim-forge-table-of-contents*
@@ -31,7 +31,7 @@ QUICK START                              *nvim-forge-neovim-forge-quick-start*
 >sh
     # Back up your current config
     mv ~/.config/nvim ~/.config/nvim.bak
-    
+
     # Clone this one
     git clone https://github.com/Thomashighbaugh/nvim-forge ~/.config/nvim
 <
