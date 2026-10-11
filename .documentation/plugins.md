@@ -7,7 +7,7 @@ This document provides a comprehensive overview of all plugins configured in thi
 **Total Plugins**: 61 active plugins
 **Categories**: LSP, UI, Text Editing, Git, AI, Debug, Utilities  
 **Plugin Manager**: [Lazy.nvim](https://github.com/folke/lazy.nvim)  
-**Recent Update**: Mini.nvim ecosystem; Ollama AI (deepseek-v4-flash:preview-cloud + glm-5.2:cloud choices); GitLab Duo purged; project notes in `.opencode/context/notes/`; neovim-tips added
+**Recent Update**: Mini.nvim ecosystem; Ollama AI (deepseek-v4-flash:preview-cloud + glm-5.2:cloud choices); project notes in `.opencode/context/notes/`; neovim-tips added
 
 ---
 

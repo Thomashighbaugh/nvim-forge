@@ -137,22 +137,17 @@ return {
         -- │  lsp/servers/*.lua are picked up via vim.lsp.config[].  │
         -- ╰──────────────────────────────────────────────────────────╯
 
-        -- Purge GitLab Duo LSP server: nvim-lspconfig ships lsp/gitlab_duo.lua
-        -- upstream, and lsp-auto-setup auto-starts it whenever npx is on PATH.
-        -- The file lives in the plugin install dir (not this repo), so delete
-        -- it here on every load — `:Lazy update` re-adding it is handled too.
-        local gitlab_duo_file = vim.fn.stdpath('data') .. '/lazy/nvim-lspconfig/lsp/gitlab_duo.lua'
-        if vim.fn.filereadable(gitlab_duo_file) == 1 then
-            vim.fn.delete(gitlab_duo_file)
-        end
-
         local lsp_auto_setup_ok, lsp_auto_setup = pcall(require, 'lsp-auto-setup')
         if lsp_auto_setup_ok then
             lsp_auto_setup.setup({
+                -- lsp-auto-setup auto-starts any lsp/*.lua server whose
+                -- executable is on PATH. Exclude servers we never want running.
                 exclude = {
                     'emmet_ls',
                     'intelephense',
                     'jdtls',
+                    -- Not wanted: npx-based AI server, unauthenticated noise.
+                    'gitlab_duo',
                 },
                 stop_unused_servers = {
                     enable = true,
