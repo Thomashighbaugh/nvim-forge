@@ -427,8 +427,15 @@ return {
                             return require('codecompanion.adapters').extend('ollama', {
                                 schema = {
                                     model = {
-                                        default = 'deepseek-v4-flash:preview-cloud',
+                                        default = 'lfm3',
                                         choices = {
+                                            ['lfm3'] = {
+                                                opts = {
+                                                    can_reason = true,
+                                                    can_use_tools = true,
+                                                    has_vision = false,
+                                                },
+                                            },
                                             ['deepseek-v4-pro:cloud'] = {
                                                 opts = {
                                                     can_reason = true,
