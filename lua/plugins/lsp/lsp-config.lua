@@ -62,7 +62,7 @@ return {
                 vim.keymap.set('n', 'grwa', vim.lsp.buf.add_workspace_folder, bufopts('LSP Add Workspace Folder'))
                 vim.keymap.set('n', 'grwr', vim.lsp.buf.remove_workspace_folder, bufopts('LSP Remove Workspace Folder'))
                 vim.keymap.set('n', 'grwl', function()
-                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()), vim.log.levels.INFO)
                 end, bufopts('LSP List Workspace Folder'))
 
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)

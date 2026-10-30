@@ -12,7 +12,6 @@ end, {
 
 -- Cleaning registers
 vim.api.nvim_create_user_command('ClearReg', function()
-    print('Clearing registers')
     vim.cmd([[
     let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
     for r in regs

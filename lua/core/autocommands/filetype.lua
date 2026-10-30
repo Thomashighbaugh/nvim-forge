@@ -36,11 +36,12 @@ au('BufReadPre', {
             vim.opt_local.syntax = 'off'
             vim.opt_local.synmaxcol = 200
             vim.opt_local.lazyredraw = true
-            print(
+            vim.notify(
                 string.format(
                     'Large file detected (%.2f MB), performance optimizations applied',
                     file_size / 1024 / 1024
-                )
+                ),
+                vim.log.levels.INFO
             )
         else
             vim.b.large_buf = false

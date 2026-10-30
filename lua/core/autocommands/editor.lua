@@ -143,7 +143,7 @@ au('BufReadPost', {
 au('RecordingLeave', {
     group = vim.api.nvim_create_augroup('MacroRecording', { clear = true }),
     callback = function()
-        print('Macro recording stopped')
+        vim.notify('Macro recording stopped', vim.log.levels.INFO)
     end,
 })
 
