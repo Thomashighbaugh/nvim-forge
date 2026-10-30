@@ -1,73 +1,45 @@
--- Bootstrap lazy.nvim plugin manager
--- This section ensures that lazy.nvim is installed before proceeding with the configuration
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    -- Clone lazy.nvim repository if it doesn't exist
-    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-    -- Use --depth=1 instead of --filter=blob:none (partial clone broken on NixOS git 2.54+)
-    local out = vim.fn.system({ 'git', 'clone', '--depth=1', '--branch=stable', lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        -- Display error message and exit if cloning fails
-        vim.api.nvim_echo({
-            { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-            { out, 'WarningMsg' },
-            { '\nPress any key to exit...' },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
--- Add lazy.nvim to the runtime path
-vim.opt.runtimepath:prepend(lazypath)
+require('core.bootstrap')
 
--- Set leader keys for custom key mappings
--- The leader key is used as a prefix for custom shortcuts
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
--- Load core configuration modules
--- These modules contain the main Neovim configuration
-require('core.options') -- General Neovim settings and options
-require('core.keymaps') -- Custom key mappings and shortcuts
-require('core.autocommands') -- Automatic commands triggered by events
-require('core.usercommands') -- Custom user-defined commands
-require('core.notifications').setup() -- Enhanced notification system
-require('core.smart-redraw').setup() -- Smart lazyredraw optimization
-require('core.error-logging').setup() -- Enhanced error logging system
+require('core.options')
+require('core.keymaps')
+require('core.autocmds')
+require('core.usercommands')
 
--- Load utility modules (local function replacements for plugins)
--- NOTE: surround/autopairs/buffer/comment were replaced by mini.surround /
--- mini.pairs / mini.bufremove / mini.comment (see lua/plugins/mini-suite.lua).
--- The remaining utils have NO mini.nvim equivalent — do not remove them
--- without a verified drop-in replacement (see AGENTS.md "Custom Utilities").
-require('utils.window').setup() -- Window management (replaces smart-splits.nvim)
-require('utils.todo-marker').setup() -- TODO/checkbox markers (replaces todo-marker.nvim)
-require('utils.toggler').setup() -- Boolean toggling (replaces nvim-toggler)
-require('utils.substitute').setup() -- Cmdline substitute alt (replaces nvim-alt-substitute)
+pcall(vim.cmd, 'colorscheme default')
 
--- Configure lazy.nvim options
--- These settings customize the appearance and behavior of the plugin manager
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'VeryLazy',
+    callback = function()
+        require('core.notifications').setup()
+        require('core.smart-redraw').setup()
+        require('core.error-logging').setup()
+    end,
+})
+
+require('utils.window').setup()
+require('utils.todo-marker').setup()
+require('utils.toggler').setup()
+require('utils.substitute').setup()
+
 local opts = {
     ui = {
-        border = 'single', -- Set border style for lazy.nvim windows
+        border = 'single',
         icons = {
-            lazy = '💤', -- Icon displayed for lazy.nvim in the UI
+            lazy = '💤',
         },
     },
     checker = {
-        enabled = true, -- Enable automatic checking for plugin updates
+        enabled = true,
     },
-    -- Limit concurrent git operations to avoid OOM during cloning
-    -- With 47+ plugins to clone, unlimited parallelism overwhelms memory
     concurrency = 8,
+    change_detection = { notify = false },
     git = {
         timeout = 600,
-        -- Disable --filter=blob:none (partial clone) — broken on NixOS git 2.54+
-        -- Falls back to regular shallow clones which work at full speed
         filter = false,
     },
 }
 
--- Initialize lazy.nvim with plugin configurations
--- This loads all plugins from the 'plugins' and 'plugins.lsp' directories
 require('lazy').setup({ { import = 'plugins' }, { import = 'plugins.lsp' } }, opts)

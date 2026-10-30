@@ -1,134 +1,18 @@
--- Search
-vim.opt.ignorecase = true
-vim.opt.incsearch = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.inccommand = 'split'
-
--- Indents, spaces
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-
--- UI
-vim.opt.background = 'dark'
 vim.opt.number = true
 vim.opt.relativenumber = false
-vim.opt.showcmd = true
-vim.o.cmdheight = 0
-vim.opt.signcolumn = 'yes:1'
-vim.opt.scrolloff = 4
-vim.opt.sidescrolloff = 4
-vim.opt.laststatus = 3
-vim.opt.list = true
-vim.opt.listchars:append({ tab = '»-' })
-vim.opt.listchars:append({ trail = '·' })
-vim.opt.listchars:append({ extends = '»' })
-vim.opt.listchars:append({ precedes = '«' })
-vim.opt.fillchars:append({ eob = ' ', fold = ' ', foldsep = ' ', foldopen = '', foldclose = '' })
-vim.opt.confirm = true
-vim.opt.smoothscroll = true
-vim.opt.winminwidth = 5
-
--- Text
-vim.opt.textwidth = 0
-vim.opt.wrapmargin = 0
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.signcolumn = 'yes'
 vim.opt.wrap = false
-vim.opt.linebreak = true
-vim.opt.breakindent = true
-vim.opt.selection = 'inclusive'
-vim.opt.swapfile = true
-vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.conceallevel = 0
-vim.opt.virtualedit = 'onemore'
-
--- Large file performance
-vim.opt.synmaxcol = 500
-vim.opt.updatetime = 2000
-vim.opt.timeoutlen = 500
-
--- Folding
-vim.o.foldenable = false
-
--- Clipboard - explicit xclip provider with absolute paths (NixOS-safe)
--- NixOS may not have xclip in PATH when nvim is started from GUI launchers,
--- so we use absolute paths and define the provider explicitly.
-vim.g.clipboard = {
-    name = 'xclip',
-    copy = {
-        ['+'] = '/run/current-system/sw/bin/xclip -selection clipboard -i',
-        ['*'] = '/run/current-system/sw/bin/xclip -selection primary -i',
-    },
-    paste = {
-        ['+'] = '/run/current-system/sw/bin/xclip -selection clipboard -o',
-        ['*'] = '/run/current-system/sw/bin/xclip -selection primary -o',
-    },
-    cache_enabled = true,
-}
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 
--- Keys
-vim.opt.backspace = { 'indent', 'eol', 'start' }
-vim.opt.mouse = 'a'
+vim.opt.updatetime = 200
+vim.opt.timeoutlen = 400
+vim.opt.redrawtime = 1500
 
--- Cursor
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = false
-vim.opt.guicursor = {
-    'n-v-c:block-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100',
-    'i-ci:ver25-Cursor/lCursor-blinkwait1000-blinkon100-blinkoff100',
-    'r:hor50-Cursor/lCursor-blinkwait100-blinkon100-blinkoff100',
-}
-
--- Path
-vim.opt.path:append('**')
-
--- Spell — disabled globally, enable per-buffer with `:setlocal spell` when needed
--- Global spell is a major cause of insert-mode lag (runs on every keystroke)
-vim.opt.spell = false
-vim.opt.spelllang = { 'en' }
-
--- Split
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.laststatus = 3
+vim.opt.showmode = false
 vim.opt.splitkeep = 'screen'
-
--- Other
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.url_effect_enabled = true -- Highlight URLs with an underline effect.
-
-vim.g.autoformat_enabled = true -- Enable auto formatting at start.
-
--- Markdown
-vim.g.markdown_fenced_languages = { 'html', 'python', 'lua', 'js=javascript', 'markdown' }
-vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
-
--- For treesitter commentstring
-vim.opt.updatetime = 100
-vim.g.skip_ts_context_commentstring_module = true
-
--- ╭─────────────────────────────────────────────────────────────────────╮
--- │ PERFORMANCE OPTIMIZATIONS                                           │
--- ╰─────────────────────────────────────────────────────────────────────╯
-
--- Reduce impact of syntax highlighting on large files
-vim.opt.redrawtime = 2000 -- Redraw time limit (default 2000)
-vim.opt.maxmempattern = 2000 -- Balanced memory for pattern matching
-
--- Optimize completion
-vim.opt.pumheight = 15 -- Limit popup menu height to improve performance
-
--- Improve responsiveness
-vim.opt.ttyfast = true -- Fast terminal connection
-vim.opt.ttimeoutlen = 50 -- Faster key code timeout
-
--- Disable providers for health checks (uncomment if not needed)
--- vim.g.loaded_python3_provider = 0
--- vim.g.loaded_ruby_provider = 0
--- vim.g.loaded_perl_provider = 0
--- vim.g.loaded_node_provider = 0
