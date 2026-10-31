@@ -148,6 +148,9 @@ return {
                     'jdtls',
                     -- Not wanted: npx-based AI server, unauthenticated noise.
                     'gitlab_duo',
+                    'efm',
+                    'css_variables',
+                    'cssmodules_ls',
                 },
                 stop_unused_servers = {
                     enable = true,

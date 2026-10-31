@@ -18,6 +18,10 @@ vim.lsp.config.tailwindcss = {
         'tmpl',
         'gotmpl',
     },
+    root_dir = function(fname)
+        local util = require('lspconfig.util')
+        return util.root_pattern('tailwind.config.*', 'postcss.config.*', 'package.json', '.git')(fname)
+    end,
     init_options = {
         userLanguages = {
             rust = 'html',

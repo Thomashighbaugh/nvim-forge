@@ -1,5 +1,9 @@
 require('core.bootstrap')
 
+pcall(function()
+    vim.lsp.set_log_level('WARN')
+end)
+
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 

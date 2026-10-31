@@ -25,10 +25,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client and client.name == 'ltex' then
-            -- 600ms: only send didChange once typing pauses for this long.
-            -- Default is ~150ms which fires the full-buffer Java grammar
-            -- checker on every single keystroke — the main source of lag.
-            client.debounce = 600
+            if client.debounce == nil then
+                client.debounce = 600
+            end
         end
     end,
 })
