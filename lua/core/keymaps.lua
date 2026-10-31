@@ -76,3 +76,13 @@ map('i', '<C-v>', '<Esc>"+pa', 'Paste (best-effort)')
 map('v', '<leader>y', '"+y', 'Copy selection (+)')
 map('n', '<leader>p', '"+p', 'Paste (+)')
 map('n', '<leader>P', '"+P', 'Paste before (+)')
+
+-- Lazy package manager
+map('n', '<leader>l', '<cmd>Lazy<cr>', 'Lazy')
+map('n', '<leader>L', '<cmd>Lazy<cr>', 'Lazy')
+map('n', '<leader>lu', '<cmd>Lazy update<cr>', 'Lazy Update')
+map('n', '<leader>ls', '<cmd>Lazy sync<cr>', 'Lazy Sync')
+map('n', '<leader>lc', '<cmd>Lazy clean<cr>', 'Lazy Clean')
+map('n', '<leader>lx', '<cmd>Lazy check<cr>', 'Lazy Check')
+map('n', '<leader>lp', '<cmd>Lazy profile<cr>', 'Lazy Profile')
+map('n', '<leader>lr', '<cmd>Lazy restore<cr>', 'Lazy Restore')
