@@ -179,6 +179,8 @@ au('BufWinEnter', {
         vim.wo.linebreak = true
         vim.wo.breakindent = true
         vim.wo.showbreak = '↪ '
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = 'en_us'
     end,
 })
 
@@ -187,7 +189,7 @@ au('InsertEnter', {
     pattern = '*.md',
     callback = function()
         pcall(function()
-            vim.bo.spell = false
+            vim.bo.spell = true
         end)
         if spell_timer then
             pcall(function()
@@ -218,6 +220,7 @@ au('InsertLeave', {
             if vim.api.nvim_get_mode().mode == 'n' and vim.bo[bufnr].filetype == 'markdown' then
                 pcall(function()
                     vim.bo[bufnr].spell = true
+                    vim.bo[bufnr].spelllang = 'en_us'
                 end)
             end
             spell_timer = nil
