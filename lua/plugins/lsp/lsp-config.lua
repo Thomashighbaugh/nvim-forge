@@ -140,21 +140,19 @@ return {
         local lsp_auto_setup_ok, lsp_auto_setup = pcall(require, 'lsp-auto-setup')
         if lsp_auto_setup_ok then
             lsp_auto_setup.setup({
-                -- lsp-auto-setup auto-starts any lsp/*.lua server whose
-                -- executable is on PATH. Exclude servers we never want running.
                 exclude = {
                     'emmet_ls',
                     'intelephense',
                     'jdtls',
-                    -- Not wanted: npx-based AI server, unauthenticated noise.
                     'gitlab_duo',
                     'efm',
                     'css_variables',
                     'cssmodules_ls',
+                    'typos_lsp',
                 },
                 stop_unused_servers = {
                     enable = true,
-                    exclude = { 'lua_ls' },
+                    exclude = { 'lua_ls', 'nil_ls' },
                 },
             })
         else
@@ -180,3 +178,13 @@ return {
         end
     end,
 }
+
+-- Ensure servers from npm/pnpm are enabled when available
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'json', 'jsonc' },
+    callback = function()
+        if vim.fn.executable('vscode-json-language-server') == 1 then
+            pcall(vim.lsp.enable, 'jsonls')
+        end
+    end,
+})

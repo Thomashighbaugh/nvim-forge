@@ -18,21 +18,23 @@ return {
                 border = 'single',
                 height = 0.8,
             },
+            registries = {
+                'github:mason-org/mason-registry',
+            },
+            providers = {
+                'mason.providers.registry-api',
+                'mason.providers.client',
+            },
+            install_root_dir = vim.fn.stdpath('data') .. '/mason',
+            pip = {
+                install_args = {},
+            },
         })
         require('mason-lspconfig').setup({
-            ensure_installed = {
-                'cssls',
-                'emmet_ls',
-                'html',
-                'intelephense',
-                'jdtls',
-                'jsonls',
-                'ltex',
-                'lua_ls',
-                'ruff',
-                'rust_analyzer',
-                'ts_ls',
-                'yamlls',
+            ensure_installed = {},
+            automatic_installation = true,
+            automatic_enable = {
+                exclude = { 'jdtls', 'gitlab_duo' },
             },
         })
     end,

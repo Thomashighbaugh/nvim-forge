@@ -236,3 +236,36 @@ au({ 'CursorHold' }, {
         ca.code_action_listener(bufnr, nil, { diagnostics = {} })
     end,
 })
+
+-- Auto-install common LSPs via npm/pnpm if missing (npm registry)
+local function ensure_npm_lsp(bin, pkg)
+    if vim.fn.executable(bin) == 1 then
+        return
+    end
+    local manager = vim.fn.executable('pnpm') == 1 and 'pnpm' or (vim.fn.executable('npm') == 1 and 'npm' or nil)
+    if not manager then
+        return
+    end
+    local cmd = manager == 'pnpm' and { 'pnpm', 'add', '-g', pkg } or { 'npm', 'install', '-g', pkg }
+    vim.notify('Installing ' .. pkg .. ' via ' .. manager .. '...', vim.log.levels.INFO)
+    vim.system(cmd, { detach = true }, function(out)
+        vim.schedule(function()
+            if out.code == 0 then
+                vim.notify(pkg .. ' installed', vim.log.levels.INFO)
+            end
+        end)
+    end)
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'json', 'jsonc', 'markdown', 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
+    once = true,
+    callback = function()
+        ensure_npm_lsp('vscode-json-language-server', 'vscode-langservers-extracted')
+        ensure_npm_lsp('vscode-html-language-server', 'vscode-langservers-extracted')
+        ensure_npm_lsp('vscode-css-language-server', 'vscode-langservers-extracted')
+        ensure_npm_lsp('typescript-language-server', 'typescript-language-server')
+        ensure_npm_lsp('tailwindcss-language-server', '@tailwindcss/language-server')
+        ensure_npm_lsp('yaml-language-server', 'yaml-language-server')
+    end,
+})
