@@ -8,18 +8,11 @@ return {
     dependencies = {
         'b0o/schemastore.nvim',
         'saghen/blink.cmp',
-        -- lsp-auto-setup: auto-enables servers based on available executables
         'Massolari/lsp-auto-setup.nvim',
     },
     config = function()
-        -- ╭─────────────────────────────────╮
-        -- │ LSP BORDER FOR :LSPINFO COMMAND │
-        -- ╰─────────────────────────────────╯
         require('lspconfig.ui.windows').default_options.border = 'single'
 
-        -- ╭─────────────────────────────────────────────────────────╮
-        -- │                   DIAGNOSTIC KEY MAPS                   │
-        -- ╰─────────────────────────────────────────────────────────╯
         local opts = function(desc)
             return { noremap = true, silent = true, desc = desc }
         end
@@ -33,9 +26,6 @@ return {
         end, opts('Next Diagnostic'))
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts('Send Diagnostic to Locallist'))
 
-        -- ╭───────────────────────╮
-        -- │ LSPATTACH AUTOCOMMAND │
-        -- ╰───────────────────────╯
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('UserLspConfig', {}),
             callback = function(ev)
@@ -67,14 +57,12 @@ return {
 
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-                -- Inlay hints (built-in, Neovim 0.10+)
                 if client and client.server_capabilities and client.server_capabilities.inlayHintProvider then
                     vim.lsp.inlay_hint.enable(true)
                 else
                     vim.lsp.inlay_hint.enable(false)
                 end
 
-                -- Winbar with navic
                 if client and client.server_capabilities and client.server_capabilities.documentSymbolProvider then
                     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
                     require('nvim-navic').attach(client, ev.buf)
@@ -84,9 +72,6 @@ return {
             end,
         })
 
-        -- ╭───────────────────╮
-        -- │ DIAGNOSTIC CONFIG │
-        -- ╰───────────────────╯
         vim.diagnostic.config({
             virtual_text = { prefix = '' },
             jump = { float = true },
@@ -107,11 +92,6 @@ return {
             },
         })
 
-        --  ╭──────────────────────────────────────────────────────────╮
-        --  │              IMPORT PER-SERVER CONFIGS                    │
-        --  ╰──────────────────────────────────────────────────────────╯
-        -- Each server file calls vim.lsp.config.<server> = { ... }
-        -- at module load time, so requiring them registers the configs.
         require('plugins.lsp.servers.lua_ls')
         require('plugins.lsp.servers.nil_ls')
         require('plugins.lsp.servers.pyright')
@@ -128,14 +108,6 @@ return {
         require('plugins.lsp.servers.rust_analyzer')
         require('plugins.lsp.servers.yamlls')
         require('plugins.lsp.servers.tinymist')
-
-        -- ╭──────────────────────────────────────────────────────────╮
-        -- │              AUTO-ENABLE LSP SERVERS                    │
-        -- │  lsp-auto-setup scans nvim-lspconfig for available      │
-        -- │  servers, checks if each executable is on PATH, and     │
-        -- │  enables only those found. Per-server configs from      │
-        -- │  lsp/servers/*.lua are picked up via vim.lsp.config[].  │
-        -- ╰──────────────────────────────────────────────────────────╯
 
         local lsp_auto_setup_ok, lsp_auto_setup = pcall(require, 'lsp-auto-setup')
         if lsp_auto_setup_ok then
@@ -156,7 +128,6 @@ return {
                 },
             })
         else
-            -- Fallback: manually enable servers if lsp-auto-setup is not installed
             vim.lsp.enable({
                 'lua_ls',
                 'nil_ls',
@@ -178,13 +149,3 @@ return {
         end
     end,
 }
-
--- Ensure servers from npm/pnpm are enabled when available
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'json', 'jsonc' },
-    callback = function()
-        if vim.fn.executable('vscode-json-language-server') == 1 then
-            pcall(vim.lsp.enable, 'jsonls')
-        end
-    end,
-})
