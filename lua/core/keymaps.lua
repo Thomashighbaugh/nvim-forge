@@ -70,8 +70,6 @@ end, 'Select all')
 
 map('v', '<C-c>', '"+y', 'Copy selection (best-effort)')
 map('n', '<C-c>', '"+yy', 'Copy line (best-effort)')
-map({ 'n', 'v' }, '<C-v>', '"+p', 'Paste (best-effort)')
-map('i', '<C-v>', '<Esc>"+pa', 'Paste (best-effort)')
 
 map('v', '<leader>y', '"+y', 'Copy selection (+)')
 map('n', '<leader>p', '"+p', 'Paste (+)')
