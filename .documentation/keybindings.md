@@ -492,9 +492,10 @@ This document provides a comprehensive reference of all keybindings configured i
 3. Many plugins have their own `:help` documentation for additional keybindings
 4. Buffer-specific keymaps are created dynamically based on file type
 5. Keymap sources: core keymaps live in `lua/core/keymaps/` (editor.lua = EDITOR/UI/IMAGE, misc.lua = DEBUG/GIT/SORT); plugin keymaps live in their plugin files under `lua/plugins/`
+6. `Ctrl+V` stays native Visual Block — no paste mapping. System paste: terminal `Ctrl+Shift+V`, or `<leader>p` / `<leader>P` inside nvim
 
 ---
 
-*Last Updated*: 2026-08-08  
+*Last Updated*: 2026-11-05  
 *Total Keybindings*: 200+  
 *Leader Key*: `,` (comma)

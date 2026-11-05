@@ -175,6 +175,7 @@ GOTCHAS                                      *nvim-forge-neovim-forge-gotchas*
 - **dd on empty lines** doesn’t yank — intentional, uses the black-hole register.
 - **c and C don’t yank** — intentional, uses the black-hole register.
 - **p in visual mode pastes without overwriting** the default register.
+- **`Ctrl+V` is native Visual Block** — system paste is the terminal’s job (`Ctrl+Shift+V`), or `,p` / `,P` inside nvim.
 - **Smart redraw** automatically toggles `lazyredraw` during macros and expensive operations.
 - **Big files** (>1MB) get automatic performance optimizations via Snacks.
 - **z=** uses `vim.ui.select` instead of the default spelling suggestion list.
